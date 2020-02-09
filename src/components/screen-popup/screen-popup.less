@@ -3,20 +3,20 @@
 & #screen {
   position: absolute;
   .fullspan-mixin;
-  background-color: rgba(128, 128, 128, 0.25);
-  z-index: 1025;
+  background-color: rgba(37, 35, 35, 0.25);
+  z-index: 1000;
   & #cityPopup {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 200px;
+    // top: 50%;
+    right: 0;
+    width: 50%;
     .translate-mixin(-50%, -50%);
     padding: 12px;
     border: none;
     border-radius: 6px;
-    box-shadow: @spread-shadow;
+    // box-shadow: @spread-shadow;
     z-index: 1030;
-    background: @translucent-white;
+    // background: @translucent-white;
     & p {
       .bodymedium-mixin(14px);
       margin: 0 0 6px 0;
@@ -82,11 +82,11 @@
         padding: 24px;
         .bodylight-mixin(12px);
         & a {
-        .linklight-mixin(12px);
-        color: @banjir-blue;
+          .linklight-mixin(12px);
+          color: @banjir-blue;
         }
         & p {
-            .header {
+          .header {
             text-transform: uppercase;
             .bodymedium-mixin(14px);
           }
@@ -111,4 +111,264 @@
       }
     }
   }
+}
+.position {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+}
+
+.searchDropDown {
+  background: white;
+  list-style: none;
+  text-align: left;
+  opacity: 0.7;
+  overflow: scroll;
+}
+
+ul li {
+  list-style: none;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+// input.live-search-box.au-target {
+//   width: 100%;
+//   height: 24px;
+//   border: 1px solid;
+//   border-radius: 3px;
+//   font-size: 15px;
+// }
+
+i.icon-cancel-circled-outline {
+  font-size: 20px !important;
+}
+
+i.icon-menu {
+  font-size: 20px !important;
+}
+#screen #cityPopup {
+  position: fixed;
+  top: 1.5%;
+  right: 0;
+  width: 50%;
+  -ms-transform: translate(-50%, -50%);
+  /* -webkit-transform: translate(-50%, -50%); */
+  transform: translate(0%, -3%);
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  // box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.4);
+  z-index: 1030;
+  // background: rgba(255, 255, 255, 0.85);
+  display: block !important;
+}
+
+.locationDesign:hover {
+  background-color: #ccc;
+}
+
+input.live-search-box.au-target {
+  width: 55%;
+  height: 31px;
+  border: 0px solid;
+  border-radius: 3px;
+  font-size: 15px;
+  padding: 10px;
+  box-shadow: 0px 5px #c7bdbd;
+  position: absolute;
+  top: 6px;
+  right: 7px;
+}
+
+#report{
+  z-index: 1000;
+}
+
+.dropUl{
+  border-bottom: 1px solid;
+}
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+    input.live-search-box.au-target {
+      width: 58%;
+      height: 36px;
+      border: 0px solid;
+      border-radius: 3px;
+      font-size: 15px;
+      padding: 10px;
+      box-shadow: 0px 5px #c7bdbd;
+      position: absolute;
+      top: 6px;
+      right: 7px;
+  }
+div#sidePane {
+  margin-right: 8px !important;
+  width: 329px !important;
+}
+  }
+
+  @media screen 
+  and (min-device-width: 1600px) 
+  and (max-device-width: 1920px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+    input.live-search-box.au-target {
+      width: 55%;
+      height: 36px;
+      border: 0px solid;
+      border-radius: 3px;
+      font-size: 15px;
+      padding: 10px;
+      box-shadow: 0px 5px #c7bdbd;
+      position: absolute;
+      top: 6px;
+      right: 7px;
+  }
+
+    div#sidePane {
+      margin-right: 8px !important;
+      width: 337px !important;
+    }
+  }
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+
+    #screen #cityPopup {
+      position: fixed;
+      top: 1.5%;
+      right: 0;
+      width: 100%;
+      -ms-transform: translate(-50%, -50%);
+      /* -webkit-transform: translate(-50%, -50%); */
+      transform: translate(0%, -3%);
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      z-index: 1030;
+      display: block !important;
+    }
+}
+
+    /* Portrait */
+    @media only screen 
+    and (min-device-width: 375px) 
+    and (max-device-width: 812px) 
+    and (-webkit-min-device-pixel-ratio: 3)
+    and (orientation: portrait) { 
+      
+    #screen #cityPopup {
+      position: fixed;
+      top: 1.5%;
+      right: 0;
+      width: 100%;
+      -ms-transform: translate(-50%, -50%);
+      /* -webkit-transform: translate(-50%, -50%); */
+      transform: translate(0%, -3%);
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      z-index: 1030;
+      display: block !important;
+    }
+    }
+
+    /* ----------- Google Pixel ----------- */
+
+@media screen 
+and (device-width: 360px) 
+and (device-height: 640px) 
+and (-webkit-device-pixel-ratio: 3) {
+  #screen #cityPopup {
+    position: fixed;
+    top: 1.5%;
+    right: 0;
+    width: 100%;
+    -ms-transform: translate(-50%, -50%);
+    /* -webkit-transform: translate(-50%, -50%); */
+    transform: translate(0%, -3%);
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    z-index: 1030;
+    display: block !important;
+  }
+}
+
+/* ----------- Galaxy S3 ----------- */
+
+/* Portrait and Landscape */
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 2) {
+    #screen #cityPopup {
+      position: fixed;
+      top: 1.5%;
+      right: 0;
+      width: 100%;
+      -ms-transform: translate(-50%, -50%);
+      /* -webkit-transform: translate(-50%, -50%); */
+      transform: translate(0%, -3%);
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      z-index: 1030;
+      display: block !important;
+    }
+}
+
+/* ----------- Galaxy S4, S5 and Note 3 ----------- */
+
+/* Portrait and Landscape */
+@media screen 
+  and (device-width: 320px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) {
+    #screen #cityPopup {
+      position: fixed;
+      top: 1.5%;
+      right: 0;
+      width: 100%;
+      -ms-transform: translate(-50%, -50%);
+      /* -webkit-transform: translate(-50%, -50%); */
+      transform: translate(0%, -3%);
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      z-index: 1030;
+      display: block !important;
+    }
+}
+
+/* ----------- Galaxy S6 ----------- */
+
+/* Portrait and Landscape */
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 4) {
+    #screen #cityPopup {
+      position: fixed;
+      top: 1.5%;
+      right: 0;
+      width: 100%;
+      -ms-transform: translate(-50%, -50%);
+      /* -webkit-transform: translate(-50%, -50%); */
+      transform: translate(0%, -3%);
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      z-index: 1030;
+      display: block !important;
+    }
 }

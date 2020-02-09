@@ -1,5 +1,18 @@
 const en = {
-  'add_report': 'Report Flooding',
+  'comming_soon': 'Coming Soon',
+  'coming_soon_2020': 'Coming Soon MARCH 2020!',
+  'reports_stats': 'Received {reportsplaceholder} reports in past {hoursplaceholder} hours',
+  'prep_menu': {
+    'btn_names': {
+      'drain': 'Blocked Drains',
+      'desilting': 'Desilting',
+      'canalrepair': 'Canal Repairs',
+      'treeclearing': 'Fallen Tree'
+    }
+  },
+  'add_report': 'Report Flood',
+  'search_ph': 'Search',
+  'search_header': 'Select Region',
   'reports_stats': 'Received {reportsplaceholder} reports in past {hoursplaceholder} hours',
   'prep_menu': {
     'btn_names': {
@@ -12,8 +25,9 @@ const en = {
   'web_menu': {
     'tab_names': {
       'map': 'map',
-      'report': 'report',
-      'info': 'info'
+      'report': 'Report',
+      'legend': 'Legend',
+      'about': 'About'
     }
   },
   'report_info': {
@@ -89,12 +103,13 @@ const en = {
     }
   },
   'info_content': {
-    'intro': 'PetaBencana.id harnesses the power of social media to gather, sort, and display information about flooding in real time',
+    'intro': 'PetaBencana.id harnesses the use of social media during emergency events to gather, sort, and display confirmed hazard information in real-time.',
     'infoLink': '<a href="https://info.petabencana.id/" target="_blank">To know more, visit Petabencana Foundation</a>',
-    'p1': 'PetaBencana.id is a platform run by the Yayasan Peta Bencana as a free, transparent platform for emergency response and disaster management in megacities in South and Southeast Asia.',
-    'p2': 'The platform adopts a “people are the best sensors” paradigm, where confirmed reports are collected directly from the users at street level in a manner that removes expensive and time-consuming data processing. This framework creates accurate, real-time data which is immediately made available for users and first responders.',
-    'p3': 'PetaBencana.id gathers, sorts, and visualizes data using specially developed CogniCity Open Source Software - an enterprise-level platform for emergency response and disaster management - to transforms the noise of social and digital media into critical information for residents, communities, and government agencies.',
+    'p1': 'Run by <a href="https://info.petabencana.id/" target="_blank"> Yayasan Peta Bencana</a>, as a free, transparent platform for emergency response and disaster management in megacities in South and Southeast Asia, the platform is made possible through collaboration with several partners:',
+    'p2': '',
+    'p3': 'PetaBencana.id gathers, sorts, and visualizes data using specially developed CogniCity Open Source Software - an enterprise-level platform for emergency response and disaster management - to transforms the noise of social and digital media into critical information for residents, communities, and government agencies. The platform adopts a “people are the best sensors” paradigm, where confirmed reports are collected directly from the users at street level in a manner that removes expensive and time-consuming data processing. This framework creates accurate, real-time data which is immediately made available for users and first responders.',
     'partners': {
+      'funding': 'Funding Partner',
       'implementing': 'Implementing partner',
       'project': 'Project partners',
       'data': 'Data partners'

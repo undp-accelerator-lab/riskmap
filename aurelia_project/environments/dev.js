@@ -22,15 +22,18 @@ export default {
   petabencana: {
     title: 'Petabencana.id',
     report_timeperiod: 43200,
-    default_language: 'en',
+    default_language: 'id',
     tile_layer: 'https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidXJiYW5yaXNrbWFwIiwiYSI6ImNpdmVhbTFraDAwNHIyeWw1ZDB6Y2hhbTYifQ.tpgt1PB5lkJ-wITS02c96Q',
     data_server: 'https://data-dev.petabencana.id/',
+    cards_server: 'https://cards-dev.petabencana.id/',
     app: 'https://dev.petabencana.id/',
     deep_links: [
       {name: 'facebook', link: 'http://m.me/CognicityDev.id'},
       {name: 'twitter', link: 'https://twitter.com/intent/tweet?text=Laporkan+banjir&via=petabencana'}, //TODO : fill after twitter DM bot is created for Petabencana.
+      {name: 'telegram', link: 'https://telegram.me/CognicityDevBot'},
       {name: 'telegram', link: 'https://telegram.me/CognicityDevBot'}
-    ]
+    ],
+    data_server_key: '{data_server_key}'
   },
   riskmap_in: {
     title: 'RiskMap.in',

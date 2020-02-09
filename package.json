@@ -7,11 +7,11 @@
     "url": "git+https://github.com/urbanriskmap/riskmap"
   },
   "scripts": {
-    "start": "au run --env dev --watch --dep $DEP",
-    "test": "au build --env dev --dep pb",
-    "build": "rm -rf scripts/* && au build --env prod --dep $DEP",
-    "build-stage": "rm -rf scripts/* && au build --env stage --dep $DEP",
-    "build-dev": "rm -rf scripts/* && au build --env dev --dep $DEP"
+    "start": "au run --env dev --watch --dep $DEP --data_server_key $DATA_SERVER_KEY",
+    "test": "au build --env dev --dep pb --data_server_key $DATA_SERVER_KEY",
+    "build": "rm -rf scripts/* && au build --env prod --dep $DEP --data_server_key $DATA_SERVER_KEY",
+    "build-stage": "rm -rf scripts/* && au build --env stage --dep $DEP --data_server_key $DATA_SERVER_KEY",
+    "build-dev": "rm -rf scripts/* && au build --env dev --dep $DEP --data_server_key $DATA_SERVER_KEY"
   },
   "license": "GPL-3.0",
   "dependencies": {
@@ -24,6 +24,7 @@
     "chart.js": "2.7.2",
     "jquery": "^3.4.1",
     "leaflet": "1.0.3",
+    "leaflet.markercluster": "^1.4.1",
     "less": "^3.8.1",
     "nprogress": "0.2.0",
     "requirejs": "2.3.3",
@@ -45,7 +46,7 @@
     "babel-preset-es2015": "6.24.1",
     "babel-preset-stage-1": "6.24.1",
     "babel-register": "^6.26.0",
-    "browser-sync": "^2.26.5",
+    "browser-sync": "^2.26.7",
     "canned": "0.3.10",
     "connect-history-api-fallback": "1.5.0",
     "gulp": "^4.0.0",
@@ -59,6 +60,7 @@
     "gulp-notify": "3.2.0",
     "gulp-plumber": "1.2.0",
     "gulp-rename": "1.2.2",
+    "gulp-replace": "^1.0.0",
     "gulp-sourcemaps": "2.6.4",
     "jasmine-core": "3.1.0",
     "karma": "4.0.1",
