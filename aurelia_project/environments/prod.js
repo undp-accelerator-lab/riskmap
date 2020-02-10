@@ -20,7 +20,7 @@ export default {
   },
   petabencana: {
     title: 'Petabencana.id',
-    report_timeperiod: 3600,
+    report_timeperiod: 86400,
     default_language: 'id',
     tile_layer: 'https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidXJiYW5yaXNrbWFwIiwiYSI6ImNpdmVhbTFraDAwNHIyeWw1ZDB6Y2hhbTYifQ.tpgt1PB5lkJ-wITS02c96Q',
     data_server: 'https://data.petabencana.id/',
