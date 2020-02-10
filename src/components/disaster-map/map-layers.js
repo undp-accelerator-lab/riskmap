@@ -475,7 +475,7 @@ export class MapLayers {
     let self = this;
     map.createPane('gauges');
     map.getPane('gauges').style.zIndex = 650;
-    if (cityRegion === 'jbd') {
+    if (cityRegion === 'ID-JK') {
       // Create flood gauge layer and add to the map
       self.gaugeLayer = L.geoJSON(null, {
         pointToLayer: (feature, latlng) => {
