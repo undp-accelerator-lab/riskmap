@@ -44,8 +44,6 @@ export class MapUtility {
       if (self.parseCityObj(city, false).region === regionCode) {
         return city;
       }
-      return null;
-
     }
   }
 
