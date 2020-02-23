@@ -22,6 +22,8 @@ export class ScreenPopup {
   constructor(Config) {
     this.seltab = 'about';
     this.config = Config.map;
+    this.configData = Config;
+
     $(document).click( function() {
       $('#dropdown_city').hide('slow');
     });
@@ -31,7 +33,8 @@ export class ScreenPopup {
     });
     // this.queryChanged('', '');
     // $('#dropdown_city').show();
-    // this.searchResult = Object.keys(this.config.sub_regions);
+    this.searchResult = Object.keys(this.config.sub_regions);
+    this.languages = this.config.supported_languages;
 
   }
 
