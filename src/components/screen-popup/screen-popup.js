@@ -53,7 +53,7 @@ export class ScreenPopup {
       $(this).toggleClass('clicked');
     });
     this.searchText = newval.toLowerCase();
-    if (this.searchResult.length > 3) {
+    if (this.searchText.length > 0) {
       $('#dropdown_city').show();
     } else {
       $('#dropdown_city').hide();
