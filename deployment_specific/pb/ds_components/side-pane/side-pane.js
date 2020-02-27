@@ -120,6 +120,16 @@ export class SidePane {
   //on the fly language change
   changeLanguage(language) {
     this.locale = this.lang_obj[language];
+    $('li p').click(function () {
+      // reset all 
+      $('ul.tabs p').removeClass('activelanguage');
+     
+      $(this).addClass('activelanguage');
+      
+      $(this).parents('li').find('p').filter(function () {
+        return !$(this).closest('p').hasClass('tabs-nav');
+      }).addClass('activelanguage');
+    });
   }
 
   //get language object from key
