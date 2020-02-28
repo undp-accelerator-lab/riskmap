@@ -229,12 +229,13 @@ div#sidePane {
       padding: 10px;
       box-shadow: 0px 5px #c7bdbd;
       width: 46%;
+      top:0px;
       // position: absolute;
       // top: 6px;
       // right: 7px;
   }
   input#search_city_input:focus {
-    width: 97% !important;
+    width: 79% !important;
     position: absolute;
     right: 7px;
     outline: none;
@@ -242,6 +243,45 @@ div#sidePane {
     div#sidePane {
       margin-right: 8px !important;
       width: 365px !important;
+    }
+
+    .searchDropDown{
+      margin-left: 18%;
+      width: 38%;
+    }
+  }
+
+  @media screen 
+  and (min-device-width: 1920px) 
+  and (max-device-width: 2560px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+    input.live-search-box.au-target {
+      // width: 55%;
+      height: 36px;
+      border: 0px solid;
+      border-radius: 3px;
+      font-size: 15px;
+      padding: 10px;
+      box-shadow: 0px 5px #c7bdbd;
+      width: 30%;
+      // position: absolute;
+      // top: 6px;
+      // right: 7px;
+  }
+  input#search_city_input:focus {
+    width: 60% !important;
+    position: absolute;
+    right: 7px;
+    outline: none;
+}
+    div#sidePane {
+      margin-right: 8px !important;
+      width: 365px !important;
+    }
+    .searchDropDown{
+      margin-left: 38%;
+      width: 30%;
     }
   }
 
