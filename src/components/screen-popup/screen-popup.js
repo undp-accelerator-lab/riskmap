@@ -63,7 +63,7 @@ export class ScreenPopup {
       return value.indexOf(newval.toLowerCase()) !== -1 ? value : null;
     });
     this.searchResult = newObj;
-    this.resizeSidePane()
+    // this.resizeSidePane()
     // if (this.searchResult <= 3) {
     //   $('#dropdown_city').hide();
     // } else $('#dropdown_city').show();
