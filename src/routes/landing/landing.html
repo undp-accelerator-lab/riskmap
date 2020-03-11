@@ -35,7 +35,7 @@
     </div> -->
 
     <nav id="reportButton" class="float-action-button">
-  <div class="buttons" title="Report" data-toggle="tooltip" data-placement="left" click.delegate="reportTab()">
+  <div class="buttons" title="Flood" data-toggle="tooltip" data-placement="left" click.delegate="reportTab()">
     <img style="width:60px" src="/assets/icons/Add_Report_ Icon_Flood.png">
     <div class="row" id="reportLink">
       <table class="table table-borderless">
@@ -47,7 +47,20 @@
         </tr>
       </table>
     </div>
-        </div>
+  </div>
+  <div  class="buttons" title="Earthquake" data-toggle="tooltip" data-placement="left" click.delegate="select_report('earthquake')">
+    <img id="earthquake" style="width:60px" src="/assets/icons/Add_Report_Icon_Earthquake.png">
+    <div class="row" id="earthquakeLink">
+      <table class="table table-borderless">
+        <tr class="row report">
+          <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>
+          <div class="reportEarthquakeBtn">
+            <input type="button" class="btn btn-primary" value="${webMenu.locale.add_report}" click.delegate="reportDisaster('earthquake')"/>
+          </div>
+        </tr>
+      </table>
+    </div>
+  </div>
   <div  class="buttons" title="Fire" data-toggle="tooltip" data-placement="left" click.delegate="select_report('fire')">
     <img id="fire" style="width:60px" src="/assets/icons/Add_Report_Icon_Fire.png">
     <div class="row" id="fireLink">
@@ -75,19 +88,6 @@
       </table>
     </div>
         </div>
-  <div  class="buttons" title="Earthquake" data-toggle="tooltip" data-placement="left" click.delegate="select_report('earthquake')">
-    <img id="earthquake" style="width:60px" src="/assets/icons/Add_Report_Icon_Earthquake.png">
-    <div class="row" id="earthquakeLink">
-      <table class="table table-borderless">
-        <tr class="row report">
-          <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>
-          <div class="reportEarthquakeBtn">
-            <input type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
-          </div>
-        </tr>
-      </table>
-    </div>
-  </div>
   <div  class="buttons" title="Earthquake Access" data-toggle="tooltip" data-placement="left" click.delegate="select_report('earthquakeAccess')">
     <img id="earthquakeAccess" id="icon" style="width:60px" src="/assets/icons/Earthquake_2.svg">
     <div class="row" id="earthquakeAccessLink">
