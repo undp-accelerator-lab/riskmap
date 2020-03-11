@@ -41,6 +41,10 @@ export class MapLayers {
       flood_cluster: (level) => L.divIcon({
         iconSize: [30, 30],
         html: '<i class="icon-map-bg bg-cluster cluster ' + level + '"><i class="icon-map-flood report-cluster">'
+      }),
+      disaster_cluster: (disaster, level) => L.divIcon({
+        iconSize: [30, 30],
+        html: '<i class="icon-map-bg bg-cluster cluster ' + level + '"><i class="icon-map-' + disaster + ' report-cluster">'
       })
     };
     this.mapPolygons = {
@@ -373,10 +377,11 @@ export class MapLayers {
     let endPoint = 'reports/?city=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod;
     // add layer to map
     // return self.appendData('reports/?city=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod, self.reports, map);
-    return this.addResportsClustered(self, endPoint, cityName, map, togglePane);
+    return this.addReportsClustered(endPoint, cityName, map, togglePane);
   }
 
-  addResportsClustered(self, endPoint, cityName, map, togglePane) {
+  addReportsClustered(endPoint, cityName, map, togglePane) {
+    let self = this;
     return new Promise((resolve, reject) => {
       self.getData(endPoint)
         .then(data => {
@@ -384,26 +389,38 @@ export class MapLayers {
             // console.log('Could not load map layer');
             resolve(data);
           } else {
-            // create new layer object
-            self.reports = L.geoJSON(data, {
-              onEachFeature: (feature, layer) => {
-                self.reportInteraction(feature, layer, cityName, map, togglePane);
-              },
-              pointToLayer: (feature, latlng) => {
-                let reportIconNormal = (feature.properties.disaster_type === 'prep') ? self.mapIcons.report_normal(feature.properties.report_data.report_type) : self.mapIcons.report_normal('flood');
-                return L.marker(latlng, {
-                  icon: reportIconNormal,
-                  pane: 'reports'
-                });
-              }
-            });
-            let markers = L.markerClusterGroup({iconCreateFunction: this.iconCreateFunction()});
-            markers.addLayer(self.reports);
-            markers.addTo(map);
+            this.addCluster(data, cityName, map, togglePane, "earthquake");
+            this.addCluster(data, cityName, map, togglePane, "flood");
             resolve(data);
           }
         }).catch(() => reject(null));
     });
+  }
+
+  addCluster(data, cityName, map, togglePane, disaster) {
+    let self = this;
+    // create new layer object
+    console.log('asdas');
+    self.reports = L.geoJSON(data, {
+      filter: function(feature, layer) {
+        return feature.properties.disaster_type === disaster;
+      },
+      onEachFeature: (feature, layer) => {
+        self.reportInteraction(feature, layer, cityName, map, togglePane);
+      },
+      pointToLayer: (feature, latlng) => {
+        let reportIconNormal = (feature.properties.disaster_type === 'prep') ?
+          self.mapIcons.report_normal(feature.properties.report_data.report_type) :
+          self.mapIcons.report_normal(feature.properties.disaster_type);
+        return L.marker(latlng, {
+          icon: reportIconNormal,
+          pane: 'reports'
+        });
+      }
+    });
+    let markers = L.markerClusterGroup({ iconCreateFunction: this.iconCreateFunction() });
+    markers.addLayer(self.reports);
+    markers.addTo(map);
   }
 
   iconCreateFunction() {
@@ -421,13 +438,13 @@ export class MapLayers {
       let children = cluster.getAllChildMarkers();
       let avgDepth = self.getAverageFloodDepth(children);
       if (avgDepth < 30) {
-        return self.mapIcons.flood_cluster('low');
+        return self.mapIcons.disaster_cluster('flood', 'low');
       } else if (avgDepth < 70) {
-        return self.mapIcons.flood_cluster('normal');
+        return self.mapIcons.disaster_cluster('flood', 'normal');
       } else if (avgDepth < 150) {
-        return self.mapIcons.flood_cluster('medium');
+        return self.mapIcons.disaster_cluster('flood', 'medium');
       } else if (avgDepth >= 150) {
-        return self.mapIcons.flood_cluster('high');
+        return self.mapIcons.disaster_cluster('flood', 'high');
       }
     };
   }
