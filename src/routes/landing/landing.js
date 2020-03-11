@@ -124,7 +124,7 @@ export class Landing {
   reportDisaster(type) {
     let self = this;
     self.initiateReport(type).then(cardId => {
-      window.location = self.config.cards_server + type + '/' + cardId;
+      window.location = self.config.cards_server + cardId  + '/' + type;
     });
   }
 
