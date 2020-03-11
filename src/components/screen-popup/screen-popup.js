@@ -33,9 +33,8 @@ export class ScreenPopup {
     });
     // this.queryChanged('', '');
     // $('#dropdown_city').show();
-    // this.searchResult = Object.keys(this.config.sub_regions);
+    this.searchResult = Object.keys(this.config.sub_regions);
     this.languages = this.config.supported_languages;
-
   }
 
   switchTab(name) {
