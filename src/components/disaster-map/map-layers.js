@@ -265,6 +265,7 @@ export class MapLayers {
       data.labels.push(feature.properties.observations[i].f1);
       data.datasets[0].data.push(feature.properties.observations[i].f2);
     }
+    // eslint-disable-next-line no-unused-vars
     let gaugeChart = new Chart(ctx, {
       type: 'line',
       data: data,
@@ -389,8 +390,12 @@ export class MapLayers {
             // console.log('Could not load map layer');
             resolve(data);
           } else {
-            this.addCluster(data, cityName, map, togglePane, "earthquake");
-            this.addCluster(data, cityName, map, togglePane, "flood");
+            this.addCluster(data, cityName, map, togglePane, 'earthquake');
+            this.addCluster(data, cityName, map, togglePane, 'flood');
+            this.addCluster(data, cityName, map, togglePane, 'fire');
+            this.addCluster(data, cityName, map, togglePane, 'haze');
+            this.addCluster(data, cityName, map, togglePane, 'volcono');
+            this.addCluster(data, cityName, map, togglePane, 'wind');
             resolve(data);
           }
         }).catch(() => reject(null));
@@ -400,7 +405,6 @@ export class MapLayers {
   addCluster(data, cityName, map, togglePane, disaster) {
     let self = this;
     // create new layer object
-    console.log('asdas');
     self.reports = L.geoJSON(data, {
       filter: function(feature, layer) {
         return feature.properties.disaster_type === disaster;

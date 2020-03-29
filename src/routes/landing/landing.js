@@ -150,9 +150,9 @@ export class Landing {
       $('#earthquakeLink').toggle('slide');
     }
 
-    if (typeReport === 'earthquakeAccess') {
-      toggleSrc('#earthquakeAccess', '/assets/icons/Earthquake_2', '.svg');
-      $('#earthquakeAccessLink').toggle('slide');
+    if (typeReport === 'wind') {
+      toggleSrc('#wind', '/assets/icons/Earthquake_2', '.svg');
+      $('#windLink').toggle('slide');
     }
 
     if (typeReport === 'volcano') {

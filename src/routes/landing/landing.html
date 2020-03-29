@@ -68,8 +68,7 @@
         <tr class="row report">
           <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>
           <div class="reportFireBtn">
-            <input type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" style="
-            width: 90%;background-color:gray;"/>
+            <input type="button" class="btn btn-primary" value="${webMenu.locale.add_report}" click.delegate="reportDisaster('fire')"/>
           </div>
         </tr>
       </table>
@@ -82,20 +81,20 @@
         <tr class="row report">
           <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>
           <div class="reportHazeBtn">
-            <input type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
+            <input type="button" class="btn btn-primary" value="${webMenu.locale.add_report}" click.delegate="reportDisaster('haze')"/>
           </div>
         </tr>
       </table>
     </div>
         </div>
-  <div  class="buttons" title="Earthquake Access" data-toggle="tooltip" data-placement="left" click.delegate="select_report('earthquakeAccess')">
-    <img id="earthquakeAccess" id="icon" style="width:60px" src="/assets/icons/Earthquake_2.svg">
-    <div class="row" id="earthquakeAccessLink">
+  <div  class="buttons" title="Wind" data-toggle="tooltip" data-placement="left" click.delegate="select_report('wind')">
+    <img id="wind" id="icon" style="width:60px" src="/assets/icons/Earthquake_2.svg">
+    <div class="row" id="windLink">
       <table class="table table-borderless">
         <tr class="row report">
           <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>
-          <div class="reportEarthquakeAccessBtn">
-            <input type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
+          <div class="reportWindBtn">
+            <input type="button" class="btn btn-primary" value="${webMenu.locale.add_report}" click.delegate="reportDisaster('wind')"/>
           </div>
         </tr>
       </table>
@@ -108,15 +107,15 @@
         <tr class="row report">
           <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>
           <div class="volcanoBtn">
-            <input type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
+            <input type="button" class="btn btn-primary" value="${webMenu.locale.add_report}" click.delegate="reportDisaster('volcano')"/>
           </div>
         </tr>
       </table>
     </div>
   </div>
   <div   class="buttons main-button" title="Add Report" data-toggle="tooltip" data-placement="left">
-         <img style="width:60px" src="/assets/icons/Add_Report_Icon_Blue.png">
-        </div>
+        <img style="width:60px" src="/assets/icons/Add_Report_Icon_Blue.png">
+  </div>
 </nav>
 
     <screen-popup
