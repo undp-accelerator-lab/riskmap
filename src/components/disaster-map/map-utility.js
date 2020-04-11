@@ -144,19 +144,20 @@ export class MapUtility {
     let regions = self.config.instance_regions;
     self.clientLocation = e;
     let clientCities = [];
+    console.log(e);
+    self.clientCityIsValid = false;
     for (let city in regions) {
-      self.clientCityIsValid = false;
       if (e.latitude > regions[city].bounds.sw[0] && e.longitude > regions[city].bounds.sw[1] && e.latitude < regions[city].bounds.ne[0] && e.longitude < regions[city].bounds.ne[1]) {
         self.clientCity = city;
         clientCities.push(regions[city].region);
         self.clientCityIsValid = true;
         // break;
       }
-      if (clientCities.length > 1) {
-        self.locService.filterPointInCities(e, clientCities).then( city => {
-          self.clientCity = city;
-        });
-      }
+    }
+    if (clientCities.length > 1) {
+      self.locService.filterPointInCities(e, clientCities).then( city => {
+        self.clientCity = city;
+      });
     }
   }
 
@@ -181,6 +182,31 @@ export class MapUtility {
   viewClientLocation(map, layers, togglePane) {
     let self = this;
     console.log(self.clientLocation);
+    if (self.clientLocation) {
+      if (self.clientCityIsValid) {
+        //case 1: location found, location in a supported city
+        self.changeCity(self.clientCity, null, map, layers, togglePane);
+        map.flyTo(self.clientLocation.latlng, 15);
+        if (self.gpsMarker) {
+          self.gpsMarker.removeFrom(map);
+          self.gpsAccuracy.removeFrom(map);
+        }
+        map.once('moveend', () => { //execute only once, after fly to location ends, ignores user map drag events
+          self.drawGpsMarkers(self.clientLocation.latlng, self.clientLocation.accuracy, map);
+        });
+      } else {
+        //case 2: location found, but not in supported city
+        $.notify('Location out of bounds', { style: 'mapInfo', className: 'info', position: 'top center' });
+      }
+    } else {
+      //case 3: location not found
+      $.notify('GPS location not found', { style: 'mapInfo', className: 'error', position: 'top center' });
+    }
+  }
+
+  goToLocation(location, map, layers, togglePane) {
+    let self = this;
+    self.onLocationFound(location);
     if (self.clientLocation) {
       if (self.clientCityIsValid) {
         //case 1: location found, location in a supported city

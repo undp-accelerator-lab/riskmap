@@ -1,6 +1,7 @@
-import { bindable, customElement, demoIntercept } from 'aurelia-framework';
+import { bindable, customElement } from 'aurelia-framework';
 import { inject, observable } from 'aurelia-framework';
 import { Config } from 'resources/config';
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
 
 //start-aurelia-decorators
 @customElement('screen-popup')
@@ -23,6 +24,7 @@ export class ScreenPopup {
     this.seltab = 'about';
     this.config = Config.map;
     this.configData = Config;
+    this.searchProvider = new OpenStreetMapProvider();
 
     $(document).click( function() {
       $('#dropdown_city').hide();
@@ -31,8 +33,6 @@ export class ScreenPopup {
     $('#screen').click( function(e) {
       e.stopPropagation();
     });
-    // this.queryChanged('', '');
-    // $('#dropdown_city').show();
     this.searchResult = Object.keys(this.config.sub_regions);
     this.languages = this.config.supported_languages;
   }
@@ -57,15 +57,21 @@ export class ScreenPopup {
     } else {
       $('#dropdown_city').hide();
     }
-    const map = Object.keys(this.config.sub_regions);
-    let newObj = map.filter(value => {
-      return value.indexOf(newval.toLowerCase()) !== -1 ? value : null;
-    });
-    this.searchResult = newObj;
-    // this.resizeSidePane()
-    // if (this.searchResult <= 3) {
-    //   $('#dropdown_city').hide();
-    // } else $('#dropdown_city').show();
+    // const map = Object.keys(this.config.sub_regions);
+    // let newObj = map.filter(value => {
+    //   return value.indexOf(newval.toLowerCase()) !== -1 ? value : null;
+    // });
+
+    this.searchIndonesiaOSM(newval.toLowerCase());
+  }
+
+  searchIndonesiaOSM(query) {
+    query = query;
+    console.log(query);
+    this.searchProvider.search({ query })
+      .then((results) => {
+        this.searchResult = results;
+      });
   }
 
   resizeSidePane() {

@@ -92,8 +92,14 @@ export class DisasterMap {
   // Load all reports of a searched sub region
   viewRegionReports(regionName, pushState) {
     let self = this;
-    let city = self.utility.parseRegion(regionName);
-    self.viewReports(city, pushState);
+    console.log(regionName);
+    // let city = self.utility.parseRegion(regionName);
+    self.utility.goToLocation({
+      'latitude': regionName.y,
+      'longitude': regionName.x,
+      'latlng': [regionName.y, regionName.x]
+    }, self.map, self.layers, self.togglePane);
+    // self.viewReports(self.utility.clientCity, pushState);
   }
 
   // Load all reports for a given city, or zoom to single queried report id
