@@ -24,9 +24,19 @@ export class MapLayers {
         html: '<i class="icon-map-bg bg-circle ' + type + '"><i class="icon-' + type + ' report-icon"></i>'
         //html: '<i class="icon-map-' + type + ' report-icon ' + type + '"></i>'
       }),
+      report_normal_with_url: (type) => L.icon({
+        iconUrl: 'assets/icons/' + type + '.svg',
+        iconSize: [30, 30],
+        iconAnchor: [15, 15]
+      }),
       report_selected: (type) => L.divIcon({
         iconSize: [30, 30],
         html: '<i class="icon-map-bg bg-circle ' + type + ' selected"><i class="icon-' + type + ' report-icon"></i>'
+      }),
+      report_selected_with_url: (type) => L.icon({
+        iconUrl: 'assets/icons/' + type + '_select.svg',
+        iconSize: [30, 30],
+        iconAnchor: [15, 15]
       }),
       gauge_normal: (url) => L.icon({
         iconUrl: url,
@@ -58,6 +68,42 @@ export class MapLayers {
       }
     };
   }
+
+  getReportIcon(disasterType, subType) {
+    switch (disasterType) {
+    case 'flood':
+      return this.mapIcons.report_normal(disasterType);
+    case 'prep':
+      return this.mapIcons.report_normal(subType);
+    case 'earthquake':
+      return this.mapIcons.report_normal_with_url(subType);
+    case 'haze':
+    case 'wind':
+    case 'volcano':
+    case 'fire':
+      return this.mapIcons.report_normal_with_url(disasterType);
+    default:
+      return this.mapIcons.report_normal(disasterType);
+    }
+  }
+  getSelectedReportIcon(disasterType, subType) {
+    switch (disasterType) {
+    case 'flood':
+      return this.mapIcons.report_selected(disasterType);
+    case 'prep':
+      return this.mapIcons.report_selected(subType);
+    case 'earthquake':
+      return this.mapIcons.report_selected_with_url(subType);
+    case 'haze':
+    case 'wind':
+    case 'volcano':
+    case 'fire':
+      return this.mapIcons.report_selected_with_url(disasterType);
+    default:
+      return this.mapIcons.report_selected(disasterType);
+    }
+  }
+  
 
   // Get icon for flood gauge
   gaugeIconUrl(level) {
@@ -138,7 +184,7 @@ export class MapLayers {
   }
 
   revertIconToNormal(type) {
-    let icon = (type === 'flood' || type === null) ? this.mapIcons.report_normal('flood') : this.mapIcons.report_normal(this.selReportType);
+    let icon = (type === 'flood' || type === null) ? this.getReportIcon(type, null) : this.getReportIcon(this.selReportType, null);
     this.selected_report.target.setIcon(icon);
     this.selected_report = null;
   }
@@ -149,8 +195,8 @@ export class MapLayers {
     layer.on({
       click: (e) => {
         map.flyTo(layer._latlng, 15);
-        let reportIconNormal = (feature.properties.disaster_type === 'prep') ? self.mapIcons.report_normal(feature.properties.report_data.report_type) : self.mapIcons.report_normal('flood');
-        let reportIconSelected = (feature.properties.disaster_type === 'prep') ? self.mapIcons.report_selected(feature.properties.report_data.report_type) : self.mapIcons.report_selected('flood');
+        let reportIconNormal = self.getReportIcon(feature.properties.disaster_type, feature.properties.report_data.report_type);
+        let reportIconSelected = self.getSelectedReportIcon(feature.properties.disaster_type, feature.properties.report_data.report_type);
         if (self.selected_extent) {
           self.selected_extent.target.setStyle(self.mapPolygons.normal);
           self.selected_extent = null;
@@ -404,6 +450,7 @@ export class MapLayers {
 
   addCluster(data, cityName, map, togglePane, disaster) {
     let self = this;
+    console.log(disaster);
     // create new layer object
     self.reports = L.geoJSON(data, {
       filter: function(feature, layer) {
@@ -413,9 +460,8 @@ export class MapLayers {
         self.reportInteraction(feature, layer, cityName, map, togglePane);
       },
       pointToLayer: (feature, latlng) => {
-        let reportIconNormal = (feature.properties.disaster_type === 'prep') ?
-          self.mapIcons.report_normal(feature.properties.report_data.report_type) :
-          self.mapIcons.report_normal(feature.properties.disaster_type);
+        const disasterType = feature.properties.disaster_type;
+        let reportIconNormal = self.getReportIcon(disasterType, feature.properties.report_data.report_type || null);
         return L.marker(latlng, {
           icon: reportIconNormal,
           pane: 'reports'
