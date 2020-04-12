@@ -1,5 +1,6 @@
 const id = {
   'add_report': 'Laporkan banjir',
+  'add_eq_report': 'Laporkan gempabumi',
   'search_ph': 'Cari',
   'search_header': 'Pilih Wilayah',
   'comming_soon': 'Segera Hadir',
