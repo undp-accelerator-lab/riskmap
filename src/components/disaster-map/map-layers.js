@@ -53,8 +53,14 @@ export class MapLayers {
         html: '<i class="icon-map-bg bg-cluster cluster ' + level + '"><i class="icon-map-flood report-cluster">'
       }),
       disaster_cluster: (disaster, level) => L.divIcon({
-        iconSize: [30, 30],
+        iconSize: [35, 35],
         html: '<i class="icon-map-bg bg-cluster cluster ' + level + '"><i class="icon-map-' + disaster + ' report-cluster">'
+      }),
+      disaster_cluster_with_url: (disaster, level) => L.icon({
+        iconUrl: 'assets/icons/' + disaster + '.svg',
+        iconSize: [35, 35],
+        iconAnchor: [15, 15],
+        className: 'report-cluster ' + level
       })
     };
     this.mapPolygons = {
@@ -67,6 +73,21 @@ export class MapLayers {
         opacity: 1
       }
     };
+  }
+
+  getDisasterClusterIcon(disasterType, level) {
+    switch (disasterType) {
+    case 'flood':
+      return this.mapIcons.disaster_cluster(disasterType, level);
+    case 'earthquake':
+    case 'haze':
+    case 'wind':
+    case 'volcano':
+    case 'fire':
+      return this.mapIcons.disaster_cluster_with_url(disasterType, level);
+    default:
+      return this.mapIcons.disaster_cluster(disasterType, level);
+    }
   }
 
   getReportIcon(disasterType, subType) {
@@ -450,7 +471,6 @@ export class MapLayers {
 
   addCluster(data, cityName, map, togglePane, disaster) {
     let self = this;
-    console.log(disaster);
     // create new layer object
     self.reports = L.geoJSON(data, {
       filter: function(feature, layer) {
@@ -486,29 +506,41 @@ export class MapLayers {
       cluster.bindTooltip(tooltip);
       // cluster.getAllChildMarkers()[0].feature.properties.report_data['flood_depth']
       let children = cluster.getAllChildMarkers();
-      let avgDepth = self.getAverageFloodDepth(children);
-      if (avgDepth < 30) {
-        return self.mapIcons.disaster_cluster('flood', 'low');
-      } else if (avgDepth < 70) {
-        return self.mapIcons.disaster_cluster('flood', 'normal');
-      } else if (avgDepth < 150) {
-        return self.mapIcons.disaster_cluster('flood', 'medium');
-      } else if (avgDepth >= 150) {
-        return self.mapIcons.disaster_cluster('flood', 'high');
-      }
+      const type = children[0].feature.properties.disaster_type;
+      const sevearity = self.getDisasterSevearity(type, children);
+      return self.getDisasterClusterIcon(type, sevearity);
     };
   }
 
-  getAverageFloodDepth(report_markers) {
+  getDisasterSevearity(type, reportMarkers) {
+    switch (type) {
+    case 'flood':
+      let avgDepth = this.getAverageFloodDepth(reportMarkers);
+      if (avgDepth < 30) {
+        return  'low';
+      } else if (avgDepth < 70) {
+        return  'normal';
+      } else if (avgDepth < 150) {
+        return 'medium';
+      } else if (avgDepth >= 150) {
+        return 'high';
+      }
+      break;
+    default:
+      return 'low';
+    }
+  }
+
+  getAverageFloodDepth(reportMarkers) {
     let depth = 0;
-    report_markers.forEach(function(report, index) {
+    reportMarkers.forEach(function(report, index) {
       const reportData = report.feature.properties.report_data || {'flood_depth': 0};
       depth += reportData['flood_depth'] || 0;
-    })
+    });
     // for (let report in report_markers) {
     //   depth += report.feature.properties.report_data['flood_depth'];
     // }
-    return depth/report_markers.length; 
+    return depth / reportMarkers.length;
   }
 
   addFloodExtents(cityName, cityRegion, map, togglePane) {
@@ -516,11 +548,11 @@ export class MapLayers {
     self.flood_extents = L.geoJSON(null, {
       style: (feature, layer) => {
         switch (feature.properties.state) {
-          case 4: return { cursor: 'pointer', fillColor: '#CC2A41', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
-          case 3: return { cursor: 'pointer', fillColor: '#FF8300', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
-          case 2: return { cursor: 'pointer', fillColor: '#FFFF00', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
-          case 1: return { cursor: 'pointer', fillColor: '#A0A9F7', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
-          default: return { weight: 0, opacity: 0, fillOpacity: 0 };
+        case 4: return { cursor: 'pointer', fillColor: '#CC2A41', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
+        case 3: return { cursor: 'pointer', fillColor: '#FF8300', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
+        case 2: return { cursor: 'pointer', fillColor: '#FFFF00', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
+        case 1: return { cursor: 'pointer', fillColor: '#A0A9F7', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
+        default: return { weight: 0, opacity: 0, fillOpacity: 0 };
         }
       },
       onEachFeature: (feature, layer) => {
