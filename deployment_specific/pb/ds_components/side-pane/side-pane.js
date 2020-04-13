@@ -123,9 +123,7 @@ export class SidePane {
     $('li p').click(function () {
       // reset all 
       $('ul.tabs p').removeClass('activelanguage');
-     
       $(this).addClass('activelanguage');
-      
       $(this).parents('li').find('p').filter(function () {
         return !$(this).closest('p').hasClass('tabs-nav');
       }).addClass('activelanguage');

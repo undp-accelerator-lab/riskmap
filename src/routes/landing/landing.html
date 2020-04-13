@@ -35,9 +35,9 @@
     </div> -->
 
     <nav id="reportButton" class="float-action-button">
-  <div class="buttons" title="Flood" data-toggle="tooltip" data-placement="left" click.delegate="reportTab()">
-    <img style="width:60px" src="/assets/icons/Add_Report_ Icon_Flood.png">
-    <div class="row" id="reportLink">
+  <div class="buttons" title="Flood" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('flood')">
+    <img style="width:60px" src="/assets/icons/Add_Report_Icon_Flood.png">
+    <div class="row" id="floodLink">
       <table class="table table-borderless">
         <tr class="row report">
           <img style="width: 250px;height: 200px;" src="/assets/icons/Report_Flood_Description.png">
@@ -48,7 +48,7 @@
       </table>
     </div>
   </div>
-  <div  class="buttons" title="Earthquake" data-toggle="tooltip" data-placement="left" click.delegate="select_report('earthquake')">
+  <div  class="buttons" title="Earthquake" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('earthquake')">
     <img id="earthquake" style="width:60px" src="/assets/icons/Add_Report_Icon_Earthquake.png">
     <div class="row" id="earthquakeLink">
       <table class="table table-borderless">
@@ -61,7 +61,7 @@
       </table>
     </div>
   </div>
-  <div  class="buttons" title="Fire" data-toggle="tooltip" data-placement="left" click.delegate="select_report('fire')">
+  <div  class="buttons" title="Fire" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('fire')">
     <img id="fire" style="width:60px" src="/assets/icons/Add_Report_Icon_Fire.png">
     <div class="row" id="fireLink">
       <table class="table table-borderless">
@@ -74,7 +74,7 @@
       </table>
     </div>
         </div>
-  <div  class="buttons" title="Haze" data-toggle="tooltip" data-placement="left" click.delegate="select_report('haze')">
+  <div  class="buttons" title="Haze" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('haze')">
     <img id="haze" style="width:60px" src="/assets/icons/Add_Report_Icon_Haze.png">
     <div class="row" id="hazeLink">
       <table class="table table-borderless">
@@ -87,7 +87,7 @@
       </table>
     </div>
         </div>
-  <div  class="buttons" title="Wind" data-toggle="tooltip" data-placement="left" click.delegate="select_report('wind')">
+  <div  class="buttons" title="Wind" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('wind')">
     <img id="wind" id="icon" style="width:60px" src="/assets/icons/Earthquake_2.svg">
     <div class="row" id="windLink">
       <table class="table table-borderless">
@@ -100,9 +100,9 @@
       </table>
     </div>
   </div>
-  <div  class="buttons" title="Volcano" data-toggle="tooltip" data-placement="left" click.delegate="select_report('volcano')">
+  <div  class="buttons" title="Volcano" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('volcano')">
     <img id="volcano" style="width:60px" src="/assets/icons/Add_Report_Icon_Volcano.png">
-    <div class="row" id="volcanoLink">
+    <div class="row reportLink" id="volcanoLink">
       <table class="table table-borderless">
         <tr class="row report">
           <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>

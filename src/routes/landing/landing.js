@@ -25,6 +25,14 @@ export class Landing {
   constructor(Config) {
     this.config = Config.map;
     this.configData = Config;
+    this.activeDisaster = 'none';
+    this.assetMap = {
+      '#earthquake': '/assets/icons/Add_Report_Icon_Earthquake',
+      '#fire': '/assets/icons/Add_Report_Icon_Fire',
+      '#volcano': '/assets/icons/Add_Report_Icon_Volcano',
+      '#wind': '/assets/icons/Earthquake_2',
+      '#haze': '/assets/icons/Add_Report_Icon_Haze'
+    };
   }
 
   activate(params, routerConfig) {
@@ -128,36 +136,23 @@ export class Landing {
     });
   }
 
-  select_report(typeReport) {
-    let toggleSrc = function(element, baseIcon, extention = '.png') {
+  selectReport(typeReport) {
+    let self = this;
+    let toggleSrc = function(element) {
+      let extention = element === '#wind' ? '.svg' : '.png';
+      if (self.activeDisaster != element ) { 
+        toggleSrc(self.activeDisaster);
+        self.activeDisaster = element;
+      } else {
+        self.activeDisaster = 'noactive';
+      }
       $(element).attr('src', function(index, attr) {
-        return attr == baseIcon+extention ? baseIcon+'_Hover' + extention : baseIcon + extention;
+        let baseIcon = self.assetMap[element];
+
+        return attr === baseIcon + extention ? baseIcon + '_Hover' + extention : baseIcon + extention;
       });
+      $(element + 'Link').toggle('slide');
     };
-
-    if (typeReport === 'fire') {
-      toggleSrc('#fire', '/assets/icons/Add_Report_Icon_Fire');
-      $('#fireLink').toggle('slide');
-    }
-
-    if (typeReport === 'haze') {
-      toggleSrc('#haze', '/assets/icons/Add_Report_Icon_Haze');
-      $('#hazeLink').toggle('slide');
-    }
-
-    if (typeReport === 'earthquake') {
-      toggleSrc('#earthquake', '/assets/icons/Add_Report_Icon_Earthquake');
-      $('#earthquakeLink').toggle('slide');
-    }
-
-    if (typeReport === 'wind') {
-      toggleSrc('#wind', '/assets/icons/Earthquake_2', '.svg');
-      $('#windLink').toggle('slide');
-    }
-
-    if (typeReport === 'volcano') {
-      toggleSrc('#volcano', '/assets/icons/Add_Report_Icon_Volcano');
-      $('#volcanoLink').toggle('slide');
-    }
+    toggleSrc('#' + typeReport);
   }
 }
