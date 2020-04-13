@@ -9,7 +9,7 @@
               class="live-search-box"
               placeholder="${locale.search_ph}"
               model.bind="city"
-              value.bind="query & throttle"
+              value.bind="query & debounce:200"
               autofocus
             />
 

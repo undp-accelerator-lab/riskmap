@@ -66,7 +66,7 @@ export class ScreenPopup {
   }
 
   searchIndonesiaOSM(query) {
-    query = query;
+    query = query + ', indonesia';
     console.log(query);
     this.searchProvider.search({ query })
       .then((results) => {
