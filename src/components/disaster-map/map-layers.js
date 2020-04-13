@@ -75,11 +75,12 @@ export class MapLayers {
     };
   }
 
-  getDisasterClusterIcon(disasterType, level) {
+  getDisasterClusterIcon(disasterType, subType, level) {
     switch (disasterType) {
     case 'flood':
       return this.mapIcons.disaster_cluster(disasterType, level);
     case 'earthquake':
+      return this.mapIcons.disaster_cluster_with_url(subType, level);
     case 'haze':
     case 'wind':
     case 'volcano':
@@ -457,7 +458,8 @@ export class MapLayers {
             // console.log('Could not load map layer');
             resolve(data);
           } else {
-            this.addCluster(data, cityName, map, togglePane, 'earthquake');
+            this.addCluster(data, cityName, map, togglePane, 'earthquake', 'structure');
+            this.addCluster(data, cityName, map, togglePane, 'earthquake', 'road');
             this.addCluster(data, cityName, map, togglePane, 'flood');
             this.addCluster(data, cityName, map, togglePane, 'fire');
             this.addCluster(data, cityName, map, togglePane, 'haze');
@@ -469,11 +471,14 @@ export class MapLayers {
     });
   }
 
-  addCluster(data, cityName, map, togglePane, disaster) {
+  addCluster(data, cityName, map, togglePane, disaster, reportType) {
     let self = this;
     // create new layer object
     self.reports = L.geoJSON(data, {
       filter: function(feature, layer) {
+        if (reportType) {
+          return feature.properties.report_data.report_type === reportType; 
+        }
         return feature.properties.disaster_type === disaster;
       },
       onEachFeature: (feature, layer) => {
@@ -507,8 +512,9 @@ export class MapLayers {
       // cluster.getAllChildMarkers()[0].feature.properties.report_data['flood_depth']
       let children = cluster.getAllChildMarkers();
       const type = children[0].feature.properties.disaster_type;
+      const subType = children[0].feature.properties.report_data.report_type;
       const sevearity = self.getDisasterSevearity(type, children);
-      return self.getDisasterClusterIcon(type, sevearity);
+      return self.getDisasterClusterIcon(type, subType, sevearity);
     };
   }
 
