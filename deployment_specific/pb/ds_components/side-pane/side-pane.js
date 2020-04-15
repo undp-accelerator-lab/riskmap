@@ -155,8 +155,8 @@ export class SidePane {
     this.seltab = tab;
     $('.panel:not(#vid_' + tab + ')').slideUp('fast');
     $('#vid_' + tab).slideToggle('fast');
-    $('.accordion:not(#label_' + tab + ')').removeClass('active');
-    $('#label_' + tab).toggleClass('active');
+    $('.accordion:not(#label_' + tab + ')').parent().removeClass('active');
+    $('#label_' + tab).parent().toggleClass('active');
     $('#down_' + tab + ', #up_' + tab).toggle();
     $('.up:not(#up_' + tab + ')').hide();
     $('.down:not(#down_' + tab + ')').show();

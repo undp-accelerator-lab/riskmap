@@ -73,7 +73,7 @@ export class Landing {
 
   resizeSidePane() {
     $('#sidePane').css({
-      'height': ($(window).height() - $('#topBar').height()) + 'px'
+      'height': ($(window).height() - ($('#topBar').height() + 30)) + 'px',
     });
   }
 

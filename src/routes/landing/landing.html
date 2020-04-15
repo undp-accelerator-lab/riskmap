@@ -147,27 +147,7 @@
       reset-tab.call="webMenu.switchTab($event)">
     </disaster-map>
 
-    <div id="topBar">
-      
-      <!-- <div class="d-flex justify-content-end">
-        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 p-2 m-0">
-            <input
-            type="text"
-            class="live-search-box"
-            placeholder="Search City"
-            model.bind="city"
-            value.bind="query & throttle"
-          />
-          <div class="row p-0 m-0">
-              <div class="col-6 searchDropDown p-0 m-0 ">
-                <ul class="locationDesign p-2 m-0" if.bind="searchText.length > 0" repeat.for="city of searchResult" >
-                    <li click.delegate="mapModel.switchCity(city)">${city}</li>
-                  </ul>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
+    <div id="topBar">      
       <div class="menuBtn active" click.delegate="mapModel.togglePane('#sidePane', 'show', true)">
         <i class="icon-menu"></i>
       </div>

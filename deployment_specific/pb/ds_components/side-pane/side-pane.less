@@ -89,7 +89,7 @@
       }
       & label {
         .linklight-mixin(14px);
-        // text-transform: capitalize;
+        text-transform: capitalize;
         padding-right: 10px;
       }
       & .normal {
@@ -122,14 +122,14 @@
         margin: 10px auto;
       }
       & p {
-        .bodyregular-mixin(14px);
+        .bodyregular-mixin(12px);
         width: 90%;
         margin: 15px auto;
         & a {
-          .linkmedium-mixin(14px);
+          .linkmedium-mixin(12px);
         }
         & b {
-          .bodymedium-mixin(14px);
+          .bodymedium-mixin(12px);
           color: @banjir-blue;
         }
         &#termslink {
@@ -141,7 +141,8 @@
           text-decoration: underline;
         }
         &#intro {
-          .bodyregular-mixin(14px);
+          .bodyregular-mixin(12px);
+          font-size: 14px;
           text-align: left;
           margin: 12px auto;
           width: 90%;
@@ -152,6 +153,9 @@
           margin: 12px auto;
           width: 90%;
           line-height: 1.4;
+          & a {
+            text-decoration: underline;
+          }
         }
         &#info {
           text-align: center;
@@ -173,13 +177,12 @@
         width: 90%;
         margin: auto;
         table-layout: fixed;
-        border-bottom: 1px solid @banjir-blue;
-        border-top: 1px solid @banjir-blue;
         padding-bottom: 10px;
         border-spacing: 7px;
         border-collapse: separate;
         & tr.label {
           height: 18px;
+          text-transform: uppercase;
           & p {
             .bodylight-mixin(12px);
             margin: 10px 0 4px 0;
@@ -311,9 +314,13 @@
   outline: none;
   font-size: 15px;
   transition: 0.4s;
+  text-transform: uppercase;
 }
 
-.active,
+.active {
+  border-top: 2px solid;
+  font-weight: bold;
+}
 .accordion:hover {
   background-color: #ccc;
 }
@@ -335,10 +342,6 @@
   font-size: 13px;
   transition: 0.4s;
 }
-
-// div#sidePane {
-//   background: #000 !important;
-// }
 
 .languageClass{
   color: #000;
