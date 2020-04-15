@@ -30,7 +30,7 @@ export class Landing {
       '#earthquake': '/assets/icons/Add_Report_Icon_Earthquake',
       '#fire': '/assets/icons/Add_Report_Icon_Fire',
       '#volcano': '/assets/icons/Add_Report_Icon_Volcano',
-      '#wind': '/assets/icons/Earthquake_2',
+      '#wind': '/assets/icons/wind',
       '#haze': '/assets/icons/Add_Report_Icon_Haze'
     };
   }
