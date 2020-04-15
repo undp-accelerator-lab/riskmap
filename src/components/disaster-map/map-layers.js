@@ -57,7 +57,7 @@ export class MapLayers {
         html: '<i class="icon-map-bg bg-cluster cluster ' + level + '"><i class="icon-map-' + disaster + ' report-cluster">'
       }),
       disaster_cluster_with_url: (disaster, level) => L.icon({
-        iconUrl: 'assets/icons/' + disaster + '.svg',
+        iconUrl: 'assets/icons/' + disaster + '_' + level + '.svg',
         iconSize: [35, 35],
         iconAnchor: [15, 15],
         className: 'report-cluster ' + level
@@ -477,7 +477,7 @@ export class MapLayers {
     self.reports = L.geoJSON(data, {
       filter: function(feature, layer) {
         if (reportType) {
-          return feature.properties.report_data.report_type === reportType; 
+          return feature.properties.report_data.report_type === reportType;
         }
         return feature.properties.disaster_type === disaster;
       },
@@ -513,12 +513,12 @@ export class MapLayers {
       let children = cluster.getAllChildMarkers();
       const type = children[0].feature.properties.disaster_type;
       const subType = children[0].feature.properties.report_data.report_type;
-      const sevearity = self.getDisasterSevearity(type, children);
+      const sevearity = self.getDisasterSevearity(type, subType, children);
       return self.getDisasterClusterIcon(type, subType, sevearity);
     };
   }
 
-  getDisasterSevearity(type, reportMarkers) {
+  getDisasterSevearity(type, subType, reportMarkers) {
     switch (type) {
     case 'flood':
       let avgDepth = this.getAverageFloodDepth(reportMarkers);
@@ -532,10 +532,62 @@ export class MapLayers {
         return 'high';
       }
       break;
+    case 'earthquake':
+      console.log('asd');
+      if (subType === 'road') {
+        let avgAccessability = this.getAverageAccessability(reportMarkers);
+        if (avgAccessability <= 0.5) {
+          return 'high';
+        } else if (avgAccessability > 0.5 && avgAccessability <= 1.0) {
+          return 'medium';
+        } else if (avgAccessability > 1.0 && avgAccessability <= 1.8) {
+          return 'normal';
+        } else if (avgAccessability > 1.9) {
+          return 'low';
+        }
+      } else if (subType === 'structure') {
+        let avgStructureFailure = this.getAvgStructureFailure(reportMarkers);
+        if (avgStructureFailure <= 1) {
+          return 'low';
+        } else if (avgStructureFailure > 1 && avgStructureFailure <= 2) {
+          return 'medium';
+        } else if (avgStructureFailure > 2) {
+          return 'high';
+        }
+      }
+      break;
     default:
       return 'low';
     }
   }
+
+  getAvgStructureFailure(reportMarkers) {
+    let totalStructureFailure = 0;
+    reportMarkers.forEach(function(report, index) {
+      const reportData = report.feature.properties.report_data || {'structureFailure': 0};
+      totalStructureFailure += reportData.structureFailure || 0;
+    });
+    return totalStructureFailure / reportMarkers.length;
+  }
+
+  getAverageAccessability(reportMarkers) {
+    let totalAccessability = 0;
+    let accessability = 0;
+    reportMarkers.forEach(function(report, index) {
+      const reportData = report.feature.properties.report_data || {'accessabilityFailure': 0};
+      accessability += reportData.accessabilityFailure || 0;
+      switch (accessability) {
+      case 0: totalAccessability += 0.5; break;
+      case 1: totalAccessability += 1.0; break;
+      case 2: totalAccessability += 1.4; break;
+      case 3: totalAccessability += 1.8; break;
+      case 4: totalAccessability += 2.2; break;
+      default: totalAccessability += 0; break;
+      }
+    });
+    return totalAccessability / reportMarkers.length;
+  }
+
 
   getAverageFloodDepth(reportMarkers) {
     let depth = 0;
