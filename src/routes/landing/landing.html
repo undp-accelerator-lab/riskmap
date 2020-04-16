@@ -40,7 +40,7 @@
     <div class="row" id="floodLink">
       <table class="table table-borderless">
         <tr class="row report">
-          <img style="width: 250px;height: 200px;" src="/assets/icons/Report_Flood_Description.png">
+          <img style="width: 250px;height: 200px;" src=${webMenu.locale.flood_flow_img}>
           <div class="reportBtn">
             <input  type="button" class="btn btn-primary" value="${webMenu.locale.add_report}" click.delegate="reportDisaster('flood')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f">
           </div>
@@ -53,7 +53,7 @@
     <div class="row" id="earthquakeLink">
       <table class="table table-borderless">
         <tr class="row report">
-          <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>
+          <img style="width: 250px;" src=${webMenu.locale.eq_flow_img}>
           <div class="reportEarthquakeBtn">
             <input type="button" class="btn btn-primary" value="${webMenu.locale.add_eq_report}" click.delegate="reportDisaster('earthquake')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
           </div>

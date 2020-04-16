@@ -1,4 +1,6 @@
 const id = {
+  'flood_flow_img': '/assets/icons/flood_flow_bi.png',
+  'eq_flow_img': '/assets/icons/eq_flow_bi.png',
   'add_report': 'Laporkan banjir',
   'add_eq_report': 'Laporkan gempabumi',
   'search_ph': 'Cari',
