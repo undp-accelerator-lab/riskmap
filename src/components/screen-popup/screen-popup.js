@@ -87,11 +87,14 @@ export class ScreenPopup {
   }
 
   closePopup() {
-    $("#termsPopup").hide();
+    $('#termsPopup').hide();
+  }
+
+  closeStartPopup() {
+    $('#startPopup').hide();
   }
 
   openPopup(name) {
-    console.log(name);
     this.seltab = name;
     $('#termsPopup').show();
   }

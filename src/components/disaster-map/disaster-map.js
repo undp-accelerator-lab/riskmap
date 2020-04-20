@@ -92,7 +92,6 @@ export class DisasterMap {
   // Load all reports of a searched sub region
   viewRegionReports(regionName, pushState) {
     let self = this;
-    console.log(regionName);
     // let city = self.utility.parseRegion(regionName);
     self.utility.goToLocation({
       'latitude': regionName.y,

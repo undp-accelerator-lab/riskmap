@@ -121,6 +121,7 @@ const id = {
     'flood_gauges': 'Tinggi Muka Air',
     'flood_depth': 'Tinggi Banjir (cm)'
   },
+  'start_popup_content': 'Cari Provinsi atau aktifkan geolokasi untuk melihat laporan di sekitar anda',
   'termsContents': [
     {
       'tab_key': 'u_a',

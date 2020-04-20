@@ -128,6 +128,7 @@ const en = {
     'flood_gauges': 'Flood Gauges',
     'flood_depth': 'Flood Depth (cm)'
   },
+  'start_popup_content': 'Search by province or enable location to see reports near you',
   'termsContents': [
     {
       'tab_key': 'u_a',
