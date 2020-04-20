@@ -21,7 +21,7 @@ export class ScreenPopup {
   //end-aurelia-decorators
   @observable query;
   constructor(Config) {
-    this.seltab = 'about';
+    this.seltab = 'u_a';
     this.config = Config.map;
     this.configData = Config;
     this.searchProvider = new OpenStreetMapProvider();
@@ -86,16 +86,13 @@ export class ScreenPopup {
 
   }
 
-  // closePopup() {
-  //   $("#termsPopup").hide();
-  //   if (this.selcity) {
-  //     $("#screen").hide();
-  //   }
-  // }
+  closePopup() {
+    $("#termsPopup").hide();
+  }
 
   openPopup(name) {
+    console.log(name);
     this.seltab = name;
-    $('#screen').show();
     $('#termsPopup').show();
   }
 
