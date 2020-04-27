@@ -29,6 +29,7 @@ export class SidePane {
       }
     }
     this.locale = {};
+    this.currentLanguage = '';
 
     this.menuList = ['report', 'legend', 'about'];
     // this.seltab = 'about'; //default tab to open
@@ -64,70 +65,198 @@ export class SidePane {
         }
       }
     ];
-    this.gauge_levels = [
+
+
+
+
+    //legends data
+    this.all_legends_data = [
+      //floods
       {
-        text: {
-          en: 'Alert Level 1',
-          id: 'Siaga 1'
+        legend_title: { en: 'floods', id: 'floods' },
+        col_1_title: { en: 'Flood Gauges', id: 'Tinggi Muka Air' },
+        col_2_title: { en: 'Flood Depth (cm)', id: 'Tinggi Banjir (cm)' },
+        legend_data: [
+          {
+            col_1: {
+              text: { en: 'Alert Level 1', id: 'Siaga 1' },
+              icon: 'assets/icons/floodgauge_1.svg'
+            },
+            col_2: {
+                text: { en: '> 150', id: '> 150' },
+                color: '#CC2A41'
+            }
+          },
+          {
+            col_1: {
+              text: { en: 'Alert Level 2', id: 'Siaga 2' },
+              icon: 'assets/icons/floodgauge_2.svg'
+            },
+            col_2: {
+              text: { en: '71 - 150', id: '71 - 150' },
+              color: '#FF8300'
+            }
+          },
+          {
+            col_1: {
+              text: { en: 'Alert Level 3', id: 'Siaga 3' },
+              icon: 'assets/icons/floodgauge_3.svg'
+            },
+            col_2: {
+              text: { en: '10 - 70', id: '10 - 70' },
+              color: '#FFFF00'
+            }
+          },
+          {
+            col_1: {
+              text: { en: 'Alert Level 4', id: 'Siaga 4' },
+              icon: 'assets/icons/floodgauge_4.svg'
+            },
+            col_2: {
+              text: { en: 'Use Caution', id: 'Hati-hati' },
+              color: '#A0A9F7'
+            }
+          }]
         },
-        icon: 'assets/icons/floodgauge_1.svg'
-      },
+      //earthquake_road
       {
-        text: {
-          en: 'Alert Level 2',
-          id: 'Siaga 2'
+        legend_title: { en: 'Earthquake Road Accessibility', id: 'Earthquake Road Accessibility' },
+        legend_data: [
+          {
+            col_1: {
+              text: { en: 'Large Vehicle (Truck)', id: 'Truk' },
+              icon: 'assets/icons/lgd_icons/eq_road_1.svg'
+            }
+          },
+          {
+            col_1: {
+              text: { en: '4 wheel vehicle', id: '4 roda' },
+              icon: 'assets/icons/lgd_icons/eq_road_2.svg'
+            }
+          },
+          {
+            col_1: {
+              text: { en: '2 wheel vehicle', id: '2 roda' },
+              icon: 'assets/icons/lgd_icons/eq_road_3.svg'
+            }
+          },
+          {
+            col_1: {
+              text: { en: 'No Vehicle', id: 'Tidak bisa dilewati kendaraan' },
+              icon: 'assets/icons/lgd_icons/eq_road_4.svg'
+            }
+          }]
         },
-        icon: 'assets/icons/floodgauge_2.svg'
-      },
+      //earthquake_structural
       {
-        text: {
-          en: 'Alert Level 3',
-          id: 'Siaga 3'
+        legend_title: { en: 'Earthquake Structural Failure', id: 'Earthquake Structural Failure' },
+        legend_data: [
+          {
+            col_1: {
+              text: { en: 'Cracking', id: 'Retak' },
+              icon: 'assets/icons/lgd_icons/eq_structure_1.svg'
+            }
+          },
+          {
+            col_1: {
+              text: { en: 'Partial Collapse', id: 'Roboh Sebagian' },
+              icon: 'assets/icons/lgd_icons/eq_structure_2.svg'
+            }
+          },
+          {
+            col_1: {
+              text: { en: 'Fully Collapsed', id: 'Roboh total' },
+              icon: 'assets/icons/lgd_icons/eq_structure_3.svg'
+            }
+          }]
         },
-        icon: 'assets/icons/floodgauge_3.svg'
-      },
+      //wind
       {
-        text: {
-          en: 'Alert Level 4',
-          id: 'Siaga 4'
+        legend_title: { en: 'Wind', id: 'Wind' },
+        legend_data: [
+          {
+            col_1: {
+              text: { en: 'Low Disruption', id: 'Low Disruption' },
+              icon: 'assets/icons/lgd_icons/w_1.svg'
+            }
+          },
+          {
+            col_1: {
+              text: { en: 'Medium Disruption', id: 'Medium Disruption' },
+              icon: 'assets/icons/lgd_icons/w_2.svg'
+            }
+          },
+          {
+            col_1: {
+              text: { en: 'High Disruption', id: 'High Disruption' },
+              icon: 'assets/icons/lgd_icons/w_3.svg'
+            }
+          }]
         },
-        icon: 'assets/icons/floodgauge_4.svg'
-      }
-    ];
-    this.flood_depth = [
+      //fire
       {
-        text: { en: '> 150', id: '> 150' },
-        color: '#CC2A41'
+        legend_title: { en: 'Fire', id: 'Fire' },
+        legend_data: [
+          {
+            col_1: {
+              text: { en: 'Fire', id: 'Fire' },
+              icon: 'assets/icons/lgd_icons/fire_1.svg'
+            }
+          }]
       },
+      //haze
       {
-        text: { en: '71 - 150', id: '71 - 150' },
-        color: '#FF8300'
-      },
-      {
-        text: { en: '10 - 70', id: '10 - 70' },
-        color: '#FFFF00'
-      },
-      {
-        text: {
-          en: 'Use Caution',
-          id: 'Hati-hati'
+        legend_title: { en: 'Haze', id: 'Haze' },
+        legend_data: [
+          {
+            col_1: {
+              text: { en: 'None, Smell Smoke', id: 'None, Smell Smoke' },
+              icon: 'assets/icons/lgd_icons/haze_1.svg'
+            }
+          },
+          {
+            col_1: {
+              text: { en: 'Watery Eyes', id: 'Watery Eyes' },
+              icon: 'assets/icons/lgd_icons/haze_2.svg'
+            }
+          },
+          {
+            col_1: {
+              text: { en: 'Headache, shortness of breath', id: 'Headache, shortness of breath' },
+              icon: 'assets/icons/lgd_icons/haze_3.svg'
+            }
+          }]
         },
-        color: '#A0A9F7'
-      }
-    ];
+        //fire
+        {
+          legend_title: { en: 'Volcano', id: 'Volcano' },
+          legend_data: [
+            {
+              col_1: {
+                text: { en: 'Volcano', id: 'Volcano' },
+                icon: 'assets/icons/lgd_icons/vol_1.png'
+              }
+            }]
+        }
+      ];
+      //end legends data array
   }
 
   //on the fly language change
   changeLanguage(language) {
+
     this.locale = this.lang_obj[language];
+    this.currentLanguage = language;
+
     $('li p').click(function () {
-      // reset all 
+      // reset all
       $('ul.tabs p').removeClass('activelanguage');
       $(this).addClass('activelanguage');
       $(this).parents('li').find('p').filter(function () {
         return !$(this).closest('p').hasClass('tabs-nav');
       }).addClass('activelanguage');
     });
+
   }
 
   //get language object from key
