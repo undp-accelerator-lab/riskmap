@@ -64,8 +64,8 @@
 
           <!-- legends -->
           <div className='pb-legends-group' >
-            <div class="pb-legend-container pb-legend-container--flood p-2" repeat.for="all_lgd_data of all_legends_data">
-              <p class="pb-legend-title">${all_lgd_data.legend_title[currentLanguage]}</p>
+            <div id.bind="all_lgd_data.legend_name" class="pb-legend-container pb-legend-container--flood p-2 ${selLegend === all_lgd_data.legend_name ? 'active' : '' }" repeat.for="all_lgd_data of all_legends_data">
+              <p class="pb-legend-title" click.delegate="switchLegend(all_lgd_data.legend_name)">${all_lgd_data.legend_title[currentLanguage]}</p>
               <div class='pb-legend'>
                 <div class="pb-legend__row pb-legend__header">
                   <div class="pb-legend__cell pb-legend__header-cell" if.bind="all_lgd_data.col_1_title">
