@@ -7,39 +7,72 @@
   }
 
   .pb-legend-container{
-    margin-top: 2rem;
-    max-height: 46px;
+    margin-top: 0rem;
+    max-height: 48px;
     overflow: hidden;
     transition: max-height 0.3s ease-out;
+    padding: 0 !important;
+    border-bottom: 0.5px solid rgb(225, 225, 225);
+
+    &:first-of-type{
+      border-top: 0.5px solid rgb(225, 225, 225);
+    }
 
     &.active{
       max-height: 500px;
+
+      & .pb-legend-title{
+        font-weight: bold;
+      }
     }
 
     .pb-legend-title{
+      display: flex;
+      justify-content: space-between;
       text-transform: uppercase;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      color: rgb(180,180,180);
-      padding: 0.5rem;
-      margin-left: -0.5rem;
-      margin-right: -0.5rem;
-      border-bottom: 0.5px solid rgb(225, 225, 225);
+      font-size: 14px;
+      font-weight: 300;
+      color: black;
+      padding: 9px;
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-left: -16px;
+      margin-right: -16px;
+      margin-bottom: 0;
+
       cursor: pointer;
+
+
 
       &:hover{
         background-color: rgba(180,180,180,0.1);
       }
+
+      & .pb-legend-title__text_plus_icon{
+        display: flex;
+        align-items: center;
+
+        & .pb-legend-title__icon{
+          width: 30px;
+        }
+
+        & .pb-legend-title__text{
+          margin-bottom: 0 !important;
+          padding-left: 8px;
+        }
+
+      }
     }
 
     .pb-legend{
-      padding-top: 0.5rem;
+      padding-bottom: 16px;
+      padding-left: 38px;
 
       .pb-legend__header{
         margin-bottom: 0.5rem;
 
         p{
-          font-weight: 400;
+          font-weight: bold;
         }
       }
 
@@ -53,11 +86,12 @@
         margin-top: -0.2rem;
         margin-bottom: -0.2rem;
 
-        .pb-legend__cell{
+        & .pb-legend__cell{
           display: flex;
           align-items: center;
           padding-top: 0.2rem;
           padding-bottom: 0.2rem;
+          font-weight: 300;
 
           .pb-legend__cell-icon{
             height: 30px;
@@ -377,7 +411,7 @@
   text-decoration: none;
 }
 .paneTabs {
-  padding: 6px 8px 6px 16px;
+  padding: 6px 16px 6px 16px;
   text-decoration: none;
   font-size: 20px;
   color: #818181;
