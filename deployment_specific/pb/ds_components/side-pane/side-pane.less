@@ -2,16 +2,34 @@
 
 #paneContent div.contentWrapper#content-map {
 
+  .pb-legends-group{
+    padding-bottom: 2rem;
+  }
+
   .pb-legend-container{
     margin-top: 2rem;
+    max-height: 46px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+
+    &.active{
+      max-height: 500px;
+    }
 
     .pb-legend-title{
       text-transform: uppercase;
       font-size: 12px;
       letter-spacing: 0.1em;
       color: rgb(180,180,180);
-      padding-bottom: 0.5rem;
+      padding: 0.5rem;
+      margin-left: -0.5rem;
+      margin-right: -0.5rem;
       border-bottom: 0.5px solid rgb(225, 225, 225);
+      cursor: pointer;
+
+      &:hover{
+        background-color: rgba(180,180,180,0.1);
+      }
     }
 
     .pb-legend{
