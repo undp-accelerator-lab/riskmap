@@ -34,7 +34,9 @@ export class ScreenPopup {
       e.stopPropagation();
     });
     this.searchResult = Object.keys(this.config.sub_regions);
+    this.popupResult = Object.keys(this.config.sub_regions);
     this.languages = this.config.supported_languages;
+    this.popupText = '';
   }
 
   switchTab(name) {
@@ -65,12 +67,25 @@ export class ScreenPopup {
     this.searchIndonesiaOSM(newval.toLowerCase());
   }
 
+  popupQueryChanged() {
+    $('#popupResults').on('click', function() {
+      $(this).toggleClass('clicked');
+    });
+    this.searchIndonesiaOSM(this.popupText.toLowerCase());
+    if (this.popupResult.length > 0) {
+      $('#popupResults').show();
+    } else {
+      console.log(this.popupResult);
+      $('#popupResults').hide();
+    }
+  }
+
   searchIndonesiaOSM(query) {
     query = query + ', indonesia';
-    console.log(query);
     this.searchProvider.search({ query })
       .then((results) => {
         this.searchResult = results;
+        this.popupResult = results;
       });
   }
 

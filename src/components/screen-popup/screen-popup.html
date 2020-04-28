@@ -51,8 +51,30 @@
         </div>
 
         <div id="startPopup">
-            <div id='content'>
-              <p> ${locale.start_popup_content} </p>
+          <div id="header">
+            <div class='content'>
+              <p> Select City to continue </p>
+            </div>
+          </div>
+            <div class='popupContent'>
+              <input id="search_city"
+              type="text"
+              class="live-search"
+              placeholder="${locale.search_ph}"
+              autofocus
+              value.bind="popupText"
+              keyup.delegate="popupQueryChanged(event.target.value) & debounce:300"
+            />
+
+            <!-- <div class="panel p-0 m-0"> -->
+              <div class="row p-2 m-0">
+                <div id="popupResults" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 searchDropDown p-2 mt-4" style="position: absolute;display: none;">
+                    <ul  class=" p-0" >
+                        <li><b>${locale.search_header}</b></li>
+                        <li class ="dropUl p-2" repeat.for="city of popupResult" click.delegate="switchRegion(city, true)">${city.label}</li>
+                    </ul>
+              </div>
+            </div>
             </div>
             <div id='closeRow'>
               <p click.delegate="closeStartPopup()">Close&nbsp;&nbsp;&nbsp;&nbsp;</p>

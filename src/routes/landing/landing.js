@@ -50,6 +50,7 @@ export class Landing {
       return value.indexOf(newval) != -1 ? value : null;
     });
     this.searchResult = newObj;
+    this.popupResults = newObj;
   }
 
   isCitySupported(querycity) {

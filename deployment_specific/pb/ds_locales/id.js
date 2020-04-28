@@ -2,7 +2,7 @@ const id = {
   'flood_flow_img': '/assets/icons/flood_flow_bi.png',
   'eq_flow_img': '/assets/icons/eq_flow_bi.png',
   'add_report': 'Laporkan banjir',
-  'add_eq_report': 'Laporkan gempabumi',
+  'add_eq_report': 'Laporkan gempa',
   'search_ph': 'Cari',
   'search_header': 'Pilih Wilayah',
   'comming_soon': 'Segera Hadir',
@@ -16,7 +16,6 @@ const id = {
       'treeclearing': 'Fallen Tree'
     }
   },
-
   'web_menu': {
     'tab_names': {
       'map': 'peta',

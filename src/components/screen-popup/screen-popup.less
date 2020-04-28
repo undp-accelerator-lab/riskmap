@@ -34,10 +34,43 @@
     width: 85%;
     max-width: 600px;
     .translate-mixin(-50%, -50%);
-    height: 15%;
+    height: 10%;
     box-shadow: @spread-shadow;
     z-index: 1030;
     background: @translucent-white;
+    & #header {
+      position: absolute;
+      top: -40px;
+      width: 100%;
+      height: 40px;
+      background-color: @translucent-white;
+      border-bottom: 1px solid @banjir-blue;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      & .content {
+        width: 100%;
+        height: 100%;
+        float: left;
+        text-align: center;
+        .bodylight-mixin(14px);
+        & p {
+          position: absolute;
+          width: 100%;
+          top: 50%;
+          margin: 0;
+          line-height: 15px;
+          .translate-mixin(0, -50%);
+        }
+      }
+    }
+    & #popupContent {
+      width: 100%;
+      height: 100%;
+      overflow: scroll;
+      & #popupResults {
+        z-index: 1500;
+      }
+    }
     & #content {
       width: 100%;
       padding: 24px;
