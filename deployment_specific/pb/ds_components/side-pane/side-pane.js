@@ -68,10 +68,6 @@ export class SidePane {
         }
       }
     ];
-
-
-
-
     //legends data
     this.all_legends_data = [
       //floods
@@ -88,8 +84,8 @@ export class SidePane {
               icon: 'assets/icons/floodgauge_1.svg'
             },
             col_2: {
-                text: { en: '> 150', id: '> 150' },
-                color: '#CC2A41'
+              text: { en: '> 150', id: '> 150' },
+              color: '#CC2A41'
             }
           },
           {
@@ -122,7 +118,7 @@ export class SidePane {
               color: '#A0A9F7'
             }
           }]
-        },
+      },
       //earthquake_road
       {
         legend_name: 'eq_road_access',
@@ -153,7 +149,7 @@ export class SidePane {
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_4.svg'
             }
           }]
-        },
+      },
       //earthquake_structural
       {
         legend_name: 'eq_structure_fail',
@@ -178,7 +174,7 @@ export class SidePane {
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_structure_3.svg'
             }
           }]
-        },
+      },
       //wind
       {
         legend_name: 'wind',
@@ -203,7 +199,7 @@ export class SidePane {
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/w_3.svg'
             }
           }]
-        },
+      },
       //fire
       {
         legend_name: 'fire',
@@ -241,39 +237,37 @@ export class SidePane {
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/haze_3.svg'
             }
           }]
-        },
+      },
       //volcano
       {
-          legend_name: 'volcano',
-          legend_title: { en: 'Volcano', id: 'gunungapi' },
-          legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Volcano.png',
-          legend_data: [
-            {
-              col_1: {
-                text: { en: 'Volcano', id: 'gunungapi' },
-                icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/vol_1.png'
-              }
-            }]
-        }
-      ];
-      //end legends data array
+        legend_name: 'volcano',
+        legend_title: { en: 'Volcano', id: 'gunungapi' },
+        legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Volcano.png',
+        legend_data: [
+          {
+            col_1: {
+              text: { en: 'Volcano', id: 'gunungapi' },
+              icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/vol_1.png'
+            }
+          }]
+      }
+    ];
+    //end legends data array
   }
 
   //on the fly language change
   changeLanguage(language) {
-
     this.locale = this.lang_obj[language];
     this.currentLanguage = language;
 
-    $('li p').click(function () {
+    $('li p').click(function() {
       // reset all
       $('ul.tabs p').removeClass('activelanguage');
       $(this).addClass('activelanguage');
-      $(this).parents('li').find('p').filter(function () {
+      $(this).parents('li').find('p').filter(function() {
         return !$(this).closest('p').hasClass('tabs-nav');
       }).addClass('activelanguage');
     });
-
   }
 
   //get language object from key
@@ -297,7 +291,6 @@ export class SidePane {
   }
 
   switchTab(tab) {
-    console.log(tab)
     this.seltab = tab;
     $('.panel:not(#vid_' + tab + ')').slideUp('fast');
     $('#vid_' + tab).slideToggle('fast');
@@ -309,11 +302,9 @@ export class SidePane {
   }
 
   switchLegend(legendId) {
-    console.log("legendid", '#'+legendId);
-    console.log($('#'+legendId).attr('class'));
-    if(this.selLegend !== legendId){
+    if (this.selLegend !== legendId) {
       this.selLegend = legendId
-    }else{
+    } else {
       this.selLegend = null;
     }
   }

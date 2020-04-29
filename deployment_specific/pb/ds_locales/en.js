@@ -1,15 +1,6 @@
 const en = {
   'comming_soon': 'Coming Soon',
   'coming_soon_2020': 'Coming Soon MARCH 2020!',
-  'reports_stats': 'Received {reportsplaceholder} reports in past {hoursplaceholder} hours',
-  'prep_menu': {
-    'btn_names': {
-      'drain': 'Blocked Drains',
-      'desilting': 'Desilting',
-      'canalrepair': 'Canal Repairs',
-      'treeclearing': 'Fallen Tree'
-    }
-  },
   'flood_flow_img': '/assets/icons/flood_flow_en.png',
   'eq_flow_img': '/assets/icons/eq_flow_en.png',
   'add_report': 'Report Flood',
