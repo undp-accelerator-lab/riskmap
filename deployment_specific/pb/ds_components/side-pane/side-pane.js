@@ -42,30 +42,19 @@ export class SidePane {
     this.videos = [
       {
         platform: 'twitter', //Match string to locale/*/translation.json > report_content.*
-        source: {
-          id:
-            'https://www.youtube.com/embed/rlPNGkhgVoQ',
-          en:
-            'https://www.youtube.com/embed/EfJRa9sF89Y?autoplay=0&origin=https://petabencana.id&rel=0'
-        }
+        icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Flood.png'
       },
       {
         platform: 'telegram',
-        source: {
-          id:
-            'https://www.youtube.com/embed/Gb_BAAiRw2U?autoplay=0&origin=https://petabencana.id&rel=0',
-          en:
-            'https://www.youtube.com/embed/EfJRa9sF89Y?autoplay=0&origin=https://petabencana.id&rel=0'
-        }
+        icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Flood.png'
       },
       {
-        platform: 'otherapps',
-        source: {
-          id:
-            'https://www.youtube.com/embed/Gb_BAAiRw2U?autoplay=0&origin=https://petabencana.id&rel=0',
-          en:
-            'https://www.youtube.com/embed/EfJRa9sF89Y?autoplay=0&origin=https://petabencana.id&rel=0'
-        }
+        platform: 'facebook',
+        icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Flood.png'
+      },
+      {
+        platform: 'web',
+        icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Flood.png'
       }
     ];
     //legends data

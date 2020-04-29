@@ -75,7 +75,6 @@ export class ScreenPopup {
     if (this.popupResult.length > 0) {
       $('#popupResults').show();
     } else {
-      console.log(this.popupResult);
       $('#popupResults').hide();
     }
   }

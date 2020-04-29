@@ -65,36 +65,45 @@ const id = {
       ]
     },
     'twitter': {
-      'title': 'Laporan lewat Twitter',
+      'title': 'Laporkan melalui Twitter',
       'steps': [
-        'Tweet #banjir ke @petabencana.',
-        'Buka linknya, dan ikuti panduan untuk menginput lokasi, foto, dan deskripsi.',
-        'Anda dapat melihat laporan Anda di peta lewat link balasan. Cek PetaBencana.id untuk info banjir terkini.'
+        'Twit @petabencana dengan salah satu hashtag berikut:<ul><li>#banjir</li><li>#gempa</li><li>#kebakaranhutan</li><li>#kabutasap</li><li>#gunungapi</li></ul>',
+        '@petabencana akan mengirimkan tautan untuk melaporkan bencana',
+        ' Buka tautan tersebut dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi',
+        '@petabencana akan mengirim balasan twit dengan tautan yang akan mengarahkan ke laporan Anda',
+        'Cek laman PetaBencana.id untuk melihat informasi bencana terkini'
       ]
     },
     'telegram': {
-      'title': 'Laporan lewat Telegram',
+      'title': 'Laporkan melalui Telegram',
       'steps': [
-        'Kirim /banjir ke @BencanaBot.',
-        'Buka linknya, dan ikuti panduan untuk menginput lokasi, foto, dan deskripsi.',
-        'Anda dapat melihat laporan Anda di peta lewat link balasan. Cek PetaBencana.id untuk info banjir terkini.'
+        'Cari @bencanabot',
+        'Klik “/mulai” dan pilih bencana yang ingin Anda laporkan',
+        '@bencanabot akan mengirimkan tautan untuk melaporkan bencana',
+        'Buka tautan tersebut dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi',
+        '@bencanabot akan mengirim balasan dengan tautan yang akan mengarahkan ke laporan Anda',
+        'Cek laman PetaBencana.id untuk melihat informasi bencana terkini'
       ]
     },
     'facebook': {
-      'title': 'Report with Facebook messenger',
+      'title': 'Laporkan melalui Facebook',
       'steps': [
-        'Search for Risk Map Bot on Facebook messenger',
-        'Click on get started button and follow the instructions to input flood location, upload photo, and description.',
-        'You can see your report on the map via the link provided. Check Riskmap.in for up-to-date flood information.'
+        'Cari “PetaBencana.id” di Facebook Massenger',
+        'Klik “Get Started” dan pilih bencana yang ingin Anda laporkan',
+        'PetaBencana.id akan mengirimkan tautan untuk melaporkan bencana',
+        'Buka tautan tersebut dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi',
+        'PetaBencana.id akan mengirim balasan dengan tautan yang akan mengarahkan ke laporan Anda',
+        'Cek laman PetaBencana.id untuk melihat informasi bencana terkini'
       ]
     },
-    'otherapps': {
-      'title': 'Laporan lewat aplikasi lokal',
+    'web': {
+      'title': 'Laporkan melalui Web',
       'steps': [
-        'Anda dapat melapor lewat Qlue, PasangMata, dan Z-Alert.',
-        'Laporan Anda sudah tampil di peta. Cek PetaBencana.id untuk info banjir terkini.'
-      ],
-      'links': '<br><ul><li>Qlue:&nbsp;<a href="https://play.google.com/store/apps/details?id=org.qluein.android"><i class="icon-android"></i></a>&nbsp;&#124;&nbsp;<a href="https://itunes.apple.com/us/app/qlue-jakarta-smart-city/id987432944?ls=1&mt=8"><i class="icon-apple"></i></a></li><li><a href="http://pasangmata.detik.com/">PasangMata</a></li><li><a href="https://www.zurich.co.id/id-id/kampanye-kami/zurich-alert-the-alert-you-really-need">Z-Alert</a></li></ul>'
+        'Buka laman Petabencana.id',
+        'Klik ikon Laporkan pada kiri atas halaman dan pilih bencana yang ingin Anda laporkan',
+        'Klik tombol Laporkan Bencana dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi',
+        'Cek laman PetaBencana.id untuk melihat informasi bencana terkini'
+      ]
     }
   },
   'info_content': {

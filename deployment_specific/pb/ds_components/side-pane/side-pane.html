@@ -100,7 +100,7 @@
         </div>
         <!-- REPORT -->
 
-        <div id="content-report" if.bind="seltab === 'report'" class="contentWrapper p-0 m-0">
+        <div id="content-report" if.bind="seltab === 'report'" class="contentWrapper">
           <table id="reportTable">
             <tr repeat.for="video of videos" class="vidRows">
               <td>
@@ -108,28 +108,17 @@
                   <tr click.delegate="showVideo(video.platform)">
                     <td class="labelRow" id.bind="'label_' + video.platform">
                       <p class="labelText">
-                        <i class.bind="'icon-' + video.platform"></i>&nbsp;${locale.report_content[video.platform].title}
-                      </p>
-                      <p class="arrows down" id.bind="'down_' + video.platform">
-                        <i class="icon-down-open"></i>
-                      </p>
-                      <p class="arrows up" id.bind="'up_' + video.platform">
-                        <i class="icon-up-open"></i>
+                        <img class='labelIcon' src.bind='video.icon' />&nbsp;${locale.report_content[video.platform].title}
                       </p>
                     </td>
                   </tr>
                   <tr class="wrapRow">
                     <td>
                       <div class="videoWrapper" id.bind="'vid_' + video.platform" ref.bind="'vid_' + video.platform">
-                        <iframe width="300" height="225" allowfullscreen="allowfullscreen" frameborder="0"
-                          src.bind="video.source[selLanguage.key]"></iframe>
-                        <br>
-                        <ul>
-                          <li repeat.for="step of locale.report_content[video.platform].steps">
-                            <p>${step}</p>
+                        <ol>
+                          <li repeat.for="step of locale.report_content[video.platform].steps" innerhtml.bind="step">
                           </li>
-                          <p if.bind="video.platform==='otherapps'" innerhtml.bind="locale.report_content.otherapps.links"></p>
-                        </ul>
+                        </ol>
                       </div>
                     </td>
                   </tr>

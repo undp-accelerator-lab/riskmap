@@ -64,36 +64,45 @@ const en = {
       ]
     },
     'twitter': {
-      'title': 'Report with Twitter',
+      'title': 'Report Via Twitter',
       'steps': [
-        'Tweet #banjir to @petabencana.',
-        'Open the link and follow the instructions to input flood location, upload photo, and description.',
-        'You can see your report on the map via the link provided. Check PetaBencana.id for up-to-date flood information.'
+        'Tweet @petabencana with one of the following hashtags:<ul><li>#flood</li><li>#earthquake</li><li>#forestfire</li><li>#haze</li><li>#volcano</li></ul>',
+        '@petabencana will send you a one-time link to submit a disaster report',
+        'Open the link and follow the instructions to input hazard location, upload photo and description',
+        '@petabencana will send you a reply with a link to your report',
+        'Check PetaBencana.id on your browser for up-to-date disaster information'
       ]
     },
     'telegram': {
-      'title': 'Report with Telegram',
+      'title': 'Report via Telegram',
       'steps': [
-        'Text /banjir to @BencanaBot.',
-        'Open the link and follow the instructions to input flood location, upload photo, and description.',
-        'You can see your report on the map via the link provided. Check PetaBencana.id for up-to-date flood information.'
+        'Search for @bencanabot',
+        'Click “/start” and select the disaster to report',
+        '@bencanabot will send you a one-time link to submit a disaster report',
+        'Open the link and follow the instructions to input hazard location, upload photo and description',
+        '@bencanabot will send you a reply with a link to your report',
+        'Check PetaBencana.id on your browser for up-to-date disaster information'
       ]
     },
     'facebook': {
-      'title': 'Report with Facebook messenger',
+      'title': 'Report via Facebook',
       'steps': [
-        'Search for Risk Map Bot on Facebook messenger',
-        'Click on get started button and follow the instructions to input flood location, upload photo, and description.',
-        'You can see your report on the map via the link provided. Check Riskmap.in for up-to-date flood information.'
+        'Search for PetaBencana.id on Facebook Messenger',
+        'Click on “Get Started” and select the disaster to report',
+        'PetaBencana.id will send you a one-time link to submit a disaster report',
+        'Open the link and follow the instructions to input hazard location, upload photo and description',
+        'PetaBencana.id will send you a reply with a link to your report',
+        'Check PetaBencana.id on your browser for up-to-date disaster information'
       ]
     },
-    'otherapps': {
-      'title': 'Report with local applications',
+    'web': {
+      'title': 'Report via Web',
       'steps': [
-        'You can report flood from Qlue, PasangMata, and Z-Alert.',
-        'Your report is now on the map. Check PetaBencana.id for up-to-date flood information.'
-      ],
-      'links': '<br><ul><li>Qlue:&nbsp;<a href="https://play.google.com/store/apps/details?id=org.qluein.android"><i class="icon-android"></i></a>&nbsp;&#124;&nbsp;<a href="https://itunes.apple.com/us/app/qlue-jakarta-smart-city/id987432944?ls=1&mt=8"><i class="icon-apple"></i></a></li><li><a href="http://pasangmata.detik.com/">PasangMata</a></li><li><a href="https://www.zurich.co.id/id-id/kampanye-kami/zurich-alert-the-alert-you-really-need">Z-Alert</a></li></ul>'
+        'Open Petabencana.id on your browser',
+        'Click the Report icon on the upper left of the page and select the disaster to report',
+        'Click the Report Disaster button and follow the instructions to input hazard location, upload photo and description',
+        'Check PetaBencana.id on your browser for up-to-date disaster information'
+      ]
     }
   },
   'info_content': {
