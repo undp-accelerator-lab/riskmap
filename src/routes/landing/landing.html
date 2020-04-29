@@ -20,7 +20,7 @@
       <table class="table table-borderless">
         <tr class="row">
           <td repeat.for="platform of configData.deep_links">
-            <span>${$index + 1}</span>  
+            <span>${$index + 1}</span>
             <a href.bind="platform.link">
               <i class.bind="'icon-' + platform.name"></i>
             </a>
@@ -28,7 +28,7 @@
         </tr>
         <tr class="row">
           <td colspan="4">
-            <input type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.add_report}" click.delegate="reportDisaster('flood')"/> 
+            <input type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.add_report}" click.delegate="reportDisaster('flood')"/>
           </td>
         </tr>
       </table>
@@ -119,12 +119,13 @@
 </nav>
 
     <screen-popup
+      class='start-screen-pop-up-tpl'
       view-model.ref="screenPopup"
       helper.bind="webMenu.locale.map_helper"
-      cities.bind="mapModel.cities" 
-      selcity.bind="mapModel.selected_city" 
-      switch-region.call="mapModel.viewRegionReports($event, $event)" 
-      termscontents.bind="webMenu.locale.termsContents" 
+      cities.bind="mapModel.cities"
+      selcity.bind="mapModel.selected_city"
+      switch-region.call="mapModel.viewRegionReports($event, $event)"
+      termscontents.bind="webMenu.locale.termsContents"
       locale.bind="webMenu.locale"
       initializetab.bind="queried_terms">
     </screen-popup>
@@ -147,7 +148,7 @@
       reset-tab.call="webMenu.switchTab($event)">
     </disaster-map>
 
-    <div id="topBar">      
+    <div id="topBar">
       <div class="menuBtn active" click.delegate="mapModel.togglePane('#sidePane', 'show', true)">
         <i class="icon-menu"></i>
       </div>
@@ -181,6 +182,6 @@
       <side-pane view-model.ref="webMenu" querylanguage.two-way="queried_lang" cities.bind="mapModel.cities" selcity.two-way="mapModel.selected_city" change-city.call="mapModel.viewReports($event, $event)" close-pane.call="mapModel.togglePane('#sidePane', 'hide', false)" reportId.two-way="report_id" open-terms.call="screenPopup.openPopup($event)" queriedterms="queried_terms">
       </side-pane>
     </div>
-    
+
   </div>
 </template>

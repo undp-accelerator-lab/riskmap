@@ -25,7 +25,7 @@ export class ScreenPopup {
     this.configData = Config;
 
     $(document).click( function() {
-      $('#dropdown_city').hide();
+      $('#popupResults').hide();
     });
 
     $('#screen').click( function(e) {
@@ -107,7 +107,7 @@ export class ScreenPopup {
   }
 
   closeStartPopup() {
-    $('#startPopup').hide();
+    $('#startPopUpContainer').hide();
   }
 
   openPopup(name) {

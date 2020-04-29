@@ -23,7 +23,7 @@
               </div>
             </div>
             <!-- </div> -->
-      
+
         </div>
         <div id="termsPopup">
             <div id="tabRow">
@@ -49,35 +49,38 @@
             </div>
           </div>
         </div>
-
-        <div id="startPopup">
-          <div id="header">
-            <div class='content'>
-              <p> Select City to continue </p>
-            </div>
-          </div>
-            <div class='popupContent'>
-              <input id="search_city"
-              type="text"
-              class="live-search"
-              placeholder="${locale.search_ph}"
-              autofocus
-              value.bind="popupText"
-              keyup.delegate="popupQueryChanged(event.target.value) & debounce:300"
-            />
-
-            <!-- <div class="panel p-0 m-0"> -->
-              <div class="row p-2 m-0">
-                <div id="popupResults" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 searchDropDown p-2 mt-4" style="position: absolute;display: none;">
-                    <ul  class=" p-0" >
-                        <li><b>${locale.search_header}</b></li>
-                        <li class ="dropUl p-2" repeat.for="city of popupResult" click.delegate="switchRegion(city, true)">${city}</li>
-                    </ul>
+        <div id='startPopUpContainer'>
+          <div id="startPopup">
+            <div id="header">
+              <div class='content'>
+                <p class='pop-up-title-text' > Select City to continue </p>
+                <p class='close-pop-up' click.delegate="closeStartPopup()"><i class='icon-cancel-circled-outline'></i></p>
               </div>
             </div>
-            </div>
-            <div id='closeRow'>
-              <p click.delegate="closeStartPopup()">Close&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              <div class='popupContent'>
+                <input id="search_city"
+                type="text"
+                class="live-search"
+                placeholder="${locale.search_ph}"
+                autofocus
+                value.bind="popupText"
+                keyup.delegate="popupQueryChanged(event.target.value) & debounce:300"
+              />
+              <div class='search-icon-wrapper'>
+                <img class='search-icon' src='deployment_specific/pb/ds_assets/icons/ui_icons/search-black-18dp.svg' alt=''/>
+              </div>
+
+
+              <!-- <div class="panel p-0 m-0"> -->
+                <div class="row m-0">
+                  <div id="popupResults" class="searchDropDown" style="position: absolute;display: none;">
+                      <ul  class="searchDropDown-list" >
+                          <li><b>${locale.search_header}</b></li>
+                          <li class ="dropUl p-2" repeat.for="city of popupResult" click.delegate="switchRegion(city, true)">${city}</li>
+                      </ul>
+                </div>
+              </div>
+              </div>
             </div>
           </div>
         </div>
