@@ -1,7 +1,6 @@
-import { bindable, customElement } from 'aurelia-framework';
+import { bindable, customElement, demoIntercept } from 'aurelia-framework';
 import { inject, observable } from 'aurelia-framework';
 import { Config } from 'resources/config';
-import { OpenStreetMapProvider } from 'leaflet-geosearch';
 
 //start-aurelia-decorators
 @customElement('screen-popup')
@@ -24,7 +23,6 @@ export class ScreenPopup {
     this.seltab = 'u_a';
     this.config = Config.map;
     this.configData = Config;
-    this.searchProvider = new OpenStreetMapProvider();
 
     $(document).click( function() {
       $('#dropdown_city').hide();
@@ -33,6 +31,8 @@ export class ScreenPopup {
     $('#screen').click( function(e) {
       e.stopPropagation();
     });
+    // this.queryChanged('', '');
+    // $('#dropdown_city').show();
     this.searchResult = Object.keys(this.config.sub_regions);
     this.popupResult = Object.keys(this.config.sub_regions);
     this.languages = this.config.supported_languages;
@@ -59,19 +59,22 @@ export class ScreenPopup {
     } else {
       $('#dropdown_city').hide();
     }
-    // const map = Object.keys(this.config.sub_regions);
-    // let newObj = map.filter(value => {
-    //   return value.indexOf(newval.toLowerCase()) !== -1 ? value : null;
-    // });
-
-    this.searchIndonesiaOSM(newval.toLowerCase());
+    const map = Object.keys(this.config.sub_regions);
+    let newObj = map.filter(value => {
+      return value.indexOf(newval.toLowerCase()) !== -1 ? value : null;
+    });
+    this.searchResult = newObj;
   }
 
   popupQueryChanged() {
     $('#popupResults').on('click', function() {
       $(this).toggleClass('clicked');
     });
-    this.searchIndonesiaOSM(this.popupText.toLowerCase());
+    const map = Object.keys(this.config.sub_regions);
+    let newObj = map.filter(value => {
+      return value.indexOf(this.popupText.toLowerCase()) !== -1 ? value : null;
+    });
+    this.popupResult = newObj;
     if (this.popupResult.length > 0) {
       $('#popupResults').show();
     } else {
@@ -97,7 +100,6 @@ export class ScreenPopup {
   switchCity(city) {
     this.changeCity(city, true);
     $('#screen').css('display', 'none');
-
   }
 
   closePopup() {

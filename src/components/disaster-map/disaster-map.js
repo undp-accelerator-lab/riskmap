@@ -92,18 +92,18 @@ export class DisasterMap {
   // Load all reports of a searched sub region
   viewRegionReports(regionName, pushState) {
     let self = this;
-    // let city = self.utility.parseRegion(regionName);
-    self.utility.goToLocation({
-      'latitude': regionName.y,
-      'longitude': regionName.x,
-      'latlng': [regionName.y, regionName.x]
-    }, self.map, self.layers, self.togglePane);
-    self.layers.getStats(self.utility.parseCityObj(self.utility.clientCity, false).region)
-      .then(stats => {
-        let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{hoursplaceholder}', stats.timeperiod / 3600);
-        self.utility.statsNotification(msg);
-      });
-    // self.viewReports(self.utility.clientCity, pushState);
+    // self.utility.goToLocation({
+    //   'latitude': regionName.y,
+    //   'longitude': regionName.x,
+    //   'latlng': [regionName.y, regionName.x]
+    // }, self.map, self.layers, self.togglePane);
+    // self.layers.getStats(self.utility.parseCityObj(self.utility.clientCity, false).region)
+    //   .then(stats => {
+    //     let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{hoursplaceholder}', stats.timeperiod / 3600);
+    //     self.utility.statsNotification(msg);
+    //   });
+    let city = self.utility.parseRegion(regionName);
+    self.viewReports(city, pushState);
   }
 
   // Load all reports for a given city, or zoom to single queried report id
