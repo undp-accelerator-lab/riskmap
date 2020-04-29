@@ -6,7 +6,7 @@ const id = {
   'search_ph': 'Cari',
   'search_header': 'Pilih Wilayah',
   'comming_soon': 'Segera Hadir',
-  'coming_soon_2020': 'Segera Hadir MARET 2020!',
+  'coming_soon_2020': 'Segera Hadir!',
   'reports_stats': 'Terdapat {reportsplaceholder} laporan dalam {hoursplaceholder} jam terakhir',
   'prep_menu': {
     'btn_names': {
