@@ -64,6 +64,9 @@ const id = {
       'steps': [
       ]
     },
+    'youtube': {
+      'title': 'Lihat Video Cara Melapor'
+    },
     'twitter': {
       'title': 'Laporkan melalui Twitter',
       'steps': [

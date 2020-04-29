@@ -39,7 +39,12 @@ export class SidePane {
     // this.switchLegend('floods_legend');
 
     this.vidWrapperOpened = true;
-    this.videos = [
+    this.youtube_video = {
+      id: ' https://www.youtube.com/watch?v=rlPNGkhgVoQ&t=3s',
+      en: ' https://www.youtube.com/watch?v=rlPNGkhgVoQ&t=3s',
+      icon: 'deployment_specific/pb/ds_assets/icons/Youtube.png'
+    }
+    this.report_methods = [
       {
         platform: 'twitter', //Match string to locale/*/translation.json > report_content.*
         icon: 'deployment_specific/pb/ds_assets/icons/Twitter.png'
@@ -305,6 +310,7 @@ export class SidePane {
   }
 
   showVideo(video) {
+    console.log(video);
     $('.videoWrapper:not(#vid_' + video + ')').slideUp('fast');
     $('#vid_' + video).slideToggle('fast');
     $('.labelRow:not(#label_' + video + ')').removeClass('active');

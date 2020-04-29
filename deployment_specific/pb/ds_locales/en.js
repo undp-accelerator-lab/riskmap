@@ -63,6 +63,9 @@ const en = {
       'steps': [
       ]
     },
+    'youtube': {
+      'title': 'Watch Instructional Video'
+    },
     'twitter': {
       'title': 'Report Via Twitter',
       'steps': [

@@ -102,7 +102,27 @@
 
         <div id="content-report" if.bind="seltab === 'report'" class="contentWrapper">
           <table id="reportTable">
-            <tr repeat.for="video of videos" class="vidRows">
+          <tr class="vidRows">
+            <td>
+              <table class="vidTable">
+                <tr click.delegate="showVideo('youtube')">
+                  <td class="labelRow" id.bind="label_youtube">
+                    <p class="labelText">
+                      <img class='labelIcon' src.bind='youtube_video.icon' /> &nbsp;${locale.report_content.youtube.title}
+                    </p>
+                  </td>
+                </tr>
+                <tr class="wrapRow">
+                  <td>
+                    <div class="videoWrapper" id="vid_youtube" ref.bind="vid_youtube">
+                      <iframe width="300" height="225" allowfullscreen="allowfullscreen" frameborder="0" if.bind="youtube_video[selLanguage.key]" src.bind="youtube_video[selLanguage.key]"></iframe>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+            <tr repeat.for="video of report_methods" class="vidRows">
               <td>
                 <table class="vidTable">
                   <tr click.delegate="showVideo(video.platform)">
