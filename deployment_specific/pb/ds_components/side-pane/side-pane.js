@@ -40,8 +40,8 @@ export class SidePane {
 
     this.vidWrapperOpened = true;
     this.youtube_video = {
-      id: ' https://www.youtube.com/watch?v=rlPNGkhgVoQ&t=3s',
-      en: ' https://www.youtube.com/watch?v=rlPNGkhgVoQ&t=3s',
+      id: 'https://www.youtube.com/embed/rlPNGkhgVoQ',
+      en: 'https://www.youtube.com/embed/EfJRa9sF89Y?autoplay=0&origin=https://petabencana.id&rel=0',
       icon: 'deployment_specific/pb/ds_assets/icons/Youtube.png'
     }
     this.report_methods = [
@@ -310,7 +310,6 @@ export class SidePane {
   }
 
   showVideo(video) {
-    console.log(video);
     $('.videoWrapper:not(#vid_' + video + ')').slideUp('fast');
     $('#vid_' + video).slideToggle('fast');
     $('.labelRow:not(#label_' + video + ')').removeClass('active');
