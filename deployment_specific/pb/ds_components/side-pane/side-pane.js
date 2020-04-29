@@ -42,15 +42,15 @@ export class SidePane {
     this.videos = [
       {
         platform: 'twitter', //Match string to locale/*/translation.json > report_content.*
-        icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Flood.png'
+        icon: 'deployment_specific/pb/ds_assets/icons/Twitter.png'
       },
       {
         platform: 'telegram',
-        icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Flood.png'
+        icon: 'deployment_specific/pb/ds_assets/icons/telegram.png'
       },
       {
         platform: 'facebook',
-        icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Flood.png'
+        icon: 'deployment_specific/pb/ds_assets/icons/facebook.png'
       },
       {
         platform: 'web',
