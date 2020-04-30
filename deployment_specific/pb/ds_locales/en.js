@@ -6,6 +6,7 @@ const en = {
   'add_report': 'Report Flood',
   'add_eq_report': 'Report EarthQuake',
   'search_ph': 'Search',
+  'popup_text': 'Select Province to continue',
   'search_header': 'Select Region',
   'reports_stats': 'Received {reportsplaceholder} reports in past {hoursplaceholder} hours',
   'prep_menu': {

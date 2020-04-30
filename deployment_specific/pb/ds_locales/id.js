@@ -4,6 +4,7 @@ const id = {
   'add_report': 'Laporkan banjir',
   'add_eq_report': 'Laporkan gempa',
   'search_ph': 'Cari',
+  'popup_text': 'Pilih Provinsi untuk melanjutkan',
   'search_header': 'Pilih Wilayah',
   'comming_soon': 'Segera Hadir',
   'coming_soon_2020': 'Segera Hadir!',
