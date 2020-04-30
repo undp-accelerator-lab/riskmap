@@ -42,12 +42,12 @@ export class SidePane {
     this.youtube_video = {
       id: 'https://www.youtube.com/embed/rlPNGkhgVoQ',
       en: 'https://www.youtube.com/embed/EfJRa9sF89Y?autoplay=0&origin=https://petabencana.id&rel=0',
-      icon: 'deployment_specific/pb/ds_assets/icons/Youtube.png'
+      icon: 'deployment_specific/pb/ds_assets/icons/youtube.png'
     }
     this.report_methods = [
       {
         platform: 'twitter', //Match string to locale/*/translation.json > report_content.*
-        icon: 'deployment_specific/pb/ds_assets/icons/Twitter.png'
+        icon: 'deployment_specific/pb/ds_assets/icons/twitter.png'
       },
       {
         platform: 'telegram',
@@ -59,7 +59,7 @@ export class SidePane {
       },
       {
         platform: 'web',
-        icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Flood.png'
+        icon: 'deployment_specific/pb/ds_assets/icons/web_report.png'
       }
     ];
     //legends data

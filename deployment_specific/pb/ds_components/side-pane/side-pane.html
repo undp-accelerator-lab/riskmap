@@ -108,7 +108,7 @@
                 <tr click.delegate="showVideo('youtube')">
                   <td class="labelRow" id.bind="label_youtube">
                     <p class="labelText">
-                      <img class='labelIcon' src.bind='youtube_video.icon' /> &nbsp;${locale.report_content.youtube.title}
+                      <img class='labelIcon' src.bind='youtube_video.icon' /> &nbsp; &nbsp;${locale.report_content.youtube.title}
                     </p>
                   </td>
                 </tr>
@@ -128,7 +128,7 @@
                   <tr click.delegate="showVideo(video.platform)">
                     <td class="labelRow" id.bind="'label_' + video.platform">
                       <p class="labelText">
-                        <img class='labelIcon' src.bind='video.icon' />&nbsp;${locale.report_content[video.platform].title}
+                        <img class='labelIcon' src.bind='video.icon' />&nbsp;&nbsp;${locale.report_content[video.platform].title}
                       </p>
                     </td>
                   </tr>
