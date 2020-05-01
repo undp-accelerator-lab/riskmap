@@ -1,21 +1,81 @@
 @import "../../resources/style_sheets/theme_guide.less";
 
+
+#screen #cityPopup{
+  top: 10px !important;
+  right: 60px !important;
+  padding: 0;
+  width: auto !important;
+
+  & input#search_city_input{
+    transition: width 0.3s ease-out;
+    float: right;
+    width: 280px;
+  }
+
+  & #dropdown_city{
+    margin-top: 42.5px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    background-color: rgba(255,255,255,0.7) !important;
+  }
+
+  & input#search_city_input:focus {
+    position: relative !important;
+    right: 0 !important;
+
+    @media screen and ( min-width: 768px ){
+      width: 600px !important;
+    }
+  }
+
+  & .search-icon-wrapper{
+    left: 0;
+    padding-bottom: 0;
+    // padding-top: 10px;
+  }
+}
+
+
+//searchDropdown --> used in top right as well as start pop up
+.popupContent{
+  position: relative;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+
+  & .search-icon-wrapper{
+    position: absolute;
+    left: 20px;
+    top: 0;
+    height: 100%;
+    padding-bottom: 20px;
+
+    & .search-icon{
+      padding: 10px;
+      height: 100%;
+    }
+  }
+}
+
+
 & #screen {
   position: absolute;
   .fullspan-mixin;
   background-color: rgba(37, 35, 35, 0.25);
   z-index: 1000;
+
   & #cityPopup {
     position: fixed;
     // top: 50%;
-    right: 0;
-    width: 50%;
-    .translate-mixin(-50%, -50%);
-    padding: 12px;
-    border: none;
-    border-radius: 6px;
+    // right: 0;
+    // width: 50%;
+    // .translate-mixin(-50%, -50%);
+    // padding: 12px;
+    // border: none;
+    // border-radius: 6px;
     // box-shadow: @spread-shadow;
-    z-index: 1030;
+    // z-index: 1030;
     // background: @translucent-white;
     & p {
       .bodymedium-mixin(14px);
@@ -29,7 +89,7 @@
   }
 
     & #startPopUpContainer{
-      width: 100vh;
+      width: 100vw;
       height: 100vh;
       position: fixed;
       top: 0;
@@ -50,13 +110,12 @@
       box-shadow: @spread-shadow;
       z-index: 1030;
 
-
-
       & #header {
         width: 100%;
         background-color: @translucent-white;
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
+
         & .content {
           position: relative;
           width: 100%;
@@ -84,25 +143,6 @@
             margin: 0;
             font-size: 20px;
             padding: 10px 20px;
-          }
-        }
-      }
-      & .popupContent{
-        position: relative;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-bottom: 20px;
-
-        & .search-icon-wrapper{
-          position: absolute;
-          left: 20px;
-          top: 0;
-          height: 100%;
-          padding-bottom: 20px;
-
-          & .search-icon{
-            padding: 10px;
-            height: 100%;
           }
         }
       }
@@ -236,7 +276,7 @@
   background: white;
   list-style: none;
   text-align: left;
-  opacity: 0.7;
+  opacity: 0.8;
   overflow: scroll;
 }
 
@@ -265,13 +305,13 @@ i.icon-menu {
   position: fixed;
   top: 1.5%;
   right: 0;
-  width: 50%;
-  -ms-transform: translate(-50%, -50%);
+  // width: 50%;
+  // -ms-transform: translate(-50%, -50%);
   /* -webkit-transform: translate(-50%, -50%); */
-  transform: translate(0%, -3%);
-  padding: 12px;
-  border: none;
-  border-radius: 6px;
+  // transform: translate(0%, -3%);
+  // padding: 12px;
+  // border: none;
+  // border-radius: 6px;
   // box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.4);
   z-index: 1030;
   // background: rgba(255, 255, 255, 0.85);
@@ -284,15 +324,16 @@ i.icon-menu {
 
 input.live-search-box.au-target {
   width: 55%;
-  height: 31px;
+  height: auto;
   border: 0px solid;
   border-radius: 3px;
   font-size: 15px;
   padding: 10px;
-  box-shadow: 0px 5px #c7bdbd;
-  position: absolute;
-  top: 6px;
-  right: 7px;
+  padding-left: 40px;
+  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.4);
+  // position: absolute;
+  // top: 6px;
+  // right: 7px;
 
 }
 
@@ -300,8 +341,20 @@ input.live-search-box.au-target {
   z-index: 1000;
 }
 
+.dropUl_header{
+  padding: 4px 20px 4px 40px;
+
+}
+
 .dropUl{
   border-bottom: 1px solid;
+  padding: 8px 20px 8px 40px;
+  transition: background-color 0.3s ease-out;
+
+  &:hover{
+    background-color: white;
+  }
+
 }
 @media screen
   and (min-device-width: 1200px)
@@ -310,13 +363,14 @@ input.live-search-box.au-target {
 
     input.live-search-box.au-target {
       // width: 58%;
-      height: 36px;
+      height: auto;
       border: 0px solid;
       border-radius: 3px;
       font-size: 15px;
       padding: 10px;
-      box-shadow: 0px 5px #c7bdbd;
-      width: 47%;
+      padding-left: 40px;
+      box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.4);
+      width: 100%;
       // position: absolute;
       // top: 6px;
       // right: 7px;
@@ -329,7 +383,7 @@ input.live-search-box.au-target {
     background-color: rgba(0,0,0,0);
 
     & .searchDropDown-list{
-      padding: 0 20px 0 40px;
+      padding: 0;
       background-color: @translucent-white;
     }
 }
@@ -347,22 +401,23 @@ div#sidePane {
 
     input.live-search-box.au-target {
       // width: 55%;
-      height: 36px;
+      height: auto;
       border: 0px solid;
       border-radius: 3px;
       font-size: 15px;
       padding: 10px;
-      box-shadow: 0px 5px #c7bdbd;
+      padding-left: 40px;
+      box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.4);
       width: 46%;
-      top:0px;
+      // top:0px;
       // position: absolute;
       // top: 6px;
       // right: 7px;
   }
   input#search_city_input:focus {
-    width: 79% !important;
-    position: absolute;
-    right: 7px;
+    // width: 100%;
+    // position: relative !important;
+    // right: 7px;
     outline: none;
 }
     div#sidePane {
@@ -385,21 +440,22 @@ div#sidePane {
 
     input.live-search-box.au-target {
       // width: 55%;
-      height: 36px;
+      height: auto;
       border: 0px solid;
       border-radius: 3px;
       font-size: 15px;
       padding: 10px;
-      box-shadow: 0px 5px #c7bdbd;
+      padding-left: 40px;
+      box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.4);
       width: 30%;
       // position: absolute;
       // top: 6px;
       // right: 7px;
   }
   input#search_city_input:focus {
-    width: 60% !important;
-    position: absolute;
-    right: 7px;
+    // width: 60% !important;
+    // position: absolute;
+    // right: 7px;
     outline: none;
 }
     div#sidePane {

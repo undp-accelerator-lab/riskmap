@@ -26,10 +26,16 @@ export class ScreenPopup {
 
     $(document).click( function() {
       $('#popupResults').hide();
+      $('#dropdown_city').hide();
     });
 
     $('#screen').click( function(e) {
       e.stopPropagation();
+    });
+
+    $('#search_city_input').on('focus', function() {
+      console.log('uououo');
+        $('#cityPopup').addClass('expand');
     });
     // this.queryChanged('', '');
     // $('#dropdown_city').show();

@@ -2,9 +2,10 @@
   <require from="./screen-popup.css"></require>
 
       <div id="screen">
-        <div class="row">
-          <div id="cityPopup" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
-            <input id="search_city_input"
+
+          <div id="cityPopup" class="popupContent">
+            <input
+              id="search_city_input"
               type="text"
               class="live-search-box"
               placeholder="${locale.search_ph}"
@@ -13,18 +14,21 @@
               autofocus
             />
 
-            <!-- <div class="panel p-0 m-0"> -->
-              <div class="row p-2 m-0">
-                <div id="dropdown_city" if.bind = 'searchResult.length > 0' class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 searchDropDown p-2 mt-4" style="position: absolute;display: none;">
-                    <ul  class=" p-0" if.bind="searchText.length > 0" >
-                        <li><b>${locale.search_header}</b></li>
-                        <li class ="dropUl p-2" repeat.for="city of searchResult" click.delegate="switchRegion(city, true)">${city}</li>
-                    </ul>
+            <div class='search-icon-wrapper'>
+              <img class='search-icon' src='deployment_specific/pb/ds_assets/icons/ui_icons/search-black-18dp.svg' alt=''/>
+            </div>
+
+            <div class="row m-0">
+              <div id="dropdown_city" if.bind = 'searchResult.length > 0' class="searchDropDown" style="position: absolute;display: none;">
+                  <ul  class=" p-0" if.bind="searchText.length > 0" >
+                      <li class="dropUl_header"><b>${locale.search_header}</b></li>
+                      <li class="dropUl" repeat.for="city of searchResult" click.delegate="switchRegion(city, true)">${city}</li>
+                  </ul>
               </div>
             </div>
-            <!-- </div> -->
-
         </div>
+
+
         <div id="termsPopup">
             <div id="tabRow">
               <div
@@ -48,7 +52,7 @@
               <p click.delegate="closePopup()">Close&nbsp;&nbsp;&nbsp;&nbsp;</p>
             </div>
           </div>
-        </div>
+
         <div id='startPopUpContainer'>
           <div id="startPopup">
             <div id="header">
@@ -58,14 +62,15 @@
               </div>
             </div>
               <div class='popupContent'>
-                <input id="search_city"
-                type="text"
-                class="live-search"
-                placeholder="${locale.search_ph}"
-                autofocus
-                value.bind="popupText"
-                keyup.delegate="popupQueryChanged(event.target.value) & debounce:300"
-              />
+                <input
+                  id="search_city"
+                  type="text"
+                  class="live-search"
+                  placeholder="${locale.search_ph}"
+                  autofocus
+                  value.bind="popupText"
+                  keyup.delegate="popupQueryChanged(event.target.value) & debounce:300"
+                />
               <div class='search-icon-wrapper'>
                 <img class='search-icon' src='deployment_specific/pb/ds_assets/icons/ui_icons/search-black-18dp.svg' alt=''/>
               </div>
@@ -75,11 +80,11 @@
                 <div class="row m-0">
                   <div id="popupResults" class="searchDropDown" style="position: absolute;display: none;">
                       <ul  class="searchDropDown-list" >
-                          <li><b>${locale.search_header}</b></li>
-                          <li class ="dropUl p-2" repeat.for="city of popupResult" click.delegate="switchRegion(city, true)">${city}</li>
+                          <li class ="dropUl_header"><b>${locale.search_header}</b></li>
+                          <li class ="dropUl" repeat.for="city of popupResult" click.delegate="switchRegion(city, true)">${city}</li>
                       </ul>
+                  </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
