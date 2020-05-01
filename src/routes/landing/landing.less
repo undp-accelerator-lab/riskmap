@@ -98,10 +98,14 @@
 
   & #topBar {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 10px;
+    right: 10px;
     // width: 100%;
-    height: @bar-heights;
+    height: 42.5px;
+    width: 42.5px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.4);
+    background-color: white;
     // background-color: @translucent-white;
     z-index: 1030;
     // border-bottom: 1px solid @light-gray;
@@ -116,18 +120,15 @@
       }
     }
     & div.menuBtn {
-      display: none;
-      position: absolute;
-      background: transparent;
-      top: 10px;
-      right: 14px;
-      line-height: 30px;
-      & i {
-        .linklight-mixin(30px);
-      }
+      display: none !important;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+
+      & i { .linklight-mixin(30px) }
     }
     & div.active {
-      display: block;
+      display: flex !important;
     }
   }
 
@@ -303,11 +304,7 @@ p.commingSoon {
   and (-webkit-min-device-pixel-ratio: 1) {
     #pageWrapper #topBar div.menuBtn {
       // display: none;
-      position: absolute;
-      background: transparent;
-      top: 18px;
-      right: 14px;
-      line-height: 30px;
+
   }
 
   /* menu */
@@ -432,11 +429,7 @@ div.buttons:not(:last-child):nth-last-child(4) {
   and (-webkit-min-device-pixel-ratio: 1) {
     #pageWrapper #topBar div.menuBtn {
       // display: none;
-      position: absolute;
-      background: transparent;
-      top: 18px;
-      right: 14px;
-      line-height: 30px;
+
   }
 
 
@@ -623,11 +616,7 @@ tr.row.report {
 
     #pageWrapper #topBar div.menuBtn {
       // display: none;
-      position: absolute;
-      background: transparent;
-      top: 18px;
-      right: 14px;
-      line-height: 30px;
+
   }
 
 
@@ -791,11 +780,7 @@ div.buttons:not(:last-child):nth-last-child(4) {
 
     #pageWrapper #topBar div.menuBtn {
       // display: none;
-      position: absolute;
-      background: transparent;
-      top: 18px;
-      right: 14px;
-      line-height: 30px;
+
   }
 
 
@@ -939,11 +924,7 @@ and (max-device-width: 421px)  {
 
     #pageWrapper #topBar div.menuBtn {
       // display: none;
-      position: absolute;
-      background: transparent;
-      top: 18px;
-      right: 14px;
-      line-height: 30px;
+
   }
 
 
@@ -1086,11 +1067,7 @@ div.buttons:not(:last-child):nth-last-child(4) {
 
     #pageWrapper #topBar div.menuBtn {
       // display: none;
-      position: absolute;
-      background: transparent;
-      top: 18px;
-      right: 14px;
-      line-height: 30px;
+
   }
 
 
@@ -1231,11 +1208,7 @@ div.buttons:not(:last-child):nth-last-child(4) {
 
     #pageWrapper #topBar div.menuBtn {
       // display: none;
-      position: absolute;
-      background: transparent;
-      top: 18px;
-      right: 14px;
-      line-height: 30px;
+
   }
 
 
@@ -1376,11 +1349,7 @@ div.buttons:not(:last-child):nth-last-child(4) {
 
     #pageWrapper #topBar div.menuBtn {
       // display: none;
-      position: absolute;
-      background: transparent;
-      top: 18px;
-      right: 14px;
-      line-height: 30px;
+
   }
 
 
@@ -1524,11 +1493,7 @@ and (orientation: portrait) {
 
   #pageWrapper #topBar div.menuBtn {
     // display: none;
-    position: absolute;
-    background: transparent;
-    top: 18px;
-    right: 14px;
-    line-height: 30px;
+
 }
 
 
@@ -1674,11 +1639,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
 
   #pageWrapper #topBar div.menuBtn {
     // display: none;
-    position: absolute;
-    background: transparent;
-    top: 18px;
-    right: 14px;
-    line-height: 30px;
+
 }
 
 
@@ -1823,11 +1784,7 @@ margin-left: -10px;
 
     #pageWrapper #topBar div.menuBtn {
       // display: none;
-      position: absolute;
-      background: transparent;
-      top: 18px;
-      right: 14px;
-      line-height: 30px;
+
   }
 
 
@@ -1974,11 +1931,7 @@ margin-left: -10px;
 
     #pageWrapper #topBar div.menuBtn {
       // display: none;
-      position: absolute;
-      background: transparent;
-      top: 18px;
-      right: 14px;
-      line-height: 30px;
+
   }
 
 
@@ -2123,11 +2076,7 @@ margin-left: -10px;
 
     #pageWrapper #topBar div.menuBtn {
       // display: none;
-      position: absolute;
-      background: transparent;
-      top: 18px;
-      right: 14px;
-      line-height: 30px;
+
   }
 
 
