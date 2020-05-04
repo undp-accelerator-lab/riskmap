@@ -116,30 +116,30 @@ export class SidePane {
       //earthquake_road
       {
         legend_name: 'eq_road_access',
-        legend_title: { en: 'Earthquake (Road Accessibility)', id: 'gempa (Road Accessibility)' },
+        legend_title: { en: 'EARTHQUAKE (ROAD ACCESSIBILITY)', id: 'GEMPABUMI (AKSES JALAN)' },
         legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Haze.png',
         legend_data: [
           {
             col_1: {
-              text: { en: 'Large Vehicle (Truck)', id: 'Truk' },
+              text: { en: 'Large Vehicle (Truck)', id: 'Akses Kendaraan Truk' },
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_1.svg'
             }
           },
           {
             col_1: {
-              text: { en: '4 wheel vehicle', id: '4 roda' },
+              text: { en: '4 wheel Vehicle Access', id: 'Akses Kendaraan Roda 4' },
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_2.svg'
             }
           },
           {
             col_1: {
-              text: { en: '2 wheel vehicle', id: '2 roda' },
+              text: { en: '2 wheel Vehicle Access', id: 'Akses Kendaraan Roda 2' },
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_3.svg'
             }
           },
           {
             col_1: {
-              text: { en: 'No Vehicle', id: 'Tidak bisa dilewati kendaraan' },
+              text: { en: 'No Vehicle', id: 'Tidak Bisa Dilewati Kendaraan' },
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_4.svg'
             }
           }]
@@ -147,7 +147,7 @@ export class SidePane {
       //earthquake_structural
       {
         legend_name: 'eq_structure_fail',
-        legend_title: { en: 'Earthquake (Structural Failure)', id: 'gempa (Structural Failure)' },
+        legend_title: { en: 'EARTHQUAKE (STRUCTURAL FAILURE)', id: 'GEMPABUMI (DAMPAK PADA BANGUNAN)' },
         legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Earthquake.png',
         legend_data: [
           {
@@ -164,7 +164,7 @@ export class SidePane {
           },
           {
             col_1: {
-              text: { en: 'Fully Collapsed', id: 'Roboh total' },
+              text: { en: 'Fully Collapsed', id: 'Roboh Total' },
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_structure_3.svg'
             }
           }]
@@ -172,24 +172,24 @@ export class SidePane {
       //wind
       {
         legend_name: 'wind',
-        legend_title: { en: 'Wind', id: 'Wind' },
+        legend_title: { en: 'WIND', id: 'ANGIN KENCANG' },
         legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Haze.png',
         legend_data: [
           {
             col_1: {
-              text: { en: 'Low Disruption', id: 'Low Disruption' },
+              text: { en: 'Low Disruption', id: 'Dampak Ringan' },
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/w_1.svg'
             }
           },
           {
             col_1: {
-              text: { en: 'Medium Disruption', id: 'Medium Disruption' },
+              text: { en: 'Medium Disruption', id: 'Dampak Sedang' },
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/w_2.svg'
             }
           },
           {
             col_1: {
-              text: { en: 'High Disruption', id: 'High Disruption' },
+              text: { en: 'High Disruption', id: 'Dampak Berat' },
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/w_3.svg'
             }
           }]
@@ -197,12 +197,12 @@ export class SidePane {
       //fire
       {
         legend_name: 'fire',
-        legend_title: { en: 'Forest Fire', id: 'kebakaranhutan' },
+        legend_title: { en: 'FOREST FIRE', id: 'KEBAKARAN HUTAN' },
         legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Fire.png',
         legend_data: [
           {
             col_1: {
-              text: { en: 'Forest Fire', id: 'kebakaranhutan' },
+              text: { en: 'Forest Fire Report', id: 'Laporan Kebakaran Hutan' },
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/fire_1.svg'
             }
           }]
@@ -210,24 +210,24 @@ export class SidePane {
       //haze
       {
         legend_name: 'haze',
-        legend_title: { en: 'Haze', id: 'kabutasap' },
+        legend_title: { en: 'HAZE', id: 'KABUT ASAP' },
         legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Haze.png',
         legend_data: [
           {
             col_1: {
-              text: { en: 'None, Smell Smoke', id: 'None, Smell Smoke' },
+              text: { en: 'None, Smell Smoke', id: 'Tercium Bau Asap' },
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/haze_1.svg'
             }
           },
           {
             col_1: {
-              text: { en: 'Watery Eyes', id: 'Watery Eyes' },
+              text: { en: 'Watery Eyes', id: 'Mata Pedih' },
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/haze_2.svg'
             }
           },
           {
             col_1: {
-              text: { en: 'Headache, shortness of breath', id: 'Headache, shortness of breath' },
+              text: { en: 'Headache, shortness of breath', id: 'Pusing, Sesak Nafas' },
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/haze_3.svg'
             }
           }]
@@ -235,12 +235,12 @@ export class SidePane {
       //volcano
       {
         legend_name: 'volcano',
-        legend_title: { en: 'Volcano', id: 'gunungapi' },
+        legend_title: { en: 'VOLCANO', id: 'GUNUNG API' },
         legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Volcano.png',
         legend_data: [
           {
             col_1: {
-              text: { en: 'Volcano', id: 'gunungapi' },
+              text: { en: 'Volcano Risk Report', id: 'Laporan Risiko Gunungapi' },
               icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/vol_1.png'
             }
           }]
