@@ -30,28 +30,28 @@
 
 
         <div id="termsPopup">
-            <div id="tabRow">
-              <div
-                repeat.for="switch of termscontents"
-                class="termsTabs"
-                id.bind="'tab-' + switch.tab_key"
-                click.delegate="switchTab(switch.tab_key)"
-              >
-                <p>${switch.tab_name}</p>
-              </div>
-            </div>
-            <div id="tabContent">
-              <div
-                repeat.for="content of termscontents"
-                class="termsContents"
-                if.bind="content.tab_key == seltab"
-                innerhtml.bind="content.tab_content"
-              ></div>
-            </div>
-            <div id="closeRow">
-              <p click.delegate="closePopup()">Close&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          <div id="tabRow">
+            <div
+              repeat.for="switch of termscontents"
+              class="termsTabs"
+              id.bind="'tab-' + switch.tab_key"
+              click.delegate="switchTab(switch.tab_key)"
+            >
+              <p>${switch.tab_name}</p>
             </div>
           </div>
+          <div id="tabContent">
+            <div
+              repeat.for="content of termscontents"
+              class="termsContents"
+              if.bind="content.tab_key == seltab"
+              innerhtml.bind="content.tab_content"
+            ></div>
+          </div>
+          <div id="closeRow">
+            <p click.delegate="closePopup()">Close&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          </div>
+        </div>
 
         <div id='startPopUpContainer'>
           <div id="startPopup">

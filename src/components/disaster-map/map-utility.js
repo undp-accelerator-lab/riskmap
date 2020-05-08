@@ -84,7 +84,8 @@ export class MapUtility {
     if (!regionName) {
       return defaultRegion;
     } else if (self.isRegionSupported(regionName)) {
-      return self.config.sub_regions[regionName];
+      self.selectedRegion = self.config.sub_regions[regionName];
+      return self.config.sub_regions[regionName].province;
     } 
     // invalid region
     return defaultRegion;
@@ -96,7 +97,6 @@ export class MapUtility {
     let self = this;
     let city = self.parseRegion(regionName);
     self.changeCity(city, true);
-
   }
 
   // Change city from within map without reloading window
@@ -108,7 +108,13 @@ export class MapUtility {
     layers.removeFloodGauges(map);
     // Fly to new city bounds
     // map.flyToBounds([cityObj.bounds.sw, cityObj.bounds.ne])
-    map.flyTo(cityObj.center, 11);
+    if (self.selectedRegion) {
+      map.flyTo(self.selectedRegion.center, 10);
+      self.selectedRegion = undefined;
+    }
+    else {
+      map.flyTo(cityObj.center, 10);
+    }
     // .once('moveend zoomend', (e) => {
     //   map.setMaxBounds([cityObj.bounds.sw, cityObj.bounds.ne]);
     //   });
