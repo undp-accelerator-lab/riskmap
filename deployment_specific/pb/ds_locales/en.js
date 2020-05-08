@@ -8,6 +8,12 @@ const en = {
   'search_ph': 'Search',
   'popup_text': 'Select Province to continue',
   'search_header': 'Select Region',
+  'flood': 'Flood',
+  'eq': 'Earthquake',
+  'fire': 'Forest Fire',
+  'haze': 'Haze',
+  'wind': 'Wind',
+  'volcano': 'Volcano',
   'reports_stats': 'Received {reportsplaceholder} reports in past {hoursplaceholder} hours',
   'prep_menu': {
     'btn_names': {
