@@ -14,7 +14,7 @@ const id = {
   'volcano': 'Gunung Api',
   'comming_soon': 'Segera Hadir',
   'coming_soon_2020': 'Segera Hadir!',
-  'reports_stats': 'Terdapat {reportsplaceholder} laporan dalam {hoursplaceholder} jam terakhir',
+  'reports_stats': 'Terdapat {reportsplaceholder} laporan dalam {hoursplaceholder} jam terakhir di {provinceplaceholder}',
   'prep_menu': {
     'btn_names': {
       'drain': 'Blocked Drains',
