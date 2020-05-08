@@ -62,7 +62,9 @@ export class MapUtility {
       // supported city
       $('#screen').css('z-index', 'auto');
       $('#dropdown_city').hide();
+      $('#startPopUpContainer').hide();
       $('#search_city_input').val('');
+      $('#search_city').val('');
       return self.config.instance_regions[cityName];
     } else if (!self.isCitySupported(cityName)) {
       // invalid city
