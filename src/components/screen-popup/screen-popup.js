@@ -67,7 +67,7 @@ export class ScreenPopup {
     }
     const map = Object.keys(this.config.sub_regions);
     let newObj = map.filter(value => {
-      return value.indexOf(newval.toLowerCase()) !== -1 ? value : null;
+      return value.toLowerCase().indexOf(newval.toLowerCase()) !== -1 ? value : null;
     });
     this.searchResult = newObj;
   }
@@ -78,7 +78,7 @@ export class ScreenPopup {
     });
     const map = Object.keys(this.config.sub_regions);
     let newObj = map.filter(value => {
-      return value.indexOf(this.popupText.toLowerCase()) !== -1 ? value : null;
+      return value.toLowerCase().indexOf(this.popupText.toLowerCase()) !== -1 ? value : null;
     });
     this.popupResult = newObj;
     if (this.popupResult.length > 0) {
