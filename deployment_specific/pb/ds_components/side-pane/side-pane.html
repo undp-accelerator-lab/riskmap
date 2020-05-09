@@ -66,30 +66,35 @@
           <!-- legends -->
           <div class='pb-legends-group' >
             <div id.bind="all_lgd_data.legend_name" class="pb-legend-container pb-legend-container--flood p-2 ${selLegend === all_lgd_data.legend_name ? 'active' : '' }" repeat.for="all_lgd_data of all_legends_data">
-              <div class="pb-legend-title" click.delegate="switchLegend(all_lgd_data.legend_name)">
+              <div class="pb-legend-title" click.delegate="all_lgd_data.legend_data && switchLegend(all_lgd_data.legend_name)">
                 <div class='pb-legend-title__text_plus_icon'>
                   <img class='pb-legend-title__icon' src.bind="all_lgd_data.legend_title_icon" />
                   <p class='pb-legend-title__text'>${all_lgd_data.legend_title[currentLanguage]}</p>
                 </div>
-                <img src.bind="'deployment_specific/pb/ds_assets/icons/ui_icons/' + (selLegend === all_lgd_data.legend_name ? 'expand_less-24px' : 'expand_more-24px') + '.svg'" />
+                <img if.bind="all_lgd_data.legend_data" src.bind="'deployment_specific/pb/ds_assets/icons/ui_icons/' + (selLegend === all_lgd_data.legend_name ? 'expand_less-24px' : 'expand_more-24px') + '.svg'" />
               </div>
               <div class='pb-legend'>
-                <div class="pb-legend__row pb-legend__header">
-                  <div class="pb-legend__cell pb-legend__header-cell" if.bind="all_lgd_data.col_1_title">
-                    <p>${all_lgd_data.col_1_title[currentLanguage]}</p>
-                  </div>
-                  <div class="pb-legend__cell pb-legend__header-cell" if.bind="all_lgd_data.col_2_title">
+                <div class="pb-legend__row pb-legend__header" if.bind="all_lgd_data.col_2_title">
+                  <div class="pb-legend__cell pb-legend__header-cell" >
                     <p>${all_lgd_data.col_2_title[currentLanguage]}</p>
                   </div>
                 </div>
                 <div class='pb-legend__row pb-legend__body-row' repeat.for="fl_data of all_lgd_data.legend_data">
-                  <div class='pb-legend__cell'>
-                    <img class='pb-legend__cell-icon' src.bind='fl_data.col_1.icon' />
-                    <p>${fl_data.col_1.text[currentLanguage]}</p>
-                  </div>
                   <div class='pb-legend__cell' if.bind="fl_data.col_2">
                     <div class='pb-legend__cell-color-code' style.bind="'background-color:'+fl_data.col_2.color"></div>
                     <p>${fl_data.col_2.text[currentLanguage]}</p>
+                  </div>
+                </div>
+                <div class="pb-legend__row pb-legend__header">
+                  <div class="pb-legend__cell pb-legend__header-cell" if.bind="all_lgd_data.col_1_title">
+                    <p>${all_lgd_data.col_1_title[currentLanguage]}</p>
+                  </div>
+                </div>
+                <div class='pb-legend__row pb-legend__body-row' repeat.for="fl_data of all_lgd_data.legend_data">
+                  <div class='pb-legend__cell' if.bind="fl_data.col_1">
+                    <div class='pb-legend__cell-color-code' style.bind="'background-color:'+fl_data.col_1.color"></div>
+                    <!-- <img class='pb-legend__cell-icon' src.bind='fl_data.col_1.icon' /> -->
+                    <p>${fl_data.col_1.text[currentLanguage]}</p>
                   </div>
                 </div>
               </div>
