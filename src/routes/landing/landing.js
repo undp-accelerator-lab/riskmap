@@ -27,6 +27,7 @@ export class Landing {
     this.configData = Config;
     this.activeDisaster = 'none';
     this.assetMap = {
+      '#flood': '/assets/icons/Add_Report_Icon_Flood',
       '#earthquake': '/assets/icons/Add_Report_Icon_Earthquake',
       '#fire': '/assets/icons/Add_Report_Icon_Fire',
       '#volcano': '/assets/icons/Add_Report_Icon_Volcano',
@@ -141,7 +142,7 @@ export class Landing {
     let self = this;
     let toggleSrc = function(element) {
       let extention = element === '#wind' ? '.svg' : '.png';
-      if (self.activeDisaster != element ) { 
+      if (self.activeDisaster !== element ) {
         toggleSrc(self.activeDisaster);
         self.activeDisaster = element;
       } else {

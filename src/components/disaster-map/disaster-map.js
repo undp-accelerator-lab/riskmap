@@ -115,7 +115,7 @@ export class DisasterMap {
         // Show timeperiod notification
         self.layers.getStats(self.utility.parseCityObj(cityName, false).region)
           .then(stats => {
-            let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{hoursplaceholder}', stats.timeperiod / 3600);
+            let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{hoursplaceholder}', stats.timeperiod / 3600).replace('{provinceplaceholder}', cityName);
             self.utility.statsNotification(msg);
           });
 

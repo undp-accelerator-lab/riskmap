@@ -120,7 +120,7 @@ export class SidePane {
       //earthquake_road
       {
         legend_name: 'eq_road_access',
-        legend_title: { en: 'Earthquake (Road Access)', id: 'gempa (Road Accessibility)' },
+        legend_title: { en: 'EARTHQUAKE (ROAD ACCESSIBILITY)', id: 'GEMPABUMI (AKSES JALAN)' },
         legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Haze.png',
         legend_data: [
           {
@@ -186,7 +186,7 @@ export class SidePane {
       //wind
       {
         legend_name: 'wind',
-        legend_title: { en: 'Extreme Wind', id: 'Extreme Wind' },
+        legend_title: { en: 'Extreme Wind', id: 'ANGIN KENCANG' },
         legend_title_icon: 'deployment_specific/pb/ds_assets/icons/wind.svg',
         legend_data: [
           {
@@ -215,7 +215,7 @@ export class SidePane {
       //fire
       {
         legend_name: 'fire',
-        legend_title: { en: 'Forest Fire', id: 'kebakaranhutan' },
+        legend_title: { en: 'FOREST FIRE', id: 'KEBAKARAN HUTAN' },
         legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Fire.png',
         // legend_data: [
         //   {
@@ -228,7 +228,7 @@ export class SidePane {
       //haze
       {
         legend_name: 'haze',
-        legend_title: { en: 'Haze', id: 'kabutasap' },
+        legend_title: { en: 'HAZE', id: 'KABUT ASAP' },
         legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Haze.png',
         legend_data: [
           {
@@ -257,7 +257,7 @@ export class SidePane {
       //volcano
       {
         legend_name: 'volcano',
-        legend_title: { en: 'Volcano', id: 'gunungapi' },
+        legend_title: { en: 'VOLCANO', id: 'GUNUNG API' },
         legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Volcano.png',
         // legend_data: [
         //   {
