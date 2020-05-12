@@ -77,11 +77,14 @@ export class Landing {
     $('#sidePane').css({
       'height': ($(window).height() - ($('#topBar').height() + 30)) + 'px',
     });
+    $('#dropdown_city').css({
+      'height': ($(window).height() - ($('#topBar').height() + 30)) + 'px',
+    });
   }
 
   attached() {
     // If desktop, open side pane to 'info' tab
-    
+
     // else if (this.queried_terms) {
     //   $('#screen').show();
     //   $('#termsPopup').show();
@@ -89,9 +92,7 @@ export class Landing {
 
     // Modify side pane height on the fly
     this.resizeSidePane();
-    $(window).resize(() => {
-      this.resizeSidePane();
-    });
+    $(window).resize(() => {this.resizeSidePane();});
     if (!(/Mobi/.test(navigator.userAgent)) && !this.report_id) {
       this.mapModel.togglePane('#sidePane', 'show', false);
     }
