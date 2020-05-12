@@ -92,7 +92,9 @@
                 </div>
                 <div class='pb-legend__row pb-legend__body-row' repeat.for="fl_data of all_lgd_data.legend_data">
                   <div class='pb-legend__cell' if.bind="fl_data.col_1">
+                    <div>
                     <div class='pb-legend__cell-color-code' style.bind="'background-color:'+fl_data.col_1.color"></div>
+                    </div>
                     <!-- <img class='pb-legend__cell-icon' src.bind='fl_data.col_1.icon' /> -->
                     <p>${fl_data.col_1.text[currentLanguage]}</p>
                   </div>

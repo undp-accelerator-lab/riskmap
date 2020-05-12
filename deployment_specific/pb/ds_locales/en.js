@@ -3,6 +3,7 @@ const en = {
   'coming_soon_2020': 'Coming Soon MARCH 2020!',
   'flood_flow_img': '/assets/icons/flood_flow_en.png',
   'eq_flow_img': '/assets/icons/eq_flow_en.png',
+  'report': 'Add Report',
   'add_report': 'Report Flood',
   'add_eq_report': 'Report EarthQuake',
   'search_ph': 'Search',
