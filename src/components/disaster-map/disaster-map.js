@@ -92,6 +92,16 @@ export class DisasterMap {
   // Load all reports of a searched sub region
   viewRegionReports(regionName, pushState) {
     let self = this;
+    // self.utility.goToLocation({
+    //   'latitude': regionName.y,
+    //   'longitude': regionName.x,
+    //   'latlng': [regionName.y, regionName.x]
+    // }, self.map, self.layers, self.togglePane);
+    // self.layers.getStats(self.utility.parseCityObj(self.utility.clientCity, false).region)
+    //   .then(stats => {
+    //     let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{hoursplaceholder}', stats.timeperiod / 3600);
+    //     self.utility.statsNotification(msg);
+    //   });
     let city = self.utility.parseRegion(regionName);
     self.viewReports(city, pushState);
   }
@@ -105,7 +115,7 @@ export class DisasterMap {
         // Show timeperiod notification
         self.layers.getStats(self.utility.parseCityObj(cityName, false).region)
           .then(stats => {
-            let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{hoursplaceholder}', stats.timeperiod / 3600);
+            let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{hoursplaceholder}', stats.timeperiod / 3600).replace('{provinceplaceholder}', cityName);
             self.utility.statsNotification(msg);
           });
 

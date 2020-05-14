@@ -1,8 +1,8 @@
 <template>
   <require from="./side-pane.css"></require>
   <div id="tabsBar">
-    <ul  class="tabs" repeat.for="language of languages">
-      <li style="list-style: none;">
+    <ul  class="tabs tabs-nav" repeat.for="language of languages">
+      <li style="list-style: none;border-right: 1px solid;">
         <p class="languageClass" textcontent.bind="language.code" value.bind="selLanguage"
           click.delegate="changeLanguage(language.key)"></p>
       </li>
@@ -10,13 +10,13 @@
   </div>
 
   <div id="paneContent">
-    <div class="row paneTabs" repeat.for="menuName of menuList">
+    <div class=" paneTabs" repeat.for="menuName of menuList">
       <div
-        class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-2 m-0 accordion" id.bind="'label_' + menuName"
+        class=" p-2 m-0 accordion" id.bind="'label_' + menuName"
         textcontent.bind="locale.web_menu.tab_names[menuName]"
         click.delegate="switchTab(menuName)"
       >
-      
+
     </div>
     <!-- <div class="col-6 col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 p-0 m-0 text-right">
       <p class="arrows down" id.bind="'down_' + menuName">
@@ -29,7 +29,7 @@
 
       <div class="panel p-0 m-0"
       id.bind="'vid_' + menuName"
-       ref.bind="'vid_' + menuName">
+      ref.bind="'vid_' + menuName">
         <!-- MAP -->
         <div id="content-map" if.bind="seltab === 'map'">
           <p>${locale.map_helper}</p>
@@ -61,74 +61,91 @@
               </td>
             </tr>
           </table>
-          <table width="300px">
-            <tr>
-              <td vertical-align="bottom" colspan="50%">
-                <p>${locale.legend.flood_gauges}</p>
-              </td>
-              <td vertical-align="bottom" colspan="50%">
-                <p style="word-wrap: break-word;width: 150px;">${locale.legend.flood_depth}</p>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="50%">
-                <table>
-                  <tr repeat.for="level of gauge_levels">
-                    <td>
-                      <img src.bind="level.icon" height="30">
-                    </td>
-                    <td>
-                      <p class="normal">${level.text[selLanguage.key]}</p>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-              <td colspan="50%">
-                <table>
-                  <tr repeat.for="height of flood_depth">
-                    <td style.bind="'padding:0;font-size:30px;color: ' + height.color">&#9632;
-                    </td>
-                    <td>
-                      <p class="normal">${height.text[selLanguage.key]}</p>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
+          <!-- // -->
+
+          <!-- legends -->
+          <div class='pb-legends-group' >
+            <div id.bind="all_lgd_data.legend_name" class="pb-legend-container pb-legend-container--flood p-2 ${selLegend === all_lgd_data.legend_name ? 'active' : '' }" repeat.for="all_lgd_data of all_legends_data">
+              <div class="pb-legend-title" click.delegate="all_lgd_data.legend_data && switchLegend(all_lgd_data.legend_name)">
+                <div class='pb-legend-title__text_plus_icon'>
+                  <img class='pb-legend-title__icon' src.bind="all_lgd_data.legend_title_icon" />
+                  <p class='pb-legend-title__text'>${all_lgd_data.legend_title[currentLanguage]}</p>
+                </div>
+                <img if.bind="all_lgd_data.legend_data" src.bind="'deployment_specific/pb/ds_assets/icons/ui_icons/' + (selLegend === all_lgd_data.legend_name ? 'expand_less-24px' : 'expand_more-24px') + '.svg'" />
+              </div>
+              <div class='pb-legend'>
+                <div class="pb-legend__row pb-legend__header" if.bind="all_lgd_data.col_2_title">
+                  <div class="pb-legend__cell pb-legend__header-cell" >
+                    <p>${all_lgd_data.col_2_title[currentLanguage]}</p>
+                  </div>
+                </div>
+                <div class='pb-legend__row pb-legend__body-row' repeat.for="fl_data of all_lgd_data.legend_data">
+                  <div class='pb-legend__cell' if.bind="fl_data.col_2">
+                    <div class='pb-legend__cell-color-code' style.bind="'background-color:'+fl_data.col_2.color"></div>
+                    <p>${fl_data.col_2.text[currentLanguage]}</p>
+                  </div>
+                </div>
+                <div class="pb-legend__row pb-legend__header">
+                  <div class="pb-legend__cell pb-legend__header-cell" if.bind="all_lgd_data.col_1_title">
+                    <p>${all_lgd_data.col_1_title[currentLanguage]}</p>
+                  </div>
+                </div>
+                <div class='pb-legend__row pb-legend__body-row' repeat.for="fl_data of all_lgd_data.legend_data">
+                  <div class='pb-legend__cell' if.bind="fl_data.col_1">
+                    <div>
+                    <div class='pb-legend__cell-color-code' style.bind="'background-color:'+fl_data.col_1.color"></div>
+                    </div>
+                    <!-- <img class='pb-legend__cell-icon' src.bind='fl_data.col_1.icon' /> -->
+                    <p>${fl_data.col_1.text[currentLanguage]}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end legends -->
+
         </div>
         <!-- REPORT -->
 
-        <div id="content-report" if.bind="seltab === 'report'" class="contentWrapper p-0 m-0">
+        <div id="content-report" if.bind="seltab === 'report'" class="contentWrapper">
           <table id="reportTable">
-            <tr repeat.for="video of videos" class="vidRows">
+          <tr class="vidRows">
+            <td>
+              <table class="vidTable">
+                <tr click.delegate="showVideo('youtube')">
+                  <td class="labelRow" id.bind="label_youtube">
+                    <p class="labelText">
+                      <img class='labelIcon' src.bind='youtube_video.icon' /> &nbsp; &nbsp;${locale.report_content.youtube.title}
+                    </p>
+                  </td>
+                </tr>
+                <tr class="wrapRow">
+                  <td>
+                    <div class="videoWrapper" id="vid_youtube" ref.bind="vid_youtube">
+                      <iframe width="300" height="225" allowfullscreen="allowfullscreen" frameborder="0" if.bind="youtube_video[selLanguage.key]" src.bind="youtube_video[selLanguage.key]"></iframe>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+            <tr repeat.for="video of report_methods" class="vidRows">
               <td>
                 <table class="vidTable">
                   <tr click.delegate="showVideo(video.platform)">
                     <td class="labelRow" id.bind="'label_' + video.platform">
                       <p class="labelText">
-                        <i class.bind="'icon-' + video.platform"></i>&nbsp;${locale.report_content[video.platform].title}
-                      </p>
-                      <p class="arrows down" id.bind="'down_' + video.platform">
-                        <i class="icon-down-open"></i>
-                      </p>
-                      <p class="arrows up" id.bind="'up_' + video.platform">
-                        <i class="icon-up-open"></i>
+                        <img class='labelIcon' src.bind='video.icon' />&nbsp;&nbsp;${locale.report_content[video.platform].title}
                       </p>
                     </td>
                   </tr>
                   <tr class="wrapRow">
                     <td>
                       <div class="videoWrapper" id.bind="'vid_' + video.platform" ref.bind="'vid_' + video.platform">
-                        <iframe width="300" height="225" allowfullscreen="allowfullscreen" frameborder="0"
-                          src.bind="video.source[selLanguage.key]"></iframe>
-                        <br>
-                        <ul>
-                          <li repeat.for="step of locale.report_content[video.platform].steps">
-                            <p>${step}</p>
+                        <ol>
+                          <li repeat.for="step of locale.report_content[video.platform].steps" innerhtml.bind="step">
                           </li>
-                          <p if.bind="video.platform==='otherapps'" innerhtml.bind="locale.report_content.otherapps.links"></p>
-                        </ul>
+                        </ol>
                       </div>
                     </td>
                   </tr>
@@ -147,7 +164,7 @@
                 </a>
               </td>
               <td align="right">
-                <a href="http://urbanrisklab.org/">
+                <a href="https://info.petabencana.id/">
                   <img id="yayasanLogo" src="assets/graphics/yayasan_logo.svg">
                 </a>
               </td>
@@ -213,16 +230,16 @@
                   <img class="partnerLogo" src="assets/graphics/qlue_logo.png">
                 </a>
               </td>
-              
+
             </tr>
           </table>
-    
-          
+
+
           <p innerhtml.bind="locale.info_content.p2"></p>
           <p innerhtml.bind="locale.info_content.p3"></p>
-    
+
           <p id="termslink" click.delegate="openTermsPopup()" innerhtml.bind="locale.info_content.termsPopup"></p>
-    
+
           <p id="mapbox">
             ${locale.info_content.mapCredits} ©
             <a href="https://www.mapbox.com/about/maps/" target="_blank">Mapbox</a> © <a href="http://www.openstreetmap.org/about" target="_blank">OpenStreetMap</a>.

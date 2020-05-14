@@ -25,6 +25,15 @@ export class Landing {
   constructor(Config) {
     this.config = Config.map;
     this.configData = Config;
+    this.activeDisaster = 'none';
+    this.assetMap = {
+      '#flood': '/assets/icons/Add_Report_Icon_Flood',
+      '#earthquake': '/assets/icons/Add_Report_Icon_Earthquake',
+      '#fire': '/assets/icons/Add_Report_Icon_Fire',
+      '#volcano': '/assets/icons/Add_Report_Icon_Volcano',
+      '#wind': '/assets/icons/wind',
+      '#haze': '/assets/icons/Add_Report_Icon_Haze'
+    };
   }
 
   activate(params, routerConfig) {
@@ -42,6 +51,7 @@ export class Landing {
       return value.indexOf(newval) != -1 ? value : null;
     });
     this.searchResult = newObj;
+    this.popupResults = newObj;
   }
 
   isCitySupported(querycity) {
@@ -65,13 +75,16 @@ export class Landing {
 
   resizeSidePane() {
     $('#sidePane').css({
-      'height': ($(window).height() - $('#topBar').height()) + 'px'
+      'height': ($(window).height() - ($('#topBar').height() + 30)) + 'px',
+    });
+    $('#dropdown_city').css({
+      'height': ($(window).height() - ($('#topBar').height() + 30)) + 'px',
     });
   }
 
   attached() {
     // If desktop, open side pane to 'info' tab
-    
+
     // else if (this.queried_terms) {
     //   $('#screen').show();
     //   $('#termsPopup').show();
@@ -79,9 +92,7 @@ export class Landing {
 
     // Modify side pane height on the fly
     this.resizeSidePane();
-    $(window).resize(() => {
-      this.resizeSidePane();
-    });
+    $(window).resize(() => {this.resizeSidePane();});
     if (!(/Mobi/.test(navigator.userAgent)) && !this.report_id) {
       this.mapModel.togglePane('#sidePane', 'show', false);
     }
@@ -124,40 +135,27 @@ export class Landing {
   reportDisaster(type) {
     let self = this;
     self.initiateReport(type).then(cardId => {
-      window.location = self.config.cards_server + type + '/' + cardId;
+      window.location = self.config.cards_server + cardId  + '/' + type;
     });
   }
 
-  select_report(typeReport) {
-    let toggleSrc = function(element, baseIcon, extention = '.png') {
+  selectReport(typeReport) {
+    let self = this;
+    let toggleSrc = function(element) {
+      let extention = element === '#wind' ? '.svg' : '.png';
+      if (self.activeDisaster !== element ) {
+        toggleSrc(self.activeDisaster);
+        self.activeDisaster = element;
+      } else {
+        self.activeDisaster = 'noactive';
+      }
       $(element).attr('src', function(index, attr) {
-        return attr == baseIcon+extention ? baseIcon+'_Hover' + extention : baseIcon + extention;
+        let baseIcon = self.assetMap[element];
+
+        return attr === baseIcon + extention ? baseIcon + '_Hover' + extention : baseIcon + extention;
       });
+      $(element + 'Link').toggle('slide');
     };
-
-    if (typeReport === 'fire') {
-      toggleSrc('#fire', '/assets/icons/Add_Report_Icon_Fire');
-      $('#fireLink').toggle('slide');
-    }
-
-    if (typeReport === 'haze') {
-      toggleSrc('#haze', '/assets/icons/Add_Report_Icon_Haze');
-      $('#hazeLink').toggle('slide');
-    }
-
-    if (typeReport === 'earthquake') {
-      toggleSrc('#earthquake', '/assets/icons/Add_Report_Icon_Earthquake');
-      $('#earthquakeLink').toggle('slide');
-    }
-
-    if (typeReport === 'earthquakeAccess') {
-      toggleSrc('#earthquakeAccess', '/assets/icons/Earthquake_2', '.svg');
-      $('#earthquakeAccessLink').toggle('slide');
-    }
-
-    if (typeReport === 'volcano') {
-      toggleSrc('#volcano', '/assets/icons/Add_Report_Icon_Volcano');
-      $('#volcanoLink').toggle('slide');
-    }
+    toggleSrc('#' + typeReport);
   }
 }

@@ -98,7 +98,7 @@ const en = {
     'p1': 'RiskMap.in is a project initiated by the Urban Risk Lab at MIT as a free, transparent platform for emergency response and disaster management in megacities in South and Southeast Asia.',
     'p2': '',
     'p3': 'RiskMap.in gathers, sorts, and visualizes data using specially developed CogniCity Open Source Software - an enterprise-level platform for emergency response and disaster management - to transforms the noise of social and digital media into critical information for residents, communities, and government agencies.',
-    "p4":"NOTE: For any emergency situation that requires immediate assistance please call Police - 100, Fire - 101, or Ambulance - 108. To register civic complaints call Greater Chennai Corporation on 1913",
+    'p4': 'NOTE: For any emergency situation that requires immediate assistance please call Police - 100, Fire - 101, or Ambulance - 108. To register civic complaints call Greater Chennai Corporation on 1913',
     'partners': {
       'implementing': 'Implementing partner',
       'project': 'Project partners',

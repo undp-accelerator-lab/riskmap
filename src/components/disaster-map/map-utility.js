@@ -62,7 +62,9 @@ export class MapUtility {
       // supported city
       $('#screen').css('z-index', 'auto');
       $('#dropdown_city').hide();
+      $('#startPopUpContainer').hide();
       $('#search_city_input').val('');
+      $('#search_city').val('');
       return self.config.instance_regions[cityName];
     } else if (!self.isCitySupported(cityName)) {
       // invalid city
@@ -84,7 +86,8 @@ export class MapUtility {
     if (!regionName) {
       return defaultRegion;
     } else if (self.isRegionSupported(regionName)) {
-      return self.config.sub_regions[regionName];
+      self.selectedRegion = self.config.sub_regions[regionName];
+      return self.config.sub_regions[regionName].province;
     } 
     // invalid region
     return defaultRegion;
@@ -96,7 +99,6 @@ export class MapUtility {
     let self = this;
     let city = self.parseRegion(regionName);
     self.changeCity(city, true);
-
   }
 
   // Change city from within map without reloading window
@@ -108,7 +110,13 @@ export class MapUtility {
     layers.removeFloodGauges(map);
     // Fly to new city bounds
     // map.flyToBounds([cityObj.bounds.sw, cityObj.bounds.ne])
-    map.flyTo(cityObj.center, 11);
+    if (self.selectedRegion) {
+      map.flyTo(self.selectedRegion.center, 10);
+      self.selectedRegion = undefined;
+    }
+    else {
+      map.flyTo(cityObj.center, 10);
+    }
     // .once('moveend zoomend', (e) => {
     //   map.setMaxBounds([cityObj.bounds.sw, cityObj.bounds.ne]);
     //   });

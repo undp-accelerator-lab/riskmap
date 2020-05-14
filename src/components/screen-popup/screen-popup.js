@@ -20,19 +20,29 @@ export class ScreenPopup {
   //end-aurelia-decorators
   @observable query;
   constructor(Config) {
-    this.seltab = 'about';
+    this.seltab = 'u_a';
     this.config = Config.map;
+    this.configData = Config;
+
     $(document).click( function() {
-      $('#dropdown_city').hide('slow');
+      $('#popupResults').hide();
+      $('#dropdown_city').hide();
     });
 
     $('#screen').click( function(e) {
       e.stopPropagation();
     });
+
+    $('#search_city_input').on('focus', function() {
+      console.log('uououo');
+        $('#cityPopup').addClass('expand');
+    });
     // this.queryChanged('', '');
     // $('#dropdown_city').show();
-    // this.searchResult = Object.keys(this.config.sub_regions);
-
+    this.searchResult = Object.keys(this.config.sub_regions);
+    this.popupResult = Object.keys(this.config.sub_regions);
+    this.languages = this.config.supported_languages;
+    this.popupText = '';
   }
 
   switchTab(name) {
@@ -50,19 +60,41 @@ export class ScreenPopup {
       $(this).toggleClass('clicked');
     });
     this.searchText = newval.toLowerCase();
-    // if (this.searchResult > 0) {
-    //   $('#dropdown_city').show();
-    // } else {
-    //   $('#dropdown_city').hide();
-    // }
+    if (this.searchResult.length > 3) {
+      $('#dropdown_city').show();
+    } else {
+      $('#dropdown_city').hide();
+    }
     const map = Object.keys(this.config.sub_regions);
     let newObj = map.filter(value => {
-      return value.indexOf(newval.toLowerCase()) !== -1 ? value : null;
+      return value.toLowerCase().indexOf(newval.toLowerCase()) !== -1 ? value : null;
     });
     this.searchResult = newObj;
-    if (this.searchResult <= 0) {
-      $('#dropdown_city').hide();
-    } else $('#dropdown_city').show();
+  }
+
+  popupQueryChanged() {
+    $('#popupResults').on('click', function() {
+      $(this).toggleClass('clicked');
+    });
+    const map = Object.keys(this.config.instance_regions);
+    let newObj = map.filter(value => {
+      return value.toLowerCase().indexOf(this.popupText.toLowerCase()) !== -1 ? value : null;
+    });
+    this.popupResult = newObj;
+    if (this.popupResult.length > 0) {
+      $('#popupResults').show();
+    } else {
+      $('#popupResults').hide();
+    }
+  }
+
+  searchIndonesiaOSM(query) {
+    query = query + ', indonesia';
+    this.searchProvider.search({ query })
+      .then((results) => {
+        this.searchResult = results;
+        this.popupResult = results;
+      });
   }
 
   resizeSidePane() {
@@ -74,19 +106,18 @@ export class ScreenPopup {
   switchCity(city) {
     this.changeCity(city, true);
     $('#screen').css('display', 'none');
-
   }
 
-  // closePopup() {
-  //   $("#termsPopup").hide();
-  //   if (this.selcity) {
-  //     $("#screen").hide();
-  //   }
-  // }
+  closePopup() {
+    $('#termsPopup').hide();
+  }
+
+  closeStartPopup() {
+    $('#startPopUpContainer').hide();
+  }
 
   openPopup(name) {
     this.seltab = name;
-    $('#screen').show();
     $('#termsPopup').show();
   }
 

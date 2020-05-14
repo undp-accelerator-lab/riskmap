@@ -1,11 +1,131 @@
 @import "../../resources/style_sheets/theme_guide.less";
 
+#paneContent div.contentWrapper#content-map {
+
+  .pb-legends-group{
+    padding-bottom: 2rem;
+  }
+
+  .pb-legend-container{
+    margin-top: 0rem;
+    max-height: 48px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 !important;
+    border-bottom: 0.5px solid rgb(225, 225, 225);
+
+    &:first-of-type{
+      border-top: 0.5px solid rgb(225, 225, 225);
+    }
+
+    &.active{
+      max-height: 500px;
+
+      & .pb-legend-title{
+        font-weight: bold;
+      }
+    }
+
+    .pb-legend-title{
+      display: flex;
+      justify-content: space-between;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 300;
+      color: black;
+      padding: 9px;
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-left: -16px;
+      margin-right: -16px;
+      margin-bottom: 0;
+
+      cursor: pointer;
+
+
+
+      &:hover{
+        background-color: rgba(180,180,180,0.1);
+      }
+
+      & .pb-legend-title__text_plus_icon{
+        display: flex;
+        align-items: center;
+
+        & .pb-legend-title__icon{
+          width: 30px;
+        }
+
+        & .pb-legend-title__text{
+          margin-bottom: 0 !important;
+          padding-left: 8px;
+        }
+
+      }
+    }
+
+    .pb-legend{
+      padding-bottom: 16px;
+      padding-left: 38px;
+
+      .pb-legend__header{
+        margin-bottom: 0.5rem;
+        margin-top: 1rem;
+
+        &:first-of-type{
+          margin-top: 0;
+        }
+
+        p{
+          font-weight: bold;
+        }
+      }
+
+      .pb-legend__row{
+        display: flex;
+
+        .pb-legend__cell{ flex: 1 0 50% }
+      }
+
+      .pb-legend__body-row{
+        margin-top: -0.2rem;
+        margin-bottom: -0.2rem;
+
+        & .pb-legend__cell{
+          display: flex;
+          align-items: center;
+          padding-top: 0.4rem;
+          padding-bottom: 0.4rem;
+          font-weight: 300;
+
+          .pb-legend__cell-icon{
+            height: 30px;
+            width: auto;
+          }
+
+          .pb-legend__cell-color-code{
+            height: 20px;
+            width: 20px;
+            border-radius: 4px;
+          }
+
+          p{ margin-bottom: 0; padding-left: 0.5rem; }
+        }
+      }
+    }
+
+
+
+  }
+}
+
+
 #tabsBar {
   position: relative;
   width: 100%;
   height: @bar-heights;
   border: none;
-  border-bottom: 1px solid @banjir-blue;
+  border-bottom: 1px solid ;
   & ul.tabs {
     bottom: -4px;
     list-style-type: none;
@@ -89,7 +209,7 @@
       }
       & label {
         .linklight-mixin(14px);
-        // text-transform: capitalize;
+        text-transform: capitalize;
         padding-right: 10px;
       }
       & .normal {
@@ -122,14 +242,14 @@
         margin: 10px auto;
       }
       & p {
-        .bodyregular-mixin(14px);
+        .bodyregular-mixin(12px);
         width: 90%;
         margin: 15px auto;
         & a {
-          .linkmedium-mixin(14px);
+          .linkmedium-mixin(12px);
         }
         & b {
-          .bodymedium-mixin(14px);
+          .bodymedium-mixin(12px);
           color: @banjir-blue;
         }
         &#termslink {
@@ -141,7 +261,8 @@
           text-decoration: underline;
         }
         &#intro {
-          .bodyregular-mixin(14px);
+          .bodyregular-mixin(12px);
+          font-size: 14px;
           text-align: left;
           margin: 12px auto;
           width: 90%;
@@ -152,6 +273,9 @@
           margin: 12px auto;
           width: 90%;
           line-height: 1.4;
+          & a {
+            text-decoration: underline;
+          }
         }
         &#info {
           text-align: center;
@@ -173,13 +297,12 @@
         width: 90%;
         margin: auto;
         table-layout: fixed;
-        border-bottom: 1px solid @banjir-blue;
-        border-top: 1px solid @banjir-blue;
         padding-bottom: 10px;
         border-spacing: 7px;
         border-collapse: separate;
         & tr.label {
           height: 18px;
+          text-transform: uppercase;
           & p {
             .bodylight-mixin(12px);
             margin: 10px 0 4px 0;
@@ -222,10 +345,11 @@
             margin: 0;
             & tr {
               & td {
-                border-bottom: 1px solid @banjir-blue;
+                border-bottom: 1px solid @steel-gray;
                 &.labelRow {
                   cursor: pointer;
                   border: none;
+                  height: 40px;
                   .bodyregular-mixin(14px);
                   &.active {
                     color: @banjir-blue;
@@ -238,6 +362,10 @@
                     padding: 0;
                     &.labelText {
                       float: left;
+                      & .labelIcon{
+                        width: 21px;
+                        height: auto;
+                      }
                     }
                     &.arrows {
                       float: right;
@@ -293,7 +421,7 @@
   text-decoration: none;
 }
 .paneTabs {
-  padding: 6px 8px 6px 16px;
+  padding: 6px 16px 6px 16px;
   text-decoration: none;
   font-size: 20px;
   color: #818181;
@@ -311,9 +439,16 @@
   outline: none;
   font-size: 15px;
   transition: 0.4s;
+  text-transform: uppercase;
 }
 
-.active,
+.paneTabs.active {
+  border-top: 2px solid;
+}
+
+.paneTabs.active .accordion {
+  font-weight: bold;
+}
 .accordion:hover {
   background-color: #ccc;
 }
@@ -336,10 +471,6 @@
   transition: 0.4s;
 }
 
-// div#sidePane {
-//   background: #000 !important;
-// }
-
 .languageClass{
   color: #000;
     margin-right: 10px;
@@ -348,64 +479,70 @@
 }
 
 input#search_city_input:focus {
-  width: 95%;
+  width: 45%;
   position: absolute;
   right: 7px;
 }
 
-@media screen 
-  and (min-device-width: 786px) 
-  and (max-device-width: 1200px) {
-    div#sidePane {
-      margin-right: 8px !important;
-      width: 352px !important;
-  }
-  }
+div#sidePane {
+  margin-right: 10px !important;
+  width: 350px !important;
+}
 
-  @media screen 
-  and (min-device-width: 1270px) 
-  and (max-device-width: 1280px) {
-    div#sidePane {
-      margin-right: 8px !important;
-      width: 297px !important;
-  }
-  }
+// @media screen
+//   and (min-device-width: 786px)
+//   and (max-device-width: 1200px) {
+//
+//   }
+
+  // @media screen
+  // and (min-device-width: 1270px)
+  // and (max-device-width: 1280px) {
+  //   div#sidePane {
+  //     margin-right: 10px !important;
+  //     width: 297px !important;
+  // }
+  // }
 
   /* ----------- Galaxy S6 ----------- */
 
 /* Portrait and Landscape */
-@media screen 
-and (device-width: 360px) 
-and (device-height: 640px) 
-and (-webkit-device-pixel-ratio: 4) {
-  div#sidePane {
-    margin-right: 8px !important;
-    width: 345px !important;
-}
-}
+// @media screen
+// and (device-width: 360px)
+// and (device-height: 640px)
+// and (-webkit-device-pixel-ratio: 4) {
+//   div#sidePane {
+//     margin-right: 10px !important;
+//     width: 345px !important;
+// }
+// }
 
 /* ----------- Galaxy S4, S5 and Note 3 ----------- */
 
 /* Portrait and Landscape */
-@media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) {
-    div#sidePane {
-      margin-right: 8px !important;
-      width: 345px !important;
-  }
-}
+// @media screen
+//   and (device-width: 320px)
+//   and (device-height: 640px)
+//   and (-webkit-device-pixel-ratio: 3) {
+//     div#sidePane {
+//       margin-right: 10px !important;
+//       width: 345px !important;
+//   }
+// }
 
 /* ----------- Galaxy S3 ----------- */
 
 /* Portrait and Landscape */
-@media screen 
-  and (device-width: 360px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 2) {
-    div#sidePane {
-      margin-right: 8px !important;
-      width: 345px !important;
-  }
+// @media screen
+//   and (device-width: 360px)
+//   and (device-height: 640px)
+//   and (-webkit-device-pixel-ratio: 2) {
+//     div#sidePane {
+//       margin-right: 10px !important;
+//       width: 345px !important;
+//   }
+// }
+
+.activelanguage{
+  color:#9e9797 !important;
 }

@@ -24,9 +24,19 @@ export class MapLayers {
         html: '<i class="icon-map-bg bg-circle ' + type + '"><i class="icon-' + type + ' report-icon"></i>'
         //html: '<i class="icon-map-' + type + ' report-icon ' + type + '"></i>'
       }),
+      report_normal_with_url: (type) => L.icon({
+        iconUrl: 'assets/icons/' + type + '.svg',
+        iconSize: [30, 30],
+        iconAnchor: [15, 15]
+      }),
       report_selected: (type) => L.divIcon({
         iconSize: [30, 30],
         html: '<i class="icon-map-bg bg-circle ' + type + ' selected"><i class="icon-' + type + ' report-icon"></i>'
+      }),
+      report_selected_with_url: (type) => L.icon({
+        iconUrl: 'assets/icons/' + type + '_select.svg',
+        iconSize: [30, 30],
+        iconAnchor: [15, 15]
       }),
       gauge_normal: (url) => L.icon({
         iconUrl: url,
@@ -41,6 +51,16 @@ export class MapLayers {
       flood_cluster: (level) => L.divIcon({
         iconSize: [30, 30],
         html: '<i class="icon-map-bg bg-cluster cluster ' + level + '"><i class="icon-map-flood report-cluster">'
+      }),
+      disaster_cluster: (disaster, level) => L.divIcon({
+        iconSize: [35, 35],
+        html: '<i class="icon-map-bg bg-cluster cluster ' + level + '"><i class="icon-map-' + disaster + ' report-cluster">'
+      }),
+      disaster_cluster_with_url: (disaster, level) => L.icon({
+        iconUrl: 'assets/icons/' + disaster + '_' + level + '.svg',
+        iconSize: [35, 35],
+        iconAnchor: [15, 15],
+        className: 'report-cluster ' + level
       })
     };
     this.mapPolygons = {
@@ -54,6 +74,58 @@ export class MapLayers {
       }
     };
   }
+
+  getDisasterClusterIcon(disasterType, subType, level) {
+    switch (disasterType) {
+    case 'flood':
+      return this.mapIcons.disaster_cluster(disasterType, level);
+    case 'earthquake':
+      return this.mapIcons.disaster_cluster_with_url(subType, level);
+    case 'haze':
+    case 'wind':
+    case 'volcano':
+    case 'fire':
+      return this.mapIcons.disaster_cluster_with_url(disasterType, level);
+    default:
+      return this.mapIcons.disaster_cluster(disasterType, level);
+    }
+  }
+
+  getReportIcon(disasterType, subType) {
+    switch (disasterType) {
+    case 'flood':
+      return this.mapIcons.report_normal(disasterType);
+    case 'prep':
+      return this.mapIcons.report_normal(subType);
+    case 'earthquake':
+      return this.mapIcons.report_normal_with_url(subType);
+    case 'haze':
+    case 'wind':
+    case 'volcano':
+    case 'fire':
+      return this.mapIcons.report_normal_with_url(disasterType);
+    default:
+      return this.mapIcons.report_normal(disasterType);
+    }
+  }
+  getSelectedReportIcon(disasterType, subType) {
+    switch (disasterType) {
+    case 'flood':
+      return this.mapIcons.report_selected(disasterType);
+    case 'prep':
+      return this.mapIcons.report_selected(subType);
+    case 'earthquake':
+      return this.mapIcons.report_selected_with_url(subType);
+    case 'haze':
+    case 'wind':
+    case 'volcano':
+    case 'fire':
+      return this.mapIcons.report_selected_with_url(disasterType);
+    default:
+      return this.mapIcons.report_selected(disasterType);
+    }
+  }
+  
 
   // Get icon for flood gauge
   gaugeIconUrl(level) {
@@ -134,7 +206,7 @@ export class MapLayers {
   }
 
   revertIconToNormal(type) {
-    let icon = (type === 'flood' || type === null) ? this.mapIcons.report_normal('flood') : this.mapIcons.report_normal(this.selReportType);
+    let icon = (type === 'flood' || type === null) ? this.getReportIcon(type, null) : this.getReportIcon(this.selReportType, null);
     this.selected_report.target.setIcon(icon);
     this.selected_report = null;
   }
@@ -145,8 +217,8 @@ export class MapLayers {
     layer.on({
       click: (e) => {
         map.flyTo(layer._latlng, 15);
-        let reportIconNormal = (feature.properties.disaster_type === 'prep') ? self.mapIcons.report_normal(feature.properties.report_data.report_type) : self.mapIcons.report_normal('flood');
-        let reportIconSelected = (feature.properties.disaster_type === 'prep') ? self.mapIcons.report_selected(feature.properties.report_data.report_type) : self.mapIcons.report_selected('flood');
+        let reportIconNormal = self.getReportIcon(feature.properties.disaster_type, feature.properties.report_data.report_type);
+        let reportIconSelected = self.getSelectedReportIcon(feature.properties.disaster_type, feature.properties.report_data.report_type);
         if (self.selected_extent) {
           self.selected_extent.target.setStyle(self.mapPolygons.normal);
           self.selected_extent = null;
@@ -261,6 +333,7 @@ export class MapLayers {
       data.labels.push(feature.properties.observations[i].f1);
       data.datasets[0].data.push(feature.properties.observations[i].f2);
     }
+    // eslint-disable-next-line no-unused-vars
     let gaugeChart = new Chart(ctx, {
       type: 'line',
       data: data,
@@ -373,10 +446,11 @@ export class MapLayers {
     let endPoint = 'reports/?city=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod;
     // add layer to map
     // return self.appendData('reports/?city=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod, self.reports, map);
-    return this.addResportsClustered(self, endPoint, cityName, map, togglePane);
+    return this.addReportsClustered(endPoint, cityName, map, togglePane);
   }
 
-  addResportsClustered(self, endPoint, cityName, map, togglePane) {
+  addReportsClustered(endPoint, cityName, map, togglePane) {
+    let self = this;
     return new Promise((resolve, reject) => {
       self.getData(endPoint)
         .then(data => {
@@ -384,26 +458,44 @@ export class MapLayers {
             // console.log('Could not load map layer');
             resolve(data);
           } else {
-            // create new layer object
-            self.reports = L.geoJSON(data, {
-              onEachFeature: (feature, layer) => {
-                self.reportInteraction(feature, layer, cityName, map, togglePane);
-              },
-              pointToLayer: (feature, latlng) => {
-                let reportIconNormal = (feature.properties.disaster_type === 'prep') ? self.mapIcons.report_normal(feature.properties.report_data.report_type) : self.mapIcons.report_normal('flood');
-                return L.marker(latlng, {
-                  icon: reportIconNormal,
-                  pane: 'reports'
-                });
-              }
-            });
-            let markers = L.markerClusterGroup({iconCreateFunction: this.iconCreateFunction()});
-            markers.addLayer(self.reports);
-            markers.addTo(map);
+            this.addCluster(data, cityName, map, togglePane, 'earthquake', 'structure');
+            this.addCluster(data, cityName, map, togglePane, 'earthquake', 'road');
+            this.addCluster(data, cityName, map, togglePane, 'flood');
+            this.addCluster(data, cityName, map, togglePane, 'fire');
+            this.addCluster(data, cityName, map, togglePane, 'haze');
+            this.addCluster(data, cityName, map, togglePane, 'volcono');
+            this.addCluster(data, cityName, map, togglePane, 'wind');
             resolve(data);
           }
         }).catch(() => reject(null));
     });
+  }
+
+  addCluster(data, cityName, map, togglePane, disaster, reportType) {
+    let self = this;
+    // create new layer object
+    self.reports = L.geoJSON(data, {
+      filter: function(feature, layer) {
+        if (reportType) {
+          return feature.properties.report_data.report_type === reportType;
+        }
+        return feature.properties.disaster_type === disaster;
+      },
+      onEachFeature: (feature, layer) => {
+        self.reportInteraction(feature, layer, cityName, map, togglePane);
+      },
+      pointToLayer: (feature, latlng) => {
+        const disasterType = feature.properties.disaster_type;
+        let reportIconNormal = self.getReportIcon(disasterType, feature.properties.report_data.report_type || null);
+        return L.marker(latlng, {
+          icon: reportIconNormal,
+          pane: 'reports'
+        });
+      }
+    });
+    let markers = L.markerClusterGroup({ iconCreateFunction: this.iconCreateFunction() });
+    markers.addLayer(self.reports);
+    markers.addTo(map);
   }
 
   iconCreateFunction() {
@@ -419,29 +511,94 @@ export class MapLayers {
       cluster.bindTooltip(tooltip);
       // cluster.getAllChildMarkers()[0].feature.properties.report_data['flood_depth']
       let children = cluster.getAllChildMarkers();
-      let avgDepth = self.getAverageFloodDepth(children);
-      if (avgDepth < 30) {
-        return self.mapIcons.flood_cluster('low');
-      } else if (avgDepth < 70) {
-        return self.mapIcons.flood_cluster('normal');
-      } else if (avgDepth < 150) {
-        return self.mapIcons.flood_cluster('medium');
-      } else if (avgDepth >= 150) {
-        return self.mapIcons.flood_cluster('high');
-      }
+      const type = children[0].feature.properties.disaster_type;
+      const subType = children[0].feature.properties.report_data.report_type;
+      const sevearity = self.getDisasterSevearity(type, subType, children);
+      return self.getDisasterClusterIcon(type, subType, sevearity);
     };
   }
 
-  getAverageFloodDepth(report_markers) {
+  getDisasterSevearity(type, subType, reportMarkers) {
+    switch (type) {
+    case 'flood':
+      let avgDepth = this.getAverageFloodDepth(reportMarkers);
+      if (avgDepth < 30) {
+        return  'low';
+      } else if (avgDepth < 70) {
+        return  'normal';
+      } else if (avgDepth < 150) {
+        return 'medium';
+      } else if (avgDepth >= 150) {
+        return 'high';
+      }
+      break;
+    case 'earthquake':
+      console.log('asd');
+      if (subType === 'road') {
+        let avgAccessability = this.getAverageAccessability(reportMarkers);
+        if (avgAccessability <= 0.5) {
+          return 'high';
+        } else if (avgAccessability > 0.5 && avgAccessability <= 1.0) {
+          return 'medium';
+        } else if (avgAccessability > 1.0 && avgAccessability <= 1.8) {
+          return 'normal';
+        } else if (avgAccessability > 1.9) {
+          return 'low';
+        }
+      } else if (subType === 'structure') {
+        let avgStructureFailure = this.getAvgStructureFailure(reportMarkers);
+        if (avgStructureFailure <= 1) {
+          return 'low';
+        } else if (avgStructureFailure > 1 && avgStructureFailure <= 2) {
+          return 'medium';
+        } else if (avgStructureFailure > 2) {
+          return 'high';
+        }
+      }
+      break;
+    default:
+      return 'low';
+    }
+  }
+
+  getAvgStructureFailure(reportMarkers) {
+    let totalStructureFailure = 0;
+    reportMarkers.forEach(function(report, index) {
+      const reportData = report.feature.properties.report_data || {'structureFailure': 0};
+      totalStructureFailure += reportData.structureFailure || 0;
+    });
+    return totalStructureFailure / reportMarkers.length;
+  }
+
+  getAverageAccessability(reportMarkers) {
+    let totalAccessability = 0;
+    let accessability = 0;
+    reportMarkers.forEach(function(report, index) {
+      const reportData = report.feature.properties.report_data || {'accessabilityFailure': 0};
+      accessability += reportData.accessabilityFailure || 0;
+      switch (accessability) {
+      case 0: totalAccessability += 0.5; break;
+      case 1: totalAccessability += 1.0; break;
+      case 2: totalAccessability += 1.4; break;
+      case 3: totalAccessability += 1.8; break;
+      case 4: totalAccessability += 2.2; break;
+      default: totalAccessability += 0; break;
+      }
+    });
+    return totalAccessability / reportMarkers.length;
+  }
+
+
+  getAverageFloodDepth(reportMarkers) {
     let depth = 0;
-    report_markers.forEach(function(report, index) {
+    reportMarkers.forEach(function(report, index) {
       const reportData = report.feature.properties.report_data || {'flood_depth': 0};
       depth += reportData['flood_depth'] || 0;
-    })
+    });
     // for (let report in report_markers) {
     //   depth += report.feature.properties.report_data['flood_depth'];
     // }
-    return depth/report_markers.length; 
+    return depth / reportMarkers.length;
   }
 
   addFloodExtents(cityName, cityRegion, map, togglePane) {
@@ -449,11 +606,11 @@ export class MapLayers {
     self.flood_extents = L.geoJSON(null, {
       style: (feature, layer) => {
         switch (feature.properties.state) {
-          case 4: return { cursor: 'pointer', fillColor: '#CC2A41', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
-          case 3: return { cursor: 'pointer', fillColor: '#FF8300', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
-          case 2: return { cursor: 'pointer', fillColor: '#FFFF00', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
-          case 1: return { cursor: 'pointer', fillColor: '#A0A9F7', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
-          default: return { weight: 0, opacity: 0, fillOpacity: 0 };
+        case 4: return { cursor: 'pointer', fillColor: '#CC2A41', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
+        case 3: return { cursor: 'pointer', fillColor: '#FF8300', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
+        case 2: return { cursor: 'pointer', fillColor: '#FFFF00', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
+        case 1: return { cursor: 'pointer', fillColor: '#A0A9F7', weight: 0, color: '#000000', opacity: 0, fillOpacity: 0.7 };
+        default: return { weight: 0, opacity: 0, fillOpacity: 0 };
         }
       },
       onEachFeature: (feature, layer) => {
