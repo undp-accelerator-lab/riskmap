@@ -16,7 +16,7 @@
     border: none;
     top: -385px;
     left: 25px;
-    z-index: 1035;
+    z-index: 100000;
     border-radius: 5px;
     // background-color: @snow-white;
     // box-shadow: @drop-shadow;
@@ -107,7 +107,7 @@
     box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.4);
     background-color: white;
     // background-color: @translucent-white;
-    z-index: 1030;
+    z-index: 1000000;
     // border-bottom: 1px solid @light-gray;
     & #logo_top {
       position: absolute;
@@ -159,12 +159,12 @@
     .mappane-mixin(320px);
     overflow: scroll;
     background-color: @snow-white;
-    z-index: 1025;
+    z-index: 100000;
   }
 }
 
 div#sidePane {
-  margin-right: 8px !important;
+  // margin-right: 8px !important;
   width: 389px !important;
 }
 
@@ -579,17 +579,18 @@ tr.row.report {
 /* ----------- iPhone 6+, 7+ and 8+ ----------- */
 
 /* Portrait and Landscape */
-@media only screen
-  and (min-device-width: 414px)
-  and (max-device-width: 736px)
-  and (-webkit-min-device-pixel-ratio: 3) {
+// @media only screen
+//   and (min-device-width: 414px)
+//   and (max-device-width: 736px)
+//   and (-webkit-min-device-pixel-ratio: 3) {
+//
+//     div#sidePane {
+//       margin-right: 8px !important;
+//       width: 345px !important;
+//   }
+//
+// }
 
-    div#sidePane {
-      margin-right: 8px !important;
-      width: 345px !important;
-  }
-
-}
 
 /* Portrait */
 @media only screen
@@ -598,10 +599,10 @@ tr.row.report {
   and (-webkit-min-device-pixel-ratio: 3)
   and (orientation: portrait) {
 
-    div#sidePane {
-      margin-right: 8px !important;
-      width: 345px !important;
-  }
+  //   div#sidePane {
+  //     margin-right: 8px !important;
+  //     width: 345px !important;
+  // }
 
     #pageWrapper #reportButton {
       width: 50px;
@@ -610,7 +611,7 @@ tr.row.report {
       border: none;
       top: -393px;
       left: -21px;
-      z-index: 1025;
+      // z-index: 100000 !important;
       border-radius: 5px;
   }
 
@@ -762,10 +763,10 @@ div.buttons:not(:last-child):nth-last-child(4) {
   and (-webkit-min-device-pixel-ratio: 3)
   and (orientation: portrait) {
 
-    div#sidePane {
-      margin-right: 8px !important;
-      width: 345px !important;
-  }
+  //   div#sidePane {
+  //     margin-right: 8px !important;
+  //     width: 345px !important;
+  // }
 
     #pageWrapper #reportButton {
       width: 50px;
@@ -774,7 +775,7 @@ div.buttons:not(:last-child):nth-last-child(4) {
       border: none;
       top: -393px;
       left: -21px;
-      z-index: 1025;
+      // z-index: 1025;
       border-radius: 5px;
   }
 
@@ -907,10 +908,10 @@ div.buttons:not(:last-child):nth-last-child(4) {
 and (min-device-width: 401px)
 and (max-device-width: 421px)  {
 
-    div#sidePane {
-      margin-right: 8px !important;
-      width: 345px !important;
-  }
+  //   div#sidePane {
+  //     margin-right: 8px !important;
+  //     width: 345px !important;
+  // }
     #pageWrapper #reportButton {
       width: 70px;
       height: 70px;
@@ -918,7 +919,7 @@ and (max-device-width: 421px)  {
       border: none;
       top: -400px;
       left: -21px;
-      z-index: 1025;
+      // z-index: 1025;
       border-radius: 5px;
   }
 
@@ -1050,10 +1051,10 @@ div.buttons:not(:last-child):nth-last-child(4) {
   and (device-height: 640px)
   and (-webkit-device-pixel-ratio: 3) {
 
-    div#sidePane {
-      margin-right: 8px !important;
-      width: 345px !important;
-  }
+  //   div#sidePane {
+  //     margin-right: 8px !important;
+  //     width: 345px !important;
+  // }
     #pageWrapper #reportButton {
       width: 50px;
       height: 50px;
@@ -1061,7 +1062,7 @@ div.buttons:not(:last-child):nth-last-child(4) {
       border: none;
       top: -400px;
       left: -21px;
-      z-index: 1025;
+      // z-index: 1025;
       border-radius: 5px;
   }
 
@@ -1191,10 +1192,10 @@ div.buttons:not(:last-child):nth-last-child(4) {
   and (min-device-width: 1070px)
   and (max-device-width: 1090px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    div#sidePane {
-      margin-right: 8px !important;
-      width: 345px !important;
-  }
+  //   div#sidePane {
+  //     margin-right: 8px !important;
+  //     width: 345px !important;
+  // }
     #pageWrapper #reportButton {
       width: 50px;
       height: 50px;
@@ -1202,7 +1203,7 @@ div.buttons:not(:last-child):nth-last-child(4) {
       border: none;
       top: -400px;
       left: -21px;
-      z-index: 1025;
+      // z-index: 1025;
       border-radius: 5px;
   }
 
@@ -1332,10 +1333,10 @@ div.buttons:not(:last-child):nth-last-child(4) {
   and (min-device-width: 2330px)
   and (max-device-width: 2350px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    div#sidePane {
-      margin-right: 8px !important;
-      width: 345px !important;
-  }
+  //   div#sidePane {
+  //     margin-right: 8px !important;
+  //     width: 345px !important;
+  // }
     #pageWrapper #reportButton {
       width: 50px;
       height: 50px;
@@ -1343,7 +1344,7 @@ div.buttons:not(:last-child):nth-last-child(4) {
       border: none;
       top: -400px;
       left: -21px;
-      z-index: 1025;
+      // z-index: 1025;
       border-radius: 5px;
   }
 
@@ -1476,10 +1477,10 @@ and (min-device-width: 320px)
 and (max-device-width: 568px)
 and (-webkit-min-device-pixel-ratio: 2)
 and (orientation: portrait) {
-  div#sidePane {
-    margin-right: 8px !important;
-    width: 305px !important;
-}
+//   div#sidePane {
+//     margin-right: 8px !important;
+//     width: 305px !important;
+// }
   #pageWrapper #reportButton {
     width: 50px;
     height: 50px;
@@ -1487,7 +1488,7 @@ and (orientation: portrait) {
     border: none;
     top: -400px;
     left: -21px;
-    z-index: 1025;
+    // z-index: 1025;
     border-radius: 5px;
 }
 
@@ -1622,10 +1623,10 @@ and (max-device-width: 1024px)
 and (orientation: portrait)
 and (-webkit-min-device-pixel-ratio: 1) {
 
-  div#sidePane {
-    margin-right: 8px !important;
-    width: 305px !important;
-}
+//   div#sidePane {
+//     margin-right: 8px !important;
+//     width: 305px !important;
+// }
   #pageWrapper #reportButton {
     width: 50px;
     height: 50px;
@@ -1633,7 +1634,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
     border: none;
     top: -400px;
     left: -21px;
-    z-index: 1025;
+    // z-index: 1025;
     border-radius: 5px;
 }
 
@@ -1766,11 +1767,11 @@ margin-left: -10px;
   and (max-device-width: 1024px)
   and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
-
-    div#sidePane {
-      margin-right: 8px !important;
-      width: 305px !important;
-  }
+  //
+  //   div#sidePane {
+  //     margin-right: 8px !important;
+  //     width: 305px !important;
+  // }
     #pageWrapper #reportButton {
       width: 50px;
       height: 50px;
@@ -1778,7 +1779,7 @@ margin-left: -10px;
       border: none;
       top: -400px;
       left: -21px;
-      z-index: 1025;
+      // z-index: 1025;
       border-radius: 5px;
   }
 
@@ -1913,11 +1914,11 @@ margin-left: -10px;
   and (max-device-width: 1024px)
   and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 2) {
-
-    div#sidePane {
-      margin-right: 8px !important;
-      width: 305px !important;
-  }
+  //
+  //   div#sidePane {
+  //     margin-right: 8px !important;
+  //     width: 305px !important;
+  // }
     #pageWrapper #reportButton {
       width: 50px;
       height: 50px;
@@ -1925,7 +1926,7 @@ margin-left: -10px;
       border: none;
       top: -400px;
       left: -21px;
-      z-index: 1025;
+      // z-index: 1025;
       border-radius: 5px;
   }
 
@@ -2058,11 +2059,11 @@ margin-left: -10px;
   and (max-device-width: 1024px)
   and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 2) {
-
-    div#sidePane {
-      margin-right: 8px !important;
-      width: 305px !important;
-  }
+  //
+  //   div#sidePane {
+  //     margin-right: 8px !important;
+  //     width: 305px !important;
+  // }
     #pageWrapper #reportButton {
       width: 50px;
       height: 50px;
@@ -2070,7 +2071,7 @@ margin-left: -10px;
       border: none;
       top: -400px;
       left: -21px;
-      z-index: 1025;
+      // z-index: 1025;
       border-radius: 5px;
   }
 

@@ -4,6 +4,7 @@
       <div id="screen">
 
           <div id="cityPopup" class="popupContent">
+            <div class='search-input-wrapper'>
             <input
               id="search_city_input"
               type="text"
@@ -11,15 +12,17 @@
               placeholder="${locale.search_ph}"
               model.bind="city"
               value.bind="query & debounce:200"
+              blur.trigger="handleInputBlur()"
+              focus.trigger="handleInputFocus()"
               autofocus
             />
-
             <div class='search-icon-wrapper'>
-              <img class='search-icon' src='deployment_specific/pb/ds_assets/icons/ui_icons/search-black-18dp.svg' alt=''/>
+              <img id="search_icon"class='search-icon' src='deployment_specific/pb/ds_assets/icons/ui_icons/search-black-18dp.svg' alt=''/>
+            </div>
             </div>
 
-            <div class="row m-0">
-              <div id="dropdown_city" if.bind = 'searchResult.length > 0' class="searchDropDown" style="position: absolute;display: none;">
+            <div class="row m-0 dropdown-city-wrapper">
+              <div id="dropdown_city" if.bind = 'searchResult.length > 0' class="searchDropDown" style="position: absolute;display: none; max-height: none;">
                   <ul  class=" p-0" if.bind="searchText.length > 0" >
                       <li class="dropUl_header"><b>${locale.search_header}</b></li>
                       <li class="dropUl" repeat.for="city of searchResult" click.delegate="switchRegion(city, true)">${city}</li>
@@ -58,7 +61,7 @@
             <div id="header">
               <div class='content'>
                 <p class='pop-up-title-text' > ${locale.popup_text} </p>
-                <p class='close-pop-up' click.delegate="closeStartPopup()"><i class='icon-cancel-circled-outline'></i></p>
+                <!-- <p class='close-pop-up' click.delegate="closeStartPopup()"><i class='icon-cancel-circled-outline'></i></p> -->
               </div>
             </div>
               <div class='popupContent'>
