@@ -29,10 +29,10 @@ export class ScreenPopup {
       console.log(window.innerWidth);
       if(e.target.id === 'search_icon' && window.innerWidth < 500){
         $('#search_city_input').focus();
-        
       }
       $('#popupResults').hide();
       $('#dropdown_city').hide();
+
     });
 
     $('#screen').click( function(e) {
@@ -130,6 +130,20 @@ export class ScreenPopup {
   openPopup(name) {
     this.seltab = name;
     $('#termsPopup').show();
+  }
+
+  handleInputBlur(){
+    if(window.innerWidth < 500){
+      $('#reportButton').css('z-index', '100000')
+      $('.search-input-wrapper').removeClass('add-bg');
+    }
+  }
+
+  handleInputFocus(){
+    if(window.innerWidth < 500){
+      $('#reportButton').css('z-index', '1000')
+      $('.search-input-wrapper').addClass('add-bg');
+    }
   }
 
   attached() {

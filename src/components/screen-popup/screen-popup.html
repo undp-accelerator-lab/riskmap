@@ -12,6 +12,8 @@
               placeholder="${locale.search_ph}"
               model.bind="city"
               value.bind="query & debounce:200"
+              blur.trigger="handleInputBlur()"
+              focus.trigger="handleInputFocus()"
               autofocus
             />
             <div class='search-icon-wrapper'>
@@ -20,7 +22,7 @@
             </div>
 
             <div class="row m-0 dropdown-city-wrapper">
-              <div id="dropdown_city" if.bind = 'searchResult.length > 0' class="searchDropDown" style="position: absolute;display: none;">
+              <div id="dropdown_city" if.bind = 'searchResult.length > 0' class="searchDropDown" style="position: absolute;display: none; max-height: none;">
                   <ul  class=" p-0" if.bind="searchText.length > 0" >
                       <li class="dropUl_header"><b>${locale.search_header}</b></li>
                       <li class="dropUl" repeat.for="city of searchResult" click.delegate="switchRegion(city, true)">${city}</li>
