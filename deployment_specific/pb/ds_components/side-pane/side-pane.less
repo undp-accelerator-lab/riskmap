@@ -1,5 +1,6 @@
 @import "../../resources/style_sheets/theme_guide.less";
 
+
 #paneContent div.contentWrapper#content-map {
 
   .pb-legends-group{
@@ -486,7 +487,11 @@ input#search_city_input:focus {
 
 div#sidePane {
   margin-right: 10px !important;
-  width: 350px !important;
+  width: 300px !important;
+
+  @media screen and ( min-width: 500px ){
+    width: 350px !important;
+  }
 }
 
 // @media screen

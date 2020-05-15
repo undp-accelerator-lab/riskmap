@@ -24,7 +24,13 @@ export class ScreenPopup {
     this.config = Config.map;
     this.configData = Config;
 
-    $(document).click( function() {
+    $(document).click( function(e) {
+      console.log(e.target.id);
+      console.log(window.innerWidth);
+      if(e.target.id === 'search_icon' && window.innerWidth < 500){
+        $('#search_city_input').focus();
+        
+      }
       $('#popupResults').hide();
       $('#dropdown_city').hide();
     });
@@ -36,6 +42,11 @@ export class ScreenPopup {
     $('#search_city_input').on('focus', function() {
       console.log('uououo');
         $('#cityPopup').addClass('expand');
+    });
+
+    $('#search_icon').click( function(e) {
+      console.log('uououo');
+        // $('#cityPopup').addClass('expand');
     });
     // this.queryChanged('', '');
     // $('#dropdown_city').show();
