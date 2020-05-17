@@ -2,6 +2,7 @@ const en = {
   'comming_soon': 'Coming Soon',
   'coming_soon_2020': 'Coming Soon MARCH 2020!',
   'flood_flow_img': '/assets/icons/flood_flow_en.png',
+  'close': 'close',
   'eq_flow_img': '/assets/icons/eq_flow_en.png',
   'report': 'Add Report',
   'add_report': 'Report Flood',

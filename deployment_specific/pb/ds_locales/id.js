@@ -1,5 +1,6 @@
 const id = {
   'flood_flow_img': '/assets/icons/flood_flow_bi.png',
+  'close': 'tatup',
   'eq_flow_img': '/assets/icons/eq_flow_bi.png',
   'report': 'Laporkan',
   'add_report': 'Laporkan banjir',
