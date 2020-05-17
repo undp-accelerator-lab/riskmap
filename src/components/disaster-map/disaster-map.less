@@ -16,6 +16,12 @@
   transform: translate(-50%,0);
   top: @bar-heights;
   left: 50%;
+  @media screen
+  and (max-device-width: 400px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 300px;
+    white-space: normal;
+  }
 }
 
 .leaflet-div-icon {
