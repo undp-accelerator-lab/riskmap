@@ -114,6 +114,36 @@ export class ReportInfo {
   //start-aurelia-decorators
   @computedFrom('popupcontent')
   //end-aurelia-decorators
+  get condition() {
+    if (this.popupcontent.report_data) {
+      return this.locale.report_info.conditions[this.popupcontent.report_data.condition];
+    }
+    return null;
+  }
+
+  //start-aurelia-decorators
+  @computedFrom('popupcontent')
+  //end-aurelia-decorators
+  get accessabilityFailure() {
+    if (this.popupcontent.report_data) {
+      return this.locale.report_info.accessability_failures[this.popupcontent.report_data.accessabilityFailure];
+    }
+    return null;
+  }
+
+  //start-aurelia-decorators
+  @computedFrom('popupcontent')
+  //end-aurelia-decorators
+  get structureFailure() {
+    if (this.popupcontent.report_data) {
+      return this.locale.report_info.structure_failures[this.popupcontent.report_data.structureFailure];
+    }
+    return null;
+  }
+
+  //start-aurelia-decorators
+  @computedFrom('popupcontent')
+  //end-aurelia-decorators
   get points() {
     if (this.popupcontent.report_data) {
       return this.popupcontent.report_data.points;
