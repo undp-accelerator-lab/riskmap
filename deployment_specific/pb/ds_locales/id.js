@@ -39,7 +39,7 @@ const id = {
     'water_depth': 'Tinggi',
     'disturbance_key': 'Rusak:',
     'access_key': 'kendaraan:',
-    'structure_key': 'Structure Failure:',
+    'structure_key': 'Kerusakan Bangunan:',
     'source': 'Sumber',
     'flagReport_Title': 'Tandai ini sebagai laporan tidak benar',
     'flagReport_button': 'Beritahu kami',
@@ -55,7 +55,7 @@ const id = {
     'conditions': [
       'Rusak ringan',
       'Rusak sedang',
-      'Rusak berat',
+      'Rusak berat'
     ],
     'structure_failures': [
       'Retak',
