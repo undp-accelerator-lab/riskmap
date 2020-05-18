@@ -33,8 +33,8 @@ export class MapLayers {
         iconSize: [30, 30],
         html: '<i class="icon-map-bg bg-circle ' + type + ' selected"><i class="icon-' + type + ' report-icon"></i>'
       }),
-      report_selected_with_url: (type) => L.icon({
-        iconUrl: 'assets/icons/' + type + '_select.svg',
+      report_selected_with_url: (type, level) => L.icon({
+        iconUrl: 'assets/icons/' + type + '_' + level + '.svg',
         iconSize: [30, 30],
         iconAnchor: [15, 15]
       }),
@@ -108,19 +108,31 @@ export class MapLayers {
       return this.mapIcons.report_normal(disasterType);
     }
   }
-  getSelectedReportIcon(disasterType, subType) {
+  getSelectedReportIcon(feature) {
+    let disasterType = feature.properties.disaster_type;
+    let subType = feature.properties.report_data.report_type;
+    let level = 'low';
     switch (disasterType) {
     case 'flood':
       return this.mapIcons.report_selected(disasterType);
     case 'prep':
       return this.mapIcons.report_selected(subType);
     case 'earthquake':
-      return this.mapIcons.report_selected_with_url(subType);
+      if (subType === 'road') {
+        const reportData = feature.properties.report_data || {'accessabilityFailure': 0};
+        let accessability = reportData.accessabilityFailure || 0;
+        level = this._getAccessabilitySevearity(accessability);
+      } else if (subType === 'structure') {
+        const reportData = feature.properties.report_data || {'structureFailure': 0};
+        let structureFailure = reportData.structureFailure || 0;
+        level = this._getStructureFailureSevearity(structureFailure);
+      }
+      return this.mapIcons.report_selected_with_url(subType, level);
     case 'haze':
     case 'wind':
     case 'volcano':
     case 'fire':
-      return this.mapIcons.report_selected_with_url(disasterType);
+      return this.mapIcons.report_selected_with_url(disasterType, level);
     default:
       return this.mapIcons.report_selected(disasterType);
     }
@@ -218,7 +230,7 @@ export class MapLayers {
       click: (e) => {
         map.flyTo(layer._latlng, 15);
         let reportIconNormal = self.getReportIcon(feature.properties.disaster_type, feature.properties.report_data.report_type);
-        let reportIconSelected = self.getSelectedReportIcon(feature.properties.disaster_type, feature.properties.report_data.report_type);
+        let reportIconSelected = self.getSelectedReportIcon(feature);
         if (self.selected_extent) {
           self.selected_extent.target.setStyle(self.mapPolygons.normal);
           self.selected_extent = null;
@@ -518,42 +530,52 @@ export class MapLayers {
     };
   }
 
+  _getFloodSevearity(depth) {
+    if (depth < 30) {
+      return  'low';
+    } else if (depth < 70) {
+      return  'normal';
+    } else if (depth < 150) {
+      return 'medium';
+    } else if (depth >= 150) {
+      return 'high';
+    }
+  }
+
+  _getAccessabilitySevearity(accessability) {
+    if (accessability <= 0.5) {
+      return 'high';
+    } else if (accessability > 0.5 && accessability <= 1.0) {
+      return 'medium';
+    } else if (accessability > 1.0 && accessability <= 1.8) {
+      return 'normal';
+    } else if (accessability > 1.9) {
+      return 'low';
+    }
+  }
+
+  _getStructureFailureSevearity(structureFailure) {
+    if (structureFailure <= 1) {
+      return 'low';
+    } else if (structureFailure > 1 && structureFailure <= 2) {
+      return 'medium';
+    } else if (structureFailure > 2) {
+      return 'high';
+    }
+  }
+
   getDisasterSevearity(type, subType, reportMarkers) {
     switch (type) {
     case 'flood':
       let avgDepth = this.getAverageFloodDepth(reportMarkers);
-      if (avgDepth < 30) {
-        return  'low';
-      } else if (avgDepth < 70) {
-        return  'normal';
-      } else if (avgDepth < 150) {
-        return 'medium';
-      } else if (avgDepth >= 150) {
-        return 'high';
-      }
-      break;
+      return this._getFloodSevearity(avgDepth);
     case 'earthquake':
-      console.log('asd');
       if (subType === 'road') {
         let avgAccessability = this.getAverageAccessability(reportMarkers);
-        if (avgAccessability <= 0.5) {
-          return 'high';
-        } else if (avgAccessability > 0.5 && avgAccessability <= 1.0) {
-          return 'medium';
-        } else if (avgAccessability > 1.0 && avgAccessability <= 1.8) {
-          return 'normal';
-        } else if (avgAccessability > 1.9) {
-          return 'low';
-        }
+        return this._getAccessabilitySevearity(avgAccessability);
       } else if (subType === 'structure') {
         let avgStructureFailure = this.getAvgStructureFailure(reportMarkers);
-        if (avgStructureFailure <= 1) {
-          return 'low';
-        } else if (avgStructureFailure > 1 && avgStructureFailure <= 2) {
-          return 'medium';
-        } else if (avgStructureFailure > 2) {
-          return 'high';
-        }
+        return this._getStructureFailureSevearity(avgStructureFailure);
       }
       break;
     default:
