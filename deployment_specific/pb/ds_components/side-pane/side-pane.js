@@ -35,7 +35,7 @@ export class SidePane {
     // this.seltab = 'about'; //default tab to open
     this.switchTab(this.seltab);
 
-    this.selLegend = 'floods';
+    this.selLegend = '';
     // this.switchLegend('floods_legend');
 
     this.vidWrapperOpened = true;
