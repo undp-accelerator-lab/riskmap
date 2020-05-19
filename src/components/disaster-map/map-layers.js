@@ -19,13 +19,13 @@ export class MapLayers {
     this.config = Config.map;
     this.selReportType = null;
     this.mapIcons = {
-      report_normal: (type) => L.divIcon({
+      report_normal: (type, level) => L.divIcon({
         iconSize: [30, 30],
-        html: '<i class="icon-map-bg bg-circle ' + type + '"><i class="icon-' + type + ' report-icon"></i>'
+        html: '<i class="icon-map-bg bg-circle ' + level + '"><i class="icon-map-' + type + ' report-icon">'
         //html: '<i class="icon-map-' + type + ' report-icon ' + type + '"></i>'
       }),
-      report_normal_with_url: (type) => L.icon({
-        iconUrl: 'assets/icons/' + type + '.svg',
+      report_normal_with_url: (type, level) => L.icon({
+        iconUrl: 'assets/icons/' + type + '_' + level + '.svg',
         iconSize: [30, 30],
         iconAnchor: [15, 15]
       }),
@@ -34,7 +34,7 @@ export class MapLayers {
         html: '<i class="icon-map-bg bg-circle ' + type + ' selected"><i class="icon-' + type + ' report-icon"></i>'
       }),
       report_selected_with_url: (type, level) => L.icon({
-        iconUrl: 'assets/icons/' + type + '_' + level + '.svg',
+        iconUrl: 'assets/icons/onselect/' + type + '_' + level + '_select.svg',
         iconSize: [30, 30],
         iconAnchor: [15, 15]
       }),
@@ -91,39 +91,59 @@ export class MapLayers {
     }
   }
 
-  getReportIcon(disasterType, subType) {
+  getReportIcon(feature) {
+    let disasterType = feature.properties.disaster_type;
+    let subType = feature.properties.report_data.report_type;
+    let level = 'low';
+    let reportData = feature.properties.report_data;
     switch (disasterType) {
     case 'flood':
-      return this.mapIcons.report_normal(disasterType);
+      reportData = reportData || {'flood_depth': 0};
+      let depth = reportData.flood_depth || 0;
+      level = this._getFloodSevearity(depth);
+      return this.mapIcons.report_normal(disasterType, level);
     case 'prep':
-      return this.mapIcons.report_normal(subType);
+      return this.mapIcons.report_normal(subType, level);
     case 'earthquake':
-      return this.mapIcons.report_normal_with_url(subType);
+      if (subType === 'road') {
+        reportData = reportData || {'accessabilityFailure': 0};
+        let accessability = reportData.accessabilityFailure || 0;
+        level = this._getAccessabilitySevearity(accessability);
+      } else if (subType === 'structure') {
+        reportData = reportData || {'structureFailure': 0};
+        let structureFailure = reportData.structureFailure || 0;
+        level = this._getStructureFailureSevearity(structureFailure);
+      }
+      return this.mapIcons.report_normal_with_url(subType, level);
     case 'haze':
     case 'wind':
     case 'volcano':
     case 'fire':
-      return this.mapIcons.report_normal_with_url(disasterType);
+      return this.mapIcons.report_normal_with_url(disasterType, level);
     default:
-      return this.mapIcons.report_normal(disasterType);
+      return this.mapIcons.report_normal(disasterType, level);
     }
   }
   getSelectedReportIcon(feature) {
     let disasterType = feature.properties.disaster_type;
-    let subType = feature.properties.report_data.report_type;
+    let subType = feature.properties.report_data.report_type || disasterType;
     let level = 'low';
+    let reportData = feature.properties.report_data;
     switch (disasterType) {
     case 'flood':
-      return this.mapIcons.report_selected(disasterType);
+      reportData = reportData || {'flood_depth': 0};
+      let depth = reportData.flood_depth || 0;
+      level = this._getFloodSevearity(depth);
+      return this.mapIcons.report_selected_with_url(disasterType, level);
     case 'prep':
-      return this.mapIcons.report_selected(subType);
+      return this.mapIcons.report_selected_with_url(subType, level);
     case 'earthquake':
       if (subType === 'road') {
-        const reportData = feature.properties.report_data || {'accessabilityFailure': 0};
+        reportData = reportData || {'accessabilityFailure': 0};
         let accessability = reportData.accessabilityFailure || 0;
         level = this._getAccessabilitySevearity(accessability);
       } else if (subType === 'structure') {
-        const reportData = feature.properties.report_data || {'structureFailure': 0};
+        reportData = reportData || {'structureFailure': 0};
         let structureFailure = reportData.structureFailure || 0;
         level = this._getStructureFailureSevearity(structureFailure);
       }
@@ -134,7 +154,7 @@ export class MapLayers {
     case 'fire':
       return this.mapIcons.report_selected_with_url(disasterType, level);
     default:
-      return this.mapIcons.report_selected(disasterType);
+      return this.mapIcons.report_selected_with_url(disasterType, level);
     }
   }
   
@@ -217,8 +237,8 @@ export class MapLayers {
     });
   }
 
-  revertIconToNormal(type) {
-    let icon = (type === 'flood' || type === null) ? this.getReportIcon(type, null) : this.getReportIcon(this.selReportType, null);
+  revertIconToNormal(feature) {
+    let icon = this.getReportIcon(feature);
     this.selected_report.target.setIcon(icon);
     this.selected_report = null;
   }
@@ -229,7 +249,7 @@ export class MapLayers {
     layer.on({
       click: (e) => {
         map.flyTo(layer._latlng, 15);
-        let reportIconNormal = self.getReportIcon(feature.properties.disaster_type, feature.properties.report_data.report_type);
+        let reportIconNormal = self.getReportIcon(feature);
         let reportIconSelected = self.getSelectedReportIcon(feature);
         if (self.selected_extent) {
           self.selected_extent.target.setStyle(self.mapPolygons.normal);
@@ -258,7 +278,7 @@ export class MapLayers {
           self.selected_report = null;
         } else if (e.target !== self.selected_report.target) {
           // Case 3 : clicked new report icon, while previous selection needs to be reset
-          self.revertIconToNormal(self.selReportType);
+          self.revertIconToNormal(self.selected_report.target.feature);
           e.target.setIcon(reportIconSelected);
           self.popupContent = {};
           for (let prop in feature.properties) {
@@ -285,7 +305,7 @@ export class MapLayers {
         map.panTo(layer.getCenter());
         // Check for selected report, restore icon to normal, clear variable, update browser URL
         if (self.selected_report) {
-          self.revertIconToNormal(self.selReportType);
+          self.revertIconToNormal(self.selected_report.target.feature);
           history.pushState({ city: cityName, report_id: null }, 'city', 'map/' + cityName);
         }
         if (self.selected_gauge) {
@@ -387,7 +407,7 @@ export class MapLayers {
         map.panTo(layer._latlng);
         $('#chart-pane').empty();
         if (self.selected_report) {
-          self.revertIconToNormal(self.selReportType);
+          self.revertIconToNormal(self.selected_report.target.feature);
           history.pushState({ city: cityName, report_id: null }, 'city', 'map/' + cityName);
         }
         if (self.selected_extent) {
@@ -497,8 +517,7 @@ export class MapLayers {
         self.reportInteraction(feature, layer, cityName, map, togglePane);
       },
       pointToLayer: (feature, latlng) => {
-        const disasterType = feature.properties.disaster_type;
-        let reportIconNormal = self.getReportIcon(disasterType, feature.properties.report_data.report_type || null);
+        let reportIconNormal = self.getReportIcon(feature);
         return L.marker(latlng, {
           icon: reportIconNormal,
           pane: 'reports'
@@ -531,13 +550,11 @@ export class MapLayers {
   }
 
   _getFloodSevearity(depth) {
-    if (depth < 30) {
+    if (depth <= 70) {
       return  'low';
-    } else if (depth < 70) {
-      return  'normal';
-    } else if (depth < 150) {
+    } else if (depth <= 150) {
       return 'medium';
-    } else if (depth >= 150) {
+    } else if (depth > 150) {
       return 'high';
     }
   }

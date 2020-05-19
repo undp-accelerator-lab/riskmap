@@ -43,18 +43,20 @@
   position: absolute;
   top: 0px;
   left: 0px;
-  color: white;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 30px;
   text-shadow: 1px 1px 0px white,
               -1px 1px 0px white,
                1px -1px 0px white,
               -1px -1px 0px white;
-  &.drain {
-    color: @drain-brown;
+  &.low {
+    color: @cluster-yellow;
   }
-  &.desilting {
-    color: @silt-orange;
+  &.medium {
+    color: @cluster-orange;
+  }
+  &.high {
+    color: @cluster-red;
   }
   &.flood {
     color: @banjir-blue;
@@ -96,14 +98,11 @@
   &.low {
     color: @cluster-yellow;
   }
-  &.normal {
+  &.medium {
     color: @cluster-orange;
   }
-  &.medium {
-    color: @cluster-red;
-  }
   &.high {
-    color: @cluster-brown;
+    color: @cluster-red;
   }
 }
 
@@ -120,9 +119,9 @@
 .report-icon {
   position: absolute;
   top: 0px;
-  left: 3px;
+  left: 0px;
   font-size: 20px;
   line-height: 30px;
-  color: @snow-white;
+  color: @steel-gray;
   text-shadow: none;
 }
