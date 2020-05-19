@@ -1,5 +1,6 @@
 const id = {
   'flood_flow_img': '/assets/icons/flood_flow_bi.png',
+  'close': 'tatup',
   'eq_flow_img': '/assets/icons/eq_flow_bi.png',
   'report': 'Laporkan',
   'add_report': 'Laporkan banjir',
@@ -36,11 +37,31 @@ const id = {
   'report_info': {
     'share_msg': 'Laporan%20banjir%20pada%20petabencana%2Eid',
     'water_depth': 'Tinggi',
+    'disturbance_key': 'Rusak:',
+    'access_key': 'kendaraan:',
+    'structure_key': 'Kerusakan Bangunan:',
     'source': 'Sumber',
     'flagReport_Title': 'Tandai ini sebagai laporan tidak benar',
     'flagReport_button': 'Beritahu kami',
     'flagReport_email': 'info@petabencana.id',
-    'share': 'Bagikan laporan ini'
+    'share': 'Bagikan laporan ini',
+    'accessability_failures': [
+      'tidak bisa dilewati kendaraan',
+      'Kendaraan roda dua',
+      'Kendaraan roda empat kecil (Sedan)',
+      'Kendaraan roda empat sedang (SUV)',
+      'Kendaraan muatan berat (Truk)'
+    ],
+    'conditions': [
+      'Rusak ringan',
+      'Rusak sedang',
+      'Rusak berat'
+    ],
+    'structure_failures': [
+      'Retak',
+      'Roboh Sebagian',
+      'Roboh Total'
+    ]
   },
   'flood_info': {
     'title': 'Area terdampak banjir',

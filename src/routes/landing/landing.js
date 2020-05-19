@@ -128,7 +128,7 @@ export class Landing {
         'cards/';
         const body = {
           username: 'web_guest',
-          language: 'id',
+          language: this.webMenu.currentLanguage,
           network: 'website'
         };
 

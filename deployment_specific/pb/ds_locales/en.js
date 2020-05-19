@@ -2,6 +2,7 @@ const en = {
   'comming_soon': 'Coming Soon',
   'coming_soon_2020': 'Coming Soon MARCH 2020!',
   'flood_flow_img': '/assets/icons/flood_flow_en.png',
+  'close': 'close',
   'eq_flow_img': '/assets/icons/eq_flow_en.png',
   'report': 'Add Report',
   'add_report': 'Report Flood',
@@ -35,11 +36,31 @@ const en = {
   'report_info': {
     'share_msg': 'Check%20flood%20reports%20on%20petabencana%2Eid',
     'water_depth': 'Water depth',
+    'disturbance_key': 'Disturbance:',
+    'access_key': 'Access:',
+    'structure_key': 'Structure Failure:',
     'source': 'Source',
     'flagReport_Title': 'flag this report as inappropriate',
     'flagReport_button': 'tell us more',
     'flagReport_email': 'info@petabencana.id',
-    'share': 'Share this report'
+    'share': 'Share this report',
+    'conditions': [
+      'Light Disturbance',
+      'Moderate Disturbance',
+      'Heavy Disturbance',
+    ],
+    'structure_failures': [
+      'Cracking',
+      'Partially Collapsed',
+      'Fully Collapsed'
+    ],
+    'accessability_failures': [
+      'No Vehicle',
+      '2 Wheel Vehicle',
+      '4 Wheel Vehicle (Sedan)',
+      '4 Wheel Vehicle (SUV)',
+      'Large Vehicle (Truck)'
+    ]
   },
   'flood_info': {
     'title': 'Flood affected area',
