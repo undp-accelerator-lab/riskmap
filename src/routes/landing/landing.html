@@ -33,8 +33,10 @@
         </tr>
       </table>
     </div> -->
-
-    <nav id="reportButton" class="float-action-button">
+    <div id='black_bg'></div>
+    <div>
+    <nav id="reportButton" class="float-action-button" >
+      <div class='floating-buttons-wrapper' id='floating_buttons_wrapper'>
   <div class="buttons" title="${webMenu.locale.flood}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('flood')">
     <img id="flood" style="width:60px" src="/assets/icons/Add_Report_Icon_Flood.png">
     <div class="row" id="floodLink">
@@ -113,10 +115,12 @@
       </table>
     </div>
   </div>
-  <div   class="buttons main-button" title="${webMenu.locale.report}" data-toggle="tooltip" data-placement="left">
+  <div class="buttons main-button" title="${webMenu.locale.report}" data-toggle="tooltip" data-placement="left" style="transform: translateY(-351px) !important;">
         <img style="width:60px" src="/assets/icons/Add_Report_Icon_Blue.png">
   </div>
+  </div>
 </nav>
+</div>
 
     <screen-popup
       class='start-screen-pop-up-tpl'

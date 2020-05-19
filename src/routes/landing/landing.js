@@ -68,6 +68,17 @@ export class Landing {
     $('#reportLink').toggle('slide');
   }
 
+  hideShowBlackBg(command){
+    if(command === 'show'){
+      $("#black_bg").css('display', 'block');
+      console.log('show');
+    }else{
+      $("#black_bg").css('display', 'none');
+      console.log('hide');
+    }
+  }
+
+
   openClose(event) {
     console.log(event)
     $('#reportData').show()
@@ -80,6 +91,9 @@ export class Landing {
     $('#dropdown_city').css({
       'height': ($(window).height() - ($('#topBar').height() + 30)) + 'px',
     });
+    // $('#floating_buttons_wrapper').css({
+    //   'max-height': ($(window).height() - 10) + 'px'
+    // })
   }
 
   attached() {
@@ -92,7 +106,8 @@ export class Landing {
 
     // Modify side pane height on the fly
     this.resizeSidePane();
-    $(window).resize(() => {this.resizeSidePane();});
+    $(window).resize(() => {
+      this.resizeSidePane();});
     if (!(/Mobi/.test(navigator.userAgent)) && !this.report_id) {
       this.mapModel.togglePane('#sidePane', 'show', false);
     }
