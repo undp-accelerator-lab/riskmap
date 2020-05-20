@@ -25,9 +25,7 @@ export class ScreenPopup {
     this.configData = Config;
 
     $(document).click( function(e) {
-      console.log(e.target.id);
-      console.log(window.innerWidth);
-      if(e.target.id === 'search_icon' && window.innerWidth < 500){
+      if (e.target.id === 'search_icon' && window.innerWidth < 500) {
         $('#search_city_input').focus();
       }
       $('#popupResults').hide();
@@ -40,13 +38,11 @@ export class ScreenPopup {
     });
 
     $('#search_city_input').on('focus', function() {
-      console.log('uououo');
-        $('#cityPopup').addClass('expand');
+      $('#cityPopup').addClass('expand');
     });
 
     $('#search_icon').click( function(e) {
-      console.log('uououo');
-        // $('#cityPopup').addClass('expand');
+      // $('#cityPopup').addClass('expand');
     });
     // this.queryChanged('', '');
     // $('#dropdown_city').show();
@@ -132,15 +128,15 @@ export class ScreenPopup {
     $('#termsPopup').show();
   }
 
-  handleInputBlur(){
-    if(window.innerWidth < 500){
+  handleInputBlur() {
+    if (window.innerWidth < 500) {
       $('#reportButton').css('z-index', '100000')
       $('.search-input-wrapper').removeClass('add-bg');
     }
   }
 
-  handleInputFocus(){
-    if(window.innerWidth < 500){
+  handleInputFocus() {
+    if (window.innerWidth < 500) {
       $('#reportButton').css('z-index', '1000')
       $('.search-input-wrapper').addClass('add-bg');
     }
