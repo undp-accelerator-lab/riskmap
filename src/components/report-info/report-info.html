@@ -5,17 +5,18 @@
       <img src.bind="imageurl" click.delegate="openLightbox(fullsizeimg)">
     </div>
     <div class="image" id="noPhoto" show.bind="!imageurl">
-      <i class="icon-flood-img"></i>
+      <i show.bind="height" class="icon-flood-img phFlood" ></i>
+      <img show.bind="condition || structureFailure" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+sevearity+".png"' class="phImage"/>
     </div>
   </div>
 
   <div id="textPreview">
     <div id="bodyWrapper">
       <p show.bind="title" class="textTitle">${title}</p>
-      <p show.bind="height" class="textTitle">${locale.report_info.water_depth}: ${height} ${config.height_units}</p>
-      <p show.bind="accessabilityFailure" class="textTitle">${locale.report_info.access_key}: ${accessabilityFailure}</p>
-      <p show.bind="condition" class="textTitle">${locale.report_info.disturbance_key}: ${condition}</p>
-      <p show.bind="structureFailure" class="textTitle">${locale.report_info.structure_key}: ${structureFailure}</p>
+      <p show.bind="height" class="textTitle">${locale.report_info.water_depth}: <span class.bind=sevearity> ${height} ${config.height_units}</span></p>
+      <p show.bind="accessabilityFailure" class="textTitle">${locale.report_info.access_key} <span class.bind=sevearity>${accessabilityFailure} <span> </p>
+      <p show.bind="condition" class="textTitle">${locale.report_info.disturbance_key} ${condition}</p>
+      <p show.bind="structureFailure" class="textTitle">${locale.report_info.structure_key} <span class.bind=sevearity> ${structureFailure} <span></p>
       <p show.bind="reportevent" class="textTitle">${locale.prep_menu.btn_names[reportevent]}</p>
       <p id="source">${locale.report_info.source}&nbsp;
         <a target="_blank" href.bind="links[source]">

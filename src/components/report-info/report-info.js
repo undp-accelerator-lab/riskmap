@@ -124,6 +124,28 @@ export class ReportInfo {
   //start-aurelia-decorators
   @computedFrom('popupcontent')
   //end-aurelia-decorators
+  get sevearity() {
+    // console.log(this.popupcontent);
+    if (this.popupcontent.sevearity) {
+      return this.popupcontent.sevearity;
+    }
+    return null;
+  }
+
+  //start-aurelia-decorators
+  @computedFrom('popupcontent')
+  //end-aurelia-decorators
+  get disasterType() {
+    console.log(this.popupcontent);
+    if (this.popupcontent.report_data.report_type) {
+      return this.popupcontent.report_data.report_type;
+    }
+    return null;
+  }
+
+  //start-aurelia-decorators
+  @computedFrom('popupcontent')
+  //end-aurelia-decorators
   get accessabilityFailure() {
     if (this.popupcontent.report_data) {
       return this.locale.report_info.accessability_failures[this.popupcontent.report_data.accessabilityFailure];

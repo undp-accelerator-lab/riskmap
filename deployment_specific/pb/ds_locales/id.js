@@ -38,7 +38,7 @@ const id = {
     'share_msg': 'Laporan%20banjir%20pada%20petabencana%2Eid',
     'water_depth': 'Tinggi',
     'disturbance_key': 'Rusak:',
-    'access_key': 'kendaraan:',
+    'access_key': 'Kendaraan:',
     'structure_key': 'Kerusakan Bangunan:',
     'source': 'Sumber',
     'flagReport_Title': 'Tandai ini sebagai laporan tidak benar',

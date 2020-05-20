@@ -55,7 +55,7 @@ const en = {
       'Fully Collapsed'
     ],
     'accessability_failures': [
-      'No Vehicle',
+      'no access for vehicles',
       '2 Wheel Vehicle',
       '4 Wheel Vehicle (Sedan)',
       '4 Wheel Vehicle (SUV)',
