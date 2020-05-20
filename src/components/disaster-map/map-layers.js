@@ -266,6 +266,7 @@ export class MapLayers {
           for (let prop in feature.properties) {
             self.popupContent[prop] = feature.properties[prop];
           }
+          self.popupContent.sevearity = self.getDisasterSevearity(feature);
           self.popupContent.timestamp = self.formatTime(feature.properties.created_at);
           history.pushState({ city: cityName, report_id: feature.properties.pkey }, 'city', 'map/' + cityName + '/' + feature.properties.pkey);
           togglePane('#infoPane', 'show', true);
@@ -284,6 +285,7 @@ export class MapLayers {
           for (let prop in feature.properties) {
             self.popupContent[prop] = feature.properties[prop];
           }
+          self.popupContent.sevearity = self.getDisasterSevearity(feature);
           self.popupContent.timestamp = self.formatTime(feature.properties.created_at);
           history.pushState({ city: cityName, report_id: feature.properties.pkey }, 'city', 'map/' + cityName + '/' + feature.properties.pkey);
           togglePane('#infoPane', 'show', true);
@@ -313,7 +315,7 @@ export class MapLayers {
           self.selected_gauge = null;
         }
         if (!self.selected_extent) {
-          // Case 1 : no previous selection, click on flood extent polygon
+          // Case 1 : no previous selection, click on disaster extent polygon
           // Selection feedback, add stroke
           e.target.setStyle(self.mapPolygons.selected);
           // Reset and fill popupContent
@@ -544,7 +546,7 @@ export class MapLayers {
       let children = cluster.getAllChildMarkers();
       const type = children[0].feature.properties.disaster_type;
       const subType = children[0].feature.properties.report_data.report_type;
-      const sevearity = self.getDisasterSevearity(type, subType, children);
+      const sevearity = self.getAvgDisasterSevearity(type, subType, children);
       return self.getDisasterClusterIcon(type, subType, sevearity);
     };
   }
@@ -581,7 +583,7 @@ export class MapLayers {
     }
   }
 
-  getDisasterSevearity(type, subType, reportMarkers) {
+  getAvgDisasterSevearity(type, subType, reportMarkers) {
     switch (type) {
     case 'flood':
       let avgDepth = this.getAverageFloodDepth(reportMarkers);
@@ -598,6 +600,39 @@ export class MapLayers {
     default:
       return 'low';
     }
+  }
+
+  getDisasterSevearity(feature) {
+    let disasterType = feature.properties.disaster_type;
+    let subType = feature.properties.report_data.report_type;
+    let level = 'low';
+    let reportData = feature.properties.report_data;
+    switch (disasterType) {
+    case 'flood':
+      reportData = reportData || {'flood_depth': 0};
+      let depth = reportData.flood_depth || 0;
+      level = this._getFloodSevearity(depth);
+      break;
+    case 'earthquake':
+      if (subType === 'road') {
+        reportData = reportData || {'accessabilityFailure': 0};
+        let accessability = reportData.accessabilityFailure || 0;
+        level = this._getAccessabilitySevearity(accessability);
+      } else if (subType === 'structure') {
+        reportData = reportData || {'structureFailure': 0};
+        let structureFailure = reportData.structureFailure || 0;
+        level = this._getStructureFailureSevearity(structureFailure);
+      }
+      break;
+    case 'haze':
+    case 'wind':
+    case 'volcano':
+    case 'fire':
+      break;
+    default:
+      break;
+    }
+    return level;
   }
 
   getAvgStructureFailure(reportMarkers) {
