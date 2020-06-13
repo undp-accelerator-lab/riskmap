@@ -14,8 +14,8 @@
     height: 50px;
     position: fixed;
     border: none;
-    top: -397px;
-    left: -24px;
+    top: -25px;
+    left: -20px;
     z-index: 100000;
     border-radius: 5px;
     // background-color: @snow-white;
@@ -324,7 +324,7 @@ div.buttons:hover {
   text-decoration: none;
 }
 
-div.buttons:not(:last-child) {
+div.buttons:not(:first-child) {
   width: 40px;
   height: 40px;
   // margin: 20px auto 0;
@@ -333,7 +333,7 @@ div.buttons:not(:last-child) {
   padding-top: 4px;
   // -webkit-transform: translateY(50px);
   // -ms-transform: translateY(50px);
-  transform: translate(0, 70px) !important;
+  transform: translate(0, 0) !important;
 }
 
 div.buttons.main-button > i:first-child {
@@ -341,13 +341,13 @@ div.buttons.main-button > i:first-child {
   margin-top: 10px;
 }
 
-nav.float-action-button:hover div.buttons:not(:last-child) {
-  opacity: 1;
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-  margin: 20px auto 0;
-}
+// .floating-buttons-wrapper:hover div.buttons:not(:first-child) {
+//   opacity: 1;
+//   -webkit-transform: none;
+//   -ms-transform: none;
+//   transform: none;
+//   margin: 20px auto 0;
+// }
 
 div.buttons:nth-last-child(1) {
   -webkit-transition-delay: 25ms;
@@ -450,7 +450,7 @@ div.buttons.main-button > i:first-child {
   margin-top: 10px;
 }
 
-nav.float-action-button:hover div.buttons:not(:last-child) {
+.floating-buttons-wrapper:hover div.buttons:not(:first-child) {
   opacity: 1;
   -webkit-transform: none;
   -ms-transform: none;
@@ -602,26 +602,61 @@ tr.row.report {
 
 
 .floating-buttons-wrapper{
-  transform: translateY(361px) !important;
-  max-height: 0;
+  // transform: translateY(361px) !important;
+  // max-height: 0;
   // overflow-y: scroll;
-  width: 0;
+  // width: 0;
+  height: 85px;
+  width: 80px;
+  overflow: hidden;
+
+  @media screen and (max-height: 470px){
+    width: 140px;
+  }
+}
+
+div.buttons:nth-child(5){
+  transform: translate(0, 0);
+
+}
+
+div.buttons:nth-child(6){
+  transform: translate(0, 0);
+
+}
+
+div.buttons:nth-child(7){
+  transform: translate(0, 0);
+
 }
 
 @media screen and (max-height: 470px){
-  div.buttons:not(:last-child):nth-last-child(4){
-    transform: translate(60px, -110px) !important;
-    z-index: -1;
+
+  div.buttons:nth-child(2){
+    z-index: 3;
   }
 
-  div.buttons:not(:last-child):nth-last-child(3){
-    transform: translate(60px, -110px) !important;
-    z-index: -1;
+  div.buttons:nth-child(3){
+    z-index: 3;
   }
 
-  div.buttons:not(:last-child):nth-last-child(2){
-    transform: translate(60px, -110px) !important;
-    z-index: -1;
+  div.buttons:nth-child(4){
+    z-index: 3;
+  }
+
+  div.buttons:nth-child(5){
+    transform: translate(60px, -180px) !important;
+    z-index: 2;
+  }
+
+  div.buttons:nth-child(6){
+    transform: translate(60px, -180px) !important;
+    z-index: 2;
+  }
+
+  div.buttons:nth-child(7){
+    transform: translate(60px, -180px) !important;
+    z-index: 2;
   }
 }
 
