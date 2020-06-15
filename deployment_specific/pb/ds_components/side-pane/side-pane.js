@@ -62,6 +62,18 @@ export class SidePane {
         icon: 'deployment_specific/pb/ds_assets/icons/web_report.png'
       }
     ];
+
+    //this needs to be dynamicaly populated from backend data
+    this.last_report_received_on = [
+      { en: 'en floods last received', id: 'id floods last received'},
+      { en: 'en eq road access last received', id: 'id eq road access last received'},
+      { en: 'en eq_structure_fail last received', id: 'id eq_structure_fail last received'},
+      { en: 'en wind last received', id: 'id wind last received'},
+      { en: 'en fire last received', id: 'id fire last received'},
+      { en: 'en haze last received', id: 'id haze last received'},
+      { en: 'en volcano last received', id: 'id volcano last received'}
+    ]
+
     //legends data
     this.all_legends_data = [
       //floods
