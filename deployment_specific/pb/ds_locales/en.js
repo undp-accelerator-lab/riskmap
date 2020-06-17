@@ -35,7 +35,7 @@ const en = {
   },
   'report_info': {
     'share_msg': 'Check%20flood%20reports%20on%20petabencana%2Eid',
-    'water_depth': 'Water depth',
+    'water_depth': 'Flood Depth:',
     'disturbance_key': 'Disturbance:',
     'access_key': 'Access:',
     'structure_key': 'Structure Failure:',

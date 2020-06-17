@@ -36,7 +36,7 @@ const id = {
   },
   'report_info': {
     'share_msg': 'Laporan%20banjir%20pada%20petabencana%2Eid',
-    'water_depth': 'Tinggi',
+    'water_depth': 'Tinggi Banjir:',
     'disturbance_key': 'Rusak:',
     'access_key': 'Kendaraan:',
     'structure_key': 'Kerusakan Bangunan:',

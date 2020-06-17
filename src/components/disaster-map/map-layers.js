@@ -101,7 +101,7 @@ export class MapLayers {
       reportData = reportData || {'flood_depth': 0};
       let depth = reportData.flood_depth || 0;
       level = this._getFloodSevearity(depth);
-      return this.mapIcons.report_normal(disasterType, level);
+      return this.mapIcons.report_normal_with_url(disasterType, level);
     case 'prep':
       return this.mapIcons.report_normal(subType, level);
     case 'earthquake':
@@ -568,17 +568,17 @@ export class MapLayers {
       return 'medium';
     } else if (accessability > 1.0 && accessability <= 1.8) {
       return 'normal';
-    } else if (accessability > 1.9) {
+    } else if (accessability >= 1.9) {
       return 'low';
     }
   }
 
   _getStructureFailureSevearity(structureFailure) {
-    if (structureFailure <= 1) {
+    if (structureFailure < 1) {
       return 'low';
-    } else if (structureFailure > 1 && structureFailure <= 2) {
+    } else if (structureFailure >= 1 && structureFailure < 2) {
       return 'medium';
-    } else if (structureFailure > 2) {
+    } else if (structureFailure >= 2) {
       return 'high';
     }
   }
