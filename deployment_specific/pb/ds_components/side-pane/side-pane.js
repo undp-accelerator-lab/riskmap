@@ -62,6 +62,18 @@ export class SidePane {
         icon: 'deployment_specific/pb/ds_assets/icons/web_report.png'
       }
     ];
+
+    //this needs to be dynamicaly populated from backend data
+    this.last_report_received_on = [
+      { en: 'Reports remain active for 2 hours', id: 'Masa aktif laporan: 2 jam'},
+      { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'},
+      { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'},
+      { en: 'Reports remain active for 2 hours', id: 'Masa aktif laporan: 2 jam'},
+      { en: 'Reports remain active for 6 hours', id: 'Masa aktif laporan: 6 jam'},
+      { en: 'Reports remain active for 6 hours', id: 'Masa aktif laporan: 6 jam'},
+      { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'}
+    ]
+
     //legends data
     this.all_legends_data = [
       //floods
