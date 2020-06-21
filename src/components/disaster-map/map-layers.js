@@ -248,7 +248,7 @@ export class MapLayers {
     self.activeReports[feature.properties.pkey] = layer;
     layer.on({
       click: (e) => {
-        map.flyTo(layer._latlng, 15);
+        map.panTo(layer._latlng, 15);
         let reportIconNormal = self.getReportIcon(feature);
         let reportIconSelected = self.getSelectedReportIcon(feature);
         if (self.selected_extent) {
@@ -497,7 +497,7 @@ export class MapLayers {
             this.addCluster(data, cityName, map, togglePane, 'flood');
             this.addCluster(data, cityName, map, togglePane, 'fire');
             this.addCluster(data, cityName, map, togglePane, 'haze');
-            this.addCluster(data, cityName, map, togglePane, 'volcono');
+            this.addCluster(data, cityName, map, togglePane, 'volcano');
             this.addCluster(data, cityName, map, togglePane, 'wind');
             resolve(data);
           }
