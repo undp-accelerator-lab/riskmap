@@ -477,7 +477,7 @@ export class MapLayers {
       map.removeLayer(self.reports);
       self.reports = null;
     }
-    let endPoint = 'reports/?city=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod;
+    let endPoint = 'reports/?city=' + cityRegion;
     // add layer to map
     // return self.appendData('reports/?city=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod, self.reports, map);
     return this.addReportsClustered(endPoint, cityName, map, togglePane);
