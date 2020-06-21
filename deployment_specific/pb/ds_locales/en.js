@@ -16,7 +16,7 @@ const en = {
   'haze': 'Haze',
   'wind': 'Wind',
   'volcano': 'Volcano',
-  'reports_stats': 'Received {reportsplaceholder} reports in past {hoursplaceholder} hours in {provinceplaceholder}',
+  'reports_stats': 'Received {reportsplaceholder} active reports in {provinceplaceholder}',
   'prep_menu': {
     'btn_names': {
       'drain': 'Blocked Drains',
