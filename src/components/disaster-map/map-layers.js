@@ -92,6 +92,7 @@ export class MapLayers {
   }
 
   getReportIcon(feature) {
+    console.log(feature);
     let disasterType = feature.properties.disaster_type;
     let subType = feature.properties.report_data.report_type;
     let level = 'low';
@@ -562,13 +563,24 @@ export class MapLayers {
   }
 
   _getAccessabilitySevearity(accessability) {
+    // eslint-disable-next-line default-case
+    switch (accessability) {
+    case 0: return 'high';
+    case 1: return 'normal';
+    case 2: return 'medium';
+    case 3: return 'medium';
+    case 4: return 'low';
+    }
+  }
+
+  _getAccessabilitySevearityGroup(accessability) {
     if (accessability <= 0.5) {
       return 'high';
     } else if (accessability > 0.5 && accessability <= 1.0) {
       return 'medium';
     } else if (accessability > 1.0 && accessability <= 1.8) {
       return 'normal';
-    } else if (accessability >= 1.9) {
+    } else if (accessability > 1.8) {
       return 'low';
     }
   }
@@ -591,7 +603,7 @@ export class MapLayers {
     case 'earthquake':
       if (subType === 'road') {
         let avgAccessability = this.getAverageAccessability(reportMarkers);
-        return this._getAccessabilitySevearity(avgAccessability);
+        return this._getAccessabilitySevearityGroup(avgAccessability);
       } else if (subType === 'structure') {
         let avgStructureFailure = this.getAvgStructureFailure(reportMarkers);
         return this._getStructureFailureSevearity(avgStructureFailure);
@@ -667,7 +679,7 @@ export class MapLayers {
     let depth = 0;
     reportMarkers.forEach(function(report, index) {
       const reportData = report.feature.properties.report_data || {'flood_depth': 0};
-      depth += reportData['flood_depth'] || 0;
+      depth += reportData.flood_depth || 0;
     });
     // for (let report in report_markers) {
     //   depth += report.feature.properties.report_data['flood_depth'];
