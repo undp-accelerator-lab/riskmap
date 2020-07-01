@@ -43,6 +43,10 @@
     }
   }
 
+  & .row {
+    width: auto;
+  }
+
   & #floodLink {
     width: auto;
     height: 200px;
@@ -200,8 +204,8 @@ input.live-search.au-target {
 
 div#fireLink {
   position: absolute;
-  width: 210px;
-  height: 130px;
+  width: 245px;
+  height: 200px;
   top: 0;
   left: 80px;
   display: none;
@@ -211,8 +215,6 @@ div#fireLink {
   left: 90px;
   z-index: 1035;
   border-radius: 5px;
-  background-color: #ffffff;
-  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
 }
 
 div#hazeLink {
@@ -228,8 +230,6 @@ div#hazeLink {
   left: 90px;
   z-index: 1035;
   border-radius: 5px;
-  background-color: #ffffff;
-  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -262,8 +262,6 @@ div#windLink {
   left: 90px;
   z-index: 1035;
   border-radius: 5px;
-  background-color: #ffffff;
-  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
 }
 
 div#volcanoLink {
@@ -279,8 +277,6 @@ div#volcanoLink {
   left: 90px;
   z-index: 1035;
   border-radius: 5px;
-  background-color: #ffffff;
-  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
 }
 
 p.commingSoon {
@@ -527,17 +523,16 @@ div.buttons:not(:last-child):nth-last-child(4) {
   left: 0;
   bottom: 0;
 }
-.reportEarthquakeBtn {
+.reportHazeBtn {
   position: absolute;
   top: 220px;
   right: 0;
   left: 0;
   bottom: 0;
 }
-
-#reportFireBtn{
+.reportEarthquakeBtn {
   position: absolute;
-  top: 65px;
+  top: 220px;
   right: 0;
   left: 0;
   bottom: 0;
