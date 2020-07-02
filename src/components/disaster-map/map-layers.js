@@ -115,10 +115,9 @@ export class MapLayers {
       return this.mapIcons.report_normal_with_url(subType, level);
     case 'haze':
     case 'wind':
-      level = this.getDisasterSevearity(feature);
-      return this.mapIcons.report_normal_with_url(disasterType, level);
     case 'volcano':
     case 'fire':
+      level = this.getDisasterSevearity(feature);
       return this.mapIcons.report_normal_with_url(disasterType, level);
     default:
       return this.mapIcons.report_normal(disasterType, level);
@@ -148,10 +147,9 @@ export class MapLayers {
       return this.mapIcons.report_selected_with_url(subType, level);
     case 'haze':
     case 'wind':
-      level = this.getDisasterSevearity(feature);
-      return this.mapIcons.report_selected_with_url(disasterType, level);
     case 'volcano':
     case 'fire':
+      level = this.getDisasterSevearity(feature);
       return this.mapIcons.report_selected_with_url(disasterType, level);
     default:
       return this.mapIcons.report_selected_with_url(disasterType, level);
@@ -551,10 +549,6 @@ export class MapLayers {
     };
   }
 
-  _getFireSevearity(_fireLevel) {
-    return 'high';
-  }
-
   _getWindSevearity(impact) {
     // eslint-disable-next-line default-case
     switch (String(impact)) {
@@ -647,6 +641,7 @@ export class MapLayers {
       break;
     case 'volcano':
     case 'fire':
+      level = 'high';
       break;
     default:
       break;
