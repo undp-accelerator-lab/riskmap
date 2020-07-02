@@ -495,7 +495,7 @@ export class MapLayers {
             this.addCluster(data, cityName, map, togglePane, 'flood');
             this.addCluster(data, cityName, map, togglePane, 'fire');
             this.addCluster(data, cityName, map, togglePane, 'haze');
-            this.addCluster(data, cityName, map, togglePane, 'volcono');
+            this.addCluster(data, cityName, map, togglePane, 'volcano');
             this.addCluster(data, cityName, map, togglePane, 'wind');
             resolve(data);
           }
@@ -640,6 +640,7 @@ export class MapLayers {
       level = this._getWindSevearity(impact);
       break;
     case 'volcano':
+      break;
     case 'fire':
       level = 'high';
       break;
