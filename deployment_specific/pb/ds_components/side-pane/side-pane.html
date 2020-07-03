@@ -67,9 +67,12 @@
           <div class='pb-legends-group' >
             <div id.bind="all_lgd_data.legend_name" class="pb-legend-container pb-legend-container--flood p-2 ${selLegend === all_lgd_data.legend_name ? 'active' : '' }" repeat.for="all_lgd_data of all_legends_data">
               <div class="pb-legend-title" click.delegate="all_lgd_data.legend_data && switchLegend(all_lgd_data.legend_name)">
-                <div class='pb-legend-title__text_plus_icon'>
-                  <img class='pb-legend-title__icon' src.bind="all_lgd_data.legend_title_icon" />
-                  <p class='pb-legend-title__text'>${all_lgd_data.legend_title[currentLanguage]}</p>
+                <div>
+                  <div class='pb-legend-title__text_plus_icon'>
+                    <img class='pb-legend-title__icon' src.bind="all_lgd_data.legend_title_icon" />
+                    <p class='pb-legend-title__text'>${all_lgd_data.legend_title[currentLanguage]}</p>
+                  </div>
+                  <p class='pb-legend-title__last-report-received-on'>${last_report_received_on[$index][currentLanguage]}</p>
                 </div>
                 <img if.bind="all_lgd_data.legend_data" src.bind="'deployment_specific/pb/ds_assets/icons/ui_icons/' + (selLegend === all_lgd_data.legend_name ? 'expand_less-24px' : 'expand_more-24px') + '.svg'" />
               </div>
