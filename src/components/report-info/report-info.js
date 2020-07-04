@@ -125,7 +125,7 @@ export class ReportInfo {
   @computedFrom('popupcontent')
   //end-aurelia-decorators
   get sevearity() {
-    // console.log(this.popupcontent);
+    console.log("severity", this.popupcontent);
     if (this.popupcontent.sevearity) {
       return this.popupcontent.sevearity;
     }
