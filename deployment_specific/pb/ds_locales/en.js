@@ -68,6 +68,41 @@ const en = {
       '4 Wheel Vehicle (Sedan)',
       '4 Wheel Vehicle (SUV)',
       'Large Vehicle (Truck)'
+    ],
+    "visibilityKey": "Visibility:",
+    "visibilityValues": [
+      "Good",
+      "Moderate",
+      "Poor"
+    ],
+    'airQualityKey' : "Air Quality:",
+    "airQualityValues": [
+      "",
+      "Moderate",
+      "Poor",
+      "Severe",
+      "Hazardous"
+    ],
+    "impactKey": "Impact:",
+    "impactValues": [
+      "Low Disruption",
+      "Medium Disruption",
+      "High Disruption"
+    ],
+    "signsKey" : "Symptoms:",
+    "signsValues":[
+      "Significant Temperature Increases",
+      "Drought / Vegetation Death",
+      "Unusual Animal Behaviour",
+      "Frequent Earthquake Tremors",
+      "Frequent Rumbling Sounds"
+    ],
+    "peopleKey": "Number of people nearby:",
+    "evacuateKey": "Know where to evacuate:",
+    "peopleValues": [
+      "< 5",
+      "5 - 50",
+      "> 50"
     ]
   },
   'flood_info': {

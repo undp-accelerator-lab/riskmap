@@ -69,6 +69,41 @@ const id = {
       'Retak',
       'Roboh Sebagian',
       'Roboh Total'
+    ],
+    "visibilityKey": "Jarak Pandang:",
+    "visibilityValues": [
+      "Baik",
+      "Sedang/Cukup",
+      "Buruk"
+    ],
+    'airQualityKey' : 'Kualitas Udara:',
+    "airQualityValues": [
+      "",
+      "Sedang / Cukup",
+      "Buruk",
+      "Parah",
+      "Berbahaya"
+    ],
+    "impactKey" : "Dampak:",
+    "impactValues":[
+      "Ringan",
+      "Sedang",
+      "Berat"
+    ],
+    "signsKey" : "Hasil Pengamatan:",
+    "signsValues":[
+      "Kenaikan Suhu Signifikan",
+      "Kekeringan/Kematian Tumbuh-tumbuhan",
+      "Perilaku Hewan yang Tidak Biasa",
+      "Getaran Gempabumi yang Sering",
+      "Suara Gemuruh yang Sering"
+    ],
+    "peopleKey": "Jumlah orang di sekitar:",
+    "evacuateKey": "Tahu arah Evakuasi:",
+    "peopleValues": [
+      "< 5",
+      "5 - 50",
+      "> 50"
     ]
   },
   'flood_info': {

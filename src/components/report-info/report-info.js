@@ -58,6 +58,14 @@ export class ReportInfo {
         enabled: true
       }
     ];
+
+    this.airQualityColors = [
+      "",
+      "rgb(255, 255, 0)",
+      "rgb(255, 131, 0)",
+      "rgb(204, 42, 65)",
+      "rgb(204, 42, 65)"
+    ]
   }
 
   feedbackInteraction(button) {
@@ -142,6 +150,56 @@ export class ReportInfo {
     }
     return null;
   }
+
+  get airQuality() {
+    if (this.popupcontent.report_data.airQuality){
+      return this.popupcontent.report_data.airQuality;
+    }
+    return null;
+  }
+
+  get visibility() {
+    if (this.popupcontent.report_data.visibility){
+      return this.popupcontent.report_data.visibility;
+    }
+    return null;
+  }
+
+  get impact() {
+    if (this.popupcontent.report_data.impact){
+      return this.popupcontent.report_data.impact;
+    }
+    return null;
+  }
+
+  get noOfPeople() {
+
+    if (this.popupcontent.report_data.evacuationNumber){
+      return this.popupcontent.report_data.evacuationNumber;
+    }
+    return null;
+  }
+
+  get evacArea() {
+
+    if (this.popupcontent.report_data.evacuationArea){
+      return this.popupcontent.report_data.evacuationArea;
+    }
+    return null;
+  }
+
+  get volcanicSigns() {
+
+    if (this.popupcontent.report_data.volcanicSigns){
+
+      let ary = this.popupcontent.report_data.volcanicSigns.map(d => {
+                  return this.locale.report_info.signsValues[d]
+                })
+      return ary.join(', ')
+    }
+    return null;
+  }
+
 
   //start-aurelia-decorators
   @computedFrom('popupcontent')
