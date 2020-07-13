@@ -66,6 +66,12 @@ export class ReportInfo {
       "rgb(204, 42, 65)",
       "rgb(204, 42, 65)"
     ]
+
+    this.visibilityImgPlaceholderSuffix = [
+      'low',
+      'normal',
+      'high'
+    ]
   }
 
   feedbackInteraction(button) {

@@ -99,10 +99,11 @@ const en = {
     ],
     "peopleKey": "Number of people nearby:",
     "evacuateKey": "Know where to evacuate:",
+    "evacuateVal": "yes",
     "peopleValues": [
-      "< 5",
-      "5 - 50",
-      "> 50"
+      "< 5 people",
+      "5 - 50 people",
+      "> 50 people"
     ]
   },
   'flood_info': {
