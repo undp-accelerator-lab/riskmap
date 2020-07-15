@@ -6,7 +6,9 @@
     </div>
     <div class="image" id="noPhoto" show.bind="!imageurl">
       <i show.bind="height" class="icon-flood-img phFlood" ></i>
-      <img show.bind="condition || structureFailure || sevearity" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+sevearity+".png"' class="phImage"/>
+      <img show.bind="(condition || structureFailure || sevearity) && !visibility && !impact" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+sevearity+".png"' class="phImage"/>
+      <img show.bind="visibility >= 0" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+visibilityImgPlaceholderSuffix[visibility]+".png"' class="phImage"/>
+      <img show.bind="impact >= 0" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+impactImgPlaceholderSuffix[impact]+".png"' class="phImage"/>
     </div>
   </div>
 <!-- ${airQualityValues[airQuality]} -->
@@ -16,12 +18,12 @@
       <p show.bind="height" class="textTitle">${locale.report_info.water_depth} <span class.bind=sevearity> ${height} ${config.height_units}</span></p>
       <p show.bind="accessabilityFailure" class="textTitle">${locale.report_info.access_key} <span class.bind=sevearity>${accessabilityFailure} <span> </p>
       <p show.bind="condition" class="textTitle">${locale.report_info.disturbance_key} ${condition}</p>
-      <p show.bind="airQuality" class="textTitle"><span class='textKey'>${locale.report_info.airQualityKey}</span><br><span css="color: ${airQualityColors[airQuality]}">${locale.report_info.airQualityValues[airQuality]}</span></p>
-      <p show.bind="visibility" class="textTitle"><span class='textKey'>${locale.report_info.visibilityKey}</span><br> ${locale.report_info.visibilityValues[visibility]}</p>
-      <p show.bind="impact" class="textTitle"><span class='textKey'>${locale.report_info.impactKey}</span><br> ${locale.report_info.impactValues[impact]}</p>
-      <p show.bind="noOfPeople" class="textTitle"><span class='textKey'>${locale.report_info.peopleKey}</span><br> ${locale.report_info.peopleValues[noOfPeople]}</p>
-      <p show.bind="evacArea" class="textTitle"><span class='textKey'>${locale.report_info.evacuateKey}</span><br> ${evacArea}</p>
+      <p show.bind="airQuality >= 0" class="textTitle"><span class='textKey'>${locale.report_info.airQualityKey}</span><br><span css="color: ${airQualityColors[airQuality]}">${locale.report_info.airQualityValues[airQuality]}</span></p>
+      <p show.bind="visibility >= 0" class="textTitle"><span class='textKey'>${locale.report_info.visibilityKey}</span><br> ${locale.report_info.visibilityValues[visibility]}</p>
+      <p show.bind="impact >= 0" class="textTitle"><span class='textKey'>${locale.report_info.impactKey}</span><br> <span css="color: ${impactColors[impact]}">${locale.report_info.impactValues[impact]}</span></p>
       <p show.bind="volcanicSigns" class="textTitle"><span class='textKey'>${locale.report_info.signsKey}</span><br> ${volcanicSigns}</p>
+      <p show.bind="noOfPeople" class="textTitle"><span class='textKey'>${locale.report_info.peopleKey}</span><br> ${locale.report_info.peopleValues[noOfPeople]}</p>
+      <p show.bind="evacArea" class="textTitle"><span class='textKey'>${locale.report_info.evacuateKey}</span><br> ${locale.report_info.evacuateVal}</p>
       <p show.bind="structureFailure" class="textTitle">${locale.report_info.structure_key} <span class.bind=sevearity> ${structureFailure} <span></p>
       <p show.bind="reportevent" class="textTitle">${locale.prep_menu.btn_names[reportevent]}</p>
       <p id="source">${locale.report_info.source}&nbsp;

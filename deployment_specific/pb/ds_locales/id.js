@@ -100,10 +100,11 @@ const id = {
     ],
     "peopleKey": "Jumlah orang di sekitar:",
     "evacuateKey": "Tahu arah Evakuasi:",
+    "evacuateVal": "ya",
     "peopleValues": [
-      "< 5",
-      "5 - 50",
-      "> 50"
+      "< 5 orang",
+      "5 - 50 orang",
+      "> 50 orang"
     ]
   },
   'flood_info': {

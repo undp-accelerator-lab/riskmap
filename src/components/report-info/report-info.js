@@ -61,10 +61,28 @@ export class ReportInfo {
 
     this.airQualityColors = [
       "",
-      "rgb(255, 255, 0)",
+      "rgb(232, 232, 28)",
       "rgb(255, 131, 0)",
       "rgb(204, 42, 65)",
       "rgb(204, 42, 65)"
+    ]
+
+    this.impactColors = [
+      "rgb(232, 232, 28)",
+      "rgb(255, 131, 0)",
+      "rgb(204, 42, 65)",
+    ]
+
+    this.visibilityImgPlaceholderSuffix = [
+      'low',
+      'normal',
+      'high'
+    ]
+
+    this.impactImgPlaceholderSuffix = [
+      'low',
+      'medium',
+      'high'
     ]
   }
 
@@ -152,21 +170,23 @@ export class ReportInfo {
   }
 
   get airQuality() {
-    if (this.popupcontent.report_data.airQuality){
+    if (this.popupcontent.report_data.airQuality >= 0){
+      console.log('getting airQuality: '+ this.popupcontent.report_data.airQuality)
       return this.popupcontent.report_data.airQuality;
     }
     return null;
   }
 
   get visibility() {
-    if (this.popupcontent.report_data.visibility){
+    if (this.popupcontent.report_data.visibility >= 0){
+      console.log('getting visibility: '+ this.popupcontent.report_data.visibility)
       return this.popupcontent.report_data.visibility;
     }
     return null;
   }
 
   get impact() {
-    if (this.popupcontent.report_data.impact){
+    if (this.popupcontent.report_data.impact >= 0){
       return this.popupcontent.report_data.impact;
     }
     return null;

@@ -12,7 +12,7 @@ const en = {
   'add_report': 'Report Flood',
   'add_eq_report': 'Report EarthQuake',
   'add_haze_report': 'Report Haze',
-  'add_wind_report': 'Report Wind',
+  'add_wind_report': 'Report Extreme Wind',
   'add_volcano_report': 'Report Volcano',
   'add_fire_report': 'Report Fire',
   'search_ph': 'Search',
@@ -99,10 +99,11 @@ const en = {
     ],
     "peopleKey": "Number of people nearby:",
     "evacuateKey": "Know where to evacuate:",
+    "evacuateVal": "yes",
     "peopleValues": [
-      "< 5",
-      "5 - 50",
-      "> 50"
+      "< 5 people",
+      "5 - 50 people",
+      "> 50 people"
     ]
   },
   'flood_info': {
