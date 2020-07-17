@@ -100,8 +100,9 @@ const id = {
     ],
     "peopleKey": "Jumlah orang di sekitar:",
     "evacuateKey": "Tahu arah Evakuasi:",
-    "evacuateVal": "ya",
+    "evacuateVal": ["ya", "tidak"],
     "peopleValues": [
+      "",
       "< 5 orang",
       "5 - 50 orang",
       "> 50 orang"

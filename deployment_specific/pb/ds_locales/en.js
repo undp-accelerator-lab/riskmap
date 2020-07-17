@@ -99,8 +99,9 @@ const en = {
     ],
     "peopleKey": "Number of people nearby:",
     "evacuateKey": "Know where to evacuate:",
-    "evacuateVal": "yes",
+    "evacuateVal": ["yes", "no"],
     "peopleValues": [
+      "",
       "< 5 people",
       "5 - 50 people",
       "> 50 people"

@@ -202,10 +202,10 @@ export class ReportInfo {
 
   get evacArea() {
 
-    if (this.popupcontent.report_data.evacuationArea){
+
       return this.popupcontent.report_data.evacuationArea;
-    }
-    return null;
+
+    
   }
 
   get volcanicSigns() {
