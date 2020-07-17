@@ -612,6 +612,7 @@ export class MapLayers {
   }
 
   getDisasterSevearity(feature) {
+    console.log('FEATURE', feature);
     let disasterType = feature.properties.disaster_type;
     let subType = feature.properties.report_data.report_type;
     let level = 'low';
@@ -643,6 +644,24 @@ export class MapLayers {
       }
       break;
     case 'haze':
+      switch(reportData.airQuality){
+        case 0:
+        level = "low";
+        break;
+        case 1:
+        level = "low";
+        break;
+        case 2:
+        level = "normal";
+        break;
+        case 3:
+        level = "high";
+        break;
+        case 4:
+        level = "high";
+        break;
+      }
+      break;
     case 'wind':
       reportData = reportData || {'impact': 0};
       let impact = reportData.impact || 0;
