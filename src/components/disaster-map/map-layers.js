@@ -557,6 +557,19 @@ export class MapLayers {
     case '2': return 'high';
     }
   }
+
+  _getAQSevearity(aq) {
+    // eslint-disable-next-line default-case
+    switch (String(aq)) {
+    case '0': return 'low';
+    case '1': return 'low';
+    case '2': return 'normal';
+    case '3': return 'high';
+    case '4': return 'high';
+    }
+  }
+
+
   _getFloodSevearity(depth) {
     if (depth <= 70) {
       return  'low';
@@ -606,6 +619,9 @@ export class MapLayers {
     case 'wind':
       let avgImpact = this.getAverageWindImpact(reportMarkers);
       return this._getWindSevearity(avgImpact);
+    case 'haze':
+      let avgAirQuality = this.getAverageAirQuality(reportMarkers);
+      return this._getAQSevearity(avgAirQuality);
     case 'fire':
       return 'high';
     default:
@@ -720,6 +736,15 @@ export class MapLayers {
     //   depth += report.feature.properties.report_data['flood_depth'];
     // }
     return depth / reportMarkers.length;
+  }
+
+  getAverageAirQuality(reportMarkers) {
+    let aq = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0};
+    reportMarkers.forEach(function(report, index) {
+      const reportData = report.feature.properties.report_data || {'airQuality': 0};
+      aq[reportData['airQuality']] = aq[reportData['airQuality']] + 1;
+    });
+    return Object.keys(aq).reduce((a, b) => aq[a] > aq[b] ? a : b);
   }
 
   getAverageWindImpact(reportMarkers) {
