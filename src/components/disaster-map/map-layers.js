@@ -606,13 +606,14 @@ export class MapLayers {
     case 'wind':
       let avgImpact = this.getAverageWindImpact(reportMarkers);
       return this._getWindSevearity(avgImpact);
+    case 'fire':
+      return 'high';
     default:
       return 'low';
     }
   }
 
   getDisasterSevearity(feature) {
-    console.log('FEATURE', feature);
     let disasterType = feature.properties.disaster_type;
     let subType = feature.properties.report_data.report_type;
     let level = 'low';
@@ -644,21 +645,24 @@ export class MapLayers {
       }
       break;
     case 'haze':
-      switch(reportData.airQuality){
-        case 0:
-        level = "low";
+      switch (reportData.airQuality) {
+      case 0:
+        level = 'low';
         break;
-        case 1:
-        level = "low";
+      case 1:
+        level = 'low';
         break;
-        case 2:
-        level = "normal";
+      case 2:
+        level = 'normal';
         break;
-        case 3:
-        level = "high";
+      case 3:
+        level = 'high';
         break;
-        case 4:
-        level = "high";
+      case 4:
+        level = 'high';
+        break;
+      default:
+        level = 'low';
         break;
       }
       break;
@@ -724,8 +728,6 @@ export class MapLayers {
       const reportData = report.feature.properties.report_data || {'impact': 0};
       impact[reportData['impact']] = impact[reportData['impact']] + 1;
     });
-    console.log(impact);
-    console.log(Object.keys(impact).reduce((a, b) => impact[a] > impact[b] ? a : b));
     return Object.keys(impact).reduce((a, b) => impact[a] > impact[b] ? a : b);
   }
 

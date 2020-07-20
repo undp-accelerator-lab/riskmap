@@ -14,7 +14,7 @@ const en = {
   'add_haze_report': 'Report Haze',
   'add_wind_report': 'Report Extreme Wind',
   'add_volcano_report': 'Report Volcano',
-  'add_fire_report': 'Report Fire',
+  'add_fire_report': 'Report Forest Fire',
   'search_ph': 'Search',
   'popup_text': 'Select Province to continue',
   'search_header': 'Select Region',
