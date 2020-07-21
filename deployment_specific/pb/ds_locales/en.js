@@ -105,7 +105,8 @@ const en = {
       "< 5 people",
       "5 - 50 people",
       "> 50 people"
-    ]
+    ],
+    "fireextentKey": "Fire Extent"
   },
   'flood_info': {
     'title': 'Flood affected area',

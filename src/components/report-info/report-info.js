@@ -185,6 +185,11 @@ export class ReportInfo {
     return null;
   }
 
+  get fireextent() {
+    return Math.round((Math.PI * Math.pow(this.popupcontent.report_data.fireDistance, 2) / 10000 )*100)/100 + ' hektars'
+
+  }
+
   get impact() {
     if (this.popupcontent.report_data.impact >= 0){
       return this.popupcontent.report_data.impact;
@@ -205,7 +210,7 @@ export class ReportInfo {
 
       return this.popupcontent.report_data.evacuationArea;
 
-    
+
   }
 
   get volcanicSigns() {
