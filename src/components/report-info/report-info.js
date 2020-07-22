@@ -150,7 +150,6 @@ export class ReportInfo {
   @computedFrom('popupcontent')
   //end-aurelia-decorators
   get sevearity() {
-    console.log('severity', this.popupcontent);
     if (this.popupcontent.sevearity) {
       return this.popupcontent.sevearity;
     }
@@ -183,7 +182,7 @@ export class ReportInfo {
 
   get fireextent() {
     if (this.popupcontent.report_data.fireDistance) {
-      return Math.round((Math.PI * Math.pow(this.popupcontent.report_data.fireDistance, 2) / 10000) * 100) / 100 + this.locale.report_info.firextentUnit;
+      return Math.round((Math.PI * Math.pow(this.popupcontent.report_data.fireDistance, 2) / 10000) * 100) / 100 + ' ' + this.locale.report_info.fireextentUnit;
     }
     return null;
   }
