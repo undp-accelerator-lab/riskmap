@@ -150,10 +150,18 @@ export class ReportInfo {
   @computedFrom('popupcontent')
   //end-aurelia-decorators
   get sevearity() {
+    if (this.popupcontent.report_data.report_type === 'road') {
+      // eslint-disable-next-line default-case
+      switch (this.popupcontent.report_data.condition) {
+      case 0: return 'low';
+      case 1: return 'medium';
+      case 2: return 'high';
+      }
+    }
     if (this.popupcontent.sevearity) {
       return this.popupcontent.sevearity;
     }
-    return null;
+    return 'low';
   }
 
   //start-aurelia-decorators
