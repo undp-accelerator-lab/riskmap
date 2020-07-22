@@ -2,8 +2,7 @@ import {
   inject,
   bindable,
   customElement,
-  computedFrom,
-  observable
+  computedFrom
 } from 'aurelia-framework';
 import { Config } from '../../resources/config';
 import { PointsService } from './points-service';
@@ -60,30 +59,30 @@ export class ReportInfo {
     ];
 
     this.airQualityColors = [
-      "",
-      "rgb(232, 232, 28)",
-      "rgb(255, 131, 0)",
-      "rgb(204, 42, 65)",
-      "rgb(204, 42, 65)"
-    ]
+      '',
+      'rgb(232, 232, 28)',
+      'rgb(255, 131, 0)',
+      'rgb(204, 42, 65)',
+      'rgb(204, 42, 65)'
+    ];
 
     this.impactColors = [
-      "rgb(232, 232, 28)",
-      "rgb(255, 131, 0)",
-      "rgb(204, 42, 65)",
-    ]
+      'rgb(232, 232, 28)',
+      'rgb(255, 131, 0)',
+      'rgb(204, 42, 65)'
+    ];
 
     this.visibilityImgPlaceholderSuffix = [
       'low',
       'normal',
       'high'
-    ]
+    ];
 
     this.impactImgPlaceholderSuffix = [
       'low',
       'medium',
       'high'
-    ]
+    ];
   }
 
   feedbackInteraction(button) {
@@ -151,7 +150,7 @@ export class ReportInfo {
   @computedFrom('popupcontent')
   //end-aurelia-decorators
   get sevearity() {
-    console.log("severity", this.popupcontent);
+    console.log('severity', this.popupcontent);
     if (this.popupcontent.sevearity) {
       return this.popupcontent.sevearity;
     }
@@ -162,7 +161,6 @@ export class ReportInfo {
   @computedFrom('popupcontent')
   //end-aurelia-decorators
   get disasterType() {
-    console.log(this.popupcontent);
     if (this.popupcontent.report_data.report_type) {
       return this.popupcontent.report_data.report_type;
     }
@@ -170,59 +168,50 @@ export class ReportInfo {
   }
 
   get airQuality() {
-    if (this.popupcontent.report_data.airQuality >= 0){
-      console.log('getting airQuality: '+ this.popupcontent.report_data.airQuality)
+    if (this.popupcontent.report_data.airQuality >= 0) {
       return this.popupcontent.report_data.airQuality;
     }
     return null;
   }
 
   get visibility() {
-    if (this.popupcontent.report_data.visibility >= 0){
-      console.log('getting visibility: '+ this.popupcontent.report_data.visibility)
+    if (this.popupcontent.report_data.visibility >= 0) {
       return this.popupcontent.report_data.visibility;
     }
     return null;
   }
 
   get fireextent() {
-    if (this.popupcontent.report_data.fireDistance){
-      return Math.round((Math.PI * Math.pow(this.popupcontent.report_data.fireDistance, 2) / 10000 )*100)/100 + this.locale.report_info.firextentUnit
+    if (this.popupcontent.report_data.fireDistance) {
+      return Math.round((Math.PI * Math.pow(this.popupcontent.report_data.fireDistance, 2) / 10000) * 100) / 100 + this.locale.report_info.firextentUnit;
     }
     return null;
   }
 
   get impact() {
-    if (this.popupcontent.report_data.impact >= 0){
+    if (this.popupcontent.report_data.impact >= 0) {
       return this.popupcontent.report_data.impact;
     }
     return null;
   }
 
   get noOfPeople() {
-
-    if (this.popupcontent.report_data.evacuationNumber){
+    if (this.popupcontent.report_data.evacuationNumber) {
       return this.popupcontent.report_data.evacuationNumber;
     }
     return null;
   }
 
   get evacArea() {
-
-
-      return this.popupcontent.report_data.evacuationArea;
-
-
+    return this.popupcontent.report_data.evacuationArea;
   }
 
   get volcanicSigns() {
-
-    if (this.popupcontent.report_data.volcanicSigns){
-
+    if (this.popupcontent.report_data.volcanicSigns) {
       let ary = this.popupcontent.report_data.volcanicSigns.map(d => {
-                  return this.locale.report_info.signsValues[d]
-                })
-      return ary.join(', ')
+        return this.locale.report_info.signsValues[d];
+      });
+      return ary.join(', ');
     }
     return null;
   }
