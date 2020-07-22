@@ -189,6 +189,7 @@ export class ReportInfo {
     if (this.popupcontent.report_data.fireDistance){
       return Math.round((Math.PI * Math.pow(this.popupcontent.report_data.fireDistance, 2) / 10000 )*100)/100 + this.locale.report_info.firextentUnit
     }
+    return null;
   }
 
   get impact() {
