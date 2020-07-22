@@ -186,8 +186,9 @@ export class ReportInfo {
   }
 
   get fireextent() {
-    return Math.round((Math.PI * Math.pow(this.popupcontent.report_data.fireDistance, 2) / 10000 )*100)/100 + ' hektars'
-
+    if (this.popupcontent.report_data.fireDistance){
+      return Math.round((Math.PI * Math.pow(this.popupcontent.report_data.fireDistance, 2) / 10000 )*100)/100 + this.locale.report_info.firextentUnit
+    }
   }
 
   get impact() {

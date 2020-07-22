@@ -106,7 +106,8 @@ const en = {
       "5 - 50 people",
       "> 50 people"
     ],
-    "fireextentKey": "Fire Extent"
+    "fireextentKey": "Fire Extent",
+    "fireextentUnit": "hectares"
   },
   'flood_info': {
     'title': 'Flood affected area',

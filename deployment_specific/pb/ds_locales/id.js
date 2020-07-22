@@ -107,7 +107,8 @@ const id = {
       "5 - 50 orang",
       "> 50 orang"
     ],
-    "fireextentKey": "Perkiraan Kebakaran"
+    "fireextentKey": "Perkiraan Kebakaran",
+    "fireextentUnit": "hektar"
   },
   'flood_info': {
     'title': 'Area terdampak banjir',
