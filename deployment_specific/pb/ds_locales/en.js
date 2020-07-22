@@ -4,9 +4,17 @@ const en = {
   'flood_flow_img': '/assets/icons/flood_flow_en.png',
   'close': 'close',
   'eq_flow_img': '/assets/icons/eq_flow_en.png',
+  'wind_flow_img': '/assets/icons/wind_flow_en.png',
+  'fire_flow_img': '/assets/icons/fire_flow_en.png',
+  'haze_flow_img': '/assets/icons/haze_flow_en.png',
+  'volcano_flow_img': '/assets/icons/volcano_flow_en.png',
   'report': 'Add Report',
   'add_report': 'Report Flood',
   'add_eq_report': 'Report EarthQuake',
+  'add_haze_report': 'Report Haze',
+  'add_wind_report': 'Report Extreme Wind',
+  'add_volcano_report': 'Report Volcano',
+  'add_fire_report': 'Report Forest Fire',
   'search_ph': 'Search',
   'popup_text': 'Select Province to continue',
   'search_header': 'Select Region',
@@ -60,7 +68,46 @@ const en = {
       '4 Wheel Vehicle (Sedan)',
       '4 Wheel Vehicle (SUV)',
       'Large Vehicle (Truck)'
-    ]
+    ],
+    "visibilityKey": "Visibility:",
+    "visibilityValues": [
+      "Good",
+      "Moderate",
+      "Poor"
+    ],
+    'airQualityKey' : "Air Quality:",
+    "airQualityValues": [
+      "",
+      "Moderate",
+      "Poor",
+      "Severe",
+      "Hazardous"
+    ],
+    "impactKey": "Impact:",
+    "impactValues": [
+      "Low Disruption",
+      "Medium Disruption",
+      "High Disruption"
+    ],
+    "signsKey" : "Symptoms:",
+    "signsValues":[
+      "Significant Temperature Increases",
+      "Drought / Vegetation Death",
+      "Unusual Animal Behaviour",
+      "Frequent Earthquake Tremors",
+      "Frequent Rumbling Sounds"
+    ],
+    "peopleKey": "Number of people nearby:",
+    "evacuateKey": "Know where to evacuate:",
+    "evacuateVal": ["yes", "no"],
+    "peopleValues": [
+      "",
+      "< 5 people",
+      "5 - 50 people",
+      "> 50 people"
+    ],
+    "fireextentKey": "Fire Extent",
+    "fireextentUnit": "hectares"
   },
   'flood_info': {
     'title': 'Flood affected area',

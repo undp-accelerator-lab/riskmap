@@ -99,9 +99,7 @@ export class MapLayers {
     let reportData = feature.properties.report_data;
     switch (disasterType) {
     case 'flood':
-      reportData = reportData || {'flood_depth': 0};
-      let depth = reportData.flood_depth || 0;
-      level = this._getFloodSevearity(depth);
+      level = this.getDisasterSevearity(feature);
       return this.mapIcons.report_normal_with_url(disasterType, level);
     case 'prep':
       return this.mapIcons.report_normal(subType, level);
@@ -120,6 +118,7 @@ export class MapLayers {
     case 'wind':
     case 'volcano':
     case 'fire':
+      level = this.getDisasterSevearity(feature);
       return this.mapIcons.report_normal_with_url(disasterType, level);
     default:
       return this.mapIcons.report_normal(disasterType, level);
@@ -132,9 +131,7 @@ export class MapLayers {
     let reportData = feature.properties.report_data;
     switch (disasterType) {
     case 'flood':
-      reportData = reportData || {'flood_depth': 0};
-      let depth = reportData.flood_depth || 0;
-      level = this._getFloodSevearity(depth);
+      level = this.getDisasterSevearity(feature);
       return this.mapIcons.report_selected_with_url(disasterType, level);
     case 'prep':
       return this.mapIcons.report_selected_with_url(subType, level);
@@ -153,12 +150,13 @@ export class MapLayers {
     case 'wind':
     case 'volcano':
     case 'fire':
+      level = this.getDisasterSevearity(feature);
       return this.mapIcons.report_selected_with_url(disasterType, level);
     default:
       return this.mapIcons.report_selected_with_url(disasterType, level);
     }
   }
-  
+
 
   // Get icon for flood gauge
   gaugeIconUrl(level) {
@@ -552,6 +550,27 @@ export class MapLayers {
     };
   }
 
+  _getWindSevearity(impact) {
+    // eslint-disable-next-line default-case
+    switch (String(impact)) {
+    case '0': return 'normal';
+    case '1': return 'medium';
+    case '2': return 'high';
+    }
+  }
+
+  _getAQSevearity(aq) {
+    // eslint-disable-next-line default-case
+    switch (String(aq)) {
+    case '0': return 'low';
+    case '1': return 'low';
+    case '2': return 'normal';
+    case '3': return 'high';
+    case '4': return 'high';
+    }
+  }
+
+
   _getFloodSevearity(depth) {
     if (depth <= 70) {
       return  'low';
@@ -609,6 +628,14 @@ export class MapLayers {
         return this._getStructureFailureSevearity(avgStructureFailure);
       }
       break;
+    case 'wind':
+      let avgImpact = this.getAverageWindImpact(reportMarkers);
+      return this._getWindSevearity(avgImpact);
+    case 'haze':
+      let avgAirQuality = this.getAverageAirQuality(reportMarkers);
+      return this._getAQSevearity(avgAirQuality);
+    case 'fire':
+      return 'high';
     default:
       return 'low';
     }
@@ -629,7 +656,16 @@ export class MapLayers {
       if (subType === 'road') {
         reportData = reportData || {'accessabilityFailure': 0};
         let accessability = reportData.accessabilityFailure || 0;
-        level = this._getAccessabilitySevearity(accessability);
+        let accessabilityValue = 0;
+        switch (accessability) {
+        case 0: accessabilityValue = 0.5; break;
+        case 1: accessabilityValue = 1.0; break;
+        case 2: accessabilityValue = 1.4; break;
+        case 3: accessabilityValue = 1.8; break;
+        case 4: accessabilityValue = 2.2; break;
+        default: accessabilityValue = 0; break;
+        }
+        level = this._getAccessabilitySevearity(accessabilityValue);
       } else if (subType === 'structure') {
         reportData = reportData || {'structureFailure': 0};
         let structureFailure = reportData.structureFailure || 0;
@@ -637,9 +673,36 @@ export class MapLayers {
       }
       break;
     case 'haze':
+      switch (reportData.airQuality) {
+      case 0:
+        level = 'low';
+        break;
+      case 1:
+        level = 'low';
+        break;
+      case 2:
+        level = 'normal';
+        break;
+      case 3:
+        level = 'high';
+        break;
+      case 4:
+        level = 'high';
+        break;
+      default:
+        level = 'low';
+        break;
+      }
+      break;
     case 'wind':
+      reportData = reportData || {'impact': 0};
+      let impact = reportData.impact || 0;
+      level = this._getWindSevearity(impact);
+      break;
     case 'volcano':
+      break;
     case 'fire':
+      level = 'high';
       break;
     default:
       break;
@@ -685,6 +748,24 @@ export class MapLayers {
     //   depth += report.feature.properties.report_data['flood_depth'];
     // }
     return depth / reportMarkers.length;
+  }
+
+  getAverageAirQuality(reportMarkers) {
+    let aq = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0};
+    reportMarkers.forEach(function(report, index) {
+      const reportData = report.feature.properties.report_data || {'airQuality': 0};
+      aq[reportData['airQuality']] = aq[reportData['airQuality']] + 1;
+    });
+    return Object.keys(aq).reduce((a, b) => aq[a] > aq[b] ? a : b);
+  }
+
+  getAverageWindImpact(reportMarkers) {
+    let impact = {0: 0, 1: 0, 2: 0};
+    reportMarkers.forEach(function(report, index) {
+      const reportData = report.feature.properties.report_data || {'impact': 0};
+      impact[reportData['impact']] = impact[reportData['impact']] + 1;
+    });
+    return Object.keys(impact).reduce((a, b) => impact[a] > impact[b] ? a : b);
   }
 
   addFloodExtents(cityName, cityRegion, map, togglePane) {

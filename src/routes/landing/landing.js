@@ -34,7 +34,7 @@ export class Landing {
       '#wind': '/assets/icons/wind',
       '#haze': '/assets/icons/Add_Report_Icon_Haze'
     };
-   this.isFloatingMenuActive = false;
+    this.isFloatingMenuActive = false;
   }
 
   domouseout() {
