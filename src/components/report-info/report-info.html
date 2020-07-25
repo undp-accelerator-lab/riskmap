@@ -20,7 +20,7 @@
       <p show.bind="condition" class="textTitle">${locale.report_info.disturbance_key} ${condition}</p>
       <p show.bind="airQuality >= 1" class="textTitle"><span class='textKey'>${locale.report_info.airQualityKey}</span><br><span css="color: ${airQualityColors[airQuality]}">${locale.report_info.airQualityValues[airQuality]}</span></p>
       <p show.bind="visibility >= 0" class="textTitle"><span class='textKey'>${locale.report_info.visibilityKey}</span><br> ${locale.report_info.visibilityValues[visibility]}</p>
-      <p show.bind="fireextent" class="textTitle"><span class='textKey'>${locale.report_info.fireextentKey}</span><br> ${fireextent}</p>
+      <p show.bind="fireextent" class="textTitle"><span class='textKey'>${locale.report_info.fireextentKey}</span><br> <span class.bind=sevearity> ${fireextent} </span> </p>
       <p show.bind="impact >= 0" class="textTitle"><span class='textKey'>${locale.report_info.impactKey}</span><br> <span css="color: ${impactColors[impact]}">${locale.report_info.impactValues[impact]}</span></p>
       <p show.bind="volcanicSigns" class="textTitle"><span class='textKey'>${locale.report_info.signsKey}</span><br> ${volcanicSigns}</p>
       <p show.bind="noOfPeople" class="textTitle"><span class='textKey'>${locale.report_info.peopleKey}</span><br> ${locale.report_info.peopleValues[noOfPeople]}</p>

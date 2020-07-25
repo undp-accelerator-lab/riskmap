@@ -104,15 +104,7 @@ export class MapLayers {
     case 'prep':
       return this.mapIcons.report_normal(subType, level);
     case 'earthquake':
-      if (subType === 'road') {
-        reportData = reportData || {'accessabilityFailure': 0};
-        let accessability = reportData.accessabilityFailure || 0;
-        level = this._getAccessabilitySevearity(accessability);
-      } else if (subType === 'structure') {
-        reportData = reportData || {'structureFailure': 0};
-        let structureFailure = reportData.structureFailure || 0;
-        level = this._getStructureFailureSevearity(structureFailure);
-      }
+      level = this.getDisasterSevearity(feature);
       return this.mapIcons.report_normal_with_url(subType, level);
     case 'haze':
     case 'wind':
@@ -128,7 +120,6 @@ export class MapLayers {
     let disasterType = feature.properties.disaster_type;
     let subType = feature.properties.report_data.report_type || disasterType;
     let level = 'low';
-    let reportData = feature.properties.report_data;
     switch (disasterType) {
     case 'flood':
       level = this.getDisasterSevearity(feature);
@@ -136,15 +127,7 @@ export class MapLayers {
     case 'prep':
       return this.mapIcons.report_selected_with_url(subType, level);
     case 'earthquake':
-      if (subType === 'road') {
-        reportData = reportData || {'accessabilityFailure': 0};
-        let accessability = reportData.accessabilityFailure || 0;
-        level = this._getAccessabilitySevearity(accessability);
-      } else if (subType === 'structure') {
-        reportData = reportData || {'structureFailure': 0};
-        let structureFailure = reportData.structureFailure || 0;
-        level = this._getStructureFailureSevearity(structureFailure);
-      }
+      level = this.getDisasterSevearity(feature);
       return this.mapIcons.report_selected_with_url(subType, level);
     case 'haze':
     case 'wind':
