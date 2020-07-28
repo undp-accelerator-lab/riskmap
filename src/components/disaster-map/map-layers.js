@@ -94,18 +94,18 @@ export class MapLayers {
   getReportIcon(feature) {
     console.log(feature);
     let disasterType = feature.properties.disaster_type;
-    let subType = feature.properties.report_data.report_type;
     let level = 'low';
-    let reportData = feature.properties.report_data;
     switch (disasterType) {
     case 'flood':
       level = this.getDisasterSevearity(feature);
       return this.mapIcons.report_normal_with_url(disasterType, level);
     case 'prep':
+      let subType = feature.properties.report_data.report_type;
       return this.mapIcons.report_normal(subType, level);
     case 'earthquake':
+      let eqSubType = feature.properties.report_data.report_type;
       level = this.getDisasterSevearity(feature);
-      return this.mapIcons.report_normal_with_url(subType, level);
+      return this.mapIcons.report_normal_with_url(eqSubType, level);
     case 'haze':
     case 'wind':
     case 'volcano':
