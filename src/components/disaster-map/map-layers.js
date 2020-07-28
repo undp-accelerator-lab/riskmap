@@ -639,16 +639,7 @@ export class MapLayers {
       if (subType === 'road') {
         reportData = reportData || {'accessabilityFailure': 0};
         let accessability = reportData.accessabilityFailure || 0;
-        let accessabilityValue = 0;
-        switch (accessability) {
-        case 0: accessabilityValue = 0.5; break;
-        case 1: accessabilityValue = 1.0; break;
-        case 2: accessabilityValue = 1.4; break;
-        case 3: accessabilityValue = 1.8; break;
-        case 4: accessabilityValue = 2.2; break;
-        default: accessabilityValue = 0; break;
-        }
-        level = this._getAccessabilitySevearity(accessabilityValue);
+        level = this._getAccessabilitySevearity(accessability);
       } else if (subType === 'structure') {
         reportData = reportData || {'structureFailure': 0};
         let structureFailure = reportData.structureFailure || 0;
