@@ -474,13 +474,13 @@ export class MapLayers {
             // console.log('Could not load map layer');
             resolve(data);
           } else {
-            this.addCluster(data, cityName, map, togglePane, 'earthquake', 'structure');
-            this.addCluster(data, cityName, map, togglePane, 'earthquake', 'road');
             this.addCluster(data, cityName, map, togglePane, 'flood');
             this.addCluster(data, cityName, map, togglePane, 'fire');
             this.addCluster(data, cityName, map, togglePane, 'haze');
             this.addCluster(data, cityName, map, togglePane, 'volcano');
             this.addCluster(data, cityName, map, togglePane, 'wind');
+            this.addCluster(data, cityName, map, togglePane, 'earthquake', 'structure');
+            this.addCluster(data, cityName, map, togglePane, 'earthquake', 'road');
             resolve(data);
           }
         }).catch(() => reject(null));
@@ -493,7 +493,8 @@ export class MapLayers {
     self.reports = L.geoJSON(data, {
       filter: function(feature, layer) {
         if (reportType) {
-          return feature.properties.report_data.report_type === reportType;
+          let reportData = feature.properties.report_data || {'report_type': ''};
+          return reportData.report_type === reportType;
         }
         return feature.properties.disaster_type === disaster;
       },
