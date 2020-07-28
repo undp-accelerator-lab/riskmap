@@ -627,7 +627,6 @@ export class MapLayers {
 
   getDisasterSevearity(feature) {
     let disasterType = feature.properties.disaster_type;
-    let subType = feature.properties.report_data.report_type;
     let level = 'low';
     let reportData = feature.properties.report_data;
     switch (disasterType) {
@@ -637,6 +636,7 @@ export class MapLayers {
       level = this._getFloodSevearity(depth);
       break;
     case 'earthquake':
+      let subType = feature.properties.report_data.report_type;
       if (subType === 'road') {
         reportData = reportData || {'accessabilityFailure': 0};
         let accessability = reportData.accessabilityFailure || 0;
