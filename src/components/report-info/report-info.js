@@ -167,6 +167,16 @@ export class ReportInfo {
   //start-aurelia-decorators
   @computedFrom('popupcontent')
   //end-aurelia-decorators
+  get accessabilitySevearity() { // To show different sevearity color and default image
+    if (this.popupcontent.sevearity) {
+      return this.popupcontent.sevearity;
+    }
+    return 'low';
+  }
+
+  //start-aurelia-decorators
+  @computedFrom('popupcontent')
+  //end-aurelia-decorators
   get disasterType() {
     if (this.popupcontent.report_data.report_type) {
       return this.popupcontent.report_data.report_type;

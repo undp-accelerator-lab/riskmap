@@ -568,9 +568,9 @@ export class MapLayers {
     // eslint-disable-next-line default-case
     switch (accessability) {
     case 0: return 'high';
-    case 1: return 'normal';
-    case 2: return 'medium';
-    case 3: return 'medium';
+    case 1: return 'medium';
+    case 2: return 'normal';
+    case 3: return 'normal';
     case 4: return 'low';
     }
   }
@@ -695,10 +695,10 @@ export class MapLayers {
 
   getAverageAccessability(reportMarkers) {
     let totalAccessability = 0;
-    let accessability = 0;
     reportMarkers.forEach(function(report, index) {
+      let accessability = 0;
       const reportData = report.feature.properties.report_data || {'accessabilityFailure': 0};
-      accessability += reportData.accessabilityFailure || 0;
+      accessability = reportData.accessabilityFailure || 0;
       switch (accessability) {
       case 0: totalAccessability += 0.5; break;
       case 1: totalAccessability += 1.0; break;

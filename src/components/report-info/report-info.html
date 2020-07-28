@@ -16,7 +16,7 @@
     <div id="bodyWrapper">
       <p show.bind="title" class="textTitle">${title}</p>
       <p show.bind="height" class="textTitle">${locale.report_info.water_depth} <span class.bind=sevearity> ${height} ${config.height_units}</span></p>
-      <p show.bind="accessabilityFailure" class="textTitle">${locale.report_info.access_key} <span class.bind=sevearity>${accessabilityFailure} <span> </p>
+      <p show.bind="accessabilityFailure" class="textTitle">${locale.report_info.access_key} <span class.bind=accessabilitySevearity>${accessabilityFailure} <span> </p>
       <p show.bind="condition" class="textTitle">${locale.report_info.disturbance_key} ${condition}</p>
       <p show.bind="airQuality >= 1" class="textTitle"><span class='textKey'>${locale.report_info.airQualityKey}</span><br><span css="color: ${airQualityColors[airQuality]}">${locale.report_info.airQualityValues[airQuality]}</span></p>
       <p show.bind="visibility >= 0" class="textTitle"><span class='textKey'>${locale.report_info.visibilityKey}</span><br> ${locale.report_info.visibilityValues[visibility]}</p>
