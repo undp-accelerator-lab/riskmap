@@ -13,6 +13,7 @@ export default gulp.series(
   readProjectConfiguration,
   fetchComponents,
   processLocales,
+  processServerKey,
   gulp.parallel(
     transpile,
     processMarkup,
