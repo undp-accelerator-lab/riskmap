@@ -6,7 +6,9 @@ let replace = require('gulp-replace');
 
 export default function processServerKey() {
   let env = CLIOptions.getFlagValue('env', 'dev');
+  console.log(CLIOptions);
   let serverKey = CLIOptions.getFlagValue('data_server_key', '{data_server_key}');
+  console.log(serverKey);
   if (!serverKey) serverKey = '{data_server_key}';
   return gulp.src(`aurelia_project/environments/${env}.js`)
     .pipe(changedInPlace({ firstPass: true }))
