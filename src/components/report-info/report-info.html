@@ -6,7 +6,7 @@
     </div>
     <div class="image" id="noPhoto" show.bind="!imageurl">
       <i show.bind="height" class="icon-flood-img phFlood" ></i>
-      <img show.bind="condition || structureFailure" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+sevearity+".png"' class="phImage"/>
+      <img show.bind="(condition || structureFailure) && disasterType !== 'flood'" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+sevearity+".png"' class="phImage"/>
     </div>
   </div>
 
