@@ -21,7 +21,7 @@ export class MapLayers {
     this.mapIcons = {
       report_normal: (type, level) => L.divIcon({
         iconSize: [30, 30],
-        html: '<i class="icon-map-bg bg-circle ' + level + '"><i class="icon-map-' + type + ' report-icon">'
+        html: `<img src="assets/icons/${type}_${level}.svg" />`
         //html: '<i class="icon-map-' + type + ' report-icon ' + type + '"></i>'
       }),
       report_normal_with_url: (type, level) => L.icon({
@@ -54,7 +54,7 @@ export class MapLayers {
       }),
       disaster_cluster: (disaster, level) => L.divIcon({
         iconSize: [35, 35],
-        html: '<i class="icon-map-bg bg-cluster cluster ' + level + '"><i class="icon-map-' + disaster + ' report-cluster">'
+        html: `<img src="assets/icons/${disaster}_${level}.svg" />`
       }),
       disaster_cluster_with_url: (disaster, level) => L.icon({
         iconUrl: 'assets/icons/' + disaster + '_' + level + '.svg',
@@ -157,7 +157,7 @@ export class MapLayers {
       return this.mapIcons.report_selected_with_url(disasterType, level);
     }
   }
-  
+
 
   // Get icon for flood gauge
   gaugeIconUrl(level) {
