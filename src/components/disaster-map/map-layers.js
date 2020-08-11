@@ -528,7 +528,8 @@ export class MapLayers {
       // cluster.getAllChildMarkers()[0].feature.properties.report_data['flood_depth']
       let children = cluster.getAllChildMarkers();
       const type = children[0].feature.properties.disaster_type;
-      const subType = children[0].feature.properties.report_data.report_type;
+      const reportData = children[0].feature.properties.report_data || {'report_type': type};
+      const subType = reportData.report_type || type;
       const sevearity = self.getAvgDisasterSevearity(type, subType, children);
       return self.getDisasterClusterIcon(type, subType, sevearity);
     };
