@@ -118,7 +118,8 @@ export class MapLayers {
   }
   getSelectedReportIcon(feature) {
     let disasterType = feature.properties.disaster_type;
-    let subType = feature.properties.report_data.report_type || disasterType;
+    const reportData = feature.properties.report_data || {'report_type': disasterType};
+    let subType = reportData.report_type || disasterType;
     let level = 'low';
     switch (disasterType) {
     case 'flood':
