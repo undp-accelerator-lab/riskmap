@@ -8,11 +8,16 @@ export default {
   ],
   map: {
     'instance_regions': {
-      'manila': {
+      'QuezonCity': {
         'region': 'PH-QC',
         'bounds': { 'sw': [14.027, 120.015], 'ne': [15.303, 121.677] },
         'center': [14.49, 120.57]
       },
+      'Pampanga': {
+        'region': 'PH-PG',
+        'bounds': { 'sw': [14.027, 120.015], 'ne': [15.303, 121.677] },
+        'center': [14.49, 120.57]
+      }
     },
     'default_region': {
       'region': 'manila',
@@ -22,6 +27,7 @@ export default {
       },
       'center': [14.49, 120.57]
     },
+    'initial_load': ['QuezonCity', 'Pampanga'],
     'sub_regions': {},
     'region_center': [14.49, 120.57],
     'start_city_center': [14.49, 120.57],

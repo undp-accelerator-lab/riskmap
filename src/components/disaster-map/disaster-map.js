@@ -234,7 +234,7 @@ export class DisasterMap {
       position: 'bottomleft'
     }).addTo(self.map);
 
-    let mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
+    // let mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
     // let logoContainer = document.getElementById("logoContainer");
 
     // mapControlsContainer.appendChild(logoContainer);
@@ -280,6 +280,6 @@ export class DisasterMap {
       }
     };
 
-    this.viewRegionReports(dep.map.default_region.region, false);
+    dep.map.initial_load.forEach(function(region) {self.viewRegionReports(region, false);});
   }
 }
