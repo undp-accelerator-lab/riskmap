@@ -9,7 +9,7 @@ export default {
   map: {
     'instance_regions': {
       'manila': {
-        'region': 'ID-BA',
+        'region': 'PH-QC',
         'bounds': { 'sw': [14.027, 120.015], 'ne': [15.303, 121.677] },
         'center': [14.49, 120.57]
       },
