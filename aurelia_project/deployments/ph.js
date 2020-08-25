@@ -28,7 +28,10 @@ export default {
       'center': [14.49, 120.57]
     },
     'initial_load': ['QuezonCity', 'Pampanga'],
-    'sub_regions': {},
+    'sub_regions': {
+      'Pampanga': { 'province': 'Pampanga', 'center': [14.49, 120.57] },
+      'QuezonCity': { 'province': 'QuezonCity', 'center': [14.49, 120.57] }
+    },
     'region_center': [14.49, 120.57],
     'start_city_center': [14.49, 120.57],
     'starting_zoom': 8.5,
