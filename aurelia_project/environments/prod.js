@@ -36,7 +36,7 @@ export default {
   mapakalamidad: {
     title: 'Mapakalamidad.ph',
     report_timeperiod: 3600,
-    default_language: 'id',
+    default_language: 'en',
     tile_layer: 'https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ',
     data_server: 'https://data.mapakalamidad.ph/',
     data_server_key: '{data_server_key}',
