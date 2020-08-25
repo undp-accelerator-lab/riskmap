@@ -70,45 +70,45 @@ const id = {
       'Roboh Sebagian',
       'Roboh Total'
     ],
-    "visibilityKey": "Jarak Pandang:",
-    "visibilityValues": [
-      "Baik",
-      "Sedang/Cukup",
-      "Buruk"
+    'visibilityKey': 'Jarak Pandang:',
+    'visibilityValues': [
+      'Baik',
+      'Sedang/Cukup',
+      'Buruk'
     ],
-    'airQualityKey' : 'Kualitas Udara:',
-    "airQualityValues": [
-      "",
-      "Sedang / Cukup",
-      "Buruk",
-      "Parah",
-      "Berbahaya"
+    'airQualityKey': 'Kualitas Udara:',
+    'airQualityValues': [
+      '',
+      'Sedang / Cukup',
+      'Buruk',
+      'Parah',
+      'Berbahaya'
     ],
-    "impactKey" : "Dampak:",
-    "impactValues":[
-      "Ringan",
-      "Sedang",
-      "Berat"
+    'impactKey': 'Dampak:',
+    'impactValues': [
+      'Ringan',
+      'Sedang',
+      'Berat'
     ],
-    "signsKey" : "Hasil Pengamatan:",
-    "signsValues":[
-      "Kenaikan Suhu Signifikan",
-      "Kekeringan/Kematian Tumbuh-tumbuhan",
-      "Perilaku Hewan yang Tidak Biasa",
-      "Getaran Gempabumi yang Sering",
-      "Suara Gemuruh yang Sering"
+    'signsKey': 'Hasil Pengamatan:',
+    'signsValues': [
+      'Kenaikan Suhu Signifikan',
+      'Kekeringan/Kematian Tumbuh-tumbuhan',
+      'Perilaku Hewan yang Tidak Biasa',
+      'Getaran Gempabumi yang Sering',
+      'Suara Gemuruh yang Sering'
     ],
-    "peopleKey": "Jumlah orang di sekitar:",
-    "evacuateKey": "Tahu arah Evakuasi:",
-    "evacuateVal": ["ya", "tidak"],
-    "peopleValues": [
-      "",
-      "< 5 orang",
-      "5 - 50 orang",
-      "> 50 orang"
+    'peopleKey': 'Jumlah orang di sekitar:',
+    'evacuateKey': 'Tahu arah Evakuasi:',
+    'evacuateVal': ['ya', 'tidak'],
+    'peopleValues': [
+      '',
+      '< 5 orang',
+      '5 - 50 orang',
+      '> 50 orang'
     ],
-    "fireextentKey": "Perkiraan Kebakaran",
-    "fireextentUnit": "hektar"
+    'fireextentKey': 'Perkiraan Kebakaran',
+    'fireextentUnit': 'hektar'
   },
   'flood_info': {
     'title': 'Area terdampak banjir',
