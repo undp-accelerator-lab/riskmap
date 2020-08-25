@@ -235,9 +235,9 @@ export class DisasterMap {
     }).addTo(self.map);
 
     let mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
-    let logoContainer = document.getElementById("logoContainer");
+    // let logoContainer = document.getElementById("logoContainer");
 
-    mapControlsContainer.appendChild(logoContainer);
+    // mapControlsContainer.appendChild(logoContainer);
 
     // Find user location & store in background
     self.map.locate({
@@ -280,6 +280,6 @@ export class DisasterMap {
       }
     };
 
-    this.viewRegionReports(dep.map.default_region.region, true);
+    this.viewRegionReports(dep.map.default_region.region, false);
   }
 }
