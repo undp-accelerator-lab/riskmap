@@ -2,9 +2,17 @@ const id = {
   'flood_flow_img': '/assets/icons/flood_flow_bi.png',
   'close': 'tutup',
   'eq_flow_img': '/assets/icons/eq_flow_bi.png',
+  'wind_flow_img': '/assets/icons/wind_flow_bi.png',
+  'fire_flow_img': '/assets/icons/fire_flow_bi.png',
+  'haze_flow_img': '/assets/icons/haze_flow_bi.png',
+  'volcano_flow_img': '/assets/icons/volcano_flow_bi.png',
   'report': 'Laporkan',
   'add_report': 'Laporkan banjir',
   'add_eq_report': 'Laporkan gempa',
+  'add_haze_report': 'Laporkan Kabut Asap',
+  'add_wind_report': 'Laporkan Angin Kencang',
+  'add_volcano_report': 'Laporkan Gunung Api',
+  'add_fire_report': 'Laporkan Kebakaran Hutan',
   'search_ph': 'Cari',
   'popup_text': 'Pilih Provinsi untuk melanjutkan',
   'search_header': 'Pilih Wilayah',
@@ -16,7 +24,7 @@ const id = {
   'volcano': 'Gunung Api',
   'comming_soon': 'Segera Hadir',
   'coming_soon_2020': 'Segera Hadir!',
-  'reports_stats': 'Terdapat {reportsplaceholder} laporan dalam {hoursplaceholder} jam terakhir di {provinceplaceholder}',
+  'reports_stats': '{reportsplaceholder} laporan aktif di {provinceplaceholder}',
   'prep_menu': {
     'btn_names': {
       'drain': 'Blocked Drains',
@@ -36,9 +44,9 @@ const id = {
   },
   'report_info': {
     'share_msg': 'Laporan%20banjir%20pada%20petabencana%2Eid',
-    'water_depth': 'Tinggi',
+    'water_depth': 'Tinggi Banjir:',
     'disturbance_key': 'Rusak:',
-    'access_key': 'Kendaraan:',
+    'access_key': 'Akses Jalan:',
     'structure_key': 'Kerusakan Bangunan:',
     'source': 'Sumber',
     'flagReport_Title': 'Tandai ini sebagai laporan tidak benar',
@@ -61,7 +69,46 @@ const id = {
       'Retak',
       'Roboh Sebagian',
       'Roboh Total'
-    ]
+    ],
+    "visibilityKey": "Jarak Pandang:",
+    "visibilityValues": [
+      "Baik",
+      "Sedang/Cukup",
+      "Buruk"
+    ],
+    'airQualityKey' : 'Kualitas Udara:',
+    "airQualityValues": [
+      "",
+      "Sedang / Cukup",
+      "Buruk",
+      "Parah",
+      "Berbahaya"
+    ],
+    "impactKey" : "Dampak:",
+    "impactValues":[
+      "Ringan",
+      "Sedang",
+      "Berat"
+    ],
+    "signsKey" : "Hasil Pengamatan:",
+    "signsValues":[
+      "Kenaikan Suhu Signifikan",
+      "Kekeringan/Kematian Tumbuh-tumbuhan",
+      "Perilaku Hewan yang Tidak Biasa",
+      "Getaran Gempabumi yang Sering",
+      "Suara Gemuruh yang Sering"
+    ],
+    "peopleKey": "Jumlah orang di sekitar:",
+    "evacuateKey": "Tahu arah Evakuasi:",
+    "evacuateVal": ["ya", "tidak"],
+    "peopleValues": [
+      "",
+      "< 5 orang",
+      "5 - 50 orang",
+      "> 50 orang"
+    ],
+    "fireextentKey": "Perkiraan Kebakaran",
+    "fireextentUnit": "hektar"
   },
   'flood_info': {
     'title': 'Area terdampak banjir',

@@ -36,90 +36,96 @@
     <div id='black_bg'></div>
     <div>
     <nav id="reportButton" class="float-action-button" >
-      <div class='floating-buttons-wrapper' id='floating_buttons_wrapper'>
-  <div class="buttons" title="${webMenu.locale.flood}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('flood')">
-    <img id="flood" style="width:60px" src="/assets/icons/Add_Report_Icon_Flood.png">
-    <div class="row" id="floodLink">
-      <table class="table table-borderless">
-        <tr class="row report">
-          <img style="width: 250px;height: 200px;" src=${webMenu.locale.flood_flow_img}>
-          <div class="reportBtn">
-            <input  type="button" class="btn buttonReprt" value="${webMenu.locale.add_report}" click.delegate="reportDisaster('flood')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f">
-          </div>
-        </tr>
-      </table>
-    </div>
-  </div>
-  <div  class="buttons" title="${webMenu.locale.eq}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('earthquake')">
-    <img id="earthquake" style="width:60px" src="/assets/icons/Add_Report_Icon_Earthquake.png">
-    <div class="row" id="earthquakeLink">
-      <table class="table table-borderless">
-        <tr class="row report">
-          <img style="width: 250px;" src=${webMenu.locale.eq_flow_img}>
-          <div class="reportEarthquakeBtn">
-            <input type="button" class="btn buttonReprt" value="${webMenu.locale.add_eq_report}" click.delegate="reportDisaster('earthquake')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
-          </div>
-        </tr>
-      </table>
-    </div>
-  </div>
-  <div  class="buttons" title="${webMenu.locale.fire}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('fire')">
-    <img id="fire" style="width:60px" src="/assets/icons/Add_Report_Icon_Fire.png">
-    <div class="row" id="fireLink">
-      <table class="table table-borderless">
-        <tr class="row report">
-          <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>
-          <div class="reportFireBtn">
-            <input type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
-          </div>
-        </tr>
-      </table>
-    </div>
+      <div class='hover-field'></div>
+      <div
+        class='floating-buttons-wrapper'
+        id='floating_buttons_wrapper'
+        mouseover.delegate="domouseover()"
+        mouseout.delegate="domouseout()">
+
+        <div class="buttons main-button" title="${webMenu.locale.report}" data-toggle="tooltip" data-placement="left">
+              <img style="width:60px" src="/assets/icons/Add_Report_Icon_Blue.png">
         </div>
-  <div  class="buttons" title="${webMenu.locale.haze}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('haze')">
-    <img id="haze" style="width:60px" src="/assets/icons/Add_Report_Icon_Haze.png">
-    <div class="row" id="hazeLink">
-      <table class="table table-borderless">
-        <tr class="row report">
-          <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>
-          <div class="reportHazeBtn">
-            <input type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
+        <div class="buttons" title="${webMenu.locale.flood}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('flood')">
+          <img id="flood" style="width:60px" src="/assets/icons/Add_Report_Icon_Flood.png">
+          <div class="row" id="floodLink">
+            <table class="table table-borderless">
+              <tr class="row report">
+                <img style="width: 250px;height: 200px;" src=${webMenu.locale.flood_flow_img}>
+                <div class="reportBtn">
+                  <input  type="button" class="btn buttonReprt" value="${webMenu.locale.add_report}" click.delegate="reportDisaster('flood')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f">
+                </div>
+              </tr>
+            </table>
           </div>
-        </tr>
-      </table>
-    </div>
         </div>
-  <div  class="buttons" title="${webMenu.locale.wind}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('wind')">
-    <img id="wind" id="icon" style="width:60px" src="/assets/icons/wind.svg">
-    <div class="row" id="windLink">
-      <table class="table table-borderless">
-        <tr class="row report">
-          <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>
-          <div class="reportWindBtn">
-            <input type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
+        <div  class="buttons" title="${webMenu.locale.eq}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('earthquake')">
+          <img id="earthquake" style="width:60px" src="/assets/icons/Add_Report_Icon_Earthquake.png">
+          <div class="row" id="earthquakeLink">
+            <table class="table table-borderless">
+              <tr class="row report">
+                <img style="width: 250px;" src=${webMenu.locale.eq_flow_img}>
+                <div class="reportEarthquakeBtn">
+                  <input type="button" class="btn buttonReprt" value="${webMenu.locale.add_eq_report}" click.delegate="reportDisaster('earthquake')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
+                </div>
+              </tr>
+            </table>
           </div>
-        </tr>
-      </table>
-    </div>
-  </div>
-  <div  class="buttons" title="${webMenu.locale.volcano}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('volcano')">
-    <img id="volcano" style="width:60px" src="/assets/icons/Add_Report_Icon_Volcano.png">
-    <div class="row reportLink" id="volcanoLink">
-      <table class="table table-borderless">
-        <tr class="row report">
-          <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>
-          <div class="volcanoBtn">
-            <input type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
+        </div>
+        <div class="buttons" title="${webMenu.locale.fire}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('fire')">
+          <img id="fire" style="width:60px" src="/assets/icons/Add_Report_Icon_Fire.png">
+          <div class="row" id="fireLink">
+            <table class="table table-borderless">
+              <tr class="row report">
+                <img style="width: 310px;" src=${webMenu.locale.fire_flow_img}>
+                <div class="reportBtn reportFireBtn">
+                  <input type="button" class="btn buttonReprt" value="${webMenu.locale.add_fire_report}" click.delegate="reportDisaster('fire')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
+                </div>
+              </tr>
+            </table>
           </div>
-        </tr>
-      </table>
-    </div>
-  </div>
-  <div class="buttons main-button" title="${webMenu.locale.report}" data-toggle="tooltip" data-placement="left" style="transform: translateY(-351px) !important;">
-        <img style="width:60px" src="/assets/icons/Add_Report_Icon_Blue.png">
-  </div>
-  </div>
-</nav>
+        </div>
+        <div  class="buttons" title="${webMenu.locale.haze}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('haze')">
+          <img id="haze" style="width:60px" src="/assets/icons/Add_Report_Icon_Haze.png">
+          <div class="row" id="hazeLink">
+            <table class="table table-borderless">
+              <tr class="row report">
+                <img style="width: 250px;" src=${webMenu.locale.haze_flow_img}>
+                <div class=" reportBtn">
+                  <input type="button" class="btn buttonReprt" value="${webMenu.locale.add_haze_report}" click.delegate="reportDisaster('haze')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
+                </div>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div  class="buttons" title="${webMenu.locale.wind}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('wind')">
+          <img id="wind" id="icon" style="width:60px" src="/assets/icons/wind.svg">
+          <div class="row" id="windLink">
+            <table class="table table-borderless">
+              <tr class="row report">
+                <img style="width: 295px;" src=${webMenu.locale.wind_flow_img}>
+                <div class="reportBtn reportWindBtn">
+                  <input type="button" class="btn buttonReprt" value="${webMenu.locale.add_wind_report}" click.delegate="reportDisaster('wind')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
+                </div>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div  class="buttons" title="${webMenu.locale.volcano}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('volcano')">
+          <img id="volcano" style="width:60px" src="/assets/icons/Add_Report_Icon_Volcano.png">
+          <div class="row reportLink" id="volcanoLink">
+            <table class="table table-borderless">
+              <tr class="row report">
+                <img style="width: 250px;" src=${webMenu.locale.volcano_flow_img}>
+                <div class="reportBtn volcanoBtn">
+                  <input type="button" class="btn buttonReprt" value="${webMenu.locale.add_volcano_report}" click.delegate="reportDisaster('volcano')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
+                </div>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </nav>
 </div>
 
     <screen-popup
