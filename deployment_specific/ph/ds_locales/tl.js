@@ -146,33 +146,33 @@ const id = {
     'twitter': {
       'title': 'Mag-ulat gamit ang Twitter',
       'steps': [
-        'Twit @petabencana dengan salah satu hashtag berikut:<ul><li>#banjir</li><li>#gempa</li><li>#kebakaranhutan</li><li>#kabutasap</li><li>#gunungapi</li></ul>',
-        '@petabencana akan mengirimkan tautan untuk melaporkan bencana',
-        ' Buka tautan tersebut dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi',
-        '@petabencana akan mengirim balasan twit dengan tautan yang akan mengarahkan ke laporan Anda',
-        'Cek laman PetaBencana.id untuk melihat informasi bencana terkini'
+        'I-tweet ang @mapakalamidad gamit ang #baha',
+        'Ang @mapakalamidad ay magpapadala sayo ng isang link para maipasa mo ang iyong ulat',
+        'Buksan ang link at sundin ang mga instruksyon para mailagay ang lokasyon, larawan at deskripsyon.',
+        'Ang @mapakalamidad ay tutugon sayo kasama ang link para sa iyong ulat.',
+        'Puntahan ang MapaKalamidad.ph para sa napapanahong impormasyon tungkol sa kalamidad.'
       ]
     },
     'telegram': {
       'title': 'Mag-ulat gamit ang Telegram',
       'steps': [
-        'Cari @bencanabot',
-        'Klik “/mulai” dan pilih bencana yang ingin Anda laporkan',
-        '@bencanabot akan mengirimkan tautan untuk melaporkan bencana',
-        'Buka tautan tersebut dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi',
-        '@bencanabot akan mengirim balasan dengan tautan yang akan mengarahkan ke laporan Anda',
-        'Cek laman PetaBencana.id untuk melihat informasi bencana terkini'
+        'Hanapin ang @kalamidadbot',
+        'Pindutin ang “Get Started” at piliin ang kalamidad na gusto mong i-ulat',
+        'Ang @kalamidadbot ay magpapadala sayo ng isang link para maipasa mo ang iyong ulat',
+        'Buksan ang link at sundin ang mga instruksyon para mailagay ang lokasyon, larawan at deskripsyon.',
+        'Ang @kalamidadbot ay tutugon sayo kasama ang link para sa iyong ulat.',
+        'Puntahan ang MapaKalamidad.ph para sa napapanahong impormasyon tungkol sa kalamidad.'
       ]
     },
     'facebook': {
       'title': 'Mag-ulat gamit ang Facebook',
       'steps': [
-        'Cari “PetaBencana.id” di Facebook Massenger',
-        'Klik “Get Started” dan pilih bencana yang ingin Anda laporkan',
-        'PetaBencana.id akan mengirimkan tautan untuk melaporkan bencana',
-        'Buka tautan tersebut dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi',
-        'PetaBencana.id akan mengirim balasan dengan tautan yang akan mengarahkan ke laporan Anda',
-        'Cek laman PetaBencana.id untuk melihat informasi bencana terkini'
+        'Hanapin ang @mapakalamidad sa Facebook Messenger',
+        'Pindutin ang “Get Started” at piliin ang kalamidad na gusto mong i-ulat',
+        'Ang @mapakalamidad ay magpapadala sayo ng isang link para maipasa mo ang iyong ulat',
+        'Buksan ang link at sundin ang mga instruksyon para mailagay ang lokasyon, larawan at deskripsyon.',
+        'Ang @mapakalamidad ay tutugon sayo kasama ang link para sa iyong ulat.',
+        'Puntahan ang MapaKalamidad.ph para sa napapanahong impormasyon tungkol sa kalamidad.'
       ]
     },
     'web': {
@@ -186,22 +186,22 @@ const id = {
     }
   },
   'info_content': {
-    'intro': 'PetaBencana.id memanfaatkan penggunaan media sosial dalam situasi darurat untuk mengumpulkan, menyortir, dan menampilkan informasi risiko secara waktu-nyata (real-time).',
+    'intro': 'Ang MapaKalamidad.ph ay gumagamit ng social media sa panahon ng emerhensiya o delubyo upang magtipon, mag-ayos, at magbigay ng impormasyon tungkol sa mga posibleng panganib.',
     'infoLink': '<a href="https://info.petabencana.id/" target="_blank">Info lebih lanjut, kunjungi Yayasan Peta Bencana</a>',
-    'p1': 'Dijalankan oleh <a href="https://info.petabencana.id/" target="_blank"> Yayasan Peta Bencana</a>, sebagai platform yang gratis dan transparan untuk respon darurat dan manajemen bencana di kota-kota besar di Asia Tenggara dan Asia Selatan. Platform ini dapat terwujud melalui kolaborasi dengan beberapa mitra:',
+    'p1': 'Pinapatakbo ng <a href="https://info.petabencana.id/" target="_blank"> Yayasan Peta Bencana</a>, bilang isang libre at nanganganinag na plataporma para sa agarang tugon at pamamahala ng kalamidad sa mga megacities sa Timog at Timog-silangang Asya, ang plataporma ay ginawa posible sa pamamagitan ng pakikipagtulungan sa ilang mga kasosyo:',
     'p2': '',
-    'p3': 'PetaBencana.id mengumpulkan, menyortir, dan “memvisualisasikan” data menggunakan CogniCity Open Source Software - sebuah platform untuk manajemen kebencanaan - untuk mengubah kicauan di media sosial dan digital menjadi informasi penting bagi warga, komunitas, dan instansi pemerintah. Platform ini menggunakan paradigma “manusia sebagai sensor terbaik”, di mana laporan terkonfirmasi dikumpulkan secara langsung dari pengguna di lapangan, dengan metode yang memungkinkan pengolahan data yang cepat dengan biaya minimum. Kerangka kerja ini menghasilkan data real-time dan akurat, yang langsung tersedia untuk pengguna dan petugas darurat berwenang.',
+    'p3': 'Ang MapaKalamidad.ph ay nagtitipon, nag-aayos, at nagpapakita ng datos gamit ang CogniCity Open Source Software - ang isang antas ng negosyo para sa agarang tugon at pamamahala ng kalamidad-upang baguhin ang ingay ng panlipunan at digital na media sa kritikal na impormasyon para sa mga residente, mga komunidad, at mga ahensya ng gobyerno. Ang plataporma ay isinasatupad ang sabihang  "people are the best sensors" kung saan ang  pinagtibay ulat ay kinokolekta direkta mula sa mga gumagamit sa kalye upang iwasan ang mga hindi mabisang pamamaraan ng pagkolekta at pag proseso ng datos. Ang framework na ito ay lumilikha ng tumpak at real-time na datos na ginawa para sa mga gumagamit, lalo na sa mga first-responders.',
     'partners': {
-      'funding': 'Mitra Donor',
-      'implementing': 'Mitra Pelaksana',
-      'project': 'Mitra Proyek',
-      'data': 'Mitra Penyedia Data'
+      'funding': 'MGA KASOSYO SA PAGPOPONDO',
+      'implementing': 'PAGSASAGAWA NG MGA KASOSYO',
+      'project': 'MGA KASOSYO SA PROYEKTO',
+      'data': 'MGA KASOSYO SA DATOS'
     },
-    'termsPopup': 'Persetujuan pengguna &amp; Kebijakan privasi',
-    'mapCredits': 'Peta Dasar',
-    'mapImproveLink': 'Meningkatkan peta dasar di',
-    'browserStack': 'Ujicoba didukung oleh <a href="https://www.browserstack.com" target="_blank">BrowserStack</a>.',
-    'USAID': 'Situs web ini dapat terselenggara dengan dukungan dari warga Amerika melalui USAID (U.S. Agency for International Development). Situs ini bukan merupakan situs resmi USAID atau Pemerintah Amerika Serikat. Konten situs ini seluruhnya merupakan tanggung jawab dari para pencipta dan belum tentu merefleksikan pandangan dari USAID dan Pemerintah Amerika Serikat.'
+    'termsPopup': 'User Agreement at Patakaran sa Pagkapribado',
+    'mapCredits': 'Basemap tile',
+    'mapImproveLink': 'Pagbutihin ang basemap sa',
+    'browserStack': 'Pagsusuri suportado ng <a href="https://www.browserstack.com" target="_blank">BrowserStack</a>.',
+    'USAID': 'Ang website na ito ay ginawang posible sa tulong ng mga mamamayang Amerikano sa pamamagitan ng ahensya ng Estados Unidos para sa pandaigdigang pag-unlad. Ito ay hindi isang opisyal na USAID o U.S. Government website. Ang mga nilalaman ng website na ito ay ang tanging responsibilidad ng mga may-akda at hindi kinakailangang sumasalamin sa mga pananaw ng USAID ng pamahalaan ng Estados Unidos.'
   },
   'legend': {
     'title': 'Legenda',

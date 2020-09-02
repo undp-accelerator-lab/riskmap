@@ -145,33 +145,33 @@ const en = {
     'twitter': {
       'title': 'Report Via Twitter',
       'steps': [
-        'Tweet @petabencana with one of the following hashtags:<ul><li>#flood</li><li>#earthquake</li><li>#forestfire</li><li>#haze</li><li>#volcano</li></ul>',
-        '@petabencana will send you a one-time link to submit a disaster report',
-        'Open the link and follow the instructions to input hazard location, upload photo and description',
-        '@petabencana will send you a reply with a link to your report',
-        'Check PetaBencana.id on your browser for up-to-date disaster information'
+        'Tweet @mapakalamidad using #flood ',
+        '@mapakalamidad will send you a one-time link to submit a disaster report',
+        'Open the link and follow the instructions to input hazard location, upload photo, and description.',
+        '@mapakalamidad will send you a reply with a link to your report',
+        'Check MapaKalamidad.ph for up-to-date disaster information'
       ]
     },
     'telegram': {
       'title': 'Report via Telegram',
       'steps': [
-        'Search for @bencanabot',
-        'Click “/start” and select the disaster to report',
-        '@bencanabot will send you a one-time link to submit a disaster report',
-        'Open the link and follow the instructions to input hazard location, upload photo and description',
-        '@bencanabot will send you a reply with a link to your report',
-        'Check PetaBencana.id on your browser for up-to-date disaster information'
+        'Search for @kalamidadbot ',
+        'Click on “Get Started” and select the disaster to report',
+        '@kalamidadbot will send you a one-time link to submit a disaster report',
+        'Open the link and follow the instructions to input hazard location, upload photo, and description.',
+        '@kalamidad will send you a reply with a link to your report',
+        'Check MapaKalamidad.ph for up-to-date disaster information'
       ]
     },
     'facebook': {
       'title': 'Report via Facebook',
       'steps': [
-        'Search for PetaBencana.id on Facebook Messenger',
+        'Search for @mapakalamidad on Facebook Messenger',
         'Click on “Get Started” and select the disaster to report',
-        'PetaBencana.id will send you a one-time link to submit a disaster report',
-        'Open the link and follow the instructions to input hazard location, upload photo and description',
-        'PetaBencana.id will send you a reply with a link to your report',
-        'Check PetaBencana.id on your browser for up-to-date disaster information'
+        '@mapakalamidad will send you a one-time link to submit a disaster report',
+        'Open the link and follow the instructions to input hazard location, upload photo, and description.',
+        '@mapakalamidad will send you a reply with a link to your report',
+        'Check MapaKalamidad.ph for up-to-date disaster information'
       ]
     },
     'web': {
@@ -185,11 +185,11 @@ const en = {
     }
   },
   'info_content': {
-    'intro': 'PetaBencana.id harnesses the use of social media during emergency events to gather, sort, and display confirmed hazard information in real-time.',
+    'intro': 'Mapakalamidad.ph harnesses the use of social media during emergency events to gather, sort, and display confirmed hazard information in real-time.',
     'infoLink': '<a href="https://info.petabencana.id/" target="_blank">To know more, visit Petabencana Foundation</a>',
     'p1': 'Run by <a href="https://info.petabencana.id/" target="_blank"> Yayasan Peta Bencana</a>, as a free, transparent platform for emergency response and disaster management in megacities in South and Southeast Asia, the platform is made possible through collaboration with several partners:',
     'p2': '',
-    'p3': 'PetaBencana.id gathers, sorts, and visualizes data using specially developed CogniCity Open Source Software - an enterprise-level platform for emergency response and disaster management - to transforms the noise of social and digital media into critical information for residents, communities, and government agencies. The platform adopts a “people are the best sensors” paradigm, where confirmed reports are collected directly from the users at street level in a manner that removes expensive and time-consuming data processing. This framework creates accurate, real-time data which is immediately made available for users and first responders.',
+    'p3': 'Mapakalamidad.ph gathers, sorts, and visualizes data using specially developed CogniCity Open Source Software - an enterprise-level platform for emergency response and disaster management - to transforms the noise of social and digital media into critical information for residents, communities, and government agencies. The platform adopts a “people are the best sensors” paradigm, where confirmed reports are collected directly from the users at street level in a manner that removes expensive and time-consuming data processing. This framework creates accurate, real-time data which is immediately made available for users and first responders.',
     'partners': {
       'funding': 'Funding Partner',
       'implementing': 'Implementing partner',
