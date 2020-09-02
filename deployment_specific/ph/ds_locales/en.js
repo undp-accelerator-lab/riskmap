@@ -69,45 +69,45 @@ const en = {
       '4 Wheel Vehicle (SUV)',
       'Large Vehicle (Truck)'
     ],
-    "visibilityKey": "Visibility:",
-    "visibilityValues": [
-      "Good",
-      "Moderate",
-      "Poor"
+    'visibilityKey': 'Visibility:',
+    'visibilityValues': [
+      'Good',
+      'Moderate',
+      'Poor'
     ],
-    'airQualityKey' : "Air Quality:",
-    "airQualityValues": [
-      "",
-      "Moderate",
-      "Poor",
-      "Severe",
-      "Hazardous"
+    'airQualityKey': 'Air Quality:',
+    'airQualityValues': [
+      '',
+      'Moderate',
+      'Poor',
+      'Severe',
+      'Hazardous'
     ],
-    "impactKey": "Impact:",
-    "impactValues": [
-      "Low Disruption",
-      "Medium Disruption",
-      "High Disruption"
+    'impactKey': 'Impact:',
+    'impactValues': [
+      'Low Disruption',
+      'Medium Disruption',
+      'High Disruption'
     ],
-    "signsKey" : "Symptoms:",
-    "signsValues":[
-      "Significant Temperature Increases",
-      "Drought / Vegetation Death",
-      "Unusual Animal Behaviour",
-      "Frequent Earthquake Tremors",
-      "Frequent Rumbling Sounds"
+    'signsKey': 'Symptoms:',
+    'signsValues': [
+      'Significant Temperature Increases',
+      'Drought / Vegetation Death',
+      'Unusual Animal Behaviour',
+      'Frequent Earthquake Tremors',
+      'Frequent Rumbling Sounds'
     ],
-    "peopleKey": "Number of people nearby:",
-    "evacuateKey": "Know where to evacuate:",
-    "evacuateVal": ["yes", "no"],
-    "peopleValues": [
-      "",
-      "< 5 people",
-      "5 - 50 people",
-      "> 50 people"
+    'peopleKey': 'Number of people nearby:',
+    'evacuateKey': 'Know where to evacuate:',
+    'evacuateVal': ['yes', 'no'],
+    'peopleValues': [
+      '',
+      '< 5 people',
+      '5 - 50 people',
+      '> 50 people'
     ],
-    "fireextentKey": "Fire Extent",
-    "fireextentUnit": "hectares"
+    'fireextentKey': 'Fire Extent',
+    'fireextentUnit': 'hectares'
   },
   'flood_info': {
     'title': 'Flood affected area',

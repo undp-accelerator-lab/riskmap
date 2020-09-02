@@ -1,7 +1,7 @@
 const en = require('./en');
-const id = require('./id');
+const tl = require('./tl');
 
 module.exports = {
   en: en,
-  id: id
+  tl: tl
 };

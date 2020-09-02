@@ -35,10 +35,10 @@ const id = {
   },
   'web_menu': {
     'tab_names': {
-      'map': 'peta',
-      'report': 'Laporkan',
+      'map': 'mapa',
+      'report': 'Ulat',
       'info': 'Info',
-      'legend': 'Legenda',
+      'legend': 'Palatandaan',
       'about': 'Tentang'
     }
   },
@@ -70,45 +70,45 @@ const id = {
       'Roboh Sebagian',
       'Roboh Total'
     ],
-    "visibilityKey": "Jarak Pandang:",
-    "visibilityValues": [
-      "Baik",
-      "Sedang/Cukup",
-      "Buruk"
+    'visibilityKey': 'Jarak Pandang:',
+    'visibilityValues': [
+      'Baik',
+      'Sedang/Cukup',
+      'Buruk'
     ],
-    'airQualityKey' : 'Kualitas Udara:',
-    "airQualityValues": [
-      "",
-      "Sedang / Cukup",
-      "Buruk",
-      "Parah",
-      "Berbahaya"
+    'airQualityKey': 'Kualitas Udara:',
+    'airQualityValues': [
+      '',
+      'Sedang / Cukup',
+      'Buruk',
+      'Parah',
+      'Berbahaya'
     ],
-    "impactKey" : "Dampak:",
-    "impactValues":[
-      "Ringan",
-      "Sedang",
-      "Berat"
+    'impactKey': 'Dampak:',
+    'impactValues': [
+      'Ringan',
+      'Sedang',
+      'Berat'
     ],
-    "signsKey" : "Hasil Pengamatan:",
-    "signsValues":[
-      "Kenaikan Suhu Signifikan",
-      "Kekeringan/Kematian Tumbuh-tumbuhan",
-      "Perilaku Hewan yang Tidak Biasa",
-      "Getaran Gempabumi yang Sering",
-      "Suara Gemuruh yang Sering"
+    'signsKey': 'Hasil Pengamatan:',
+    'signsValues': [
+      'Kenaikan Suhu Signifikan',
+      'Kekeringan/Kematian Tumbuh-tumbuhan',
+      'Perilaku Hewan yang Tidak Biasa',
+      'Getaran Gempabumi yang Sering',
+      'Suara Gemuruh yang Sering'
     ],
-    "peopleKey": "Jumlah orang di sekitar:",
-    "evacuateKey": "Tahu arah Evakuasi:",
-    "evacuateVal": ["ya", "tidak"],
-    "peopleValues": [
-      "",
-      "< 5 orang",
-      "5 - 50 orang",
-      "> 50 orang"
+    'peopleKey': 'Jumlah orang di sekitar:',
+    'evacuateKey': 'Tahu arah Evakuasi:',
+    'evacuateVal': ['ya', 'tidak'],
+    'peopleValues': [
+      '',
+      '< 5 orang',
+      '5 - 50 orang',
+      '> 50 orang'
     ],
-    "fireextentKey": "Perkiraan Kebakaran",
-    "fireextentUnit": "hektar"
+    'fireextentKey': 'Perkiraan Kebakaran',
+    'fireextentUnit': 'hektar'
   },
   'flood_info': {
     'title': 'Area terdampak banjir',
@@ -141,10 +141,10 @@ const id = {
       ]
     },
     'youtube': {
-      'title': 'Lihat Video Cara Melapor'
+      'title': 'Panoorin ang bidyo para sa instruksyon'
     },
     'twitter': {
-      'title': 'Laporkan melalui Twitter',
+      'title': 'Mag-ulat gamit ang Twitter',
       'steps': [
         'Twit @petabencana dengan salah satu hashtag berikut:<ul><li>#banjir</li><li>#gempa</li><li>#kebakaranhutan</li><li>#kabutasap</li><li>#gunungapi</li></ul>',
         '@petabencana akan mengirimkan tautan untuk melaporkan bencana',
@@ -154,7 +154,7 @@ const id = {
       ]
     },
     'telegram': {
-      'title': 'Laporkan melalui Telegram',
+      'title': 'Mag-ulat gamit ang Telegram',
       'steps': [
         'Cari @bencanabot',
         'Klik “/mulai” dan pilih bencana yang ingin Anda laporkan',
@@ -165,7 +165,7 @@ const id = {
       ]
     },
     'facebook': {
-      'title': 'Laporkan melalui Facebook',
+      'title': 'Mag-ulat gamit ang Facebook',
       'steps': [
         'Cari “PetaBencana.id” di Facebook Massenger',
         'Klik “Get Started” dan pilih bencana yang ingin Anda laporkan',
@@ -176,7 +176,7 @@ const id = {
       ]
     },
     'web': {
-      'title': 'Laporkan melalui Web',
+      'title': 'I-ulat sa Web',
       'steps': [
         'Buka laman Petabencana.id',
         'Klik ikon Laporkan pada kiri atas halaman dan pilih bencana yang ingin Anda laporkan',
