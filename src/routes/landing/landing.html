@@ -66,7 +66,8 @@
               <tr class="row report">
                 <img style="width: 250px;" src=${webMenu.locale.eq_flow_img}>
                 <div class="reportEarthquakeBtn">
-                  <input type="button" class="btn buttonReprt" value="${webMenu.locale.add_eq_report}" click.delegate="reportDisaster('earthquake')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
+                  <input show.bind = "!enableEq" type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
+                  <input show.bind = "enableEq" type="button" class="btn buttonReprt" value="${webMenu.locale.add_eq_report}" click.delegate="reportDisaster('earthquake')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
                 </div>
               </tr>
             </table>
@@ -79,7 +80,8 @@
               <tr class="row report">
                 <img style="width: 310px;" src=${webMenu.locale.fire_flow_img}>
                 <div class="reportBtn reportFireBtn">
-                  <input type="button" class="btn buttonReprt" value="${webMenu.locale.add_fire_report}" click.delegate="reportDisaster('fire')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
+                  <input show.bind = "!enableFire" type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
+                  <input show.bind = "enableFire" type="button" class="btn buttonReprt" value="${webMenu.locale.add_fire_report}" click.delegate="reportDisaster('fire')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
                 </div>
               </tr>
             </table>
@@ -92,7 +94,8 @@
               <tr class="row report">
                 <img style="width: 250px;" src=${webMenu.locale.haze_flow_img}>
                 <div class=" reportBtn">
-                  <input type="button" class="btn buttonReprt" value="${webMenu.locale.add_haze_report}" click.delegate="reportDisaster('haze')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
+                  <input show.bind = "!enableHaze" type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
+                  <input show.bind = "enableHaze" type="button" class="btn buttonReprt" value="${webMenu.locale.add_haze_report}" click.delegate="reportDisaster('haze')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
                 </div>
               </tr>
             </table>
@@ -105,7 +108,8 @@
               <tr class="row report">
                 <img style="width: 295px;" src=${webMenu.locale.wind_flow_img}>
                 <div class="reportBtn reportWindBtn">
-                  <input type="button" class="btn buttonReprt" value="${webMenu.locale.add_wind_report}" click.delegate="reportDisaster('wind')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
+                  <input show.bind = "!enableWind" type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
+                  <input show.bind = "enableWind" type="button" class="btn buttonReprt" value="${webMenu.locale.add_wind_report}" click.delegate="reportDisaster('wind')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
                 </div>
               </tr>
             </table>
@@ -118,7 +122,8 @@
               <tr class="row report">
                 <img style="width: 250px;" src=${webMenu.locale.volcano_flow_img}>
                 <div class="reportBtn volcanoBtn">
-                  <input type="button" class="btn buttonReprt" value="${webMenu.locale.add_volcano_report}" click.delegate="reportDisaster('volcano')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
+                  <input show.bind = "!enableVolcano" type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
+                  <input show.bind = "enableVolcano" type="button" class="btn buttonReprt" value="${webMenu.locale.add_volcano_report}" click.delegate="reportDisaster('volcano')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
                 </div>
               </tr>
             </table>

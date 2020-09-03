@@ -35,6 +35,11 @@ export class Landing {
       '#haze': '/assets/icons/Add_Report_Icon_Haze'
     };
     this.isFloatingMenuActive = false;
+    this.enableEq = false;
+    this.enableHaze = false;
+    this.enableFire = false;
+    this.enableWind = false;
+    this.enableVolcano = false;
   }
 
   domouseout() {
