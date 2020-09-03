@@ -10,13 +10,13 @@ export default {
     'instance_regions': {
       'QuezonCity': {
         'region': 'PH-QC',
-        'bounds': { 'sw': [14.027, 120.015], 'ne': [15.303, 121.677] },
-        'center': [14.49, 120.57]
+        'bounds': { 'sw': [12.027, 118.015], 'ne': [17.303, 123.677] },
+        'center': [14.8, 121.107]
       },
       'Pampanga': {
         'region': 'PH-PG',
-        'bounds': { 'sw': [14.027, 120.015], 'ne': [15.303, 121.677] },
-        'center': [14.49, 120.57]
+        'bounds': { 'sw': [12.027, 118.015], 'ne': [17.303, 123.677] },
+        'center': [14.8, 121.107]
       }
     },
     'default_region': {
@@ -25,16 +25,16 @@ export default {
         'sw': [14.027, 120.015], // [ymin , xmin]
         'ne': [15.303, 121.677] // [ymax, xmax]
       },
-      'center': [14.49, 120.57]
+      'center': [14.8, 121.107]
     },
     'initial_load': ['QuezonCity', 'Pampanga'],
     'sub_regions': {
-      'Pampanga': { 'province': 'Pampanga', 'center': [14.49, 120.57] },
-      'QuezonCity': { 'province': 'QuezonCity', 'center': [14.49, 120.57] }
+      'Pampanga': { 'province': 'Pampanga', 'center': [14.8, 121.107] },
+      'QuezonCity': { 'province': 'QuezonCity', 'center': [14.8, 121.107] }
     },
-    'region_center': [14.49, 120.57],
-    'start_city_center': [14.49, 120.57],
-    'starting_zoom': 8.5,
+    'region_center': [14.8, 121.107],
+    'start_city_center': [14.8, 121.107],
+    'starting_zoom': 8.75,
     'minimum_zoom': 8
   }
 };
