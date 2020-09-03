@@ -1,7 +1,7 @@
-import { bindable, customElement, demoIntercept } from 'aurelia-framework';
+import { bindable, customElement } from 'aurelia-framework';
 import { inject, observable } from 'aurelia-framework';
 import { Config } from 'resources/config';
-import dep from '../../deployment.js'
+import dep from '../../deployment.js';
 
 //start-aurelia-decorators
 @customElement('screen-popup')
@@ -24,8 +24,9 @@ export class ScreenPopup {
     this.seltab = 'u_a';
     this.config = Config.map;
     this.configData = Config;
-    this.cityPopupDisplayStyle = dep.id === 'ph' ? { display: 'none !important'} : { display: 'block !important'};
+    this.cityPopupDisplayStyle =  { display: 'block !important'};
     this.startPopupDisplayStyle = dep.id === 'ph' ? { display: 'none !important'} : { display: 'block !important'};
+    this.mainLogo = dep.id === 'ph' ? 'assets/graphics/MapaKalamidadLogo.png' : 'assets/graphics/Peta_logo.svg';
 
     $(document).click( function(e) {
       if (e.target.id === 'search_icon' && window.innerWidth < 500) {
