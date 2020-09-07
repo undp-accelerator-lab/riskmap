@@ -159,7 +159,7 @@ const en = {
         'Click on “Get Started” and select the disaster to report',
         '@kalamidadbot will send you a one-time link to submit a disaster report',
         'Open the link and follow the instructions to input hazard location, upload photo, and description.',
-        '@kalamidad will send you a reply with a link to your report',
+        '@kalamidadbot will send you a reply with a link to your report',
         'Check MapaKalamidad.ph for up-to-date disaster information'
       ]
     },
@@ -177,10 +177,10 @@ const en = {
     'web': {
       'title': 'Report via Web',
       'steps': [
-        'Open Petabencana.id on your browser',
+        'Open MapaKalamidad.ph on your browser',
         'Click the Report icon on the upper left of the page and select the disaster to report',
         'Click the Report Disaster button and follow the instructions to input hazard location, upload photo and description',
-        'Check PetaBencana.id on your browser for up-to-date disaster information'
+        'Check MapaKalamidad.ph on your browser for up-to-date disaster information'
       ]
     }
   },

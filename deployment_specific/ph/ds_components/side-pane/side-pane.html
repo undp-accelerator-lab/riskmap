@@ -88,20 +88,20 @@
                     <p>${fl_data.col_2.text[currentLanguage]}</p>
                   </div>
                 </div>
-                <div class="pb-legend__row pb-legend__header">
+                <!-- <div class="pb-legend__row pb-legend__header">
                   <div class="pb-legend__cell pb-legend__header-cell" if.bind="all_lgd_data.col_1_title">
                     <p>${all_lgd_data.col_1_title[currentLanguage]}</p>
                   </div>
-                </div>
+                </div> 
                 <div class='pb-legend__row pb-legend__body-row' repeat.for="fl_data of all_lgd_data.legend_data">
                   <div class='pb-legend__cell' if.bind="fl_data.col_1">
                     <div>
                     <div class='pb-legend__cell-color-code' style.bind="'background-color:'+fl_data.col_1.color"></div>
                     </div>
-                    <!-- <img class='pb-legend__cell-icon' src.bind='fl_data.col_1.icon' /> -->
+                    <!-- <img class='pb-legend__cell-icon' src.bind='fl_data.col_1.icon' /> 
                     <p>${fl_data.col_1.text[currentLanguage]}</p>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -182,9 +182,14 @@
               </td>
             </tr>
             <tr>
-              <td colspan="1" align="center">
-                <a href="http://www.bnpb.go.id/">
-                  <img class="bnpbLogo" src="assets/graphics/bnpb_logo.png">
+              <td colspan="2" align="center">
+                <a href="http://ocd.gov.ph">
+                  <img class="bnpbLogo" src="assets/graphics/ocd.png">
+                </a>
+              </td>
+              <td colspan="2" align="center">
+                <a href="https://ndrrmc.gov.ph/">
+                  <img class="bnpbLogo" src="assets/graphics/ndrrmc_logo.png">
                 </a>
               </td>
             </tr>
@@ -217,23 +222,10 @@
                 </a>
               </td>
               <td colspan="2" align="center">
-                <a href="http://pasangmata.detik.com/">
-                  <img class="partnerLogo" src="assets/graphics/pasang_logo.png">
-                </a>
-              </td>
-            </tr>
-            <tr class="logos">
-              <td colspan="2" align="center">
                 <a href="https://www.mapbox.com/">
                   <img class="partnerLogo" src="assets/graphics/mapbox_logo.png">
                 </a>
               </td>
-              <td colspan="2" align="center">
-                <a href="http://www.qlue.co.id/">
-                  <img class="partnerLogo" src="assets/graphics/qlue_logo.png">
-                </a>
-              </td>
-
             </tr>
           </table>
 

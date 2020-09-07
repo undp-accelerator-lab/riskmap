@@ -13,7 +13,7 @@ const id = {
   'add_wind_report': 'Laporkan Angin Kencang',
   'add_volcano_report': 'Laporkan Gunung Api',
   'add_fire_report': 'Laporkan Kebakaran Hutan',
-  'search_ph': 'Cari',
+  'search_ph': 'Hanapin',
   'popup_text': 'Pilih Provinsi untuk melanjutkan',
   'search_header': 'Pilih Wilayah',
   'flood': 'Banjir',
@@ -178,19 +178,19 @@ const id = {
     'web': {
       'title': 'I-ulat sa Web',
       'steps': [
-        'Buka laman Petabencana.id',
-        'Klik ikon Laporkan pada kiri atas halaman dan pilih bencana yang ingin Anda laporkan',
-        'Klik tombol Laporkan Bencana dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi',
-        'Cek laman PetaBencana.id untuk melihat informasi bencana terkini'
+        'Buksan ang MapaKalamidad.ph sa iyong browser',
+        'I-click ang icon na i-uulat sa kaliwang itaas ng pahina at piliin ang kalamidad na i-uulat',
+        'I-click ang Report Disaster at sundin ang mga instruksyon para mailagay ang lokasyon, larawan at deskripsyon.',
+        'Puntahan ang MapaKalamidad.ph para sa napapanahong impormasyon tungkol sa kalamidad.'
       ]
     }
   },
   'info_content': {
-    'intro': 'Ang MapaKalamidad.ph ay gumagamit ng social media sa panahon ng emerhensiya o delubyo upang magtipon, mag-ayos, at magbigay ng impormasyon tungkol sa mga posibleng panganib.',
+    'intro': 'Ang MapaKalamidad.ph ay gumagamit ng social media sa panahon ng sakuna upang magtipon, mag-ayos, at magbigay ng impormasyon tungkol sa mga posibleng panganib.',
     'infoLink': '<a href="https://info.petabencana.id/" target="_blank">Info lebih lanjut, kunjungi Yayasan Peta Bencana</a>',
-    'p1': 'Pinapatakbo ng <a href="https://info.petabencana.id/" target="_blank"> Yayasan Peta Bencana</a>, bilang isang libre at nanganganinag na plataporma para sa agarang tugon at pamamahala ng kalamidad sa mga megacities sa Timog at Timog-silangang Asya, ang plataporma ay ginawa posible sa pamamagitan ng pakikipagtulungan sa ilang mga kasosyo:',
+    'p1': 'Ito ay pinapatakbo ng <a href="https://info.petabencana.id/" target="_blank"> Yayasan Peta Bencana</a>, bilang isang libre at transparent na plataporma para sa agarang tugon at pamamahala ng kalamidad sa mga megacities sa Timog at Timog-silangang Asya. Ang plataporma ay ginawa posible sa pamamagitan ng pakikipagtulungan sa ilang mga partners:',
     'p2': '',
-    'p3': 'Ang MapaKalamidad.ph ay nagtitipon, nag-aayos, at nagpapakita ng datos gamit ang CogniCity Open Source Software - ang isang antas ng negosyo para sa agarang tugon at pamamahala ng kalamidad-upang baguhin ang ingay ng panlipunan at digital na media sa kritikal na impormasyon para sa mga residente, mga komunidad, at mga ahensya ng gobyerno. Ang plataporma ay isinasatupad ang sabihang  "people are the best sensors" kung saan ang  pinagtibay ulat ay kinokolekta direkta mula sa mga gumagamit sa kalye upang iwasan ang mga hindi mabisang pamamaraan ng pagkolekta at pag proseso ng datos. Ang framework na ito ay lumilikha ng tumpak at real-time na datos na ginawa para sa mga gumagamit, lalo na sa mga first-responders.',
+    'p3': 'Ang MapaKalamidad.ph ay nagtitipon, nag-aayos, at nagpapakita ng datos gamit ang CogniCity Open Source Software na isang plataporma para sa agarang tugon at pamamahala ng kalamidad na ginagamit anf ingay ng social at digital na media sa kritikal na impormasyon para sa mga residente, mga komunidad, at mga ahensya ng gobyerno. Ang plataporma ay isinasatupad ang kasabihang &quot;people are the best sensors&quot; kung saan ang pinagtibay na ulat ay kinokolekta direkta mula sa mga gumagamit sa daan upang iwasan ang mga hindi mabisang pamamaraan ng pagkolekta at pag proseso ng datos. Ang framework na ito ay lumilikha ng tumpak at real-time na datos na ginawa para sa mga gumagamit, lalo na sa mga first responders.',
     'partners': {
       'funding': 'MGA KASOSYO SA PAGPOPONDO',
       'implementing': 'PAGSASAGAWA NG MGA KASOSYO',
@@ -201,7 +201,7 @@ const id = {
     'mapCredits': 'Basemap tile',
     'mapImproveLink': 'Pagbutihin ang basemap sa',
     'browserStack': 'Pagsusuri suportado ng <a href="https://www.browserstack.com" target="_blank">BrowserStack</a>.',
-    'USAID': 'Ang website na ito ay ginawang posible sa tulong ng mga mamamayang Amerikano sa pamamagitan ng ahensya ng Estados Unidos para sa pandaigdigang pag-unlad. Ito ay hindi isang opisyal na USAID o U.S. Government website. Ang mga nilalaman ng website na ito ay ang tanging responsibilidad ng mga may-akda at hindi kinakailangang sumasalamin sa mga pananaw ng USAID ng pamahalaan ng Estados Unidos.'
+    'USAID': 'Ang website na ito ay ginawang posible sa tulong ng mga mamamayang Amerikano sa pamamagitan ng ahensya ng Estados Unidos para sa pandaigdigang pag-unlad. Ito ay hindi isang opisyal na USAID o U.S. Government website. Ang mga nilalaman ng website na ito ay tanging responsibilidad ng mga may-akda at hindi sumasalamin sa mga pananaw ng USAID ng pamahalaan ng Estados Unidos.'
   },
   'legend': {
     'title': 'Legenda',
