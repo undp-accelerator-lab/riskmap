@@ -39,7 +39,7 @@ const id = {
       'report': 'Ulat',
       'info': 'Info',
       'legend': 'Palatandaan',
-      'about': 'Tentang'
+      'about': 'TUNGKOL SA'
     }
   },
   'report_info': {
