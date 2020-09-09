@@ -65,8 +65,8 @@
 
           <!-- legends -->
           <div class='pb-legends-group' >
-            <div id.bind="all_lgd_data.legend_name" class="pb-legend-container pb-legend-container--flood p-2 ${selLegend === all_lgd_data.legend_name ? 'active' : '' }" repeat.for="all_lgd_data of all_legends_data">
-              <div class="pb-legend-title" click.delegate="all_lgd_data.legend_data && switchLegend(all_lgd_data.legend_name)">
+            <div id.bind="all_lgd_data.legend_name" class="pb-legend-container pb-legend-container--flood p-2  active  }" repeat.for="all_lgd_data of all_legends_data">
+              <div class="pb-legend-title" click.delegate="all_lgd_data.legend_data">
                 <div>
                   <div class='pb-legend-title__text_plus_icon'>
                     <img class='pb-legend-title__icon' src.bind="all_lgd_data.legend_title_icon" />
@@ -184,12 +184,24 @@
             <tr>
               <td colspan="2" align="center">
                 <a href="http://ocd.gov.ph">
-                  <img class="bnpbLogo" src="assets/graphics/ocd.png">
+                  <img class="ocdLogo" src="assets/graphics/ocd.png">
                 </a>
               </td>
               <td colspan="2" align="center">
                 <a href="https://ndrrmc.gov.ph/">
-                  <img class="bnpbLogo" src="assets/graphics/ndrrmc_logo.png">
+                  <img class="ndrrmcLogo" src="assets/graphics/ndrrmc_logo.png">
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" align="center">
+                <a href="http://ocd.gov.ph">
+                  <img class="ocdLogo" src="assets/graphics/qcdrrmo_logo.png">
+                </a>
+              </td>
+              <td colspan="2" align="center">
+                <a href="https://ndrrmc.gov.ph/">
+                  <img class="ocdLogo" src="assets/graphics/pdrrmo_logo.png">
                 </a>
               </td>
             </tr>
