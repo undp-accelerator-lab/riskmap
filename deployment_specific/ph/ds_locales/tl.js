@@ -193,9 +193,9 @@ const id = {
     'p3': 'Ang MapaKalamidad.ph ay nagtitipon, nag-aayos, at nagpapakita ng datos gamit ang CogniCity Open Source Software na isang plataporma para sa agarang tugon at pamamahala ng kalamidad na ginagamit anf ingay ng social at digital na media sa kritikal na impormasyon para sa mga residente, mga komunidad, at mga ahensya ng gobyerno. Ang plataporma ay isinasatupad ang kasabihang &quot;people are the best sensors&quot; kung saan ang pinagtibay na ulat ay kinokolekta direkta mula sa mga gumagamit sa daan upang iwasan ang mga hindi mabisang pamamaraan ng pagkolekta at pag proseso ng datos. Ang framework na ito ay lumilikha ng tumpak at real-time na datos na ginawa para sa mga gumagamit, lalo na sa mga first responders.',
     'partners': {
       'funding': 'MGA KASOSYO SA PAGPOPONDO',
-      'implementing': 'PAGSASAGAWA NG MGA KASOSYO',
-      'project': 'MGA KASOSYO SA PROYEKTO',
-      'data': 'MGA KASOSYO SA DATOS'
+      'implementing': 'MGA KASAMA SA PAGPAPATUPAD',
+      'project': ' MGA KASAMA SA PROYEKTO',
+      'data': 'MGA KASAMA SA DATOS'
     },
     'termsPopup': 'User Agreement at Patakaran sa Pagkapribado',
     'mapCredits': 'Basemap tile',
