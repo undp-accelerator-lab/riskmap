@@ -1,5 +1,5 @@
 const id = {
-  'flood_flow_img': '/assets/icons/flood_flow_bi.png',
+  'flood_flow_img': '/assets/icons/flood_flow_tl.png',
   'close': 'tutup',
   'eq_flow_img': '/assets/icons/eq_flow_bi.png',
   'wind_flow_img': '/assets/icons/wind_flow_bi.png',
@@ -43,15 +43,15 @@ const id = {
     }
   },
   'report_info': {
-    'share_msg': 'Laporan%20banjir%20pada%20petabencana%2Eid',
-    'water_depth': 'Tinggi Banjir:',
+    'share_msg': 'Baha%20pada%20mapaklamidad%2Eph',
+    'water_depth': 'Lebel ng Baha:',
     'disturbance_key': 'Rusak:',
     'access_key': 'Akses Jalan:',
     'structure_key': 'Kerusakan Bangunan:',
-    'source': 'Sumber',
+    'source': 'Pinagmulan',
     'flagReport_Title': 'Tandai ini sebagai laporan tidak benar',
     'flagReport_button': 'Beritahu kami',
-    'flagReport_email': 'info@petabencana.id',
+    'flagReport_email': 'mapakalamidad@petabencana.id',
     'share': 'Bagikan laporan ini',
     'accessability_failures': [
       'tidak bisa dilewati kendaraan',
@@ -206,7 +206,7 @@ const id = {
   'legend': {
     'title': 'Legenda',
     'flood_gauges': 'Tinggi Muka Air',
-    'flood_depth': 'Tinggi Banjir (cm)'
+    'flood_depth': 'Lebel ng Baha (cm)'
   },
   'start_popup_content': 'Cari Provinsi atau aktifkan geolokasi untuk melihat laporan di sekitar anda',
   'termsContents': [
