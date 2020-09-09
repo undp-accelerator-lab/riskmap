@@ -22,8 +22,8 @@ const id = {
   'haze': 'Usok',
   'wind': 'Hangin',
   'volcano': 'Bulkan',
-  'comming_soon': 'Segera Hadir',
-  'coming_soon_2020': 'Segera Hadir!',
+  'comming_soon': 'MALAPIT NA',
+  'coming_soon_2020': 'MALAPIT NA!',
   'reports_stats': '{reportsplaceholder} laporan aktif di {provinceplaceholder}',
   'prep_menu': {
     'btn_names': {
