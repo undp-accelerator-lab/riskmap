@@ -13,7 +13,7 @@
     <div class=" paneTabs" repeat.for="menuName of menuList">
       <div
         class=" p-2 m-0 accordion" id.bind="'label_' + menuName"
-        textcontent.bind="locale.web_menu.tab_names[menuName]"
+        innerhtml.bind="locale.web_menu.tab_names[menuName]"
         click.delegate="switchTab(menuName)"
       >
 
