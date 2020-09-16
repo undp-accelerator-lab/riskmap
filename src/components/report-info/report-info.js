@@ -178,42 +178,42 @@ export class ReportInfo {
   @computedFrom('popupcontent')
   //end-aurelia-decorators
   get disasterType() {
-    if (this.popupcontent.report_data.report_type) {
+    if (this.popupcontent.report_data && this.popupcontent.report_data.report_type) {
       return this.popupcontent.report_data.report_type;
     }
     return null;
   }
 
   get airQuality() {
-    if (this.popupcontent.report_data.airQuality >= 0) {
+    if (this.popupcontent.report_data && this.popupcontent.report_data.airQuality >= 0) {
       return this.popupcontent.report_data.airQuality;
     }
     return null;
   }
 
   get visibility() {
-    if (this.popupcontent.report_data.visibility >= 0) {
+    if (this.popupcontent.report_data && this.popupcontent.report_data.visibility >= 0) {
       return this.popupcontent.report_data.visibility;
     }
     return null;
   }
 
   get fireextent() {
-    if (this.popupcontent.report_data.fireDistance) {
+    if (this.popupcontent.report_data && this.popupcontent.report_data.fireDistance) {
       return Math.round((Math.PI * Math.pow(this.popupcontent.report_data.fireDistance, 2) / 10000) * 100) / 100 + ' ' + this.locale.report_info.fireextentUnit;
     }
     return null;
   }
 
   get impact() {
-    if (this.popupcontent.report_data.impact >= 0) {
+    if (this.popupcontent.report_data && this.popupcontent.report_data.impact >= 0) {
       return this.popupcontent.report_data.impact;
     }
     return null;
   }
 
   get noOfPeople() {
-    if (this.popupcontent.report_data.evacuationNumber) {
+    if (this.popupcontent.report_data && this.popupcontent.report_data.evacuationNumber) {
       return this.popupcontent.report_data.evacuationNumber;
     }
     return null;
@@ -224,7 +224,7 @@ export class ReportInfo {
   }
 
   get volcanicSigns() {
-    if (this.popupcontent.report_data.volcanicSigns) {
+    if (this.popupcontent.report_data && this.popupcontent.report_data.volcanicSigns) {
       let ary = this.popupcontent.report_data.volcanicSigns.map(d => {
         return this.locale.report_info.signsValues[d];
       });
