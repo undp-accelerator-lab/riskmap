@@ -65,7 +65,7 @@ export class SidePane {
 
     //this needs to be dynamicaly populated from backend data
     this.last_report_received_on = [
-      { en: 'Reports remain active for 2 hours', id: 'Masa aktif laporan: 2 jam'},
+      { en: 'Reports remain active for 3 hours', id: 'Masa aktif laporan: 3 jam'},
       { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'},
       { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'},
       { en: 'Reports remain active for 2 hours', id: 'Masa aktif laporan: 2 jam'},
