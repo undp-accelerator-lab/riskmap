@@ -150,7 +150,7 @@ export class ReportInfo {
   @computedFrom('popupcontent')
   //end-aurelia-decorators
   get sevearity() {
-    if (this.popupcontent.report_data.report_type === 'road') {
+    if (this.popupcontent.report_data && this.popupcontent.report_data.report_type === 'road') {
       // eslint-disable-next-line default-case
       switch (this.popupcontent.report_data.condition) {
       case 0: return 'low';
@@ -220,7 +220,10 @@ export class ReportInfo {
   }
 
   get evacArea() {
-    return this.popupcontent.report_data.evacuationArea;
+    if (this.popupcontent.report_data && this.popupcontent.report_data.evacuationArea) {
+      return this.popupcontent.report_data.evacuationArea;
+    }
+    return null;
   }
 
   get volcanicSigns() {
@@ -238,7 +241,7 @@ export class ReportInfo {
   @computedFrom('popupcontent')
   //end-aurelia-decorators
   get accessabilityFailure() {
-    if (this.popupcontent.report_data) {
+    if (this.popupcontent.report_data && this.popupcontent.report_data) {
       return this.locale.report_info.accessability_failures[this.popupcontent.report_data.accessabilityFailure];
     }
     return null;
@@ -248,7 +251,7 @@ export class ReportInfo {
   @computedFrom('popupcontent')
   //end-aurelia-decorators
   get structureFailure() {
-    if (this.popupcontent.report_data) {
+    if (this.popupcontent.report_data && this.popupcontent.report_data) {
       return this.locale.report_info.structure_failures[this.popupcontent.report_data.structureFailure];
     }
     return null;
@@ -258,7 +261,7 @@ export class ReportInfo {
   @computedFrom('popupcontent')
   //end-aurelia-decorators
   get points() {
-    if (this.popupcontent.report_data) {
+    if (this.popupcontent.report_data && this.popupcontent.report_data) {
       return this.popupcontent.report_data.points;
     }
     return 0;
@@ -295,7 +298,7 @@ export class ReportInfo {
   @computedFrom('popupcontent')
   //end-aurelia-decorators
   get reportevent() {
-    if (this.popupcontent.report_data) {
+    if (this.popupcontent.report_data && this.popupcontent.report_data) {
       return this.popupcontent.report_data.report_type;
     }
     return null;
