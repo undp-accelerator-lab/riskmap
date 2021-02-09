@@ -559,7 +559,7 @@ export class MapLayers {
 
   _getFloodSevearity(depth) {
     if (depth <= 70) {
-      return  'low';
+      return  'normal';
     } else if (depth <= 150) {
       return 'medium';
     } else if (depth > 150) {
