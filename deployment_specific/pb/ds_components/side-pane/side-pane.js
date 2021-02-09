@@ -40,8 +40,8 @@ export class SidePane {
 
     this.vidWrapperOpened = true;
     this.youtube_video = {
-      id: 'https://www.youtube.com/embed/rlPNGkhgVoQ',
-      en: 'https://www.youtube.com/embed/EfJRa9sF89Y?autoplay=0&origin=https://petabencana.id&rel=0',
+      id: 'https://www.youtube.com/embed/B6tXP4wBoiI',
+      en: 'https://www.youtube.com/embed/_A53C84wF7Y',
       icon: 'deployment_specific/pb/ds_assets/icons/youtube.png'
     }
     this.report_methods = [
