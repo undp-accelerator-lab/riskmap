@@ -133,7 +133,7 @@ export class SidePane {
       {
         legend_name: 'eq_road_access',
         legend_title: { en: 'EARTHQUAKE (ROAD ACCESSIBILITY)', id: 'GEMPABUMI (AKSES JALAN)' },
-        legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Haze.png',
+        legend_title_icon: 'deployment_specific/pb/ds_assets/icons/road_select.svg',
         legend_data: [
           {
             col_1: {
