@@ -790,7 +790,7 @@ export class MapLayers {
         }
       });
     }
-    return self.appendData('floodgauges?city=' + cityRegion, self.gaugeLayer, map);
+    return self.appendData('floodgauges?admin=' + cityRegion, self.gaugeLayer, map);
   }
 
   removeFloodGauges(map) {
