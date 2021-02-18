@@ -761,7 +761,7 @@ export class MapLayers {
         self.floodExtentInteraction(feature, layer, cityName, map, togglePane);
       }
     });
-    return self.appendData('floods?city=' + cityRegion + '&minimum_state=1', self.flood_extents, map);
+    return self.appendData('floods?admin=' + cityRegion + '&minimum_state=1', self.flood_extents, map);
   }
 
   removeFloodExtents(map) {
