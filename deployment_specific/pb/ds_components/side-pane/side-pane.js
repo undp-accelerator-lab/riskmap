@@ -40,8 +40,8 @@ export class SidePane {
 
     this.vidWrapperOpened = true;
     this.youtube_video = {
-      id: 'https://www.youtube.com/embed/rlPNGkhgVoQ',
-      en: 'https://www.youtube.com/embed/EfJRa9sF89Y?autoplay=0&origin=https://petabencana.id&rel=0',
+      id: 'https://www.youtube.com/embed/B6tXP4wBoiI',
+      en: 'https://www.youtube.com/embed/_A53C84wF7Y',
       icon: 'deployment_specific/pb/ds_assets/icons/youtube.png'
     }
     this.report_methods = [
@@ -65,7 +65,7 @@ export class SidePane {
 
     //this needs to be dynamicaly populated from backend data
     this.last_report_received_on = [
-      { en: 'Reports remain active for 2 hours', id: 'Masa aktif laporan: 2 jam'},
+      { en: 'Reports remain active for 3 hours', id: 'Masa aktif laporan: 3 jam'},
       { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'},
       { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'},
       { en: 'Reports remain active for 2 hours', id: 'Masa aktif laporan: 2 jam'},
@@ -133,7 +133,7 @@ export class SidePane {
       {
         legend_name: 'eq_road_access',
         legend_title: { en: 'EARTHQUAKE (ROAD ACCESSIBILITY)', id: 'GEMPABUMI (AKSES JALAN)' },
-        legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Haze.png',
+        legend_title_icon: 'deployment_specific/pb/ds_assets/icons/road_select.svg',
         legend_data: [
           {
             col_1: {

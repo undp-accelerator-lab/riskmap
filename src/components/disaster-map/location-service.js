@@ -43,7 +43,7 @@ export class LocationService {
         const client = new HttpClient();
         // cities.forEach(function(city, index) {
         const url = this.config.data_server +
-        'cities/bounds?city=' + city + '&geoformat=geojson&lat=' + point.latitude + '&long=' + point.longitude;
+        'cities/bounds?admin=' + city + '&geoformat=geojson&lat=' + point.latitude + '&long=' + point.longitude;
         client.get(url)
           .then(result => {
             if (result.statusCode && result.statusCode === 200) {

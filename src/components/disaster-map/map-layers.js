@@ -460,9 +460,9 @@ export class MapLayers {
       map.removeLayer(self.reports);
       self.reports = null;
     }
-    let endPoint = 'reports/?city=' + cityRegion;
+    let endPoint = 'reports/?admin=' + cityRegion;
     // add layer to map
-    // return self.appendData('reports/?city=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod, self.reports, map);
+    // return self.appendData('reports/?admin=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod, self.reports, map);
     return this.addReportsClustered(endPoint, cityName, map, togglePane);
   }
 
@@ -559,7 +559,7 @@ export class MapLayers {
 
   _getFloodSevearity(depth) {
     if (depth <= 70) {
-      return  'low';
+      return  'normal';
     } else if (depth <= 150) {
       return 'medium';
     } else if (depth > 150) {
@@ -761,7 +761,7 @@ export class MapLayers {
         self.floodExtentInteraction(feature, layer, cityName, map, togglePane);
       }
     });
-    return self.appendData('floods?city=' + cityRegion + '&minimum_state=1', self.flood_extents, map);
+    return self.appendData('floods?admin=' + cityRegion + '&minimum_state=1', self.flood_extents, map);
   }
 
   removeFloodExtents(map) {
@@ -790,7 +790,7 @@ export class MapLayers {
         }
       });
     }
-    return self.appendData('floodgauges?city=' + cityRegion, self.gaugeLayer, map);
+    return self.appendData('floodgauges?admin=' + cityRegion, self.gaugeLayer, map);
   }
 
   removeFloodGauges(map) {
