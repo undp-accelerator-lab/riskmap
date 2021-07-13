@@ -25,6 +25,8 @@ $.notify.addStyle('mapInfo', {
 @inject(Config, LocationService)
 //end-aurelia-decorators
 export class MapUtility {
+
+  @bindable locale;
   constructor(Config, LocationService) {
     this.config = Config.map;
     this.locService = LocationService;
