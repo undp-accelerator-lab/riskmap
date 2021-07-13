@@ -78,7 +78,8 @@
           <div class="row" id="fireLink">
             <table class="table table-borderless">
               <tr class="row report">
-                <p class="commingSoon p-2 m-0" style="width:160px" >${webMenu.locale.comming_soon}</p>
+                <p show.bind = "!enableFire" class="commingSoon p-2 m-0" style="width:160px" >${webMenu.locale.comming_soon}</p>
+                <img show.bind = "enableFire" style="width: 310px;" src=${webMenu.locale.fire_flow_img}>
                 <div class=" reportFireBtn">
                   <input show.bind = "!enableFire" type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
                   <input show.bind = "enableFire" type="button" class="btn buttonReprt" value="${webMenu.locale.add_fire_report}" click.delegate="reportDisaster('fire')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
