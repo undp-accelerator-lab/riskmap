@@ -123,18 +123,19 @@ export class MapUtility {
     //   });
     // L.rectangle([cityObj.bounds.sw, cityObj.bounds.ne], {color: '#ff7800', weight: 1}).addTo(map);
     // Add new layers
-    if (cityObj.region !== 'java') {
-      layers.addFloodExtents(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
-      layers.addFloodGauges(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
-      return layers.addReports(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
-    }
-
     layers.getStats(cityObj.region)
       .then(stats => {
         console.log(stats);
         let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{provinceplaceholder}', cityName);
         self.statsNotification(msg);
       });
+
+    if (cityObj.region !== 'java') {
+      layers.addFloodExtents(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
+      layers.addFloodGauges(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
+      return layers.addReports(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
+    }
+
 
     return new Promise((resolve, reject) => {
       resolve();
