@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import {Config} from '../../resources/config';
-import { bindable, customElement, demoIntercept } from "aurelia-framework";
+import { bindable, customElement } from "aurelia-framework";
 import { inject, observable } from "aurelia-framework";
-import { HttpClient, Headers } from 'aurelia-http-client';
+import { HttpClient } from 'aurelia-http-client';
 
 //start-aurelia-decorators
 @customElement("landing")
@@ -35,16 +35,19 @@ export class Landing {
       '#haze': '/assets/icons/Add_Report_Icon_Haze'
     };
     this.isFloatingMenuActive = false;
+    this.enableEq = false;
+    this.enableHaze = false;
+    this.enableFire = false;
+    this.enableWind = false;
+    this.enableVolcano = false;
   }
 
   domouseout() {
-    console.log('out');
     $('#floating_buttons_wrapper').css({'height': '85px', 'overflow' : 'hidden'})
 
   }
 
   domouseover() {
-    console.log('over');
     $('#floating_buttons_wrapper').css({'height': '600px', 'overflow' : 'visible'})
   }
 

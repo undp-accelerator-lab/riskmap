@@ -1,4 +1,5 @@
 export default {
+  id: 'pb',
   name: 'petabencana',
   height_units: 'cm',
   supported_languages: [
@@ -186,6 +187,7 @@ export default {
       },
       'center': [4.22568208825, 96.9100985353]
     },
+    'initial_load': [],
     'sub_regions': {
       'simeulue': { 'province': 'Aceh', 'center': [2.61330153417, 96.0856750686] },
       'aceh singkil': {

@@ -1,4 +1,5 @@
 import { inject, bindable, customElement } from 'aurelia-framework';
+import dep from '../../deployment.js';
 import * as L from 'leaflet';
 import $ from 'jquery';
 import { MapLayers } from './map-layers';
@@ -26,6 +27,7 @@ export class DisasterMap {
       this.cities.push(city);
     }
     this.selected_city = null;
+
   }
 
   togglePane(ref, action, clearSelection) {
@@ -88,6 +90,7 @@ export class DisasterMap {
       $(ref).fadeIn(200);
     }
   }
+
 
   // Load all reports of a searched sub region
   viewRegionReports(regionName, pushState) {
@@ -231,10 +234,10 @@ export class DisasterMap {
       position: 'bottomleft'
     }).addTo(self.map);
 
-    let mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
-    let logoContainer = document.getElementById("logoContainer");
+    // let mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
+    // let logoContainer = document.getElementById("logoContainer");
 
-    mapControlsContainer.appendChild(logoContainer);
+    // mapControlsContainer.appendChild(logoContainer);
 
     // Find user location & store in background
     self.map.locate({
@@ -276,5 +279,7 @@ export class DisasterMap {
         this.viewReports(null, false);
       }
     };
+
+    dep.map.initial_load.forEach(function(region) {self.viewRegionReports(region, false);});
   }
 }
