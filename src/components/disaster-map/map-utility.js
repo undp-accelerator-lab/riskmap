@@ -128,6 +128,14 @@ export class MapUtility {
       layers.addFloodGauges(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
       return layers.addReports(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
     }
+
+    layers.getStats(cityObj.region)
+      .then(stats => {
+        console.log(stats);
+        let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{provinceplaceholder}', cityName);
+        self.statsNotification(msg);
+      });
+
     return new Promise((resolve, reject) => {
       resolve();
     });

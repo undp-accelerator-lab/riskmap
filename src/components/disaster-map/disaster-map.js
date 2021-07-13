@@ -116,11 +116,11 @@ export class DisasterMap {
     self.utility.changeCity(cityName, self.reportid, self.map, self.layers, self.togglePane)
       .then(() => {
         // Show timeperiod notification
-        self.layers.getStats(self.utility.parseCityObj(cityName, false).region)
-          .then(stats => {
-            let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{provinceplaceholder}', cityName);
-            self.utility.statsNotification(msg);
-          });
+        // self.layers.getStats(self.utility.parseCityObj(cityName, false).region)
+        //   .then(stats => {
+        //     let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{provinceplaceholder}', cityName);
+        //     self.utility.statsNotification(msg);
+        //   });
 
         if (self.reportid && self.layers.activeReports.hasOwnProperty(self.reportid)) {
           //Case 1: Active report id in current city
