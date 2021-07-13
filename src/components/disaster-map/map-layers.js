@@ -186,8 +186,6 @@ export class MapLayers {
     return new Promise((resolve, reject) => {
       client.get(url)
         .then(summary => {
-          console.log(summary);
-          console.log(JSON.parse(summary.response))
           let reports = JSON.parse(summary.response)['total number of reports'];
           resolve({
             reports: reports,
