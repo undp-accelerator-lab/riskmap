@@ -103,7 +103,7 @@ export class MapUtility {
   }
 
   // Change city from within map without reloading window
-  changeCity(cityName, reportId, map, layers, togglePane) {
+  changeCity(cityName, reportId, map, layers, locale, togglePane) {
     let self = this;
     let cityObj = self.parseCityObj(cityName, true);
     // Remove previous layers
@@ -126,7 +126,7 @@ export class MapUtility {
     // Add new layers
     layers.getStats(cityObj.region)
       .then(stats => {
-        let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{provinceplaceholder}', cityName);
+        let msg = locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{provinceplaceholder}', cityName);
         self.statsNotification(msg);
       });
 
@@ -196,13 +196,13 @@ export class MapUtility {
     this.gpsMarker.addTo(map);
   }
 
-  viewClientLocation(map, layers, togglePane) {
+  viewClientLocation(map, layers, locale, togglePane) {
     let self = this;
     console.log(self.clientLocation);
     if (self.clientLocation) {
       if (self.clientCityIsValid) {
         //case 1: location found, location in a supported city
-        self.changeCity(self.clientCity, null, map, layers, togglePane);
+        self.changeCity(self.clientCity, null, map, layers, locale, togglePane);
         map.flyTo(self.clientLocation.latlng, 15);
         if (self.gpsMarker) {
           self.gpsMarker.removeFrom(map);
@@ -222,7 +222,7 @@ export class MapUtility {
   }
 
   // Geolocation control button element & style
-  geolocateContainer(map, layers, togglePane) {
+  geolocateContainer(map, layers, locale, togglePane) {
     let self = this;
     let container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
     container.innerHTML = '<i class="icon-geolocate"></i>';
@@ -235,7 +235,7 @@ export class MapUtility {
     container.style.height = '35px';
     container.style.cursor = 'pointer';
     container.onclick = () => {
-      self.viewClientLocation(map, layers, togglePane);
+      self.viewClientLocation(map, layers, locale, togglePane);
     };
     return container;
   }

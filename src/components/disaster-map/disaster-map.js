@@ -113,7 +113,7 @@ export class DisasterMap {
   viewReports(cityName, pushState) {
     let self = this;
 
-    self.utility.changeCity(cityName, self.reportid, self.map, self.layers, self.togglePane)
+    self.utility.changeCity(cityName, self.reportid, self.map, self.layers, self.locale, self.togglePane)
       .then(() => {
         // Show timeperiod notification
         // self.layers.getStats(self.utility.parseCityObj(cityName, false).region)
@@ -146,7 +146,7 @@ export class DisasterMap {
               } else {
                 //Case 2B: fly to city with report id
                 let queryReportCity = self.utility.parseCityName(reportRegion, self.cities);
-                self.utility.changeCity(queryReportCity, self.reportid, self.map, self.layers, self.togglePane)
+                self.utility.changeCity(queryReportCity, self.reportid, self.map, self.layers, self.locale, self.togglePane)
                   .then(() => {
                     self.layers.addSingleReport(self.reportid)
                       .then(queriedReport => {
@@ -224,7 +224,7 @@ export class DisasterMap {
     // Add custom leaflet control for geolocation
     L.Control.GeoLocate = L.Control.extend({
       onAdd: () => {
-        return self.utility.geolocateContainer(self.map, self.layers, self.togglePane);
+        return self.utility.geolocateContainer(self.map, self.layers, self.locale, self.togglePane);
       }
     });
     L.control.geoLocate = (opts) => {
