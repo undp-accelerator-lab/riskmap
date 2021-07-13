@@ -113,7 +113,7 @@ export class MapUtility {
     // Fly to new city bounds
     // map.flyToBounds([cityObj.bounds.sw, cityObj.bounds.ne])
     if (self.selectedRegion) {
-      // map.flyTo(self.selectedRegion.center, 10);
+      map.flyTo(self.selectedRegion.center, 10);
       self.selectedRegion = undefined;
     }
     else {
@@ -127,7 +127,6 @@ export class MapUtility {
     // Add new layers
     layers.getStats(cityObj.region)
       .then(stats => {
-        console.log(stats);
         let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{provinceplaceholder}', cityName);
         self.statsNotification(msg);
       });
