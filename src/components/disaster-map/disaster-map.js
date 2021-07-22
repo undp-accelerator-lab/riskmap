@@ -224,7 +224,7 @@ export class DisasterMap {
     // Add custom leaflet control for geolocation
     L.Control.GeoLocate = L.Control.extend({
       onAdd: () => {
-        return self.utility.geolocateContainer(self.map, self.layers, self.locale, self.togglePane);
+        return self.utility.geolocateContainer(self.map, self.layers, self.locale.reports_stats, self.togglePane);
       }
     });
     L.control.geoLocate = (opts) => {
