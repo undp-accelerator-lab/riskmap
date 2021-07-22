@@ -113,7 +113,7 @@ export class DisasterMap {
   viewReports(cityName, pushState) {
     let self = this;
 
-    self.utility.changeCity(cityName, self.reportid, self.map, self.layers, self.locale, self.togglePane)
+    self.utility.changeCity(cityName, self.reportid, self.map, self.layers, self.locale.reports_stats, self.togglePane)
       .then(() => {
         // Show timeperiod notification
         // self.layers.getStats(self.utility.parseCityObj(cityName, false).region)
