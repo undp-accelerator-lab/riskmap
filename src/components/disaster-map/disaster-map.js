@@ -200,7 +200,8 @@ export class DisasterMap {
       center: self.utility.config.region_center,
       zoom: self.utility.config.starting_zoom,
       minZoom: self.utility.config.minimum_zoom,
-      zoomSnap: 0.25
+      zoomSnap: 0.25,
+      maxZoom: 20
     });
 
     // Add base tile layers
