@@ -224,8 +224,13 @@ export class MapLayers {
 
   revertIconToNormal(feature) {
     let icon = this.getReportIcon(feature);
-    this.selected_report.target.setIcon(icon);
-    this.selected_report = null;
+    if (feature.properties.disaster_type == "fire")
+      // this.selected_report.target.setStyle({ "className": "fire-distance" })
+      this.selected_report.target.setStyle({ "fillColor": "red" })
+    else {
+      this.selected_report.target.setIcon(icon);
+      this.selected_report = null;
+    }
   }
 
   reportInteraction(feature, layer, cityName, map, togglePane) {
@@ -246,7 +251,11 @@ export class MapLayers {
         }
         if (!self.selected_report) {
           // Case 1 : no previous selection, click on report icon
-          e.target.setIcon(reportIconSelected);
+          if (feature.properties.disaster_type == "fire")
+            // {e.target.setStyle({"className": "fire-distance-selected"}); e.target._updatePath()}
+          { e.target.setStyle({"fillColor": "white"});}
+          else
+            e.target.setIcon(reportIconSelected);
           self.popupContent = {};
           for (let prop in feature.properties) {
             self.popupContent[prop] = feature.properties[prop];
@@ -258,14 +267,22 @@ export class MapLayers {
           self.selected_report = e;
         } else if (e.target === self.selected_report.target) {
           // Case 2 : clicked report icon same as selected report
-          e.target.setIcon(reportIconNormal);
+          if (feature.properties.disaster_type == "fire")
+            // e.target.setStyle ({ "className": "fire-distance" })
+            e.target.setStyle({ "fillColor": "red" })
+          else
+            e.target.setIcon(reportIconNormal);
           history.pushState({ city: cityName, report_id: null }, 'city', 'map/' + cityName);
           togglePane('#infoPane', 'hide', false);
           self.selected_report = null;
         } else if (e.target !== self.selected_report.target) {
           // Case 3 : clicked new report icon, while previous selection needs to be reset
           self.revertIconToNormal(self.selected_report.target.feature);
-          e.target.setIcon(reportIconSelected);
+          if (feature.properties.disaster_type == "fire")
+            // e.target.setStyle({ "className": "fire-distance-selected" })
+            e.target.setStyle({ "fillColor": "white" })
+          else
+            e.target.setIcon(reportIconSelected);
           self.popupContent = {};
           for (let prop in feature.properties) {
             self.popupContent[prop] = feature.properties[prop];
@@ -506,6 +523,14 @@ export class MapLayers {
       },
       pointToLayer: (feature, latlng) => {
         let reportIconNormal = self.getReportIcon(feature);
+        if(feature.properties.disaster_type == "fire") {
+          const radius = map.distance(L.latLng(feature.properties.report_data.fireRadius.lat, feature.properties.report_data.fireRadius.lng), latlng)
+          const fireCircle = new L.Circle(latlng, {
+            radius: radius,
+            className: "fire-distance"
+          });
+          return fireCircle;
+        }
         return L.marker(latlng, {
           icon: reportIconNormal,
           pane: 'reports'
