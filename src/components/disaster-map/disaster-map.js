@@ -29,7 +29,6 @@ export class DisasterMap {
     }
     this.selected_city = null;
     initializeMapboxLeaflet(L);
-
   }
 
   togglePane(ref, action, clearSelection) {
@@ -213,10 +212,10 @@ export class DisasterMap {
 
     //Add mapbox gl tile layer
 
-    var gl = L.mapboxGL({
-      accessToken: "pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ",
-      style: "mapbox://styles/mapbox/outdoors-v9"
-    }).addTo(self.map)
+    let gl = L.mapboxGL({
+      accessToken: 'pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ',
+      style: 'mapbox://styles/mapbox/outdoors-v9'
+    }).addTo(self.map);
 
     // Add scale control
     L.control.scale({
