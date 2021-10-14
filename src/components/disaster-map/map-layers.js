@@ -539,7 +539,7 @@ export class MapLayers {
           map.on('zoomend', function(e)  {
             var currentZoom = map.getZoom();
             let feature = this.fireSingleFeature
-            if(currentZoom > 12 ) {
+            if(currentZoom > 15 ) {
               if (feature && !this.fireCircle) {
                 const radius = map.distance(L.latLng(feature.properties.report_data.fireRadius.lat, feature.properties.report_data.fireRadius.lng), this.fireMarker.getLatLng())
                 const fireCircle = new L.Circle(self.fireMarker.getLatLng(), {
