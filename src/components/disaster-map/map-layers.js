@@ -540,7 +540,7 @@ export class MapLayers {
             var currentZoom = map.getZoom();
             let feature = this.fireSingleFeature
             if(currentZoom > 12 ) {
-              if (!this.fireCircle) {
+              if (feature && !this.fireCircle) {
                 const radius = map.distance(L.latLng(feature.properties.report_data.fireRadius.lat, feature.properties.report_data.fireRadius.lng), this.fireMarker.getLatLng())
                 const fireCircle = new L.Circle(self.fireMarker.getLatLng(), {
                   radius: radius,
@@ -557,7 +557,7 @@ export class MapLayers {
               }
             }
             else {
-              if (!this.fireMarker) {
+              if (feature && !this.fireMarker) {
                 let feature = this.fireSingleFeature
                 const type = feature.properties.disaster_type;
                 const reportData = feature.properties.report_data || { 'report_type': type };
