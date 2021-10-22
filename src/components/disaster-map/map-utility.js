@@ -4,8 +4,10 @@ import { inject, noView } from 'aurelia-framework';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import { Config } from 'resources/config';
+import dep from '../../deployment.js';
 import { LocationService } from './location-service';
 import { notify } from 'notifyjs-browser'; //Jquery plugin
+import initializeMapboxLeaflet from './mapbox-gl-util';
 
 $.notify.addStyle('mapInfo', {
   html: '<div id=notification><span data-notify-text/></div>',
@@ -24,9 +26,11 @@ $.notify.addStyle('mapInfo', {
 @inject(Config, LocationService)
 //end-aurelia-decorators
 export class MapUtility {
+
   constructor(Config, LocationService) {
     this.config = Config.map;
     this.locService = LocationService;
+    initializeMapboxLeaflet(L);
   }
 
   // return boolean only
@@ -58,7 +62,6 @@ export class MapUtility {
       $('#report').show();
       return self.config.default_region;
     } else if (self.isCitySupported(cityName)) {
-
       // supported city
       $('#screen').css('z-index', 'auto');
       $('#dropdown_city').hide();
@@ -81,14 +84,14 @@ export class MapUtility {
 
   parseRegion(regionName) {
     let self = this;
-    let defaultRegion = 'java';
+    let defaultRegion = dep.id === 'ph' ? dep.map.default_region.region : 'java';
 
     if (!regionName) {
       return defaultRegion;
     } else if (self.isRegionSupported(regionName)) {
       self.selectedRegion = self.config.sub_regions[regionName];
       return self.config.sub_regions[regionName].province;
-    } 
+    }
     // invalid region
     return defaultRegion;
   }
@@ -102,7 +105,7 @@ export class MapUtility {
   }
 
   // Change city from within map without reloading window
-  changeCity(cityName, reportId, map, layers, togglePane) {
+  changeCity(cityName, reportId, map, layers, reportsStatsMessage, togglePane) {
     let self = this;
     let cityObj = self.parseCityObj(cityName, true);
     // Remove previous layers
@@ -116,17 +119,26 @@ export class MapUtility {
     }
     else {
       map.flyTo(cityObj.center, 10);
+
     }
     // .once('moveend zoomend', (e) => {
     //   map.setMaxBounds([cityObj.bounds.sw, cityObj.bounds.ne]);
     //   });
     // L.rectangle([cityObj.bounds.sw, cityObj.bounds.ne], {color: '#ff7800', weight: 1}).addTo(map);
     // Add new layers
+    layers.getStats(cityObj.region)
+      .then(stats => {
+        let msg = reportsStatsMessage.replace('{reportsplaceholder}', stats.reports).replace('{provinceplaceholder}', cityName);
+        self.statsNotification(msg);
+      });
+
     if (cityObj.region !== 'java') {
       layers.addFloodExtents(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
       layers.addFloodGauges(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
       return layers.addReports(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
     }
+
+
     return new Promise((resolve, reject) => {
       resolve();
     });
@@ -186,13 +198,13 @@ export class MapUtility {
     this.gpsMarker.addTo(map);
   }
 
-  viewClientLocation(map, layers, togglePane) {
+  viewClientLocation(map, layers, reportsStatsMessage, togglePane) {
     let self = this;
     console.log(self.clientLocation);
     if (self.clientLocation) {
       if (self.clientCityIsValid) {
         //case 1: location found, location in a supported city
-        self.changeCity(self.clientCity, null, map, layers, togglePane);
+        self.changeCity(self.clientCity, null, map, layers, reportsStatsMessage, togglePane);
         map.flyTo(self.clientLocation.latlng, 15);
         if (self.gpsMarker) {
           self.gpsMarker.removeFrom(map);
@@ -212,7 +224,7 @@ export class MapUtility {
   }
 
   // Geolocation control button element & style
-  geolocateContainer(map, layers, togglePane) {
+  geolocateContainer(map, layers, reportsStatsMessage, togglePane) {
     let self = this;
     let container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
     container.innerHTML = '<i class="icon-geolocate"></i>';
@@ -225,7 +237,7 @@ export class MapUtility {
     container.style.height = '35px';
     container.style.cursor = 'pointer';
     container.onclick = () => {
-      self.viewClientLocation(map, layers, togglePane);
+      self.viewClientLocation(map, layers, reportsStatsMessage, togglePane);
     };
     return container;
   }

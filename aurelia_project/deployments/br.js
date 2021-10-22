@@ -22,6 +22,7 @@ export default {
         'ne': [26.95, -78.45] //old coordinates 26.372556, -80.056669
       }
     },
+    'initial_load': [],
     'region_center': [26.138301, -80.199261],
     'start_city_center': [26.138301, -80.199261],
     'starting_zoom': 8,

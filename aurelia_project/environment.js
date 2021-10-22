@@ -35,6 +35,22 @@ export default {
     ],
     data_server_key: '{data_server_key}'
   },
+  mapakalamidad: {
+    title: 'Mapakalamidad.ph',
+    report_timeperiod: 43200,
+    default_language: 'tl',
+    tile_layer: 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ',
+    data_server: 'https://data.mapakalamidad.ph/',
+    cards_server: 'https://cards.mapakalamidad.ph/',
+    app: 'https://mapakalamidad.ph/',
+    deep_links: [
+      {name: 'facebook', link: 'http://m.me/CognicityDev.id'},
+      {name: 'twitter', link: 'https://twitter.com/intent/tweet?text=Laporkan+banjir&via=petabencana'}, //TODO : fill after twitter DM bot is created for Petabencana.
+      {name: 'telegram', link: 'https://telegram.me/CognicityDevBot'},
+      {name: 'telegram', link: 'https://telegram.me/CognicityDevBot'}
+    ],
+    data_server_key: '{data_server_key}'
+  },
   riskmap_in: {
     title: 'RiskMap.in',
     report_timeperiod: 129600,

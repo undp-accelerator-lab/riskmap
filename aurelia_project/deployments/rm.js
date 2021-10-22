@@ -38,6 +38,7 @@ export default {
         'ne': [13.3766, 80.5413]
       }
     },
+    'initial_load': [],
     'region_center': [13.017163, 80.185031],
     'start_city_center': [13.017163, 80.185031],
     'starting_zoom': 10,

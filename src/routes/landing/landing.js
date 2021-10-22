@@ -1,11 +1,11 @@
 import $ from 'jquery';
 import {Config} from '../../resources/config';
-import { bindable, customElement, demoIntercept } from "aurelia-framework";
-import { inject, observable } from "aurelia-framework";
-import { HttpClient, Headers } from 'aurelia-http-client';
+import { bindable, customElement } from 'aurelia-framework';
+import { inject, observable } from 'aurelia-framework';
+import { HttpClient } from 'aurelia-http-client';
 
 //start-aurelia-decorators
-@customElement("landing")
+@customElement('landing')
 
 @inject(Config, HttpClient)
 //end-aurelia-decorators
@@ -35,17 +35,19 @@ export class Landing {
       '#haze': '/assets/icons/Add_Report_Icon_Haze'
     };
     this.isFloatingMenuActive = false;
+    this.enableEq = true;
+    this.enableHaze = true;
+    this.enableFire = true;
+    this.enableWind = true;
+    this.enableVolcano = true;
   }
 
   domouseout() {
-    console.log('out');
-    $('#floating_buttons_wrapper').css({'height': '85px', 'overflow' : 'hidden'})
-
+    $('#floating_buttons_wrapper').css({'height': '85px', 'overflow': 'hidden'});
   }
 
   domouseover() {
-    console.log('over');
-    $('#floating_buttons_wrapper').css({'height': '600px', 'overflow' : 'visible'})
+    $('#floating_buttons_wrapper').css({'height': '600px', 'overflow': 'visible'});
   }
 
 
@@ -81,28 +83,25 @@ export class Landing {
     $('#reportLink').toggle('slide');
   }
 
-  hideShowBlackBg(command){
-    if(command === 'show'){
-      $("#black_bg").css('display', 'block');
-      console.log('show');
-    }else{
-      $("#black_bg").css('display', 'none');
-      console.log('hide');
+  hideShowBlackBg(command) {
+    if (command === 'show') {
+      $('#black_bg').css('display', 'block');
+    } else {
+      $('#black_bg').css('display', 'none');
     }
   }
 
 
   openClose(event) {
-    console.log(event)
-    $('#reportData').show()
+    $('#reportData').show();
   }
 
   resizeSidePane() {
     $('#sidePane').css({
-      'height': ($(window).height() - ($('#topBar').height() + 30)) + 'px',
+      'height': ($(window).height() - ($('#topBar').height() + 30)) + 'px'
     });
     $('#dropdown_city').css({
-      'height': ($(window).height() - ($('#topBar').height() + 30)) + 'px',
+      'height': ($(window).height() - ($('#topBar').height() + 30)) + 'px'
     });
     // $('#floating_buttons_wrapper').css({
     //   'max-height': ($(window).height() - 10) + 'px'
@@ -120,7 +119,8 @@ export class Landing {
     // Modify side pane height on the fly
     this.resizeSidePane();
     $(window).resize(() => {
-      this.resizeSidePane();});
+      this.resizeSidePane();
+    });
     if (!(/Mobi/.test(navigator.userAgent)) && !this.report_id) {
       this.mapModel.togglePane('#sidePane', 'show', false);
     }

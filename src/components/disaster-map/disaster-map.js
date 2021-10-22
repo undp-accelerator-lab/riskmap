@@ -1,8 +1,10 @@
 import { inject, bindable, customElement } from 'aurelia-framework';
+import dep from '../../deployment.js';
 import * as L from 'leaflet';
 import $ from 'jquery';
 import { MapLayers } from './map-layers';
 import { MapUtility } from './map-utility';
+import initializeMapboxLeaflet from './mapbox-gl-util';
 
 //start-aurelia-decorators
 @customElement('disaster-map')
@@ -26,6 +28,7 @@ export class DisasterMap {
       this.cities.push(city);
     }
     this.selected_city = null;
+    initializeMapboxLeaflet(L);
   }
 
   togglePane(ref, action, clearSelection) {
@@ -89,6 +92,7 @@ export class DisasterMap {
     }
   }
 
+
   // Load all reports of a searched sub region
   viewRegionReports(regionName, pushState) {
     let self = this;
@@ -110,14 +114,14 @@ export class DisasterMap {
   viewReports(cityName, pushState) {
     let self = this;
 
-    self.utility.changeCity(cityName, self.reportid, self.map, self.layers, self.togglePane)
+    self.utility.changeCity(cityName, self.reportid, self.map, self.layers, self.locale.reports_stats, self.togglePane)
       .then(() => {
         // Show timeperiod notification
-        self.layers.getStats(self.utility.parseCityObj(cityName, false).region)
-          .then(stats => {
-            let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{provinceplaceholder}', cityName);
-            self.utility.statsNotification(msg);
-          });
+        // self.layers.getStats(self.utility.parseCityObj(cityName, false).region)
+        //   .then(stats => {
+        //     let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{provinceplaceholder}', cityName);
+        //     self.utility.statsNotification(msg);
+        //   });
 
         if (self.reportid && self.layers.activeReports.hasOwnProperty(self.reportid)) {
           //Case 1: Active report id in current city
@@ -143,7 +147,7 @@ export class DisasterMap {
               } else {
                 //Case 2B: fly to city with report id
                 let queryReportCity = self.utility.parseCityName(reportRegion, self.cities);
-                self.utility.changeCity(queryReportCity, self.reportid, self.map, self.layers, self.togglePane)
+                self.utility.changeCity(queryReportCity, self.reportid, self.map, self.layers, self.locale, self.togglePane)
                   .then(() => {
                     self.layers.addSingleReport(self.reportid)
                       .then(queriedReport => {
@@ -195,14 +199,22 @@ export class DisasterMap {
       center: self.utility.config.region_center,
       zoom: self.utility.config.starting_zoom,
       minZoom: self.utility.config.minimum_zoom,
-      zoomSnap: 0.25
+      zoomSnap: 0.25,
+      maxZoom: 20
     });
 
     // Add base tile layers
-    L.tileLayer(self.utility.config.tile_layer, {
-      detectRetina: true,
-      subdomains: 'abc',
-      ext: 'png'
+    // L.tileLayer(self.utility.config.tile_layer, {
+    //   detectRetina: true,
+    //   subdomains: 'abc',
+    //   ext: 'png'
+    // }).addTo(self.map);
+
+    //Add mapbox gl tile layer
+
+    let gl = L.mapboxGL({
+      accessToken: 'pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ',
+      style: 'mapbox://styles/mapbox/outdoors-v9'
     }).addTo(self.map);
 
     // Add scale control
@@ -221,7 +233,7 @@ export class DisasterMap {
     // Add custom leaflet control for geolocation
     L.Control.GeoLocate = L.Control.extend({
       onAdd: () => {
-        return self.utility.geolocateContainer(self.map, self.layers, self.togglePane);
+        return self.utility.geolocateContainer(self.map, self.layers, self.locale.reports_stats, self.togglePane);
       }
     });
     L.control.geoLocate = (opts) => {
@@ -231,10 +243,10 @@ export class DisasterMap {
       position: 'bottomleft'
     }).addTo(self.map);
 
-    let mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
-    let logoContainer = document.getElementById("logoContainer");
+    // let mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
+    // let logoContainer = document.getElementById("logoContainer");
 
-    mapControlsContainer.appendChild(logoContainer);
+    // mapControlsContainer.appendChild(logoContainer);
 
     // Find user location & store in background
     self.map.locate({
@@ -276,5 +288,7 @@ export class DisasterMap {
         this.viewReports(null, false);
       }
     };
+
+    dep.map.initial_load.forEach(function(region) {self.viewRegionReports(region, false);});
   }
 }
