@@ -4,7 +4,6 @@ import * as L from 'leaflet';
 import $ from 'jquery';
 import { MapLayers } from './map-layers';
 import { MapUtility } from './map-utility';
-import initializeMapboxLeaflet from './mapbox-gl-util';
 
 //start-aurelia-decorators
 @customElement('disaster-map')
@@ -28,7 +27,6 @@ export class DisasterMap {
       this.cities.push(city);
     }
     this.selected_city = null;
-    initializeMapboxLeaflet(L);
   }
 
   togglePane(ref, action, clearSelection) {
@@ -204,17 +202,10 @@ export class DisasterMap {
     });
 
     // Add base tile layers
-    // L.tileLayer(self.utility.config.tile_layer, {
-    //   detectRetina: true,
-    //   subdomains: 'abc',
-    //   ext: 'png'
-    // }).addTo(self.map);
-
-    //Add mapbox gl tile layer
-
-    let gl = L.mapboxGL({
-      accessToken: 'pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ',
-      style: 'mapbox://styles/mapbox/outdoors-v9'
+    L.tileLayer(self.utility.config.tile_layer, {
+      detectRetina: true,
+      subdomains: 'abc',
+      ext: 'png'
     }).addTo(self.map);
 
     // Add scale control

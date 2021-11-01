@@ -8,7 +8,6 @@ import Chart from 'chart';
 import { Config } from 'resources/config';
 import { HttpClient } from 'aurelia-http-client';
 import * as topojson from 'topojson-client';
-import initializeMapboxLeaflet from './mapbox-gl-util';
 
 //start-aurelia-decorators
 @noView
@@ -75,7 +74,6 @@ export class MapLayers {
         opacity: 1
       }
     };
-    initializeMapboxLeaflet(L);
   }
 
   getDisasterClusterIcon(disasterType, subType, level) {

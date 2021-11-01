@@ -7,7 +7,6 @@ import { Config } from 'resources/config';
 import dep from '../../deployment.js';
 import { LocationService } from './location-service';
 import { notify } from 'notifyjs-browser'; //Jquery plugin
-import initializeMapboxLeaflet from './mapbox-gl-util';
 
 $.notify.addStyle('mapInfo', {
   html: '<div id=notification><span data-notify-text/></div>',
@@ -30,7 +29,6 @@ export class MapUtility {
   constructor(Config, LocationService) {
     this.config = Config.map;
     this.locService = LocationService;
-    initializeMapboxLeaflet(L);
   }
 
   // return boolean only
