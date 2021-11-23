@@ -201,6 +201,15 @@ export class DisasterMap {
       maxZoom: 20
     });
 
+    const credits = L.control.attribution().addTo(self.map);
+    credits.addAttribution(
+      `© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>`
+    );
+
+    L.control.attribution({
+      position: 'bottomleft',
+      prefix: '<a href="http://mapbox.com/about/maps" class="mapbox-logo" target="_blank">Mapbox</a>'}).addTo(self.map);
+
     // Add base tile layers
     L.tileLayer(self.utility.config.tile_layer, {
       detectRetina: true,
