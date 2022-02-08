@@ -3,7 +3,6 @@
 import { inject, noView } from "aurelia-framework";
 import * as L from "leaflet";
 // eslint-disable-next-line no-unused-vars
-import markerClusterGroup from "leaflet.markercluster";
 import Chart from "chart";
 import { Config } from "resources/config";
 import { HttpClient } from "aurelia-http-client";
@@ -19,18 +18,14 @@ export class MapLayers {
     this.config = Config.map;
     this.selReportType = null;
     this.fireMarkers = null;
-    this.fireMarker =  {};
+    this.fireMarker = {};
     this.fireCircle = {};
     this.fireSingleFeature = {};
     this.mapIcons = {
       report_normal: (type, level, isPartnerCode) =>
         L.divIcon({
           iconSize: [30, 30],
-          html: `<img src=${this.fetchIcon(
-            type,
-            level,
-            isPartnerCode
-          )} />`,
+          html: `<img src=${this.fetchIcon(type, level, isPartnerCode)} />`,
           //html: '<i class="icon-map-' + type + ' report-icon ' + type + '"></i>'
         }),
       report_normal_with_url: (type, level, isPartnerCode) =>
@@ -157,10 +152,12 @@ export class MapLayers {
   }
 
   getReportIcon(feature) {
-
     let disasterType = feature.properties.disaster_type;
     let isPartnerCode = !!feature.properties.partner_code;
-    console.log("🚀 ~ file: map-layers.js ~ line 184 ~ MapLayers ~ getReportIcon ~ level", disasterType)
+    console.log(
+      "🚀 ~ file: map-layers.js ~ line 184 ~ MapLayers ~ getReportIcon ~ level",
+      disasterType
+    );
 
     let level = "low";
     switch (disasterType) {
@@ -282,9 +279,9 @@ export class MapLayers {
   getStats(regionCode) {
     let self = this;
     let client = new HttpClient();
-    const url = self.config.data_server +
-      'stats/reportsSummary?city=' + regionCode;
-      // + '&timeperiod=' + self.config.report_timeperiod;
+    const url =
+      self.config.data_server + "stats/reportsSummary?city=" + regionCode;
+    // + '&timeperiod=' + self.config.report_timeperiod;
     return new Promise((resolve, reject) => {
       client
         .get(url)
@@ -359,7 +356,10 @@ export class MapLayers {
     }
     if (!self.selected_report) {
       // Case 1 : no previous selection, click on report icon
-      if (feature.properties.disaster_type == "fire" && !self.fireMarker[feature.properties.pkey]) {
+      if (
+        feature.properties.disaster_type == "fire" &&
+        !self.fireMarker[feature.properties.pkey]
+      ) {
         // {e.target.setStyle({"className": "fire-distance-selected"}); e.target._updatePath()}
         e.target.setStyle({ fillOpacity: 0.5 });
       } else e.target.setIcon(reportIconSelected);
@@ -380,7 +380,10 @@ export class MapLayers {
       self.selected_report = e;
     } else if (e.target === self.selected_report.target) {
       // Case 2 : clicked report icon same as selected report
-      if (feature.properties.disaster_type == "fire" && !self.fireMarker[feature.properties.pkey])
+      if (
+        feature.properties.disaster_type == "fire" &&
+        !self.fireMarker[feature.properties.pkey]
+      )
         // e.target.setStyle ({ "className": "fire-distance" })
         e.target.setStyle({ fillOpacity: 0.25 });
       else e.target.setIcon(reportIconNormal);
@@ -394,7 +397,10 @@ export class MapLayers {
     } else if (e.target !== self.selected_report.target) {
       // Case 3 : clicked new report icon, while previous selection needs to be reset
       self.revertIconToNormal(self.selected_report.target.feature);
-      if (feature.properties.disaster_type == "fire" && !self.fireMarker[feature.properties.pkey])
+      if (
+        feature.properties.disaster_type == "fire" &&
+        !self.fireMarker[feature.properties.pkey]
+      )
         // e.target.setStyle({ "className": "fire-distance-selected" })
         e.target.setStyle({ fillOpacity: 0.5 });
       else e.target.setIcon(reportIconSelected);
@@ -666,11 +672,20 @@ export class MapLayers {
             // console.log('Could not load map layer');
             resolve(data);
           } else {
-            let partnerFireentries = data.features.filter(function (entry, index) {
-              return entry.properties.disaster_type === "fire" && entry.properties.partner_code != null;
+            let partnerFireentries = data.features.filter(function (
+              entry,
+              index
+            ) {
+              return (
+                entry.properties.disaster_type === "fire" &&
+                entry.properties.partner_code != null
+              );
             });
             let fireEntries = data.features.filter(function (entry, index) {
-              return entry.properties.disaster_type === "fire" && entry.properties.partner_code === null;
+              return (
+                entry.properties.disaster_type === "fire" &&
+                entry.properties.partner_code === null
+              );
             });
             this.map = map;
             // this.addCluster( data,cityName,map,togglePane,"partner");
@@ -749,15 +764,39 @@ export class MapLayers {
               true
             );
             map.createPane("fire_single_marker");
-            this.addFireEntryCluster(data, cityName, map, togglePane, fireEntries, false);
-            this.addFireEntryCluster(data, cityName, map, togglePane, partnerFireentries, true);
+            this.addFireEntryCluster(
+              data,
+              cityName,
+              map,
+              togglePane,
+              fireEntries,
+              false
+            );
+            this.addFireEntryCluster(
+              data,
+              cityName,
+              map,
+              togglePane,
+              partnerFireentries,
+              true
+            );
             resolve(data);
           }
           map.on(
             "zoomend",
             function (e) {
-              this.updateFireSingleMarker(this.fireSingleFeature[true.toString()], map, cityName, togglePane);
-              this.updateFireSingleMarker(this.fireSingleFeature[false.toString()], map, cityName, togglePane);
+              this.updateFireSingleMarker(
+                this.fireSingleFeature[true.toString()],
+                map,
+                cityName,
+                togglePane
+              );
+              this.updateFireSingleMarker(
+                this.fireSingleFeature[false.toString()],
+                map,
+                cityName,
+                togglePane
+              );
             },
             this
           );
@@ -769,8 +808,8 @@ export class MapLayers {
   updateFireSingleMarker(feature, map, cityName, togglePane) {
     let self = this;
     let currentZoom = map.getZoom();
-    if(!feature) return;
-    let isPartner = feature.properties.partner_code != null
+    if (!feature) return;
+    let isPartner = feature.properties.partner_code != null;
     let fireMarker = this.fireMarker[feature.properties.pkey];
     let fireCircle = this.fireCircle[feature.properties.pkey];
     if (currentZoom > 15) {
@@ -794,13 +833,7 @@ export class MapLayers {
         fireCircle.on(
           "click",
           function (e) {
-            this.markerClickHandler(
-              e,
-              feature,
-              cityName,
-              map,
-              togglePane
-            );
+            this.markerClickHandler(e, feature, cityName, map, togglePane);
           },
           this
         );
@@ -813,17 +846,14 @@ export class MapLayers {
           report_type: type,
         };
         const subType = reportData.report_type || type;
-        const sevearity = self.getAvgDisasterSevearity(
-          type,
-          subType,
-          [feature]
-        );
+        const sevearity = self.getAvgDisasterSevearity(type, subType, [
+          feature,
+        ]);
         const icon = self.getDisasterClusterIcon(
           type,
           subType,
           sevearity,
           isPartner
-
         );
         const marker = L.marker(
           L.latLng(
@@ -846,13 +876,7 @@ export class MapLayers {
         marker.on(
           "click",
           function (e) {
-            this.markerClickHandler(
-              e,
-              feature,
-              cityName,
-              map,
-              togglePane
-            );
+            this.markerClickHandler(e, feature, cityName, map, togglePane);
           },
           this
         );
@@ -862,7 +886,7 @@ export class MapLayers {
 
   addFireEntryCluster(data, cityName, map, togglePane, fireEntries, isPartner) {
     var self = this;
-    if(!fireEntries || fireEntries.length === 0) return;
+    if (!fireEntries || fireEntries.length === 0) return;
     if (fireEntries.length > 1) {
       this.addCluster(data, cityName, map, togglePane, "fire");
       // self.fireMarker = null;
@@ -873,9 +897,7 @@ export class MapLayers {
         report_type: type,
       };
       const subType = reportData.report_type || type;
-      const sevearity = self.getAvgDisasterSevearity(type, subType, [
-        feature,
-      ]);
+      const sevearity = self.getAvgDisasterSevearity(type, subType, [feature]);
       const icon = self.getDisasterClusterIcon(
         type,
         subType,
@@ -898,13 +920,7 @@ export class MapLayers {
       marker.on(
         "click",
         function (e) {
-          this.markerClickHandler(
-            e,
-            feature,
-            cityName,
-            map,
-            togglePane
-          );
+          this.markerClickHandler(e, feature, cityName, map, togglePane);
         },
         this
       );
@@ -952,7 +968,6 @@ export class MapLayers {
             className: "fire-distance",
             fillOpacity: 0.25,
           });
-          return fireCircle;
         }
         return L.marker(latlng, {
           icon: reportIconNormal,
