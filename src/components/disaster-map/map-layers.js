@@ -1391,7 +1391,7 @@ export class MapLayers {
     }
   }
 
-  addDisasterLevels(data) {
+  addDisasterLevelsToData(data) {
     let self = this;
     data.features = data.features.map(function (item) {
       item.properties.disasterLevel = self.getDisasterSevearity(item);
