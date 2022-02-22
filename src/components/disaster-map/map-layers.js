@@ -7,6 +7,7 @@ import Chart from "chart";
 import { Config } from "resources/config";
 import { HttpClient } from "aurelia-http-client";
 import * as topojson from "topojson-client";
+import { Promise } from "bluebird";
 
 //start-aurelia-decorators
 @noView
@@ -626,7 +627,7 @@ export class MapLayers {
             resolve(data);
           } else {
             localObj.addData(data);
-            localObj.addTo(map);
+            // localObj.addTo(map);
             resolve(data);
           }
         })
@@ -1306,17 +1307,46 @@ export class MapLayers {
         self.floodExtentInteraction(feature, layer, cityName, map, togglePane);
       },
     });
-    return self.appendData(
-      "floods?admin=" + cityRegion + "&minimum_state=1",
-      self.flood_extents,
-      map
-    );
+    self
+      .appendData(
+        "floods?admin=" + cityRegion + "&minimum_state=1",
+        self.flood_extents,
+        map
+      )
+      .then((data) => {
+        map.addSource("floodExtents", {
+          type: "geojson",
+          data: data,
+        });
+        map.addLayer({
+          id: "floodExtents",
+          source: "floodExtents",
+          type: "fill",
+          paint: {
+            "fill-color": [
+              "interpolate",
+              ["linear"],
+              ["get", "state"],
+              1,
+              "#A0A9F7",
+              2,
+              "#FFFF00",
+              3,
+              "#FF8300",
+              4,
+              "#CC2A41",
+            ],
+            "fill-opacity": 0.7,
+          },
+        });
+      });
   }
 
   removeFloodExtents(map) {
     let self = this;
     if (self.flood_extents) {
-      map.removeLayer(self.flood_extents);
+      map.removeLayer("floodExtents");
+      map.removeSource("floodExtents");
       self.flood_extents = null;
     }
   }
@@ -1355,8 +1385,18 @@ export class MapLayers {
   removeFloodGauges(map) {
     let self = this;
     if (self.gaugeLayer) {
-      map.removeLayer(self.gaugeLayer);
+      map.removeLayer("floodGauges");
+      map.removeSource("floodGauges");
       self.gaugeLayer = null;
     }
+  }
+
+  addDisasterLevels(data) {
+    let self = this;
+    data.features = data.features.map(function (item) {
+      item.properties.disasterLevel = self.getDisasterSevearity(item);
+      return item;
+    });
+    return data;
   }
 }
