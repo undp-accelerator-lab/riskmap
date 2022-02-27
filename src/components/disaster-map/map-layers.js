@@ -16,6 +16,7 @@ import { Promise } from "bluebird";
 export class MapLayers {
   constructor(Config) {
     this.activeReports = {}; // List of available reports (filtered by city, time: last 1 hour)
+    this.queriedReports = {};
     this.config = Config.map;
     this.selReportType = null;
     this.fireMarkers = null;
@@ -875,7 +876,6 @@ export class MapLayers {
   }
 
   updateFireSingleMarker(feature, map, cityName, togglePane) {
-    let self = this;
     let currentZoom = map.getZoom();
     if (!feature) return;
     let isPartner = feature.properties.partner_code != null;
@@ -907,51 +907,37 @@ export class MapLayers {
           this
         );
       }
-    } else {
-      if (feature && !fireMarker) {
-        // let feature = this.fireSingleFeature;
-        const type = feature.properties.disaster_type;
-        const reportData = feature.properties.report_data || {
-          report_type: type,
-        };
-        const subType = reportData.report_type || type;
-        const sevearity = self.getAvgDisasterSevearity(type, subType, [
-          feature,
-        ]);
-        const icon = self.getDisasterClusterIcon(
-          type,
-          subType,
-          sevearity,
-          isPartner
-        );
-        const marker = L.marker(
-          L.latLng(
-            feature.geometry.coordinates[1],
-            feature.geometry.coordinates[0]
-          ),
-          {
-            icon: icon,
-            pane: "fire_single_marker",
-          }
-        );
-        marker.addTo(map);
-        // var singleFireLayer = {'fire':L.layerGroup([marker])}
-        // L.control.layers(singleFireLayer).addTo(map);
-        this.fireMarker[feature.properties.pkey] = marker;
-        this.map.removeLayer(fireCircle);
-        this.fireCircle[feature.properties.pkey] = null;
+    this.queriedReports[disaster] = Object.assign({}, reports);
+    map.addSource(disaster, {
+      'type': 'geojson',
+      'data': reports,
+      'cluster': true,
+      'clusterMaxZoom': 14
+    })
 
-        // this.reportInteraction(feature, singleFireLayer, cityName, map, togglePane)
-        marker.on(
-          "click",
-          function (e) {
-            this.markerClickHandler(e, feature, cityName, map, togglePane);
-          },
-          this
-        );
+    map.addLayer({
+      'id': 'cluster-' + disaster,
+      'source': disaster,
+      'type': 'circle',
+      filter: ['has', 'point_count'],
+      // paint: {
+      //   'circle-radius': 0
+      // }
+    })
+
+    map.addLayer({
+      'id': 'unclustered-' + disaster,
+      'source': disaster,
+      'type': 'circle',
+      filter: ['!', ['has', 'point_count']],
+      paint: {
+        'circle-radius': 10
       }
-    }
+    })
+    return feature.properties.disaster_type === disaster
   }
+}
+
 
   addFireEntryCluster(data, cityName, map, togglePane, fireEntries, isPartner) {
     var self = this;
@@ -992,7 +978,7 @@ export class MapLayers {
           this.markerClickHandler(e, feature, cityName, map, togglePane);
         },
         this
-      );
+      )
     }
   }
 
@@ -1053,7 +1039,13 @@ export class MapLayers {
   }
 
   iconCreateFunction() {
+    map.loadImage('assets/icons/Add_Report_Icon_Flood.png', function (error, image) {
+      if (error) throw error;
+      map.addImage(disaster+'-marker', image);
+    });
+
     let self = this;
+ 
     return (cluster) => {
       let tooltip = L.tooltip({
         className: "cluster-count",
@@ -1068,21 +1060,28 @@ export class MapLayers {
       let partnericons = children.filter(function (entry, index) {
         return entry.feature.properties.partner_code !== null;
       });
-      const type = children[0].feature.properties.disaster_type;
-
       const reportData = children[0].feature.properties.report_data || {
         report_type: type,
       };
       const subType = reportData.report_type || type;
       const sevearity = self.getAvgDisasterSevearity(type, subType, children);
-      return self.getDisasterClusterIcon(
+      self.getDisasterClusterIcon(
         type,
         subType,
         sevearity,
         partnericons.length > 0
       );
+      const type = children[0].feature.properties.disaster_type;
+       self.queriedReports[disaster].features.forEach(function (feature, index) {
+        if (feature.properties.url === features[0].properties.url) {
+          self.queriedReports[disaster].features[index].properties.clicked = !self.queriedReports[disaster].features[index].properties.clicked;
+          map.getSource(disaster).setData(self.queriedReports[disaster]);
+        }
+      })
+      self.markerClickHandler(e, features[0], cityName, map, togglePane);
     };
-  }
+    };
+  
 
   _getWindSevearity(impact) {
     // eslint-disable-next-line default-case
@@ -1463,6 +1462,7 @@ export class MapLayers {
     let self = this;
     data.features = data.features.map(function (item) {
       item.properties.disasterLevel = self.getDisasterSevearity(item);
+      item.properties.clicked = false;
       return item;
     });
     return data;
