@@ -637,10 +637,17 @@ export class MapLayers {
             let fireentries = data.features.filter(function (entry, index) {
               return entry.properties.disaster_type === "fire";
             });
-            let isPartner = data.features.filter(function (entry, index) {
-              return entry.properties.partner_code !== null;
-            });
+            // let isPartner = data.features.filter(function (entry, index) {
+            //   return entry.properties.partner_code !== null;
+            // });
             this.map = map;
+            this.addCluster(
+              data,
+              cityName,
+              map,
+              togglePane,
+              "partner"
+            );
             this.addCluster(data, cityName, map, togglePane, "flood");
             this.addCluster(data, cityName, map, togglePane, "haze");
             this.addCluster(data, cityName, map, togglePane, "volcano");
@@ -661,13 +668,7 @@ export class MapLayers {
               "earthquake",
               "road"
             );
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              isPartner.length > 0 && "partner"
-            );
+
             if (fireentries.length > 1) {
               this.addCluster(data, cityName, map, togglePane, "fire");
               self.fireMarker = null;
@@ -824,9 +825,9 @@ export class MapLayers {
           let reportData = feature.properties.report_data || {
             report_type: "",
           };
-          return reportData.report_type === reportType;
+          return reportData.report_type === reportType && feature.properties.partner_code == null;
         }
-        return feature.properties.disaster_type === disaster;
+        return feature.properties.disaster_type === disaster && feature.properties.partner_code == null;
       },
       onEachFeature: (feature, layer) => {
         self.reportInteraction(feature, layer, cityName, map, togglePane);
