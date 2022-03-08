@@ -641,36 +641,17 @@ export class MapLayers {
             //   return entry.properties.partner_code !== null;
             // });
             this.map = map;
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "partner"
-            );
-            this.addCluster(data, cityName, map, togglePane, "flood");
-            this.addCluster(data, cityName, map, togglePane, "haze");
-            this.addCluster(data, cityName, map, togglePane, "volcano");
-            this.addCluster(data, cityName, map, togglePane, "wind");
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "earthquake",
-              "structure"
-            );
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "earthquake",
-              "road"
-            );
+            // this.addCluster( data,cityName,map,togglePane,"partner");
+            this.addCluster(data, cityName, map, togglePane, 'flood');
+            this.addCluster(data, cityName, map, togglePane, 'flood', null, true);
+            this.addCluster(data, cityName, map, togglePane, 'haze');
+            this.addCluster(data, cityName, map, togglePane, 'volcano');
+            this.addCluster(data, cityName, map, togglePane, 'wind');
+            this.addCluster(data, cityName, map, togglePane, 'earthquake', 'structure');
+            this.addCluster(data, cityName, map, togglePane, 'earthquake', 'road');
 
             if (fireentries.length > 1) {
-              this.addCluster(data, cityName, map, togglePane, "fire");
+              this.addCluster(data, cityName, map, togglePane, 'fire');
               self.fireMarker = null;
             } else {
               map.createPane("fire_single_marker");
@@ -813,21 +794,20 @@ export class MapLayers {
     });
   }
 
-  addCluster(data, cityName, map, togglePane, disaster, reportType) {
+  addCluster(data, cityName, map, togglePane, disaster, reportType, isPartner) {
     let self = this;
     // create new layer object
     self.reports = L.geoJSON(data, {
       filter: function (feature, layer) {
-        if (disaster === "partner") {
-          return feature.properties.partner_code !== null;
-        }
         if (reportType) {
           let reportData = feature.properties.report_data || {
             report_type: "",
           };
-          return reportData.report_type === reportType && feature.properties.partner_code == null;
+          return (isPartner? feature.properties.partner_code != null : feature.properties.partner_code == null)
+                  && reportData.report_type === reportType;
         }
-        return feature.properties.disaster_type === disaster && feature.properties.partner_code == null;
+        return (isPartner? feature.properties.partner_code != null : feature.properties.partner_code == null)
+                && feature.properties.disaster_type === disaster;
       },
       onEachFeature: (feature, layer) => {
         self.reportInteraction(feature, layer, cityName, map, togglePane);
