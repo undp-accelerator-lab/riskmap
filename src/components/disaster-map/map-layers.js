@@ -67,23 +67,27 @@ export class MapLayers {
             level +
             '"><i class="icon-map-flood report-cluster">',
         }),
-      disaster_cluster: (disaster, level) =>
+      disaster_cluster: (disaster, level, isPartnerCode) =>
         L.divIcon({
           iconSize: [35, 35],
-          html: `<img src="assets/icons/${disaster}_${level}.svg" />`,
+          html: `<img src=${this.fetchClusterIcon(
+            disaster,
+            level,
+            isPartnerCode
+          )} />`,
         }),
-      disaster_cluster_with_url: (disaster, level) =>
+      disaster_cluster_with_url: (disaster, level, isPartnerCode) =>
         L.icon({
-          iconUrl: "assets/icons/" + disaster + "_" + level + ".svg",
+          iconUrl: this.fetchClusterIcon(disaster, level, isPartnerCode),
           iconSize: [35, 35],
           iconAnchor: [15, 15],
           className: "report-cluster " + level,
         }),
-      disaster_cluster_partner_icon: () =>
-        L.divIcon({
-          iconSize: [35, 35],
-          html: `<img src="assets/icons/partner_icon.svg" />`,
-        }),
+      // disaster_cluster_partner_icon: () =>
+      //   L.divIcon({
+      //     iconSize: [35, 35],
+      //     html: `<img src="assets/icons/partner_icon.svg" />`,
+      //   }),
     };
     this.mapPolygons = {
       normal: {
@@ -108,17 +112,36 @@ export class MapLayers {
       : `assets/icons/${type}_${level}.svg`;
   };
 
-  getDisasterClusterIcon(disasterType, subType, level) {
+  fetchClusterIcon = (type, level, isPartnerIcon) => {
+    if (isPartnerIcon) {
+      return `assets/icons/${type}_partnericon.svg`;
+    }
+    return `assets/icons/${type}_${level}.svg`;
+  };
+
+  getDisasterClusterIcon(disasterType, subType, level, isPartnerCode) {
     switch (disasterType) {
       case "flood":
-        return this.mapIcons.disaster_cluster(disasterType, level);
+        return this.mapIcons.disaster_cluster(
+          disasterType,
+          level,
+          isPartnerCode
+        );
       case "earthquake":
-        return this.mapIcons.disaster_cluster_with_url(subType, level);
+        return this.mapIcons.disaster_cluster_with_url(
+          subType,
+          level,
+          isPartnerCode
+        );
       case "haze":
       case "wind":
       case "volcano":
       case "fire":
-      // return this.mapIcons.disaster_cluster_with_url(disasterType, level);
+        return this.mapIcons.disaster_cluster_with_url(
+          disasterType,
+          level,
+          isPartnerCode
+        );
       case "partner":
         return this.mapIcons.disaster_cluster_partner_icon();
       default:
@@ -642,16 +665,92 @@ export class MapLayers {
             // });
             this.map = map;
             // this.addCluster( data,cityName,map,togglePane,"partner");
-            this.addCluster(data, cityName, map, togglePane, 'flood');
-            this.addCluster(data, cityName, map, togglePane, 'flood', null, true);
-            this.addCluster(data, cityName, map, togglePane, 'haze');
-            this.addCluster(data, cityName, map, togglePane, 'volcano');
-            this.addCluster(data, cityName, map, togglePane, 'wind');
-            this.addCluster(data, cityName, map, togglePane, 'earthquake', 'structure');
-            this.addCluster(data, cityName, map, togglePane, 'earthquake', 'road');
+            this.addCluster(data, cityName, map, togglePane, "flood");
+            this.addCluster(
+              data,
+              cityName,
+              map,
+              togglePane,
+              "flood",
+              null,
+              true
+            );
+            this.addCluster(data, cityName, map, togglePane, "haze");
+            this.addCluster(
+              data,
+              cityName,
+              map,
+              togglePane,
+              "haze",
+              null,
+              true
+            );
+            this.addCluster(data, cityName, map, togglePane, "volcano");
+            this.addCluster(
+              data,
+              cityName,
+              map,
+              togglePane,
+              "volcano",
+              null,
+              true
+            );
+            this.addCluster(data, cityName, map, togglePane, "wind");
+            this.addCluster(
+              data,
+              cityName,
+              map,
+              togglePane,
+              "wind",
+              null,
+              true
+            );
+            this.addCluster(
+              data,
+              cityName,
+              map,
+              togglePane,
+              "earthquake",
+              "structure"
+            );
+            this.addCluster(
+              data,
+              cityName,
+              map,
+              togglePane,
+              "earthquake",
+              "structure",
+              true
+            );
+            this.addCluster(
+              data,
+              cityName,
+              map,
+              togglePane,
+              "earthquake",
+              "road"
+            );
+            this.addCluster(
+              data,
+              cityName,
+              map,
+              togglePane,
+              "earthquake",
+              "road",
+              true
+            );
 
             if (fireentries.length > 1) {
-              this.addCluster(data, cityName, map, togglePane, 'fire');
+              this.addCluster(data, cityName, map, togglePane, "fire");
+              this.addCluster(
+                data,
+                cityName,
+                map,
+                togglePane,
+                "fire",
+                null,
+                isPartner.length > 0
+              );
               self.fireMarker = null;
             } else {
               map.createPane("fire_single_marker");
@@ -803,11 +902,19 @@ export class MapLayers {
           let reportData = feature.properties.report_data || {
             report_type: "",
           };
-          return (isPartner? feature.properties.partner_code != null : feature.properties.partner_code == null)
-                  && reportData.report_type === reportType;
+          return (
+            (isPartner
+              ? feature.properties.partner_code != null
+              : feature.properties.partner_code == null) &&
+            reportData.report_type === reportType
+          );
         }
-        return (isPartner? feature.properties.partner_code != null : feature.properties.partner_code == null)
-                && feature.properties.disaster_type === disaster;
+        return (
+          (isPartner
+            ? feature.properties.partner_code != null
+            : feature.properties.partner_code == null) &&
+          feature.properties.disaster_type === disaster
+        );
       },
       onEachFeature: (feature, layer) => {
         self.reportInteraction(feature, layer, cityName, map, togglePane);
@@ -859,15 +966,19 @@ export class MapLayers {
       let partnericons = children.filter(function (entry, index) {
         return entry.feature.properties.partner_code !== null;
       });
-      const type = !partnericons.length
-        ? children[0].feature.properties.disaster_type
-        : "partner";
+      const type = children[0].feature.properties.disaster_type;
+
       const reportData = children[0].feature.properties.report_data || {
         report_type: type,
       };
       const subType = reportData.report_type || type;
       const sevearity = self.getAvgDisasterSevearity(type, subType, children);
-      return self.getDisasterClusterIcon(type, subType, sevearity);
+      return self.getDisasterClusterIcon(
+        type,
+        subType,
+        sevearity,
+        partnericons.length > 0
+      );
     };
   }
 

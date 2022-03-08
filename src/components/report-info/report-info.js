@@ -325,6 +325,20 @@ export class ReportInfo {
     return this.popupcontent.text;
   }
 
+  //start-aurelia-decorators
+  @computedFrom("popupcontent")
+  //end-aurelia-decorators
+  get isPartnerImage() {
+    return this.popupcontent.partner_icon;
+  }
+
+  //start-aurelia-decorators
+  @computedFrom("popupcontent")
+  //end-aurelia-decorators
+  get isPartnerImage() {
+    return this.popupcontent.partner_icon;
+  }
+
   attached() {
     let self = this;
 
