@@ -329,16 +329,19 @@ export class ReportInfo {
   @computedFrom("popupcontent")
   //end-aurelia-decorators
   get isPartnerImage() {
-    return this.popupcontent.partner_icon;
+    return !!this.popupcontent.partner_icon;
   }
-
+    
   //start-aurelia-decorators
   @computedFrom("popupcontent")
   //end-aurelia-decorators
-  get isPartnerImage() {
-    return this.popupcontent.partner_icon;
+  get fetchPartnerImage() {
+    // To remove the signed part from the url
+    let partnerImage = this.popupcontent.partner_icon.split("?")
+    return partnerImage[0];
   }
 
+  
   attached() {
     let self = this;
 
