@@ -182,7 +182,7 @@ export class DisasterMap {
         }
       }).catch(() => {
         //Case 3: .addReports not resolved for specified city
-        self.utility.noReportNotification(cityName, null);
+        // self.utility.noReportNotification(cityName, null);
         self.reportid = null;
       });
   }
