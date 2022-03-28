@@ -186,7 +186,6 @@ export class MapLayers {
       case "volcano":
       case "fire":
         level = this.getDisasterSevearity(feature);
-        console.log("🚀 ~ file: map-layers.js ~ line 184 ~ MapLayers ~ getReportIcon ~ level", level)
         return this.mapIcons.report_normal_with_url(
           disasterType,
           level,
@@ -326,7 +325,6 @@ export class MapLayers {
 
   revertIconToNormal(feature) {
     let icon = this.getReportIcon(feature);
-    console.log("🚀 ~ file: map-layers.js ~ line 327 ~ MapLayers ~ revertIconToNormal ~ icon", icon)
     if (feature.properties.disaster_type == "fire" && !this.fireMarker)
       // this.selected_report.target.setStyle({ "className": "fire-distance" })
       this.selected_report.target.setStyle({ fillOpacity: 0.25 });
