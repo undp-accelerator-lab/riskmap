@@ -862,6 +862,7 @@ export class MapLayers {
 
   addFireEntryCluster(data, cityName, map, togglePane, fireEntries, isPartner) {
     var self = this;
+    if(!fireEntries) return;
     if (fireEntries.length > 1) {
       this.addCluster(data, cityName, map, togglePane, "fire");
       // self.fireMarker = null;
@@ -938,7 +939,7 @@ export class MapLayers {
       },
       pointToLayer: (feature, latlng) => {
         let reportIconNormal = self.getReportIcon(feature);
-        if (feature.properties.disaster_type == "fire") {
+        if (feature.properties.disaster_type === "fire") {
           const radius = map.distance(
             L.latLng(
               feature.properties.report_data.fireRadius.lat,
