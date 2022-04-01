@@ -668,7 +668,7 @@ export class MapLayers {
             let partnerFireentries = data.features.filter(function (entry, index) {
               return entry.properties.disaster_type === "fire" && entry.properties.partner_code != null;
             });
-            let fireentries = data.features.filter(function (entry, index) {
+            let fireEntries = data.features.filter(function (entry, index) {
               return entry.properties.disaster_type === "fire" && entry.properties.partner_code === null;
             });
             this.map = map;
@@ -748,14 +748,15 @@ export class MapLayers {
               true
             );
             map.createPane("fire_single_marker");
-            this.addFireEntryCluster(data, cityName, map, togglePane, fireentries, false); 
+            this.addFireEntryCluster(data, cityName, map, togglePane, fireEntries, false);
             this.addFireEntryCluster(data, cityName, map, togglePane, partnerFireentries, true);
             resolve(data);
           }
           map.on(
             "zoomend",
             function (e) {
-              this.updateFireSingleMarker(this.fireSingleFeature, map);
+              this.updateFireSingleMarker(this.fireSingleFeature[true.toString()], map);
+              this.updateFireSingleMarker(this.fireSingleFeature[false.toString()], map);
             },
             this
           );
@@ -766,7 +767,8 @@ export class MapLayers {
 
   updateFireSingleMarker(feature, map) {
     let self = this;
-    var currentZoom = map.getZoom();
+    let currentZoom = map.getZoom();
+    if(!feature) return;
     let isPartner = feature.properties.partner_code != null
     let fireMarker = this.fireMarker[feature.properties.pkey];
     let fireCircle = this.fireCircle[feature.properties.pkey];
@@ -804,7 +806,7 @@ export class MapLayers {
       }
     } else {
       if (feature && !fireMarker) {
-        let feature = this.fireSingleFeature;
+        // let feature = this.fireSingleFeature;
         const type = feature.properties.disaster_type;
         const reportData = feature.properties.report_data || {
           report_type: type,
@@ -838,7 +840,7 @@ export class MapLayers {
         this.fireMarker[feature.properties.pkey] = marker;
         this.map.removeLayer(fireCircle);
         this.fireCircle[feature.properties.pkey] = null;
-        
+
         // this.reportInteraction(feature, singleFireLayer, cityName, map, togglePane)
         marker.on(
           "click",
@@ -857,13 +859,13 @@ export class MapLayers {
     }
   }
 
-  addFireEntryCluster(data, cityName, map, togglePane, fireentries, isPartner) {
+  addFireEntryCluster(data, cityName, map, togglePane, fireEntries, isPartner) {
     var self = this;
-    if (fireentries.length > 1) {
+    if (fireEntries.length > 1) {
       this.addCluster(data, cityName, map, togglePane, "fire");
       // self.fireMarker = null;
     } else {
-      let feature = fireentries[0];
+      let feature = fireEntries[0];
       const type = feature.properties.disaster_type;
       const reportData = feature.properties.report_data || {
         report_type: type,
@@ -890,7 +892,7 @@ export class MapLayers {
       );
       marker.addTo(map);
       this.fireMarker[feature.properties.pkey] = marker;
-      this.fireSingleFeature = feature;
+      this.fireSingleFeature[isPartner.toString()] = feature;
       marker.on(
         "click",
         function (e) {
