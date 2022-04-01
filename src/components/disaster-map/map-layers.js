@@ -21,6 +21,7 @@ export class MapLayers {
     this.fireMarkers = null;
     this.fireMarker =  {};
     this.fireCircle = {};
+    this.fireSingleFeature = {};
     this.mapIcons = {
       report_normal: (type, level, isPartnerCode) =>
         L.divIcon({
