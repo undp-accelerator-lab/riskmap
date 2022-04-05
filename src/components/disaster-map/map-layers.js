@@ -756,8 +756,8 @@ export class MapLayers {
           map.on(
             "zoomend",
             function (e) {
-              this.updateFireSingleMarker(this.fireSingleFeature[true.toString()], map);
-              this.updateFireSingleMarker(this.fireSingleFeature[false.toString()], map);
+              this.updateFireSingleMarker(this.fireSingleFeature[true.toString()], map, cityName, togglePane);
+              this.updateFireSingleMarker(this.fireSingleFeature[false.toString()], map, cityName, togglePane);
             },
             this
           );
@@ -766,7 +766,7 @@ export class MapLayers {
     });
   }
 
-  updateFireSingleMarker(feature, map) {
+  updateFireSingleMarker(feature, map, cityName, togglePane) {
     let self = this;
     let currentZoom = map.getZoom();
     if(!feature) return;
