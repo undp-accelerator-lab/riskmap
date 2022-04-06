@@ -155,6 +155,10 @@ export class Landing {
             if (result.statusCode && result.statusCode === 200) {
               resolve(JSON.parse(result.response).cardId);
             } else {
+              console.log(
+                "🚀 ~ file: landing.js ~ line 159 ~ Landing ~ .then ~ result",
+                result
+              );
               reject(result);
             }
           })
@@ -177,7 +181,6 @@ export class Landing {
           "🚀 ~ file: landing.js ~ line 176 ~ Landing ~ reportDisaster ~ err",
           err
         );
-        alert(err);
       });
   }
 
