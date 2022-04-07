@@ -862,7 +862,7 @@ export class MapLayers {
 
   addFireEntryCluster(data, cityName, map, togglePane, fireEntries, isPartner) {
     var self = this;
-    if(!fireEntries) return;
+    if(!fireEntries || fireEntries.length === 0) return;
     if (fireEntries.length > 1) {
       this.addCluster(data, cityName, map, togglePane, "fire");
       // self.fireMarker = null;
