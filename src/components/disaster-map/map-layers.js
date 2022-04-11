@@ -282,9 +282,9 @@ export class MapLayers {
   getStats(regionCode) {
     let self = this;
     let client = new HttpClient();
-    const url =
-      self.config.data_server + "stats/reportsSummary?admin=" + regionCode;
-    // + '&timeperiod=' + self.config.report_timeperiod;
+    const url = self.config.data_server +
+      'stats/reportsSummary?city=' + regionCode;
+      // + '&timeperiod=' + self.config.report_timeperiod;
     return new Promise((resolve, reject) => {
       client
         .get(url)
