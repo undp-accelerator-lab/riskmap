@@ -25,23 +25,18 @@ export class MapLayers {
     this.mapIcons = {
       report_normal: (type, level, isPartnerCode) =>
         L.divIcon({
-          iconSize: [30, 30],
-          html: `<img src=${this.fetchIcon(
-            type,
-            level,
-            isPartnerCode
-          )} />`,
+          iconSize: [50, 50],
           //html: '<i class="icon-map-' + type + ' report-icon ' + type + '"></i>'
         }),
       report_normal_with_url: (type, level, isPartnerCode) =>
         L.icon({
           iconUrl: this.fetchIcon(type, level, isPartnerCode),
-          iconSize: [30, 30],
+          iconSize: [50, 50],
           iconAnchor: [15, 15],
         }),
       report_selected: (type) =>
         L.divIcon({
-          iconSize: [30, 30],
+          iconSize: [50, 50],
           html:
             '<i class="icon-map-bg bg-circle ' +
             type +
@@ -52,23 +47,23 @@ export class MapLayers {
       report_selected_with_url: (type, level, isPartnerCode) =>
         L.icon({
           iconUrl: this.fetchIcon(type, level, isPartnerCode, true),
-          iconSize: [30, 30],
+          iconSize: [50, 50],
           iconAnchor: [15, 15],
         }),
       gauge_normal: (url) =>
         L.icon({
           iconUrl: url,
-          iconSize: [30, 30],
+          iconSize: [50, 50],
           iconAnchor: [15, 15],
         }),
       gauge_selected: L.icon({
         iconUrl: "assets/icons/floodgauge_selected.svg",
-        iconSize: [30, 30],
+        iconSize: [50, 50],
         iconAnchor: [15, 15],
       }),
       flood_cluster: (level) =>
         L.divIcon({
-          iconSize: [30, 30],
+          iconSize: [50, 50],
           html:
             '<i class="icon-map-bg bg-cluster cluster ' +
             level +
@@ -76,7 +71,7 @@ export class MapLayers {
         }),
       disaster_cluster: (disaster, level, isPartnerCode) =>
         L.divIcon({
-          iconSize: [35, 35],
+          iconSize: [45, 45],
           html: `<img src=${this.fetchClusterIcon(
             disaster,
             level,
@@ -86,7 +81,7 @@ export class MapLayers {
       disaster_cluster_with_url: (disaster, level, isPartnerCode) =>
         L.icon({
           iconUrl: this.fetchClusterIcon(disaster, level, isPartnerCode),
-          iconSize: [35, 35],
+          iconSize: [45, 45],
           iconAnchor: [15, 15],
           className: "report-cluster " + level,
         }),
