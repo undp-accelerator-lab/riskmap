@@ -25,18 +25,18 @@ export class MapLayers {
     this.mapIcons = {
       report_normal: (type, level, isPartnerCode) =>
         L.divIcon({
-          iconSize: [50, 50],
+          iconSize: [45, 45],
           //html: '<i class="icon-map-' + type + ' report-icon ' + type + '"></i>'
         }),
       report_normal_with_url: (type, level, isPartnerCode) =>
         L.icon({
           iconUrl: this.fetchIcon(type, level, isPartnerCode),
-          iconSize: [50, 50],
+          iconSize: [45, 45],
           iconAnchor: [15, 15],
         }),
       report_selected: (type) =>
         L.divIcon({
-          iconSize: [50, 50],
+          iconSize: [45, 45],
           html:
             '<i class="icon-map-bg bg-circle ' +
             type +
@@ -47,23 +47,23 @@ export class MapLayers {
       report_selected_with_url: (type, level, isPartnerCode) =>
         L.icon({
           iconUrl: this.fetchIcon(type, level, isPartnerCode, true),
-          iconSize: [50, 50],
+          iconSize: [45, 45],
           iconAnchor: [15, 15],
         }),
       gauge_normal: (url) =>
         L.icon({
           iconUrl: url,
-          iconSize: [50, 50],
+          iconSize: [45, 45],
           iconAnchor: [15, 15],
         }),
       gauge_selected: L.icon({
         iconUrl: "assets/icons/floodgauge_selected.svg",
-        iconSize: [50, 50],
+        iconSize: [45, 45],
         iconAnchor: [15, 15],
       }),
       flood_cluster: (level) =>
         L.divIcon({
-          iconSize: [50, 50],
+          iconSize: [45, 45],
           html:
             '<i class="icon-map-bg bg-cluster cluster ' +
             level +
