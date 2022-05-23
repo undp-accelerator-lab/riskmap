@@ -213,6 +213,7 @@ export class DisasterMap {
     L.tileLayer(self.utility.config.tile_layer, {
       detectRetina: true,
       subdomains: 'abc',
+      // To restrict the map zoom by 20m
       maxZoom: 20,
       ext: 'png'
     }).addTo(self.map);
