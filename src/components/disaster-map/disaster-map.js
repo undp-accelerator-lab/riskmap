@@ -198,7 +198,6 @@ export class DisasterMap {
       zoom: self.utility.config.starting_zoom,
       minZoom: self.utility.config.minimum_zoom,
       zoomSnap: 0.25,
-      maxZoom: 20
     });
 
     const credits = L.control.attribution().addTo(self.map);
@@ -214,6 +213,8 @@ export class DisasterMap {
     L.tileLayer(self.utility.config.tile_layer, {
       detectRetina: true,
       subdomains: 'abc',
+      // To restrict the map zoom by 20m
+      maxZoom: 20,
       ext: 'png'
     }).addTo(self.map);
 
