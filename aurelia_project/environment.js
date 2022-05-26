@@ -22,11 +22,8 @@ export default {
   petabencana: {
     title: 'Petabencana.id',
     report_timeperiod: 43200,
-    default_language: 'id',
-    tile_layer: 'https://api.mapbox.com/styles/v1/petabencana/ckq0nc6hp01vw17p9n17yxue2/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ',
-    data_server: 'https://data-dev.petabencana.id/',
-    cards_server: 'https://cards-dev.petabencana.id/',
-    app: 'https://dev.petabencana.id/',
+    data_server: "https://dev-api.petabencana.id/",
+    cards_server: "https://cards-dev.petabencana.id/",
     deep_links: [
       {name: 'facebook', link: 'http://m.me/CognicityDev.id'},
       {name: 'twitter', link: 'https://twitter.com/intent/tweet?text=Laporkan+banjir&via=petabencana'}, //TODO : fill after twitter DM bot is created for Petabencana.
