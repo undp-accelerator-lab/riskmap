@@ -689,6 +689,7 @@ export class MapLayers {
               );
             });
             this.map = map;
+            this.addDisasterIconLayers(map);
             // this.addCluster( data,cityName,map,togglePane,"partner");
             this.addCluster(data, cityName, map, togglePane, "flood");
             this.addCluster(
@@ -803,6 +804,73 @@ export class MapLayers {
           );
         })
         .catch(() => reject(null));
+    });
+  }
+
+  add_icon_layer(map, image_name, layer_id, source, filter, icon_size) {
+    map.loadImage(image_name, function (error, image) {
+      if (error) throw error;
+      let image_code = image_name.split('/').slice(-1)[0].split('.')[0];
+      map.addImage(image_code, image);
+      map.addLayer({
+        'id': layer_id,
+        'type': 'symbol',
+        'source': source,
+        filter: filter,
+        'layout': {
+          'icon-image': image_code,
+          'icon-size': icon_size,
+        }
+      });
+    });
+  }
+
+  addDisasterIconLayers(map) {
+    let self = this;
+    let iconMap = {
+      "flood": [
+        {
+          "icon": "assets/icons/flood_low.png",
+          "filter": ['all',['==', 'disasterLevel', 'low'],['==', 'clicked', false]],
+          "size": 0.05,
+          "level": "low"
+        },
+        {
+          "icon": "assets/icons/web_report.png",
+          "filter": ['all',['==', 'disasterLevel', 'low'],['==', 'clicked', true]],
+          "size": 0.05,
+          "level": "low_selected"
+        },
+        {
+          "icon": "assets/icons/flood_medium.png",
+          "filter": ['all',['==', 'disasterLevel', 'medium'],['==', 'clicked', false]],
+          "size": 0.05,
+          "level": "medium"
+        },
+        {
+          "icon": "assets/icons/web_report.png",
+          "filter": ['all',['==', 'disasterLevel', 'medium'],['==', 'clicked', true]],
+          "size": 0.05,
+          "level": "medium_selected"
+        },
+        {
+          "icon": "assets/icons/flood_high.png",
+          "filter": ['all',['==', 'disasterLevel', 'high'],['==', 'clicked', false]],
+          "size": 0.05,
+          "level": "high"
+        },
+        {
+          "icon": "assets/icons/web_report.png",
+          "filter": ['all',['==', 'disasterLevel', 'high'],['==', 'clicked', true]],
+          "size": 0.05,
+          "level": "high_selected"
+        },
+      ]
+    }
+    Object.keys(iconMap).forEach( function (disaster) {
+      iconMap[disaster].forEach(function (icon) {
+        self.add_icon_layer(map, icon.icon, disaster + '_' + icon.level, disaster, icon.filter, icon.size);
+      });
     });
   }
 
