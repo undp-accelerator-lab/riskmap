@@ -156,10 +156,6 @@ export class MapLayers {
   getReportIcon(feature) {
     let disasterType = feature.properties.disaster_type;
     let isPartnerCode = !!feature.properties.partner_code;
-    console.log(
-      "🚀 ~ file: map-layers.js ~ line 184 ~ MapLayers ~ getReportIcon ~ level",
-      disasterType
-    );
 
     let level = "low";
     switch (disasterType) {
@@ -651,8 +647,9 @@ export class MapLayers {
 
   addReports(cityName, cityRegion, map, togglePane) {
     let self = this;
-    map.createPane("reports");
-    map.getPane("reports").style.zIndex = 700;
+    map.addLayer('reports');
+    // map.createPane("reports");
+    // map.getPane("reports").style.zIndex = 700;
     // clear previous reports
     if (self.reports) {
       map.removeLayer(self.reports);
@@ -1420,8 +1417,8 @@ export class MapLayers {
 
   addFloodGauges(cityName, cityRegion, map, togglePane) {
     let self = this;
-    map.createPane("gauges");
-    map.getPane("gauges").style.zIndex = 650;
+    // map.createPane("gauges");
+    // map.getPane("gauges").style.zIndex = 650;
     if (cityRegion === "ID-JK") {
       // Create flood gauge layer and add to the map
       self.gaugeLayer = L.geoJSON(null, {
