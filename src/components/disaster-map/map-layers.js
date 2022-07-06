@@ -253,20 +253,6 @@ export class MapLayers {
     }
   }
 
-  // Get icon for flood gauge
-  gaugeSeverityText(level) {
-    switch (level) {
-      case 1:
-        return "High";
-      case 2:
-        return "Medium";
-      case 3:
-        return "Normal";
-      default:
-        return "Low";
-    }
-  }
-
   /**
    * Format UTC timestamps to local time for display in local time zone
    * @function {String} UTC timestamp in ISO8601 format
@@ -581,9 +567,9 @@ export class MapLayers {
           e.target.setIcon(self.mapIcons.gauge_selected);
           self.popupContent = {};
           self.popupContent.gauge_name = feature.properties.gaugenameid;
-          self.popupContent.sevearity = self.gaugeSeverityText(e.target.feature.properties.observations[
+          self.popupContent.sevearity = e.target.feature.properties.observations[
             e.target.feature.properties.observations.length - 1
-          ].f3)
+          ].f3
           self.drawGaugeChart(feature);
           togglePane("#infoPane", "show", false);
           self.selected_gauge = e;
@@ -613,9 +599,9 @@ export class MapLayers {
           e.target.setIcon(self.mapIcons.gauge_selected);
           self.popupContent = {};
           self.popupContent.gauge_name = feature.properties.gaugenameid;
-          self.popupContent.sevearity = self.gaugeSeverityText(e.target.feature.properties.observations[
+          self.popupContent.sevearity = e.target.feature.properties.observations[
             e.target.feature.properties.observations.length - 1
-          ].f3)
+          ].f3
           self.drawGaugeChart(feature);
           togglePane("#infoPane", "show", false);
           self.selected_gauge = e;
