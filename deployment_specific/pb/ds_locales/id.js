@@ -134,6 +134,11 @@ const id = {
       }
     }
   },
+  'guage_info':{
+    'title':"Peringatan",
+    'level':"Siaga"
+  },
+  
   'map_helper': 'Pilih kota:',
   'report_content': {
     'flood': {

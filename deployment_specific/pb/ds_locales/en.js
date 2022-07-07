@@ -133,6 +133,12 @@ const en = {
       }
     }
   },
+
+  'guage_info':{
+    'title':"Alert",
+    'level':"Level"
+  },
+  
   'map_helper': 'Select city :',
   'report_content': {
     'flood': {

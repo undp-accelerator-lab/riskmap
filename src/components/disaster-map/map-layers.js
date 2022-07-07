@@ -567,6 +567,9 @@ export class MapLayers {
           e.target.setIcon(self.mapIcons.gauge_selected);
           self.popupContent = {};
           self.popupContent.gauge_name = feature.properties.gaugenameid;
+          self.popupContent.guage_sevearity =  e.target.feature.properties.observations[
+            e.target.feature.properties.observations.length - 1
+          ].f3
           self.drawGaugeChart(feature);
           togglePane("#infoPane", "show", false);
           self.selected_gauge = e;
@@ -596,6 +599,9 @@ export class MapLayers {
           e.target.setIcon(self.mapIcons.gauge_selected);
           self.popupContent = {};
           self.popupContent.gauge_name = feature.properties.gaugenameid;
+          self.popupContent.guage_sevearity = e.target.feature.properties.observations[
+            e.target.feature.properties.observations.length - 1
+          ].f3
           self.drawGaugeChart(feature);
           togglePane("#infoPane", "show", false);
           self.selected_gauge = e;
