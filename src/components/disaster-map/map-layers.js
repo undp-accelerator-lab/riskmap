@@ -671,10 +671,7 @@ export class MapLayers {
             // console.log('Could not load map layer');
             resolve(data);
           } else {
-            let partnerFireentries = data.features.filter(function (
-              entry,
-              index
-            ) {
+            let partnerFireEntries = data.features.filter(function (entry, index) {
               return (
                 entry.properties.disaster_type === "fire" &&
                 entry.properties.partner_code != null
@@ -687,99 +684,93 @@ export class MapLayers {
               );
             });
             this.map = map;
+            data = this.addDisasterLevelsToData(data);
+
             this.addDisasterIconLayers(map);
             // this.addCluster( data,cityName,map,togglePane,"partner");
-            this.addCluster(data, cityName, map, togglePane, "flood");
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "flood",
-              null,
-              true
-            );
-            this.addCluster(data, cityName, map, togglePane, "haze");
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "haze",
-              null,
-              true
-            );
-            this.addCluster(data, cityName, map, togglePane, "volcano");
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "volcano",
-              null,
-              true
-            );
-            this.addCluster(data, cityName, map, togglePane, "wind");
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "wind",
-              null,
-              true
-            );
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "earthquake",
-              "structure"
-            );
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "earthquake",
-              "structure",
-              true
-            );
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "earthquake",
-              "road"
-            );
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "earthquake",
-              "road",
-              true
-            );
-            map.createPane("fire_single_marker");
-            this.addFireEntryCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              fireEntries,
-              false
-            );
-            this.addFireEntryCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              partnerFireentries,
-              true
-            );
+            this.addCluster(data, cityName, map, togglePane, "flood", null, false);
+            // this.addCluster(data, cityName, map, togglePane, "flood", null, true);
+            // this.addCluster(data, cityName, map, togglePane, "haze");
+            // this.addCluster(
+            //   data,
+            //   cityName,
+            //   map,
+            //   togglePane,
+            //   "haze",
+            //   null,
+            //   true
+            // );
+            // this.addCluster(data, cityName, map, togglePane, "volcano");
+            // this.addCluster(
+            //   data,
+            //   cityName,
+            //   map,
+            //   togglePane,
+            //   "volcano",
+            //   null,
+            //   true
+            // );
+            // this.addCluster(data, cityName, map, togglePane, "wind");
+            // this.addCluster(
+            //   data,
+            //   cityName,
+            //   map,
+            //   togglePane,
+            //   "wind",
+            //   null,
+            //   true
+            // );
+            // this.addCluster(
+            //   data,
+            //   cityName,
+            //   map,
+            //   togglePane,
+            //   "earthquake",
+            //   "structure"
+            // );
+            // this.addCluster(
+            //   data,
+            //   cityName,
+            //   map,
+            //   togglePane,
+            //   "earthquake",
+            //   "structure",
+            //   true
+            // );
+            // this.addCluster(
+            //   data,
+            //   cityName,
+            //   map,
+            //   togglePane,
+            //   "earthquake",
+            //   "road"
+            // );
+            // this.addCluster(
+            //   data,
+            //   cityName,
+            //   map,
+            //   togglePane,
+            //   "earthquake",
+            //   "road",
+            //   true
+            // );
+            // map.createPane("fire_single_marker");
+            // this.addFireEntryCluster(
+            //   data,
+            //   cityName,
+            //   map,
+            //   togglePane,
+            //   fireEntries,
+            //   false
+            // );
+            // this.addFireEntryCluster(
+            //   data,
+            //   cityName,
+            //   map,
+            //   togglePane,
+            //   partnerFireEntries,
+            //   true
+            // );
             resolve(data);
           }
           map.on(
@@ -805,7 +796,7 @@ export class MapLayers {
     });
   }
 
-  add_icon_layer(map, image_name, layer_id, source, filter, icon_size) {
+  addIconLayer(map, image_name, layer_id, source, filter, icon_size) {
     map.loadImage(image_name, function (error, image) {
       if (error) throw error;
       let image_code = image_name.split('/').slice(-1)[0].split('.')[0];
@@ -828,46 +819,46 @@ export class MapLayers {
     let iconMap = {
       "flood": [
         {
-          "icon": "assets/icons/flood_low.png",
-          "filter": ['all',['==', 'disasterLevel', 'low'],['==', 'clicked', false]],
+          "icon": "assets/icons/flood_normal.png",
+          "filter": ['all',['==', 'disasterLevel', 'normal'],['==', 'clicked', false]],
           "size": 0.05,
-          "level": "low"
+          "level": "normal"
         },
         {
           "icon": "assets/icons/web_report.png",
-          "filter": ['all',['==', 'disasterLevel', 'low'],['==', 'clicked', true]],
+          "filter": ['all',['==', 'disasterLevel', 'normal'],['==', 'clicked', true]],
           "size": 0.05,
-          "level": "low_selected"
+          "level": "normal_selected"
         },
-        {
-          "icon": "assets/icons/flood_medium.png",
-          "filter": ['all',['==', 'disasterLevel', 'medium'],['==', 'clicked', false]],
-          "size": 0.05,
-          "level": "medium"
-        },
-        {
-          "icon": "assets/icons/web_report.png",
-          "filter": ['all',['==', 'disasterLevel', 'medium'],['==', 'clicked', true]],
-          "size": 0.05,
-          "level": "medium_selected"
-        },
-        {
-          "icon": "assets/icons/flood_high.png",
-          "filter": ['all',['==', 'disasterLevel', 'high'],['==', 'clicked', false]],
-          "size": 0.05,
-          "level": "high"
-        },
-        {
-          "icon": "assets/icons/web_report.png",
-          "filter": ['all',['==', 'disasterLevel', 'high'],['==', 'clicked', true]],
-          "size": 0.05,
-          "level": "high_selected"
-        },
+        // {
+        //   "icon": "assets/icons/flood_medium.png",
+        //   "filter": ['all',['==', 'disasterLevel', 'medium'],['==', 'clicked', false]],
+        //   "size": 0.05,
+        //   "level": "medium"
+        // },
+        // {
+        //   "icon": "assets/icons/web_report.png",
+        //   "filter": ['all',['==', 'disasterLevel', 'medium'],['==', 'clicked', true]],
+        //   "size": 0.05,
+        //   "level": "medium_selected"
+        // },
+        // {
+        //   "icon": "assets/icons/flood_high.png",
+        //   "filter": ['all',['==', 'disasterLevel', 'high'],['==', 'clicked', false]],
+        //   "size": 0.05,
+        //   "level": "high"
+        // },
+        // {
+        //   "icon": "assets/icons/web_report.png",
+        //   "filter": ['all',['==', 'disasterLevel', 'high'],['==', 'clicked', true]],
+        //   "size": 0.05,
+        //   "level": "high_selected"
+        // },
       ]
     }
     Object.keys(iconMap).forEach( function (disaster) {
       iconMap[disaster].forEach(function (icon) {
-        self.add_icon_layer(map, icon.icon, disaster + '_' + icon.level, disaster, icon.filter, icon.size);
+        self.addIconLayer(map, icon.icon, disaster + '_' + icon.level, disaster+'-false', icon.filter, icon.size);
       });
     });
   }
@@ -1001,8 +992,10 @@ export class MapLayers {
         feature.properties.disaster_type === disaster
       );
     })
-    this.queriedReports[disaster] = Object.assign({}, reports);
-    map.addSource(disaster, {
+    const sourceCode = disaster + '-' + isPartner;
+    // this.queriedReports[disaster] = this.queriedReports[disaster] ? this.queriedReports[disaster]['features'].append(reports['features']) : {...reports};
+    this.queriedReports[sourceCode] = Object.assign({}, reports);
+    map.addSource(sourceCode, {
       'type': 'geojson',
       'data': reports,
       'cluster': true,
@@ -1010,8 +1003,8 @@ export class MapLayers {
     });
 
     map.addLayer({
-      'id': 'cluster-' + disaster,
-      'source': disaster,
+      'id': 'cluster-' + sourceCode,
+      'source': sourceCode,
       'type': 'circle',
       filter: ['has', 'point_count'],
       // paint: {
@@ -1020,8 +1013,8 @@ export class MapLayers {
     });
 
     map.addLayer({
-      'id': 'unclustered-' + disaster,
-      'source': disaster,
+      'id': 'unclustered-' + sourceCode,
+      'source': sourceCode,
       'type': 'circle',
       filter: ['!', ['has', 'point_count']],
       paint: {
@@ -1029,14 +1022,13 @@ export class MapLayers {
       }
     });
 
-    map.on('click', 'cluster-' + disaster, function (e) {
-      console.log("clicked")
+    map.on('click', 'cluster-' + sourceCode, function (e) {
       const features = map.queryRenderedFeatures(e.point, {
-        layers: ['cluster-' + disaster]
+        layers: ['cluster-' + sourceCode]
       });
       const clusterId = features[0].properties.cluster_id;
       if(!clusterId) return;
-      map.getSource(disaster).getClusterExpansionZoom(
+      map.getSource(sourceCode).getClusterExpansionZoom(
         clusterId,
         function (err, zoom) {
           if (err) return;
@@ -1048,30 +1040,30 @@ export class MapLayers {
       );
     });
 
-    map.on('click', 'unclustered-' + disaster, function (e) {
+    map.on('click', 'unclustered-' + sourceCode, function (e) {
       const features = map.queryRenderedFeatures(e.point, {
-        layers: ['unclustered-' + disaster]
+        layers: ['unclustered-' + sourceCode]
       });
-       self.queriedReports[disaster].features.forEach(function (feature, index) {
+       self.queriedReports[sourceCode].features.forEach(function (feature, index) {
         if (feature.properties.url === features[0].properties.url) {
-          self.queriedReports[disaster].features[index].properties.clicked = !self.queriedReports[disaster].features[index].properties.clicked;
-          map.getSource(disaster).setData(self.queriedReports[disaster]);
+          self.queriedReports[sourceCode].features[index].properties.clicked = !self.queriedReports[sourceCode].features[index].properties.clicked;
+          map.getSource(sourceCode).setData(self.queriedReports[sourceCode]);
         }
       })
-      self.markerClickHandler(e, features[0], cityName, map, togglePane);
+      // self.markerClickHandler(e, features[0], cityName, map, togglePane);
     });
     map.loadImage('assets/icons/Add_Report_Icon_Flood.png', function (error, image) {
       if (error) throw error;
-      map.addImage(disaster+'-marker', image);
+      map.addImage(sourceCode+'-marker', image);
     });
 
     map.addLayer({
-      'id': 'cluster-count-' + disaster,
+      'id': 'cluster-count-' + sourceCode,
       'type': 'symbol',
-      'source': disaster,
+      'source': sourceCode,
       filter: ['has', 'point_count'],
       'layout': {
-        'icon-image': disaster+'-marker',
+        'icon-image': sourceCode+'-marker',
         'icon-size': 0.45,
         'text-field': '{point_count}',
         'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
@@ -1079,10 +1071,10 @@ export class MapLayers {
       }
     });
 
-    map.on('mouseenter', 'cluster-' + disaster, function () {
+    map.on('mouseenter', 'cluster-' + sourceCode, function () {
       map.getCanvas().style.cursor = 'pointer';
     });
-    map.on('mouseleave', 'cluster-' + disaster, function () {
+    map.on('mouseleave', 'cluster-' + sourceCode, function () {
       map.getCanvas().style.cursor = '';
     });
   }
@@ -1095,7 +1087,7 @@ export class MapLayers {
     });
 
     let self = this;
- 
+
     return (cluster) => {
       let tooltip = L.tooltip({
         className: "cluster-count",
@@ -1131,7 +1123,7 @@ export class MapLayers {
       self.markerClickHandler(e, features[0], cityName, map, togglePane);
     };
     };
-  
+
 
   _getWindSevearity(impact) {
     // eslint-disable-next-line default-case
