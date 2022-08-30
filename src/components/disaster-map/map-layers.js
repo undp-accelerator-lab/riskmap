@@ -7,7 +7,7 @@ import Chart from "chart";
 import { Config } from "resources/config";
 import { HttpClient } from "aurelia-http-client";
 import * as topojson from "topojson-client";
-import { Promise } from "bluebird";
+import { Promise, reject } from "bluebird";
 
 //start-aurelia-decorators
 @noView
@@ -23,6 +23,38 @@ export class MapLayers {
     this.fireMarker = {};
     this.fireCircle = {};
     this.fireSingleFeature = {};
+    this.disasterMap = [
+      {
+        'disaster': 'flood',
+        'levels': ['normal', 'medium', 'high']
+      },
+      {
+        'disaster': 'haze',
+        'levels': ['low', 'normal', 'high']
+      },
+      {
+        'disaster': 'wind',
+        'levels': ['low', 'normal', 'high']
+      },
+      {
+        'disaster': 'volcano',
+        'levels': ['low', 'normal', 'high']
+      },
+      {
+        'disaster': 'earthquake',
+        'type': 'structure',
+        'levels': ['low', 'normal', 'high']
+      },
+      {
+        'disaster': 'earthquake',
+        'type': 'road',
+        'levels': ['low', 'normal', 'high']
+      },
+      {
+        'disaster': 'fire',
+        'levels': ['low', 'normal', 'high']
+      },
+    ]
     this.mapIcons = {
       report_normal: (type, level, isPartnerCode) =>
         L.divIcon({
@@ -116,11 +148,8 @@ export class MapLayers {
       : `assets/icons/${type}_${level}.svg`;
   };
 
-  fetchClusterIcon = (type, level, isPartnerIcon) => {
-    if (isPartnerIcon) {
-      return `assets/icons/${type}_partnericon_${level}.svg`;
-    }
-    return `assets/icons/${type}_${level}.svg`;
+  fetchClusterIcon = (type) => {
+    return `assets/icons/${type}_cluster.svg`;
   };
 
   getDisasterClusterIcon(disasterType, subType, level, isPartnerCode) {
@@ -331,10 +360,11 @@ export class MapLayers {
   }
 
   markerClickHandler(e, feature, cityName, map, togglePane) {
+    console.log("🚀 ~ file: map-layers.js ~ line 334 ~ MapLayers ~ markerClickHandler ~ e", e)
     var self = this;
     map.panTo(e.latlng, 5);
     let reportIconNormal = self.getReportIcon(feature);
-    let reportIconSelected = self.getSelectedReportIcon(feature);
+    // let reportIconSelected = self.getSelectedReportIcon(feature);
     if (self.selected_extent) {
       self.selected_extent.target.setStyle(self.mapPolygons.normal);
       self.selected_extent = null;
@@ -360,7 +390,8 @@ export class MapLayers {
       ) {
         // {e.target.setStyle({"className": "fire-distance-selected"}); e.target._updatePath()}
         e.target.setStyle({ fillOpacity: 0.5 });
-      } else e.target.setIcon(reportIconSelected);
+      } 
+      // else e.target.setIcon(reportIconSelected);
       self.popupContent = {};
       for (let prop in feature.properties) {
         self.popupContent[prop] = feature.properties[prop];
@@ -384,7 +415,7 @@ export class MapLayers {
       )
         // e.target.setStyle ({ "className": "fire-distance" })
         e.target.setStyle({ fillOpacity: 0.25 });
-      else e.target.setIcon(reportIconNormal);
+      // else e.target.setIcon(reportIconNormal);
       history.pushState(
         { city: cityName, report_id: null },
         "city",
@@ -401,7 +432,7 @@ export class MapLayers {
       )
         // e.target.setStyle({ "className": "fire-distance-selected" })
         e.target.setStyle({ fillOpacity: 0.5 });
-      else e.target.setIcon(reportIconSelected);
+      // else e.target.setIcon(reportIconSelected);
       self.popupContent = {};
       for (let prop in feature.properties) {
         self.popupContent[prop] = feature.properties[prop];
@@ -685,130 +716,47 @@ export class MapLayers {
             });
             this.map = map;
             data = this.addDisasterLevelsToData(data);
-
-            this.addDisasterIconLayers(map);
-            // this.addCluster( data,cityName,map,togglePane,"partner");
-            this.addCluster(data, cityName, map, togglePane, "flood");
-            this.addCluster(data,cityName,map,
-              togglePane,
-              "flood",
-              null,
-              true
-            );
-            this.addCluster(data, cityName, map, togglePane, "haze");
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "haze",
-              null,
-              true
-            );
-            this.addCluster(data, cityName, map, togglePane, "volcano");
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "volcano",
-              null,
-              true
-            );
-            this.addCluster(data, cityName, map, togglePane, "wind");
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "wind",
-              null,
-              true
-            );
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "earthquake",
-              "structure"
-            );
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "earthquake",
-              "structure",
-              true
-            );
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "earthquake",
-              "road"
-            );
-            this.addCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              "earthquake",
-              "road",
-              true
-            );
-            map.createPane("fire_single_marker");
-            this.addFireEntryCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              fireEntries,
-              false
-            );
-            this.addFireEntryCluster(
-              data,
-              cityName,
-              map,
-              togglePane,
-              partnerFireentries,
-              true
-            );
+            fireEntries.length === 0 && this.addDisasterIconLayers(map);
+            this.addCluster(data,cityName,map,togglePane, "haze", null,false);
+            this.addCluster(data,cityName,map,togglePane, "haze", null,true);
+            this.addCluster(data, cityName, map, togglePane, "flood", null, false);
+            this.addCluster(data, cityName, map, togglePane, "flood", null, true);
+            this.addCluster(data, cityName, map, togglePane, "volcano",null,false);
+            this.addCluster(data,cityName,map,togglePane,"volcano",null,true);
+            this.addCluster(data, cityName, map, togglePane, "wind",null,false);
+            this.addCluster(data,cityName,map,togglePane,"wind",null,true);
+            this.addCluster(data,cityName,map,togglePane,"earthquake","structure",false);
+            this.addCluster(data,cityName,map,togglePane,"earthquake","structure",true);
+            this.addCluster(data,cityName,map,togglePane,"earthquake","road",false);
+            this.addCluster(data,cityName,map,togglePane,"earthquake","road",true);
+            this.addFireEntryCluster(data,cityName,map,togglePane,fireEntries,false);
+            this.addFireEntryCluster(data,cityName,map,togglePane,partnerFireEntries,true);
             resolve(data);
           }
-          map.on(
-            "zoomend",
-            function (e) {
-              this.updateFireSingleMarker(
-                this.fireSingleFeature[true.toString()],
-                map,
-                cityName,
-                togglePane
-              );
-              this.updateFireSingleMarker(
-                this.fireSingleFeature[false.toString()],
-                map,
-                cityName,
-                togglePane
-              );
+          console.log("this.fireSingleFeature" , this.fireSingleFeature)
+          map.on("zoomend", function (e) {
+            this.updateFireSingleMarker(this.fireSingleFeature[false.toString()],map,cityName,togglePane);
+            this.updateFireSingleMarker(this.fireSingleFeature[true.toString()],map,cityName,togglePane);
             },
             this
           );
         })
-        .catch(() => reject(null));
+        .catch((err) => reject(err));
     });
   }
 
-  addIconLayer(map, image_name, layer_id, source, filter, icon_size) {
-    // map.loadImage(image_name, function (error, image) {
-      // if (error) throw error;
-      let image_code = image_name.split("/").slice(-1)[0].split(".")[0];
-      // map.addImage(image_code, image);
-      let img = new Image(20,20)
-      img.onload = ()=>map.addImage(image_code, img)
-      img.src = image_name
+  svgPathToImage = (image_name , dimensions = 900) => 
+      new Promise(resolve => {
+        const image = new Image(dimensions, dimensions);
+        image.addEventListener('load', () => resolve(image));
+        image.src =image_name;
+    });
+
+
+   addIconLayer(map, image_name, layer_id, source, filter, icon_size) {
+    let image_code = image_name.split("/").slice(-1)[0].split(".")[0];
+    this.svgPathToImage(image_name).then((image)=>{
+      map.addImage(image_code, image);
       map.addLayer({
         id: layer_id,
         type: "symbol",
@@ -817,86 +765,79 @@ export class MapLayers {
         layout: {
           "icon-image": image_code,
           "icon-size": icon_size,
+          'text-allow-overlap': true,
+          'text-ignore-placement': true,
+          'icon-allow-overlap': true,
+          'icon-ignore-placement': true,
         },
       });
-    // });
+    })
   }
 
+
   addDisasterIconLayers(map) {
+    let iconMap = {}
     let self = this;
-    let iconMap = {
-      flood: [
+    this.disasterMap.map((item)=>{
+      iconMap[item.disaster]= item.levels.map((level)=>(
+      {
+        "icon": self.fetchIcon(item.disaster, level, false) , 
+        "filter":[ "all", ["==", "disasterLevel", level],["==", "clicked", false]],
+        isPartner:false,
+        type:item.hasOwnProperty('type') && item.type,
+        size: 0.05,
+        level: level,
+      }
+    ))
+    if(iconMap.hasOwnProperty(item.disaster)){
+      let  clickedPropertyObject = item.levels.map((level)=>(
+
+        // When the icon is clicked
+       {
+        "icon": self.fetchIcon(item.disaster, level, false , true) , 
+        "filter":[ "all", ["==", "disasterLevel", level],["==", "clicked", true]],
+        isPartner:false,
+        type:item.hasOwnProperty('type') && item.type,
+        size: 0.05,
+        level:`${level}_selected`,
+      }
+      ))
+      let  isPartnerPropertyObject = item.levels.map((level)=>(
+      // When it is a partner icon
+      {
+        "icon": self.fetchIcon(item.disaster, level, true) , 
+        "filter":[ "all", ["==", "disasterLevel", level],["==", "clicked", false]],
+        type:item.hasOwnProperty('type') && item.type,
+        size: 0.05,
+        isPartner:true,
+        level : `${level}_partner`,
+      }
+      ))
+      let  isPartnerClickedPropertyObject = item.levels.map((level)=>(
+        // When partner icon is clicked
         {
-          icon: "assets/icons/flood_low.svg",
-          filter: [
-            "all",
-            ["==", "disasterLevel", "low"],
-            ["==", "clicked", false],
-          ],
+          "icon": self.fetchIcon(item.disaster, level, true , true) , 
+          "filter":[ "all", ["==", "disasterLevel", level],["==", "clicked", true]],
+          type:item.hasOwnProperty('type') && item.type,
           size: 0.05,
-          level: "low",
-        },
-        {
-          icon: "assets/icons/onselect/flood_low_select.svg",
-          filter: [
-            "all",
-            ["==", "disasterLevel", "low"],
-            ["==", "clicked", true],
-          ],
-          size: 0.05,
-          level: "low_selected",
-        },
-        {
-          icon: "assets/icons/flood_medium.svg",
-          filter: [
-            "all",
-            ["==", "disasterLevel", "medium"],
-            ["==", "clicked", false],
-          ],
-          size: 0.05,
-          level: "medium",
-        },
-        {
-          icon: "assets/icons/onselect/flood_medium_select.svg",
-          filter: [
-            "all",
-            ["==", "disasterLevel", "medium"],
-            ["==", "clicked", true],
-          ],
-          size: 0.05,
-          level: "medium_selected",
-        },
-        {
-          icon: "assets/icons/flood_high.svg",
-          filter: [
-            "all",
-            ["==", "disasterLevel", "high"],
-            ["==", "clicked", false],
-          ],
-          size: 0.05,
-          level: "high",
-        },
-        {
-          icon: "assets/icons/onselect/flood_high_select.svg",
-          filter: [
-            "all",
-            ["==", "disasterLevel", "high"],
-            ["==", "clicked", true],
-          ],
-          size: 0.05,
-          level: "high_selected",
-        },
-      ],
-    };
+          isPartner:true,
+          level : `${level}_partner_selected`,
+        }
+        ))
+      iconMap[item.disaster] = [...iconMap[item.disaster] , ...clickedPropertyObject , ...isPartnerPropertyObject , ...isPartnerClickedPropertyObject]
+    }
+     })
     Object.keys(iconMap).forEach( function (disaster) {
       iconMap[disaster].forEach(function (icon) {
-        self.addIconLayer(map, icon.icon, disaster + '_' + icon.level, disaster+'-false', icon.filter, icon.size);
+        console.log("🚀 ~ file: map-layers.js ~ line 834 ~ MapLayers ~ icon", icon)
+        self.addIconLayer(map, icon.icon, disaster + '_' + icon.level, icon.hasOwnProperty('type') ? `${disaster}-${icon.type}-${icon.isPartner}` : `${disaster}-${icon.isPartner}`, icon.filter, icon.size);
       });
     });
   }
 
   updateFireSingleMarker(feature, map, cityName, togglePane) {
     let currentZoom = map.getZoom();
+    console.log("🚀 ~ file: map-layers.js ~ line 832 ~ MapLayers ~ updateFireSingleMarker ~ feature", currentZoom)
     if (!feature) return;
     let isPartner = feature.properties.partner_code != null;
     let fireMarker = this.fireMarker[feature.properties.pkey];
@@ -927,36 +868,37 @@ export class MapLayers {
           this
         );
       }
-      this.queriedReports[disaster] = Object.assign({}, reports);
-      map.addSource(disaster, {
-        type: "geojson",
-        data: reports,
-        cluster: true,
-        clusterMaxZoom: 14,
-      });
+    this.queriedReports[disaster] = Object.assign({}, reports);
+    map.addSource(disaster, {
+      'type': 'geojson',
+      'data': reports,
+      'cluster': true,
+      'clusterMaxZoom': 14
+    })
 
-      map.addLayer({
-        id: "cluster-" + disaster,
-        source: disaster,
-        type: "circle",
-        filter: ["has", "point_count"],
-        // paint: {
-        //   'circle-radius': 0
-        // }
-      });
+    map.addLayer({
+      'id': 'cluster-' + disaster,
+      'source': disaster,
+      'type': 'circle',
+      filter: ['has', 'point_count'],
+      // paint: {
+      //   'circle-radius': 0
+      // }
+    })
 
-      map.addLayer({
-        id: "unclustered-" + disaster,
-        source: disaster,
-        type: "circle",
-        filter: ["!", ["has", "point_count"]],
-        paint: {
-          "circle-radius": 10,
-        },
-      });
-      return feature.properties.disaster_type === disaster;
-    }
+    map.addLayer({
+      'id': 'unclustered-' + disaster,
+      'source': disaster,
+      'type': 'circle',
+      filter: ['!', ['has', 'point_count']],
+      paint: {
+        'circle-radius': 10
+      }
+    })
+    return feature.properties.disaster_type === disaster
   }
+}
+
 
   addFireEntryCluster(data, cityName, map, togglePane, fireEntries, isPartner) {
     var self = this;
@@ -967,28 +909,22 @@ export class MapLayers {
     } else {
       let feature = fireEntries[0];
       const type = feature.properties.disaster_type;
-      const reportData = feature.properties.report_data || {
-        report_type: type,
-      };
-      const subType = reportData.report_type || type;
-      const sevearity = self.getAvgDisasterSevearity(type, subType, [feature]);
-      const icon = self.getDisasterClusterIcon(
-        type,
-        subType,
-        sevearity,
-        isPartner
-      );
-      const marker = L.marker(
-        L.latLng(
-          feature.geometry.coordinates[1],
-          feature.geometry.coordinates[0]
-        ),
-        {
-          icon: icon,
-          pane: "fire_single_marker",
-        }
-      );
-      marker.addTo(map);
+      const icon = self.fetchClusterIcon(type);
+      const imageElement = document.createElement('div');
+      imageElement.className = 'marker';
+      imageElement.style.backgroundImage = `url(${icon})`;
+      imageElement.style.width = `30px`;
+      imageElement.style.height = `30px`;
+      imageElement.style['background-repeat'] = 'no-repeat';
+      imageElement.style.backgroundSize = '100%';
+   
+        // Add markers to the map.
+        const marker = new mapboxgl.Marker({
+          element : imageElement,
+        })
+        .setLngLat([feature.geometry.coordinates[0],  feature.geometry.coordinates[1]])
+        .addTo(map);
+
       this.fireMarker[feature.properties.pkey] = marker;
       this.fireSingleFeature[isPartner.toString()] = feature;
       marker.on(
@@ -997,14 +933,14 @@ export class MapLayers {
           this.markerClickHandler(e, feature, cityName, map, togglePane);
         },
         this
-      );
+      )
     }
   }
 
-  addCluster(data, cityName, map, togglePane, disaster, reportType, isPartner) {
+  addCluster(data, cityName, map, togglePane, disaster, reportType , isPartner) {
     let self = this;
-    let reports = data;
-    reports.features = data.features.filter((feature) => {
+    let reports =  Object.assign({}, data);
+    reports.features = data.features.filter(feature => {
       if (reportType) {
         let reportData = feature.properties.report_data || {
           report_type: "",
@@ -1022,104 +958,101 @@ export class MapLayers {
           : feature.properties.partner_code == null) &&
         feature.properties.disaster_type === disaster
       );
-    });
-    this.queriedReports[disaster] = Object.assign({}, reports);
-    map.addSource(disaster, {
-      type: "geojson",
-      data: reports,
-      cluster: true,
-      clusterMaxZoom: 14,
+    })
+    const sourceCode = reportType ? disaster + '-' + reportType + '-' + isPartner : disaster + '-' + isPartner;
+    let filteredReports = Object.assign({}, reports);
+    // this.queriedReports[disaster] = this.queriedReports[disaster] ? this.queriedReports[disaster]['features'].append(reports['features']) : {...reports};
+    this.queriedReports[sourceCode] = filteredReports
+    map.addSource(sourceCode, {
+      'type': 'geojson',
+      'data': filteredReports,
+      'cluster': true,
+      'clusterMaxZoom': 14,
     });
 
     map.addLayer({
-      id: "cluster-" + disaster,
-      source: disaster,
-      type: "circle",
-      filter: ["has", "point_count"],
+      'id': 'cluster-' + sourceCode,
+      'source': sourceCode,
+      'type': 'circle',
+      filter: ['has', 'point_count'],
       // paint: {
       //   'circle-radius': 0
       // }
     });
 
     map.addLayer({
-      id: "unclustered-" + disaster,
-      source: disaster,
-      type: "circle",
-      filter: ["!", ["has", "point_count"]],
+      'id': 'unclustered-' + sourceCode,
+      'source': sourceCode,
+      'type': 'circle',
+      filter: ['!', ['has', 'point_count']],
       paint: {
-        "circle-radius": 10,
-      },
+        'circle-radius': 10
+      }
     });
 
-    map.on("click", "cluster-" + disaster, function (e) {
-      console.log("clicked");
+    map.on('click', 'cluster-' + sourceCode, function (e) {
       const features = map.queryRenderedFeatures(e.point, {
-        layers: ["cluster-" + disaster],
+        layers: ['cluster-' + sourceCode]
       });
       const clusterId = features[0].properties.cluster_id;
-      if (!clusterId) return;
-      map
-        .getSource(disaster)
-        .getClusterExpansionZoom(clusterId, function (err, zoom) {
+      if(!clusterId) return;
+      map.getSource(sourceCode).getClusterExpansionZoom(
+        clusterId,
+        function (err, zoom) {
           if (err) return;
           map.easeTo({
             center: features[0].geometry.coordinates,
-            zoom: zoom,
+            zoom: zoom
           });
-        });
+        }
+      );
     });
 
-    map.on("click", "unclustered-" + disaster, function (e) {
+    map.on('click', 'unclustered-' + sourceCode, function (e) {
       const features = map.queryRenderedFeatures(e.point, {
-        layers: ["unclustered-" + disaster],
+        layers: ['unclustered-' + sourceCode]
       });
-      self.queriedReports[disaster].features.forEach(function (feature, index) {
+       self.queriedReports[sourceCode].features.forEach(function (feature, index) {
         if (feature.properties.url === features[0].properties.url) {
-          self.queriedReports[disaster].features[index].properties.clicked =
-            !self.queriedReports[disaster].features[index].properties.clicked;
-          map.getSource(disaster).setData(self.queriedReports[disaster]);
+          self.queriedReports[sourceCode].features[index].properties.clicked = !self.queriedReports[sourceCode].features[index].properties.clicked;
+          map.getSource(sourceCode).setData(self.queriedReports[sourceCode]);
         }
-      });
+      })
       self.markerClickHandler(e, features[0], cityName, map, togglePane);
     });
-    map.loadImage(
-      "assets/icons/Add_Report_Icon_Flood.png",
-      function (error, image) {
-        if (error) throw error;
-        map.addImage(disaster + "-marker", image);
-      }
-    );
+
+    self.svgPathToImage(self.fetchClusterIcon(disaster) , 100).then((image)=>{
+      map.addImage(sourceCode+'-marker', image);
+    })
 
     map.addLayer({
-      id: "cluster-count-" + disaster,
-      type: "symbol",
-      source: disaster,
-      filter: ["has", "point_count"],
-      layout: {
-        "icon-image": disaster + "-marker",
-        "icon-size": 0.45,
-        "text-field": "{point_count}",
-        "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-        "text-size": 12,
-      },
+      'id': 'cluster-count-' + sourceCode,
+      'type': 'symbol',
+      'source': sourceCode,
+      filter: ['has', 'point_count'],
+      'layout': {
+        'icon-image': sourceCode+'-marker',
+        'icon-size': 0.45,
+        'text-field': '{point_count}',
+        'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+        'text-size': 12
+      }
     });
 
-    map.on("mouseenter", "cluster-" + disaster, function () {
-      map.getCanvas().style.cursor = "pointer";
+    map.on('mouseenter', 'cluster-' + sourceCode, function () {
+      map.getCanvas().style.cursor = 'pointer';
     });
-    map.on("mouseleave", "cluster-" + disaster, function () {
-      map.getCanvas().style.cursor = "";
+    map.on('mouseleave', 'cluster-' + sourceCode, function () {
+      map.getCanvas().style.cursor = '';
     });
   }
 
+
   iconCreateFunction() {
-    map.loadImage(
-      "assets/icons/Add_Report_Icon_Flood.png",
-      function (error, image) {
-        if (error) throw error;
-        map.addImage(disaster + "-marker", image);
-      }
-    );
+    map.loadImage('assets/icons/Add_Report_Icon_Flood.png', function (error, image) {
+      if (error) throw error;
+      map.addImage(disaster+'-marker', image);
+    });
 
     let self = this;
 
@@ -1149,16 +1082,16 @@ export class MapLayers {
         partnericons.length > 0
       );
       const type = children[0].feature.properties.disaster_type;
-      self.queriedReports[disaster].features.forEach(function (feature, index) {
+       self.queriedReports[disaster].features.forEach(function (feature, index) {
         if (feature.properties.url === features[0].properties.url) {
-          self.queriedReports[disaster].features[index].properties.clicked =
-            !self.queriedReports[disaster].features[index].properties.clicked;
+          self.queriedReports[disaster].features[index].properties.clicked = !self.queriedReports[disaster].features[index].properties.clicked;
           map.getSource(disaster).setData(self.queriedReports[disaster]);
         }
-      });
+      })
       self.markerClickHandler(e, features[0], cityName, map, togglePane);
     };
-  }
+    };
+
 
   _getWindSevearity(impact) {
     // eslint-disable-next-line default-case
