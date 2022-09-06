@@ -134,6 +134,7 @@
           "aurelia-task-queue",
           "aurelia-templating",
           "aurelia-templating-binding",
+          "text",
           
           {
             "name": "aurelia-templating-resources",
