@@ -29,6 +29,7 @@
     "less": "^3.8.1",
     "nprogress": "0.2.0",
     "requirejs": "2.3.3",
+    "text": "github:requirejs/text#latest",
     "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
