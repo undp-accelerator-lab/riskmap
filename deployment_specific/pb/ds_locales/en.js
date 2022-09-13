@@ -43,7 +43,7 @@ const en = {
     }
   },
   'report_info': {
-    'share_msg': 'Check%20flood%20reports%20on%20petabencana%2Eid',
+    'share_msg': 'Check%20out%20my%20%23SelfieDermawan%20%40petabencana%20%21%20Your%20selfie%20could%20save%20a%20life%21',
     'water_depth': 'Flood Depth:',
     'disturbance_key': 'Disturbance:',
     'access_key': 'Access:',
