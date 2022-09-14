@@ -34,21 +34,19 @@ export class MapLayers {
       },
       {
         'disaster': 'wind',
-        'levels': ['low', 'normal', 'high']
+        'levels': ['normal', 'medium', 'high']
       },
       {
         'disaster': 'volcano',
-        'levels': ['low', 'normal', 'high']
+        'levels': ['low']
       },
       {
-        'disaster': 'earthquake',
-        'type': 'structure',
-        'levels': ['low', 'normal', 'high']
+        'disaster': 'structure',
+        'levels': ['low', 'medium' , 'high']
       },
       {
-        'disaster': 'earthquake',
-        'type': 'road',
-        'levels': ['low', 'normal', 'high']
+        'disaster': 'road',
+        'levels': ['low', 'normal', 'medium' , 'high']
       },
     ]
     this.mapIcons = {
@@ -803,10 +801,9 @@ export class MapLayers {
     this.disasterMap.map((item)=>{
       iconMap[item.disaster]= item.levels.map((level)=>(
       {
-        "icon": self.fetchIcon(item.disaster, level, false) , 
+        "icon": self.fetchIcon(item.hasOwnProperty('type') ? item.type : item.disaster, level, false) , 
         "filter":[ "all", ["==", "disasterLevel", level],["==", "clicked", false]],
         isPartner:false,
-        type:item.hasOwnProperty('type') && item.type,
         size: 0.05,
         level: level,
       }
@@ -816,10 +813,9 @@ export class MapLayers {
 
         // When the icon is clicked
        {
-        "icon": self.fetchIcon(item.disaster, level, false , true) , 
+        "icon": self.fetchIcon(  item.disaster, level, false , true) , 
         "filter":[ "all", ["==", "disasterLevel", level],["==", "clicked", true]],
         isPartner:false,
-        type:item.hasOwnProperty('type') && item.type,
         size: 0.05,
         level:`${level}_selected`,
       }
@@ -827,9 +823,8 @@ export class MapLayers {
       let  isPartnerPropertyObject = item.levels.map((level)=>(
       // When it is a partner icon
       {
-        "icon": self.fetchIcon(item.disaster, level, true) , 
+        "icon": self.fetchIcon( item.disaster, level, true) , 
         "filter":[ "all", ["==", "disasterLevel", level],["==", "clicked", false]],
-        type:item.hasOwnProperty('type') && item.type,
         size: 0.05,
         isPartner:true,
         level : `${level}_partner`,
@@ -838,9 +833,8 @@ export class MapLayers {
       let  isPartnerClickedPropertyObject = item.levels.map((level)=>(
         // When partner icon is clicked
         {
-          "icon": self.fetchIcon(item.disaster, level, true , true) , 
+          "icon": self.fetchIcon( item.disaster, level, true , true) , 
           "filter":[ "all", ["==", "disasterLevel", level],["==", "clicked", true]],
-          type:item.hasOwnProperty('type') && item.type,
           size: 0.05,
           isPartner:true,
           level : `${level}_partner_selected`,
@@ -849,9 +843,10 @@ export class MapLayers {
       iconMap[item.disaster] = [...iconMap[item.disaster] , ...clickedPropertyObject , ...isPartnerPropertyObject , ...isPartnerClickedPropertyObject]
     }
      })
+     console.log(iconMap)
     Object.keys(iconMap).forEach( function (disaster) {
       iconMap[disaster].forEach(function (icon) {
-        self.addIconLayer(map, icon.icon, disaster + '_' + icon.level, icon.type ? `${disaster}-${icon.type}-${icon.isPartner}` : `${disaster}-${icon.isPartner}`, icon.filter, icon.size);
+        self.addIconLayer(map, icon.icon, disaster + '_' + icon.level, `${disaster}-${icon.isPartner}`, icon.filter, icon.size);
       });
     });
   }
@@ -951,7 +946,7 @@ export class MapLayers {
         const features = map.queryRenderedFeatures(e.point, {
           layers: [`unclustered-fire-${isPartner}`]
         });
-        self.markerClickHandler(e, features[0], cityName, map, togglePane);
+        self.markerClickHandler(e, filteredReports.features[0], cityName, map, togglePane);
       });
     }
   }
@@ -999,7 +994,7 @@ export class MapLayers {
         feature.properties.disaster_type === disaster
       );
     })
-    const sourceCode = reportType ? disaster + '-' + reportType + '-' + isPartner : disaster + '-' + isPartner;
+    const sourceCode = reportType ? reportType + '-' + isPartner : disaster + '-' + isPartner;
     let filteredReports = Object.assign({}, reports);
     // this.queriedReports[disaster] = this.queriedReports[disaster] ? this.queriedReports[disaster]['features'].append(reports['features']) : {...reports};
     this.queriedReports[sourceCode] = filteredReports
@@ -1058,7 +1053,7 @@ export class MapLayers {
           map.getSource(sourceCode).setData(self.queriedReports[sourceCode]);
         }
       })
-      self.markerClickHandler(e, features[0], cityName, map, togglePane);
+      self.markerClickHandler(e, filteredReports.features[0], cityName, map, togglePane);
     });
 
     self.svgPathToImage(self.fetchClusterIcon(disaster) , 100).then((image)=>{
