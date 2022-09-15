@@ -356,10 +356,7 @@ export class MapLayers {
   markerClickHandler(e, feature, cityName, map, togglePane) {
     var self = this;
     map.panTo(e.latlng, 5);
-    if(feature.properties.disaster_type === 'fire'){
-     
-    }
-    
+    const isPartner = !!feature.properties.partner_code
     // let reportIconNormal = self.getReportIcon(feature);
     // let reportIconSelected = self.getSelectedReportIcon(feature);
     if (self.selected_extent) {
@@ -385,16 +382,16 @@ export class MapLayers {
         feature.properties.disaster_type == "fire" && !this.fireCircle[feature.properties.pkey]
       ) {
         if(this.fireMarker[feature.properties.pkey]) this.fireMarker[feature.properties.pkey].remove(this.map)
-        const isPartner = feature.source === 'fire-false'
         const sevearity = self.getAvgDisasterSevearity('fire', 'fire', [feature]);
-        const icon = self.fetchIcon('fire', sevearity, !isPartner , true)
+        const icon = self.fetchIcon('fire', sevearity, isPartner , true)
         this.svgPathToImage(icon , 700).then((image)=>{
           map.addImage('fire-selected-icon', image);
           map.addLayer({
             id: 'fire-selected-icon',
             type: "symbol",
-            source: feature.source,
-            layout: {
+            source: `fire-${isPartner}`,
+            filter:[ "all", ["==", "disasterLevel", 'high'],["==", "clicked", true]],
+            layout: { 
               "icon-image": 'fire-selected-icon',
               "icon-size": 0.05,
               'text-allow-overlap': true,
@@ -428,8 +425,7 @@ export class MapLayers {
       if (
         feature.properties.disaster_type == "fire" && !this.fireCircle[feature.properties.pkey]
       ){
-        const isPartner = feature.source === 'fire-false'
-        self.addFireMarker(feature , map , !isPartner)
+        self.addFireMarker(feature , map , isPartner)
         map.removeLayer('fire-selected-icon')
         // e.target.setStyle ({ "className": "fire-distance" })
         e.target.setStyle({ fillOpacity: 0.25 });
@@ -735,7 +731,7 @@ export class MapLayers {
             });
             this.map = map;
             data = this.addDisasterLevelsToData(data);
-            fireEntries.length === 0 && this.addDisasterIconLayers(map);
+            this.addDisasterIconLayers(map);
             this.addCluster(data,cityName,map,togglePane, "haze", null,false);
             this.addCluster(data,cityName,map,togglePane, "haze", null,true);
             this.addCluster(data, cityName, map, togglePane, "flood", null, false);
@@ -843,7 +839,6 @@ export class MapLayers {
       iconMap[item.disaster] = [...iconMap[item.disaster] , ...clickedPropertyObject , ...isPartnerPropertyObject , ...isPartnerClickedPropertyObject]
     }
      })
-     console.log(iconMap)
     Object.keys(iconMap).forEach( function (disaster) {
       iconMap[disaster].forEach(function (icon) {
         self.addIconLayer(map, icon.icon, disaster + '_' + icon.level, `${disaster}-${icon.isPartner}`, icon.filter, icon.size);
@@ -923,8 +918,9 @@ export class MapLayers {
       // self.fireMarker = null;
     } else {
       let filteredReports = Object.assign({}, reports);
-      this.queriedReports[`fire-${isPartner}`] = filteredReports
-          map.addSource(`fire-${isPartner}`, {
+      const sourceCode = `fire-${isPartner}`
+      this.queriedReports[sourceCode] = filteredReports
+          map.addSource(sourceCode, {
             'type': 'geojson',
             'data': filteredReports,
             'cluster': true,
@@ -932,8 +928,8 @@ export class MapLayers {
           })
       
           map.addLayer({
-            'id': 'unclustered-' + `fire-${isPartner}`,
-            'source': `fire-${isPartner}`,
+            'id': 'unclustered-' + sourceCode,
+            'source': sourceCode,
             'type': 'circle',
           });
 
@@ -942,10 +938,16 @@ export class MapLayers {
       self.addFireMarker(feature , map , isPartner)
      
       this.fireSingleFeature[isPartner.toString()] = feature;
-      map.on('click', `unclustered-fire-${isPartner}`, function (e) {
+      map.on('click', `unclustered-${sourceCode}`, function (e) {
         const features = map.queryRenderedFeatures(e.point, {
-          layers: [`unclustered-fire-${isPartner}`]
+          layers: [`unclustered-${sourceCode}`]
         });
+        self.queriedReports[sourceCode].features.forEach(function (feature, index) {
+          if (feature.properties.url === features[0].properties.url) {
+            self.queriedReports[sourceCode].features[index].properties.clicked = !self.queriedReports[sourceCode].features[index].properties.clicked;
+            map.getSource(sourceCode).setData(self.queriedReports[sourceCode]);
+          }
+        })
         const feature = filteredReports.features.filter((feature) => feature.properties.url === features[0].properties.url)
         self.markerClickHandler(e, feature[0], cityName, map, togglePane);
       });
