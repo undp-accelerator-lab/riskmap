@@ -946,7 +946,8 @@ export class MapLayers {
         const features = map.queryRenderedFeatures(e.point, {
           layers: [`unclustered-fire-${isPartner}`]
         });
-        self.markerClickHandler(e, filteredReports.features[0], cityName, map, togglePane);
+        const feature = filteredReports.features.filter((feature) => feature.properties.url === features[0].properties.url)
+        self.markerClickHandler(e, feature[0], cityName, map, togglePane);
       });
     }
   }
@@ -1053,7 +1054,8 @@ export class MapLayers {
           map.getSource(sourceCode).setData(self.queriedReports[sourceCode]);
         }
       })
-      self.markerClickHandler(e, filteredReports.features[0], cityName, map, togglePane);
+      const feature = self.queriedReports[sourceCode].features.filter((feature) => feature.properties.url === features[0].properties.url)
+      self.markerClickHandler(e, feature[0], cityName, map, togglePane);
     });
 
     self.svgPathToImage(self.fetchClusterIcon(disaster) , 100).then((image)=>{
