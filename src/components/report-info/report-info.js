@@ -257,6 +257,13 @@ export class ReportInfo {
     return null;
   }
 
+  get fireDistance() {
+    if (this.popupcontent.report_data && this.popupcontent.report_data) {
+      return this.popupcontent.report_data.fireDistance;
+    }
+    return null;
+  }
+
   //start-aurelia-decorators
   @computedFrom('popupcontent')
   //end-aurelia-decorators
