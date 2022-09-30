@@ -264,6 +264,13 @@ export class ReportInfo {
     return null;
   }
 
+  get evacuationNumber() {
+    if (this.popupcontent.report_data && this.popupcontent.report_data) {
+      return this.popupcontent.report_data.evacuationNumber;
+    }
+    return null;
+  }
+
   //start-aurelia-decorators
   @computedFrom('popupcontent')
   //end-aurelia-decorators
