@@ -107,10 +107,11 @@ export class MapUtility {
     let self = this;
     let cityObj = self.parseCityObj(cityName, true);
     // Remove previous layers
-    layers.removeFloodExtents(map);
-    layers.removeFloodGauges(map);
+    // layers.removeFloodExtents(map);
+    // layers.removeFloodGauges(map);
     // Fly to new city bounds
     // map.flyToBounds([cityObj.bounds.sw, cityObj.bounds.ne])
+    history.pushState({city: cityName, report_id: null}, 'city', 'map/' + cityName);
     if (self.selectedRegion) {
       map.panTo([self.selectedRegion.center[1], self.selectedRegion.center[0]], 10);
       self.selectedRegion = undefined;
