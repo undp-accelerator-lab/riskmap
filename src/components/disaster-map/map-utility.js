@@ -107,7 +107,8 @@ export class MapUtility {
     let self = this;
     let cityObj = self.parseCityObj(cityName, true);
     // Remove previous layers
-    // layers.removeFloodExtents(map);
+    layers.removeFloodExtents(map);
+    // layers.removeCluster(map);
     // layers.removeFloodGauges(map);
     // Fly to new city bounds
     // map.flyToBounds([cityObj.bounds.sw, cityObj.bounds.ne])

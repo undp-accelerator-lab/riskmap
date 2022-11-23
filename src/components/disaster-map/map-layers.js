@@ -1071,26 +1071,39 @@ export class MapLayers {
       let filteredReports = Object.assign({}, reports);
       this.queriedReports[sourceCode] = filteredReports;
       self.addFireMarker(fireEntries[0], map, isPartner);
+
+
+    if(!this.map.getSource(sourceCode)){
       map.addSource(sourceCode, {
         type: "geojson",
         data: filteredReports,
         cluster: false,
         clusterMaxZoom: 14,
       });
-      map.addLayer({
-        id: "unclustered-" + sourceCode,
-        source: sourceCode,
-        type: "circle",
-        filter: [
-          "all",
-          ["==", "disaster_type", "fire"],
-          ["!has", "point_count"],
-        ],
-        paint: {
-          "circle-radius": 20,
-          "circle-opacity": 0,
-        },
-      });
+    }
+    else{
+      this.map.getSource(sourceCode).setData(filteredReports);
+    }
+    
+
+
+  if (!this.map.getLayer("unclustered-" + sourceCode)) {
+    map.addLayer({
+      id: "unclustered-" + sourceCode,
+      source: sourceCode,
+      type: "circle",
+      filter: [
+        "all",
+        ["==", "disaster_type", "fire"],
+        ["!has", "point_count"],
+      ],
+      paint: {
+        "circle-radius": 20,
+        "circle-opacity": 0,
+      },
+    });
+  }
+  
       map.on("click", `unclustered-${sourceCode}`, function (e) {
         self.mapClickHandler(
           e,
@@ -1209,7 +1222,8 @@ export class MapLayers {
   }
 
   addCluster(data, cityName, map, togglePane, disaster, reportType, isPartner) {
-    let self = this;
+    try {
+      let self = this;
     let reports = Object.assign({}, data);
     reports.features = data.features.filter((feature) => {
       if (reportType) {
@@ -1236,24 +1250,20 @@ export class MapLayers {
     let filteredReports = Object.assign({}, reports);
     // this.queriedReports[disaster] = this.queriedReports[disaster] ? this.queriedReports[disaster]['features'].append(reports['features']) : {...reports};
     this.queriedReports[sourceCode] = filteredReports;
-    map.addSource(sourceCode, {
-      type: "geojson",
-      data: filteredReports,
-      cluster: true,
-      clusterMaxZoom: 14,
-    });
 
-    map.addLayer({
-      id: "cluster-" + sourceCode,
-      source: sourceCode,
-      type: "circle",
-      filter: ["has", "point_count"],
-      paint: {
-        "circle-radius": 20,
-        "circle-opacity": 0,
-      },
-    });
+    if(!this.map.getSource(sourceCode)){
+       map.addSource(sourceCode, {
+        type: "geojson",
+        data: filteredReports,
+        cluster: true,
+        clusterMaxZoom: 14,
+      });
+    }
+    else{
+      this.map.getSource(sourceCode).setData(filteredReports);
+    }
 
+  if (!this.map.getLayer("unclustered-" + sourceCode)) {
     map.addLayer({
       id: "unclustered-" + sourceCode,
       source: sourceCode,
@@ -1264,6 +1274,23 @@ export class MapLayers {
         "circle-opacity": 0,
       },
     });
+  }
+
+  if (!this.map.getLayer("unclustered-" + sourceCode)) {
+    map.addLayer({
+      id: "cluster-" + sourceCode,
+      source: sourceCode,
+      type: "circle",
+      filter: ["has", "point_count"],
+      paint: {
+        "circle-radius": 20,
+        "circle-opacity": 0,
+      },
+    });
+  }
+
+
+
 
     map.on("click", "cluster-" + sourceCode, function (e) {
       const features = map.queryRenderedFeatures(e.point, {
@@ -1332,6 +1359,11 @@ export class MapLayers {
     map.on("mouseleave", "cluster-" + sourceCode, function () {
       map.getCanvas().style.cursor = "";
     });
+    }
+    catch (err){
+      console.log("Err" , err)
+    }
+    
   }
 
   iconCreateFunction() {
@@ -1629,7 +1661,7 @@ export class MapLayers {
     self
       .appendData( "floods?admin=" + cityRegion + "&minimum_state=1",map)
       .then((data) => {
-        map.addSource("floodExtents", {
+        self.flood_extents = map.addSource("floodExtents", {
           type: "geojson",
           data: data,
         });
@@ -1665,7 +1697,7 @@ export class MapLayers {
 
   removeFloodExtents(map) {
     let self = this;
-    if (self.flood_extents) {
+    if (self.flood_extents &&  map.getLayer('floodExtents')) {
       map.removeLayer("floodExtents");
       map.removeSource("floodExtents");
       self.flood_extents = null;
