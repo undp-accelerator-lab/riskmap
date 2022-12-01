@@ -392,7 +392,7 @@ export class MapLayers {
                                     properties: {
                                         zone: "Pusat gempa berada di darat 7 km Baratlaut Kab. Cianjur",
                                         feltarea: "III Cugenang",
-                                        updated : '2022-11-01',
+                                        date : '2022-11-01',
                                         depth: "10 km                                                                                               ",
                                         magnitude: 2.3
                                     },
@@ -403,7 +403,7 @@ export class MapLayers {
                                     properties: {
                                         zone: "Pusat gempa berada dilaut 15Km Tenggara Enggano",
                                         feltarea: "III Enggano",
-                                        updated : '2022-12-01',
+                                        date : '2022-12-01',
                                         depth: "10 km                                                                                               ",
                                         magnitude: 4.2
                                     },
@@ -414,7 +414,7 @@ export class MapLayers {
                                     properties: {
                                         zone: "Pusat gempa berada didarat 6km Barat Daya KAB.Cianjur",
                                         feltarea: "III Nagrak, III Cugenang, II Cianjur, II - III Cilaku",
-                                        updated : '2022-11-01',
+                                        date : '2022-11-01',
                                         depth: "10 km                                                                                               ",
                                         magnitude: 3.3
                                     },
@@ -425,7 +425,7 @@ export class MapLayers {
                                     properties: {
                                         zone: "Pusat gempa berada di laut 14 km Baratlaut Pulaupanjang",
                                         feltarea: "II Lomok Utara, II Lombok Timur, II Sumbawa Barat",
-                                        updated : '2022-11-01',
+                                        date : '2022-11-01',
                                         depth: "10 km                                                                                               ",
                                         magnitude: 4.2
                                     },
@@ -436,7 +436,7 @@ export class MapLayers {
                                     properties: {
                                         zone: "Pusat gempa berada di laut 16 km Utara Kobisonta",
                                         feltarea: "II Seram Utara",
-                                        updated : '2022-11-01',
+                                        date : '2022-11-01',
                                         depth: "10 km                                                                                               ",
                                         magnitude: 5.2
                                     },
@@ -447,7 +447,7 @@ export class MapLayers {
                                     properties: {
                                         zone: "Pusat gempa berada di darat 3 km timur laut Lalolae",
                                         feltarea: "II - III Kolaka Timur",
-                                        updated : '2022-11-01',
+                                        date : '2022-11-01',
                                         depth: "2 km                                                                                                ",
                                         magnitude: 3.1
                                     },
@@ -458,7 +458,7 @@ export class MapLayers {
                                     properties: {
                                         zone: "Pusat gempa berada di laut 22 km barat daya Kep. Yapen",
                                         feltarea: "II - III Serui",
-                                        updated : '2022-11-01',
+                                        date : '2022-11-01',
                                         depth: "8 km                                                                                                ",
                                         magnitude: 3.8
                                     },
@@ -469,7 +469,7 @@ export class MapLayers {
                                     properties: {
                                         zone: "Pusat gempa berada di darat 95 km timurlaut Kobakma",
                                         feltarea: "II-III Kobakma",
-                                        updated : '2022-11-01',
+                                        date : '2022-11-01',
                                         depth: "11 km                                                                                               ",
                                         magnitude: 4.7
                                     },
@@ -480,7 +480,7 @@ export class MapLayers {
                                     properties: {
                                         zone: "Pusat gempa berada di darat 10 km Timurlaut Buton Tengah",
                                         feltarea: "III Buton Tengah",
-                                        updated : '2022-11-01',
+                                        date : '2022-11-01',
                                         depth: "6 km                                                                                                ",
                                         magnitude: 3
                                     },
@@ -492,7 +492,7 @@ export class MapLayers {
                                         zone: "Pusat gempa berada di darat 3 km BaratDaya Cianjur",
                                         feltarea:
                                             "III Cianjur, III Cugenang, III Cibeber, III Karangtengah, II Warungkondang, II Sukabumi, II Cilaku",
-                                        updated : '2022-11-01',
+                                        date : '2022-11-01',
                                         depth: "12 km                                                                                               ",
                                         magnitude: 2.7
                                     },
@@ -502,7 +502,7 @@ export class MapLayers {
                                     type: "Point",
                                     properties: {
                                         zone: "Pusat gempa berada di laut 29 km barat daya Sinabang",
-                                        updated : '2022-11-01',
+                                        date : '2022-11-01',
                                         feltarea: "III Simeulue",
                                         depth: "15 km                                                                                               ",
                                         magnitude: 4.7
@@ -515,7 +515,7 @@ export class MapLayers {
                                         zone: "Pusat gempa berada di darat 5 km BaratDaya Cianjur",
                                         feltarea:
                                             "III Cibodas, III Cimacan, III Bojongherang, II - III Cianjur, II Cibeureum, III-IV Cugenang",
-                                        updated : '2022-11-01',
+                                        date : '2022-11-01',
                                         depth: "12 km                                                                                               ",
                                         magnitude: 3.5
                                     },
@@ -526,7 +526,7 @@ export class MapLayers {
                                     properties: {
                                         zone: "Pusat gempa berada di darat 6 km Barat Daya Kabupaten Cianjur",
                                         feltarea: "III Cugenang",
-                                        updated : '2022-11-01',
+                                        date : '2022-11-01',
                                         depth: "10 km                                                                                               ",
                                         magnitude: 2.8
                                     },
@@ -538,7 +538,7 @@ export class MapLayers {
                                         zone: "Pusat gempa berada di darat 5 km baratdaya Kabupaten Cianjur",
                                         feltarea:
                                             "II-III Pacet , II Karangtengah, II Babakankaret, II Sukaresmi, II Cilaku, II Cipanas, II Cianjur, II Bojongherang",
-                                        updated : '2022-11-01',
+                                        date : '2022-11-01',
                                         depth: "10 km                                                                                               ",
                                         magnitude: 2.5
                                     },
@@ -549,7 +549,7 @@ export class MapLayers {
                                     properties: {
                                         zone: "Pusat gempa berada di laut 6 km barat laut Kab. Konawe",
                                         feltarea: "IV Kendari, IV Konawe, III-IV Konawe Selatan",
-                                        updated : '2022-11-01',
+                                        date : '2022-11-01',
                                         depth: "10 km                                                                                               ",
                                         magnitude: 4
                                     },

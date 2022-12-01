@@ -9,6 +9,6 @@ export class EarthQuakeInfo {
   @bindable zone;
   @bindable magnitude;
   @bindable feltarea;
-  @bindable updated;
+  @bindable last_updated;
   //end-aurelia-decorators
 }
