@@ -1,0 +1,25 @@
+<template>
+    <require from="./volcano-info.css"></require>
+    <div id="volcano-title">
+        <p>
+            ${locale.volcano_info.title}
+            <br />
+            <b>${volcano_name}</b>
+        </p>
+    </div>
+    <div id="volcano-state">
+        <p id="severity">${locale.volcano_info.activity_level}:</p>
+        <span>${activity_level}</span>
+        <p id="severity">${locale.volcano_info.visual}:</p>
+        <span>${visual}</span>
+        <span>
+            <p id="severity">${locale.volcano_info.photo}:</p>
+            <a rel="noopener noreferrer" target="_blank" href="${photo_}">${photo_}</a>
+        </span>
+        <span>
+            <p id="severity">${locale.volcano_info.share_url}:</p>
+            <a rel="noopener noreferrer" target="_blank" href="${share_url}">${share_url} </a>
+        </span>
+        <!-- <p id="updated">${locale.volcano_info.updated}: ${updated}</p> -->
+    </div>
+</template>

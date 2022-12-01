@@ -1,0 +1,42 @@
+@import "../../resources/style_sheets/theme_guide.less";
+
+#volcano-title {
+  position: relative;
+  width: 92%;
+  & p {
+    margin: 0;
+    padding: 10px;
+    .bodymedium-mixin(14px);
+    color: @banjir-blue;
+    text-align: center;
+    & b {
+      color: @dark-gray;
+    }
+  }
+}
+
+#volcano-state {
+  position: relative;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  width: 92%;
+   span , a {
+    text-align: center;
+  }
+  & p {
+    margin: 0;
+    padding: 5px;
+    .bodymedium-mixin(14px);
+    color: @dark-gray;
+    text-align: center;
+  }
+  & #severity {
+    color: @banjir-blue;
+    text-transform: uppercase;
+  }
+  & #updated {
+    .bodylight-mixin(12px);
+  }
+}

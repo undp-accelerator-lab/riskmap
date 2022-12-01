@@ -1,0 +1,18 @@
+<template>
+  <require from="./earthquake-info.css"></require>
+  <div id="earthquake-title">
+    <p>
+      ${locale.earthquake_info.title}
+      <br>
+      <b>${feltarea}</b>
+    </p>
+  </div>
+  <div id="earthquake-state">
+    <p>
+      ${locale.earthquake_info.zone}: ${zone}
+      <br>
+      ${locale.earthquake_info.magnitude}: ${magnitude}
+    </p>
+    <p id="updated">${locale.earthquake_info.updated}: ${updated}</p>
+  </div>
+</template>

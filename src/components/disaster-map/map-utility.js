@@ -135,6 +135,8 @@ export class MapUtility {
     if (cityObj.region !== 'java') {
       layers.addFloodExtents(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
       layers.addFloodGauges(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
+      layers.addEarthquakeLayers(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
+      layers.addVolcanoEruptionLayers(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
       return layers.addReports(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
     }
 

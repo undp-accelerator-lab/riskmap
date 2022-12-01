@@ -135,6 +135,20 @@ const id = {
       }
     }
   },
+  'earthquake_info':{
+    'title': 'Earthquake affected area',
+    'zone': 'Zone',
+    'magnitude': 'Mangnitude',
+    'updated': 'Last Updated'
+
+  },
+  'volcano_info':{
+    'title': 'Volcano Name',
+    'activity_level': 'Level',
+    'visual': 'Description',
+    'photo': 'Photo Link',
+    'share_url': 'Share Url'
+  },
   'guage_info':{
     'title':"Peringatan",
     'level':"Siaga"
