@@ -2,17 +2,20 @@
   <require from="./earthquake-info.css"></require>
   <div id="earthquake-title">
     <p>
-      ${locale.earthquake_info.title}
-      <br>
-      <b>${feltarea}</b>
+      ${locale.earthquake_info.magnitude}
+      <br/>
+      <span>${magnitude}</span>
     </p>
-  </div>
+    </div>
   <div id="earthquake-state">
-    <p>
-      ${locale.earthquake_info.zone}: ${zone}
-      <br>
-      ${locale.earthquake_info.magnitude}: ${magnitude}
+    <p id="severity">
+      ${locale.earthquake_info.zone}
     </p>
+      <span>${zone}</span>
+    <p id="severity">
+      ${locale.earthquake_info.effected_area}
+    </p>
+      <span>${feltarea}</span>
     <p id="updated">${locale.earthquake_info.updated}: ${last_updated}</p>
   </div>
 </template>

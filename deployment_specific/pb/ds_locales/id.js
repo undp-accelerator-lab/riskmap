@@ -135,8 +135,8 @@ const id = {
       }
     }
   },
-  'earthquake_info':{
-    'title': 'Earthquake affected area',
+  'earthquake_info': {
+    'effected_area': 'Earthquake affected area',
     'zone': 'Zone',
     'magnitude': 'Mangnitude',
     'updated': 'Last Updated'
