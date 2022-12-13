@@ -1421,8 +1421,8 @@ export class MapLayers {
                     "icon-size": 0.45,
                     "text-field": "{point_count}",
                     "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-                    "text-size": 14,
-                    "text-offset": [0.75, 1.25]
+                    "text-size": 12,
+                    "text-offset": [0.75, 0.8]
                 }
             });
 
