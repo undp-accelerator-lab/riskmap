@@ -11,5 +11,6 @@ export class VolcanoInfo {
   @bindable visual;
   @bindable photo_;
   @bindable share_url;
+  @bindable source;
   //end-aurelia-decorators
 }

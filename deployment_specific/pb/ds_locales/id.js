@@ -136,18 +136,20 @@ const id = {
     }
   },
   'earthquake_info': {
-    'effected_area': 'Earthquake affected area',
-    'zone': 'Zone',
-    'magnitude': 'Mangnitude',
-    'updated': 'Last Updated'
+    'effected_area': 'Wilayah terdampak',
+    'zone': 'Lokasi',
+    'magnitude': 'Magnitude',
+    'updated': 'Pembaharuan terkahir',
+    'source': 'Sumber'
 
   },
-  'volcano_info':{
-    'title': 'Volcano Name',
+  'volcano_info': {
+    'title': 'Nama Gunungapi',
     'activity_level': 'Level',
-    'visual': 'Description',
-    'photo': 'Photo Link',
-    'share_url': 'Share Url'
+    'visual': 'Deskripsi',
+    'photo': 'Foto',
+    'share_url': 'link terkait',
+    'source': 'Sumber'
   },
   'guage_info':{
     'title':"Peringatan",

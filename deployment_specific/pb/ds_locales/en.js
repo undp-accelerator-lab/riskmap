@@ -134,6 +134,22 @@ const en = {
       }
     }
   },
+  'earthquake_info': {
+    'effected_area': 'Earthquake Affected Area',
+    'zone': 'Zone',
+    'magnitude': 'Magnitude',
+    'updated': 'Last updated',
+    'source': 'Source'
+
+  },
+  'volcano_info': {
+    'title': 'Volcano Name',
+    'activity_level': 'Level',
+    'visual': 'Description',
+    'photo': 'Photo',
+    'share_url': 'Share url',
+    'source': 'Source'
+  },
 
   'guage_info':{
     'title':"Alert",
