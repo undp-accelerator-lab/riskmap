@@ -23,8 +23,11 @@ export class MapLayers {
     this.fireMarker = {};
     this.fireCircle = {};
     this.fireSingleFeature = {};
-    this.VolcanoEruptionLevelsMap = ["I", "II", "III"];
-
+    this.VolcanoEruptionLevelsMap = ["III" , "IV"];
+    this.VolcanofilterMap = {
+        'III' : 'Level III (Siaga)',
+        'IV' : 'Level IV (Awas)' 
+    }
     this.disasterMap = [
       {
         disaster: "flood",
@@ -329,7 +332,7 @@ export class MapLayers {
                                     type: "Point",
                                     properties: {
                                         volcano_name: "Kerinci",
-                                        activity_level: "Level II (Waspada)",
+                                        activity_level: "Level IV (Awas)",
                                         visual: "Terjadi erupsi G. Kerinci pada hari Selasa, 01 November 2022, pukul 16:59 WIB dengan tinggi kolom abu teramati &plusmn; 200 m di atas puncak (&plusmn; 4005 m di atas permukaan laut). Kolom abu teramati berwarna kelabu hingga coklat dengan intensitas sedang hingga tebal ke arah utara dan timur laut.",
                                         photo_: "https://magma.vsi.esdm.go.id/img/crs/VEN_KER20221101170424.png",
                                         share_url:
@@ -1728,10 +1731,6 @@ export class MapLayers {
     addVolcanoEruptionLayers(cityName, cityRegion, map, togglePane) {
         let self = this;
         self.getVolcanoData("volcanos", map).then(data => {
-            data.features = data.features.map(function (item) {
-                item.properties.volcanoLevel = item.properties.activity_level.split(" ")[1];
-                return item;
-            });
             self.volcanos = map.addSource("volcanoSource", {
                 type: "geojson",
                 data: data
@@ -1740,6 +1739,7 @@ export class MapLayers {
                 id: "volcanoSource",
                 source: "volcanoSource",
                 type: "circle",
+                filter: ["in", "activity_level", 'Level IV (Awas)' , 'Level III (Siaga)'],
                 paint: {
                   "circle-radius": 8,
                   "circle-opacity": 0
@@ -1753,7 +1753,7 @@ export class MapLayers {
                 id: `volcanoSource-icon-${level}`,
                 type: "symbol",
                 source: "volcanoSource",
-                filter: ["all", ["==", "volcanoLevel", level]],
+                filter: ["==", "activity_level", this.VolcanofilterMap[level]],
                 layout: {
                     "icon-image": `volcano-eruption-icon-${level}`,
                     "icon-size": 0.05,
