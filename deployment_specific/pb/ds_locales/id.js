@@ -135,6 +135,23 @@ const id = {
       }
     }
   },
+  'earthquake_info': {
+    'effected_area': 'Wilayah terdampak',
+    'zone': 'Lokasi',
+    'magnitude': 'Magnitude',
+    'updated': 'Pembaharuan terkahir',
+    'source': 'Sumber'
+
+  },
+  'volcano_info': {
+    'title': 'Nama Gunungapi',
+    'activity_level': 'Level',
+    'visual': 'Deskripsi',
+    'photo': 'Foto',
+    'share_url': 'link terkait',
+    'updated': 'Pembaharuan terkahir',
+    'source': 'Sumber'
+  },
   'guage_info':{
     'title':"Peringatan",
     'level':"Siaga"
