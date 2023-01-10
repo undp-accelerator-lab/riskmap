@@ -148,6 +148,7 @@ const en = {
     'visual': 'Description',
     'photo': 'Photo',
     'share_url': 'Share url',
+    'updated': 'Last updated',
     'source': 'Source'
   },
 

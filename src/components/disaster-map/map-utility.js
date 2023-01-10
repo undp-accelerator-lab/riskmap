@@ -108,6 +108,8 @@ export class MapUtility {
     let cityObj = self.parseCityObj(cityName, true);
     // Remove previous layers
     layers.removeFloodExtents(map);
+    layers.removeEarthquakeLayer(map);
+    layers.removeVolcanoLayer(map);
     // layers.removeCluster(map);
     // layers.removeFloodGauges(map);
     // Fly to new city bounds

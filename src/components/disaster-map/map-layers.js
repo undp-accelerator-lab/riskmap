@@ -300,285 +300,6 @@ export class MapLayers {
         });
     }
 
-    getVolcanoData() {
-        let self = this;
-        let url = "http://localhost:3000/dev/earthquakes";
-        let client = new HttpClient();
-        return new Promise((resolve, reject) => {
-            // client
-            //     .get(url)
-            //     .then(data => {
-            let topology = {
-                statusCode: 200,
-                result: {
-                    type: "Topology",
-                    objects: {
-                        output: {
-                            type: "GeometryCollection",
-                            geometries: [
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        volcano_name: "Ibu",
-                                        activity_level: "Level II (Waspada)",
-                                        visual: "Terjadi erupsi G. Ibu pada hari Kamis, 01 Desember 2022, pukul 19:39 WIT dengan tinggi kolom abu teramati &plusmn; 800 m di atas puncak (&plusmn; 2125 m di atas permukaan laut). Kolom abu teramati berwarna kelabu dengan intensitas tebal ke arah barat.",
-                                        photo_: "https://magma.vsi.esdm.go.id/img/crs/VEN_IBU20221201175129.png",
-                                        share_url:
-                                            "https://magma.esdm.go.id/v1/gunung-api/informasi-letusan/1c2bdcb4-7166-11ed-a8d2-005056b54356/show"
-                                    },
-                                    coordinates: [127.63, 1.488]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        volcano_name: "Kerinci",
-                                        activity_level: "Level IV (Awas)",
-                                        visual: "Terjadi erupsi G. Kerinci pada hari Selasa, 01 November 2022, pukul 16:59 WIB dengan tinggi kolom abu teramati &plusmn; 200 m di atas puncak (&plusmn; 4005 m di atas permukaan laut). Kolom abu teramati berwarna kelabu hingga coklat dengan intensitas sedang hingga tebal ke arah utara dan timur laut.",
-                                        photo_: "https://magma.vsi.esdm.go.id/img/crs/VEN_KER20221101170424.png",
-                                        share_url:
-                                            "https://magma.esdm.go.id/v1/gunung-api/informasi-letusan/1232/show?signature=5b33a900ec1df3ce0bfa0c7f6a06a075341b6e02b102d591be1fe780721c8a23"
-                                    },
-                                    coordinates: [101.264, -1.697]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        volcano_name: "Semeru",
-                                        activity_level: "Level III (Siaga)",
-                                        visual: "Terjadi erupsi G. Semeru pada hari Senin, 28 November 2022, pukul 06:11 WIB dengan tinggi kolom abu teramati &plusmn; 1000 m di atas puncak (&plusmn; 4676 m di atas permukaan laut). Kolom abu teramati berwarna kelabu dengan intensitas tebal ke arah utara.",
-                                        photo_: "https://magma.vsi.esdm.go.id/img/crs/VEN_SMR20221128062023.png",
-                                        share_url:
-                                            "https://magma.esdm.go.id/v1/gunung-api/informasi-letusan/4ac37728-eb8e-47d7-bbde-0a4e5b4578ad/show"
-                                    },
-                                    coordinates: [112.92, -8.108]
-                                }
-                            ]
-                        }
-                    },
-                    arcs: [],
-                    bbox: [127.63, 1.488, 101.264, -1.697]
-                }
-            };
-            if (topology.statusCode === 200) {
-                let result = topology.result;
-                if (result && result.objects) {
-                    resolve(topojson.feature(result, result.objects.output));
-                } else {
-                    resolve(null);
-                }
-            } else {
-                resolve(null);
-            }
-            // })
-            // .catch(err => reject(err));
-        });
-    }
-
-    getEqData(endPoint) {
-        let self = this;
-        let url = "http://localhost:3000/dev/earthquakes";
-        let client = new HttpClient();
-        return new Promise((resolve, reject) => {
-            // client
-            //     .get(url)
-            //     .then(data => {
-            let topology = {
-                statusCode: 200,
-                result: {
-                    type: "Topology",
-                    objects: {
-                        output: {
-                            type: "GeometryCollection",
-                            geometries: [
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        zone: "Pusat gempa berada di darat 7 km Baratlaut Kab. Cianjur",
-                                        feltarea: "III Cugenang",
-                                        date : '2022-11-01',
-                                        depth: "10 km                                                                                               ",
-                                        magnitude: 2.3
-                                    },
-                                    coordinates: [107.07, -6.82]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        zone: "Pusat gempa berada dilaut 15Km Tenggara Enggano",
-                                        feltarea: "III Enggano",
-                                        date : '2022-12-01',
-                                        depth: "10 km                                                                                               ",
-                                        magnitude: 4.2
-                                    },
-                                    coordinates: [102.41, -5.35]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        zone: "Pusat gempa berada didarat 6km Barat Daya KAB.Cianjur",
-                                        feltarea: "III Nagrak, III Cugenang, II Cianjur, II - III Cilaku",
-                                        date : '2022-11-01',
-                                        depth: "10 km                                                                                               ",
-                                        magnitude: 3.3
-                                    },
-                                    coordinates: [107.08, -6.84]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        zone: "Pusat gempa berada di laut 14 km Baratlaut Pulaupanjang",
-                                        feltarea: "II Lomok Utara, II Lombok Timur, II Sumbawa Barat",
-                                        date : '2022-11-01',
-                                        depth: "10 km                                                                                               ",
-                                        magnitude: 4.2
-                                    },
-                                    coordinates: [116.8, -8.36]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        zone: "Pusat gempa berada di laut 16 km Utara Kobisonta",
-                                        feltarea: "II Seram Utara",
-                                        date : '2022-11-01',
-                                        depth: "10 km                                                                                               ",
-                                        magnitude: 5.2
-                                    },
-                                    coordinates: [129.84, -2.83]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        zone: "Pusat gempa berada di darat 3 km timur laut Lalolae",
-                                        feltarea: "II - III Kolaka Timur",
-                                        date : '2022-11-01',
-                                        depth: "2 km                                                                                                ",
-                                        magnitude: 3.1
-                                    },
-                                    coordinates: [121.79, -4]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        zone: "Pusat gempa berada di laut 22 km barat daya Kep. Yapen",
-                                        feltarea: "II - III Serui",
-                                        date : '2022-11-01',
-                                        depth: "8 km                                                                                                ",
-                                        magnitude: 3.8
-                                    },
-                                    coordinates: [136.13, -1.94]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        zone: "Pusat gempa berada di darat 95 km timurlaut Kobakma",
-                                        feltarea: "II-III Kobakma",
-                                        date : '2022-11-01',
-                                        depth: "11 km                                                                                               ",
-                                        magnitude: 4.7
-                                    },
-                                    coordinates: [139.41, -2.88]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        zone: "Pusat gempa berada di darat 10 km Timurlaut Buton Tengah",
-                                        feltarea: "III Buton Tengah",
-                                        date : '2022-11-01',
-                                        depth: "6 km                                                                                                ",
-                                        magnitude: 3
-                                    },
-                                    coordinates: [122.63, -5.33]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        zone: "Pusat gempa berada di darat 3 km BaratDaya Cianjur",
-                                        feltarea:
-                                            "III Cianjur, III Cugenang, III Cibeber, III Karangtengah, II Warungkondang, II Sukabumi, II Cilaku",
-                                        date : '2022-11-01',
-                                        depth: "12 km                                                                                               ",
-                                        magnitude: 2.7
-                                    },
-                                    coordinates: [107.11, -6.83]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        zone: "Pusat gempa berada di laut 29 km barat daya Sinabang",
-                                        date : '2022-11-01',
-                                        feltarea: "III Simeulue",
-                                        depth: "15 km                                                                                               ",
-                                        magnitude: 4.7
-                                    },
-                                    coordinates: [96.31, 2.21]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        zone: "Pusat gempa berada di darat 5 km BaratDaya Cianjur",
-                                        feltarea:
-                                            "III Cibodas, III Cimacan, III Bojongherang, II - III Cianjur, II Cibeureum, III-IV Cugenang",
-                                        date : '2022-11-01',
-                                        depth: "12 km                                                                                               ",
-                                        magnitude: 3.5
-                                    },
-                                    coordinates: [107.09, -6.83]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        zone: "Pusat gempa berada di darat 6 km Barat Daya Kabupaten Cianjur",
-                                        feltarea: "III Cugenang",
-                                        date : '2022-11-01',
-                                        depth: "10 km                                                                                               ",
-                                        magnitude: 2.8
-                                    },
-                                    coordinates: [107.08, -6.83]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        zone: "Pusat gempa berada di darat 5 km baratdaya Kabupaten Cianjur",
-                                        feltarea:
-                                            "II-III Pacet , II Karangtengah, II Babakankaret, II Sukaresmi, II Cilaku, II Cipanas, II Cianjur, II Bojongherang",
-                                        date : '2022-11-01',
-                                        depth: "10 km                                                                                               ",
-                                        magnitude: 2.5
-                                    },
-                                    coordinates: [107.09, -6.84]
-                                },
-                                {
-                                    type: "Point",
-                                    properties: {
-                                        zone: "Pusat gempa berada di laut 6 km barat laut Kab. Konawe",
-                                        feltarea: "IV Kendari, IV Konawe, III-IV Konawe Selatan",
-                                        date : '2022-11-01',
-                                        depth: "10 km                                                                                               ",
-                                        magnitude: 4
-                                    },
-                                    coordinates: [122.66, -3.86]
-                                }
-                            ]
-                        }
-                    },
-                    arcs: [],
-                    bbox: [96.31, -8.36, 139.41, 2.21]
-                }
-            };
-            if (topology.statusCode === 200) {
-                let result = topology.result;
-                if (result && result.objects) {
-                    resolve(topojson.feature(result, result.objects.output));
-                } else {
-                    resolve(null);
-                }
-            } else {
-                resolve(null);
-            }
-            // })
-            // .catch(err => reject(err));
-        });
-    }
 
     revertIconToNormal(feature) {
         let icon = this.getReportIcon(feature);
@@ -1728,9 +1449,23 @@ export class MapLayers {
         return Object.keys(impact).reduce((a, b) => (impact[a] > impact[b] ? a : b));
     }
 
+    removeEarthquakeLayer(map) {
+      if (map.getLayer('earthquakeSource')) {
+        map.removeLayer("earthquakeSource");
+        map.removeSource("earthquakeSource");
+      }
+    }
+  
+    removeVolcanoLayer(map) {
+      if (map.getLayer('volcanoSource')) {
+        map.removeLayer("volcanoSource");
+        map.removeSource("volcanoSource");
+      }
+    }
+
     addVolcanoEruptionLayers(cityName, cityRegion, map, togglePane) {
         let self = this;
-        self.getVolcanoData("volcanos", map).then(data => {
+        self.appendData("volcanos/last-eruption").then(data => {
             self.volcanos = map.addSource("volcanoSource", {
                 type: "geojson",
                 data: data
@@ -1745,26 +1480,26 @@ export class MapLayers {
                   "circle-opacity": 0
               }
             });
+            self.VolcanoEruptionLevelsMap.map((level)=>(
+              this.svgPathToImage(`assets/icons/volcano-eruption-${level}.svg`).then(image => {
+                map.addImage(`volcano-eruption-icon-${level}`, image);
+                map.addLayer({
+                    id: `volcanoSource-icon-${level}`,
+                    type: "symbol",
+                    source: "volcanoSource",
+                    filter: ["==", "activity_level", this.VolcanofilterMap[level]],
+                    layout: {
+                        "icon-image": `volcano-eruption-icon-${level}`,
+                        "icon-size": 0.05,
+                        "text-allow-overlap": true,
+                        "text-ignore-placement": true,
+                        "icon-allow-overlap": true,
+                        "icon-ignore-placement": true
+                    }
+                });
+            })
+            ))
         });
-        self.VolcanoEruptionLevelsMap.map((level)=>(
-          this.svgPathToImage(`assets/icons/volcano-eruption-${level}.svg`).then(image => {
-            map.addImage(`volcano-eruption-icon-${level}`, image);
-            map.addLayer({
-                id: `volcanoSource-icon-${level}`,
-                type: "symbol",
-                source: "volcanoSource",
-                filter: ["==", "activity_level", this.VolcanofilterMap[level]],
-                layout: {
-                    "icon-image": `volcano-eruption-icon-${level}`,
-                    "icon-size": 0.05,
-                    "text-allow-overlap": true,
-                    "text-ignore-placement": true,
-                    "icon-allow-overlap": true,
-                    "icon-ignore-placement": true
-                }
-            });
-        })
-        ))
   
         map.on("click", "volcanoSource", function (e) {
             const features = map.queryRenderedFeatures(e.point, {
@@ -1777,8 +1512,8 @@ export class MapLayers {
 
     addEarthquakeLayers(cityName, cityRegion, map, togglePane) {
         let self = this;
-        self.getEqData("earthquakes", map).then(data => {
-            self.earthquake = map.addSource("earthquakeSource", {
+        self.appendData("earthquakes").then(data => {
+            map.addSource("earthquakeSource", {
                 type: "geojson",
                 data: data
             });
@@ -1791,23 +1526,24 @@ export class MapLayers {
                     "circle-opacity": 0
                 }
             });
+            self.svgPathToImage(`assets/icons/Epicenter_icon.svg`, 900).then(image => {
+                map.addImage("epicenter-icon", image);
+                map.addLayer({
+                    id: "earthquakeSource-icon",
+                    type: "symbol",
+                    source: "earthquakeSource",
+                    layout: {
+                        "icon-image": "epicenter-icon",
+                        "icon-size": 0.05,
+                        "text-allow-overlap": true,
+                        "text-ignore-placement": true,
+                        "icon-allow-overlap": true,
+                        "icon-ignore-placement": true
+                    }
+                });
+            })
         });
-        this.svgPathToImage(`assets/icons/Epicenter_icon.svg`, 900).then(image => {
-            map.addImage("epicenter-icon", image);
-            map.addLayer({
-                id: "earthquakeSource-icon",
-                type: "symbol",
-                source: "earthquakeSource",
-                layout: {
-                    "icon-image": "epicenter-icon",
-                    "icon-size": 0.05,
-                    "text-allow-overlap": true,
-                    "text-ignore-placement": true,
-                    "icon-allow-overlap": true,
-                    "icon-ignore-placement": true
-                }
-            });
-        });
+   
         map.on("click", "earthquakeSource", function (e) {
             const features = map.queryRenderedFeatures(e.point, {
                 layers: ["earthquakeSource"]

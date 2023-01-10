@@ -149,6 +149,7 @@ const id = {
     'visual': 'Deskripsi',
     'photo': 'Foto',
     'share_url': 'link terkait',
+    'updated': 'Pembaharuan terkahir',
     'source': 'Sumber'
   },
   'guage_info':{
