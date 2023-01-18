@@ -167,6 +167,16 @@ const id = {
     'youtube': {
       'title': 'Lihat Video Cara Melapor'
     },
+    'whatsapp': {
+      'title': 'Laporkan melalui WhatsApp',
+      'steps': [
+        'Kirim pesan ke +62858-4-BENCANA (+62 858-4-2362262) atau bit.ly/BencanaBotWA',
+        'BencanaBot akan mengirimkan tautan untuk melaporkan bencana.',
+        'Buka tautan tersebut dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi.',
+        'BencanaBot akan mengirim balasan dengan tautan yang akan mengarahkan ke laporan Anda.',
+        'Cek laman PetaBencana.id untuk melihat informasi bencana terkini.'
+      ]
+    },
     'twitter': {
       'title': 'Laporkan melalui Twitter',
       'steps': [
