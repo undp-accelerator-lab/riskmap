@@ -167,6 +167,16 @@ const en = {
     'youtube': {
       'title': 'Watch Instructional Video'
     },
+    'whatsapp': {
+      'title': 'Report via WhatsApp',
+      'steps': [
+        'Send a message to +62858-4-BENCANA (+62 858-4-2362262) or bit.ly/BencanaBotWA.',
+        'DisasterBot will send you a one-time link to submit a disaster report.',
+        'Open the link and follow the instructions to input hazard location, upload photo and description.',
+        'DisasterBot will send you a reply with a link to your report.',
+        'Check PetaBencana.id on your browser for up-to-date disaster information.'
+      ]
+    },
     'twitter': {
       'title': 'Report Via Twitter',
       'steps': [
