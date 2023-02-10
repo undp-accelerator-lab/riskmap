@@ -177,6 +177,29 @@
       z-index: 10000000;
     }
 
+    & #socialMediaContainer {
+      border-radius: 10px;
+      background-color: #952026;
+      position: fixed;
+      padding: 20px;
+      top: 75%;
+      left: 50%;
+      width: 85%;
+      max-width: 600px;
+      .translate-mixin(-50%, -50%);
+      box-shadow: @spread-shadow;
+      z-index: 1030;
+      .socialMediaIcons{
+        display: flex;
+        justify-content : space-evenly;
+      }
+      h6{
+        text-align: left;
+        color: #fff;
+        width: 100%;
+      }
+    }
+
     & #startPopup {
       border-radius: 10px;
       background-color: white;
@@ -197,15 +220,21 @@
         width: 100%;
         background-color: @translucent-white;
         border-top-left-radius: 6px;
+        margin-bottom: 12px;
         border-top-right-radius: 6px;
 
         & .content {
           position: relative;
           width: 100%;
+          background-color: #952026;
           height: 100%;
           // float: left;
           text-align: center;
           .bodylight-mixin(14px);
+
+          p{
+            color: #fff;
+          }
 
           & .close-pop-up{
             position: absolute;
