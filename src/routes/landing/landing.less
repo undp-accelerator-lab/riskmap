@@ -22,7 +22,7 @@
   color: #fff;
   position: fixed;
   top: 70px;
-  width: 100%;
+  width: max-content;
   z-index: 2;
   p{
     margin: auto;
@@ -37,6 +37,15 @@
 @media (prefers-reduced-motion: no-preference) {
   .moving-text{
       animation: marquee 20s linear infinite;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .moving-text {
+    p{
+      font-size: 12px;
+      width: max-content;
+    }
   }
 }
 
