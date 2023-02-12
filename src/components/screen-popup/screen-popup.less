@@ -170,23 +170,20 @@
     & #startPopUpContainer{
       width: 100vw;
       height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
       background-color: rgba(0,0,0,0.4);
       z-index: 10000000;
+      display: grid;
+      position: absolute;
+      place-content: center;
+      gap: 24px;
     }
 
     & #socialMediaContainer {
       border-radius: 10px;
       background-color: #952026;
-      position: fixed;
       padding: 20px;
-      top: 600px;
-      left: 50%;
       width: 85%;
       max-width: 600px;
-      .translate-mixin(-50%, -50%);
       box-shadow: @spread-shadow;
       z-index: 1030;
       .socialMediaIcons{
@@ -204,12 +201,8 @@
     & #startPopup {
       border-radius: 10px;
       background-color: white;
-      position: fixed;
-      top: 400px;
-      left: 50%;
       width: 85%;
       max-width: 600px;
-      .translate-mixin(-50%, -50%);
       box-shadow: @spread-shadow;
       z-index: 1030;
 
