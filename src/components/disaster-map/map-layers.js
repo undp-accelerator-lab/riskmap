@@ -302,6 +302,10 @@ export class MapLayers {
         }
     }
 
+    isMobileDevice() {
+        return window.matchMedia("only screen and (max-width: 768px)").matches;
+    }
+
     markerClickHandler(e, feature, cityName, map, togglePane) {
         var self = this;
         map.panTo(e.latlng, 5);
@@ -385,10 +389,13 @@ export class MapLayers {
                 "city",
                 "map/" + cityName + "/" + feature.properties.pkey
             );
-            // togglePane("#infoPane", "show", true);
-            const coordinates = feature.geometry.coordinates.slice();
+            if (self.isMobileDevice()) {
+                togglePane("#infoPane", "show", true);
+            } else {
+                const coordinates = feature.geometry.coordinates.slice();
 
-            self.popupContainer = self.setPopup(coordinates, map);
+                self.popupContainer = self.setPopup(coordinates, map);
+            }
             self.selected_report = e;
         } else if (e.target === self.selected_report.target) {
             // Case 2 : clicked report icon same as selected report
@@ -411,12 +418,13 @@ export class MapLayers {
             }
             // else e.target.setIcon(reportIconNormal);
             history.pushState({ city: cityName, report_id: null }, "city", "map/" + cityName);
-            // togglePane("#infoPane", "hide", false);
+            if (self.isMobileDevice()) {
+                togglePane("#infoPane", "hide", false);
+            }
             self.selected_report = null;
         } else if (e.target !== self.selected_report.target) {
             // Case 3 : clicked new report icon, while previous selection needs to be reset
             if (feature.properties.disaster_type == "fire" && !this.fireMarker) {
-                console.log("coming to disaster withot firemarker");
             }
             // this.selected_report.target.setStyle({ "className": "fire-distance" })
             // this.selected_report.target.setStyle({ fillOpacity: 0.25 });
@@ -432,14 +440,17 @@ export class MapLayers {
             self.popupContent.sevearity = self.getDisasterSevearity(feature);
             self.popupContent.timestamp = self.formatTime(feature.properties.created_at);
             const coordinates = feature.geometry.coordinates.slice();
-            self.popupContainer = self.setPopup(coordinates, map);
+            if (self.isMobileDevice()) {
+                togglePane("#infoPane", "show", true);
+            } else {
+                self.popupContainer = self.setPopup(coordinates, map);
+            }
+            self.selected_report = e;
             history.pushState(
                 { city: cityName, report_id: feature.properties.pkey },
                 "city",
                 "map/" + cityName + "/" + feature.properties.pkey
             );
-            // togglePane("#infoPane", "show", true);
-            self.selected_report = e;
         }
         //Set selReportType value from feature properties
         self.selReportType = "flood";
@@ -470,10 +481,10 @@ export class MapLayers {
                 self.voteHandler(-1);
             });
             shareButton.addEventListener("click", function () {
-                self.feedbackInteraction('share');
+                self.feedbackInteraction("share");
             });
             flagButton.addEventListener("click", function () {
-                self.feedbackInteraction('flag');
+                self.feedbackInteraction("flag");
             });
             while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
                 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
@@ -492,8 +503,8 @@ export class MapLayers {
         const self = this;
         // Trigger getter to update disabled status
         self.popupContent.voteChanged = true;
-        const reportId = self.popupContent.pkey
-        self.service.updatePoints(reportId , vote).then(points => {
+        const reportId = self.popupContent.pkey;
+        self.service.updatePoints(reportId, vote).then(points => {
             if (vote > 0) {
                 // Upvote
                 if (localStorage.getItem("id_" + reportId)) {
@@ -533,25 +544,24 @@ export class MapLayers {
     }
 
     feedbackInteraction(button) {
-        if ($('#shareButtons' + button).hasClass('highlight')) {
-          // if clicked button active
-          // remove highlight class from all .shareButtons
-          $('.shareButtons').removeClass('highlight');
-          // hide all .interactionFlyer
-          $('.interactionFlyer').hide();
+        if ($("#shareButtons" + button).hasClass("highlight")) {
+            // if clicked button active
+            // remove highlight class from all .shareButtons
+            $(".shareButtons").removeClass("highlight");
+            // hide all .interactionFlyer
+            $(".interactionFlyer").hide();
         } else {
-          // if selected button inactive
-          // remove highlight class from all .shareButtons
-          $('.shareButtons').removeClass('highlight');
-          // add highlight class to clicked button
-          $('#shareButtons' + button).addClass('highlight');
-          // hide all .interactionFlyer
-          $('.interactionFlyer').hide();
-          // show selected interactionFlyer
-          $('#' + button + 'Flyer').show();
+            // if selected button inactive
+            // remove highlight class from all .shareButtons
+            $(".shareButtons").removeClass("highlight");
+            // add highlight class to clicked button
+            $("#shareButtons" + button).addClass("highlight");
+            // hide all .interactionFlyer
+            $(".interactionFlyer").hide();
+            // show selected interactionFlyer
+            $("#" + button + "Flyer").show();
         }
-      }
-
+    }
 
     reportInteraction(feature, layer, cityName, map, togglePane) {
         let self = this;
@@ -916,7 +926,6 @@ export class MapLayers {
     }
 
     mapClickHandler(e, map, layer_id, sourceCode, togglePane, cityName) {
-        console.log("coming to map click handler");
         const self = this;
         const features = map.queryRenderedFeatures(e.point, {
             layers: [layer_id]
@@ -1715,7 +1724,6 @@ export class MapLayers {
             self.gaugeLayer = null;
         }
     }
-
 
     addDisasterLevelsToData(data) {
         let self = this;
