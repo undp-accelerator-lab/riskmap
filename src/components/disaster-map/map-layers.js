@@ -393,7 +393,7 @@ export class MapLayers {
                 togglePane("#infoPane", "show", true);
             } else {
                 const coordinates = feature.geometry.coordinates.slice();
-
+                togglePane("#infoPane", "hide", false);
                 self.popupContainer = self.setPopup(coordinates, map);
             }
             self.selected_report = e;
@@ -444,6 +444,7 @@ export class MapLayers {
                 togglePane("#infoPane", "show", true);
             } else {
                 self.popupContainer = self.setPopup(coordinates, map);
+                togglePane("#infoPane", "hide", false);
             }
             self.selected_report = e;
             history.pushState(
