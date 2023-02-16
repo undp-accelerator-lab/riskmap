@@ -393,7 +393,7 @@ export class MapLayers {
                 togglePane("#infoPane", "show", true);
             } else {
                 const coordinates = feature.geometry.coordinates.slice();
-
+                togglePane("#infoPane", "hide", false);
                 self.popupContainer = self.setPopup(coordinates, map);
             }
             self.selected_report = e;
@@ -444,6 +444,7 @@ export class MapLayers {
                 togglePane("#infoPane", "show", true);
             } else {
                 self.popupContainer = self.setPopup(coordinates, map);
+                togglePane("#infoPane", "hide", false);
             }
             self.selected_report = e;
             history.pushState(
@@ -575,6 +576,7 @@ export class MapLayers {
 
     floodExtentInteraction(e, feature, cityName, map, togglePane) {
         let self = this;
+        e.clickOnLayer = !e.clickOnLayer
         // Check for selected report, restore icon to normal, clear variable, update browser URL
         if (self.selected_report) {
             self.revertIconToNormal(self.selected_report.target.feature);
@@ -1555,29 +1557,20 @@ export class MapLayers {
         return Object.keys(impact).reduce((a, b) => (impact[a] > impact[b] ? a : b));
     }
 
-    removeEarthquakeLayer(map) {
-        if (map.getLayer("earthquakeSource")) {
-            map.removeLayer("earthquakeSource");
-            map.removeSource("earthquakeSource");
-        }
-    }
 
-    removeVolcanoLayer(map) {
-        if (map.getLayer("volcanoSource")) {
-            map.removeLayer("volcanoSource");
-            map.removeSource("volcanoSource");
-        }
-    }
 
-    addVolcanoEruptionLayers(cityName, cityRegion, map, togglePane) {
+    addVolcanoLayerToMap(data, map, cityName, togglePane) {
         let self = this;
-        self.appendData("volcanos/last-eruption").then(data => {
-            self.volcanos = map.addSource("volcanoSource", {
+        if (!map.getSource("volcanoSource")) {
+            console.log("Coming to fetch inside if");
+            map.addSource("volcanoSource", {
                 type: "geojson",
                 data: data
             });
+        }
+        if (!map.getLayer("volcanoSourceLayer")) {
             map.addLayer({
-                id: "volcanoSource",
+                id: "volcanoSourceLayer",
                 source: "volcanoSource",
                 type: "circle",
                 filter: ["in", "activity_level", "Level IV (Awas)", "Level III (Siaga)"],
@@ -1605,24 +1598,37 @@ export class MapLayers {
                     });
                 })
             );
+        }
+
+    }
+
+    addVolcanoEruptionLayers(cityName, map, togglePane) {
+        console.log("Coming twice to volcano?")
+        let self = this;
+        self.appendData("volcanos/last-eruption").then(data => {
+            self.addVolcanoLayerToMap(data, map, cityName, togglePane);
         });
 
-        map.on("click", "volcanoSource", function (e) {
+        map.on("click", "volcanoSourceLayer", function (e) {
+            if (e.clickOnLayer) {
+                return;
+            }
             const features = map.queryRenderedFeatures(e.point, {
-                layers: ["volcanoSource"]
+                layers: ["volcanoSourceLayer"]
             });
-            console.log("Feature", features[0]);
             self.floodExtentInteraction(e, features[0], cityName, map, togglePane);
         });
     }
 
-    addEarthquakeLayers(cityName, cityRegion, map, togglePane) {
+    addEarthquakeLayersToMap(data, map, cityName, togglePane) {
         let self = this;
-        self.appendData("earthquakes").then(data => {
+        if (!map.getSource("earthquakeSource")) {
             map.addSource("earthquakeSource", {
                 type: "geojson",
                 data: data
             });
+        }
+        if (!map.getLayer("earthquakeSource")) {
             map.addLayer({
                 id: "earthquakeSource",
                 source: "earthquakeSource",
@@ -1648,14 +1654,22 @@ export class MapLayers {
                     }
                 });
             });
-        });
-
+        }
         map.on("click", "earthquakeSource", function (e) {
+            if (e.clickOnLayer) {
+                return;
+            }
             const features = map.queryRenderedFeatures(e.point, {
                 layers: ["earthquakeSource"]
             });
-            console.log("Feature", features[0]);
             self.floodExtentInteraction(e, features[0], cityName, map, togglePane);
+        });
+    }
+
+    addEarthquakeLayers(cityName, map, togglePane) {
+        let self = this;
+        self.appendData("earthquakes").then(data => {
+            self.addEarthquakeLayersToMap(data, map, cityName, togglePane);
         });
     }
 
