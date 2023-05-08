@@ -172,7 +172,7 @@ const id = {
     'whatsapp': {
       'title': 'Laporkan melalui WhatsApp',
       'steps': [
-        'Kirim pesan ke +62858-4-BENCANA (+62 858-4-2362262) atau bit.ly/BencanaBotWA',
+        'Kirim pesan ke +62858-4-BENCANA (+62 858-4-2362262) atau  <a href="https://bit.ly/BencanaBotWA">BencanaBot</a>',
         'BencanaBot akan mengirimkan tautan untuk melaporkan bencana.',
         'Buka tautan tersebut dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi.',
         'BencanaBot akan mengirim balasan dengan tautan yang akan mengarahkan ke laporan Anda.',
@@ -192,7 +192,7 @@ const id = {
     'telegram': {
       'title': 'Laporkan melalui Telegram',
       'steps': [
-        'Cari @bencanabot',
+        'Cari @bencanabot atau <a href="https://t.me/bencanabot">BencanaBot</a>',
         'Klik “/mulai” dan pilih bencana yang ingin Anda laporkan',
         '@bencanabot akan mengirimkan tautan untuk melaporkan bencana',
         'Buka tautan tersebut dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi',
@@ -203,7 +203,7 @@ const id = {
     'facebook': {
       'title': 'Laporkan melalui Facebook',
       'steps': [
-        'Cari “PetaBencana.id” di Facebook Massenger',
+        'Cari “PetaBencana.id” di Facebook Massenger atau <a href="https://m.me/petabencana.id">BencanaBot</a>',
         'Klik “Get Started” dan pilih bencana yang ingin Anda laporkan',
         'PetaBencana.id akan mengirimkan tautan untuk melaporkan bencana',
         'Buka tautan tersebut dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi',

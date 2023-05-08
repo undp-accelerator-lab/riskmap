@@ -172,7 +172,7 @@ const en = {
     'whatsapp': {
       'title': 'Report via WhatsApp',
       'steps': [
-        'Send a message to +62858-4-BENCANA (+62 858-4-2362262) or bit.ly/BencanaBotWA.',
+        'Send a message to +62858-4-BENCANA (+62 858-4-2362262) or <a target="_blank" href="https://bit.ly/BencanaBotWA">BencanaBot</a>',
         'DisasterBot will send you a one-time link to submit a disaster report.',
         'Open the link and follow the instructions to input hazard location, upload photo and description.',
         'DisasterBot will send you a reply with a link to your report.',
@@ -192,7 +192,7 @@ const en = {
     'telegram': {
       'title': 'Report via Telegram',
       'steps': [
-        'Search for @bencanabot',
+        'Search @bencanabot or <a target="_blank" href="https://t.me/bencanabot">BencanaBot</a>',
         'Click “/start” and select the disaster to report',
         '@bencanabot will send you a one-time link to submit a disaster report',
         'Open the link and follow the instructions to input hazard location, upload photo and description',
@@ -203,7 +203,7 @@ const en = {
     'facebook': {
       'title': 'Report via Facebook',
       'steps': [
-        'Search for PetaBencana.id on Facebook Messenger',
+        'Search for PetaBencana.id on Facebook Messenger or <a href="https://m.me/petabencana.id">BencanaBot</a>',
         'Click on “Get Started” and select the disaster to report',
         'PetaBencana.id will send you a one-time link to submit a disaster report',
         'Open the link and follow the instructions to input hazard location, upload photo and description',
