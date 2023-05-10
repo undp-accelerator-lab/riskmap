@@ -172,7 +172,7 @@ const en = {
     'whatsapp': {
       'title': 'Report via WhatsApp',
       'steps': [
-        'Send a message to +62858-4-BENCANA (+62 858-4-2362262) or <a target="_blank" href="https://bit.ly/BencanaBotWA">BencanaBot</a>',
+        'Send a message to +62858-4-BENCANA (+62 858-4-2362262) or <a target="_blank" href="https://bit.ly/BencanaBotWA">https://bit.ly/BencanaBotWA</a>',
         'DisasterBot will send you a one-time link to submit a disaster report.',
         'Open the link and follow the instructions to input hazard location, upload photo and description.',
         'DisasterBot will send you a reply with a link to your report.',
@@ -182,7 +182,7 @@ const en = {
     'twitter': {
       'title': 'Report Via Twitter',
       'steps': [
-        'Tweet @petabencana with one of the following hashtags:<ul><li>#flood</li><li>#earthquake</li><li>#forestfire</li><li>#haze</li><li>#volcano</li></ul>',
+        'Tweet <a href="https://twitter.com/intent/tweet?text=@petabencana">@petabencana</a> with one of the following hashtags:<ul><li>#flood</li><li>#earthquake</li><li>#forestfire</li><li>#haze</li><li>#volcano</li></ul>',
         '@petabencana will send you a one-time link to submit a disaster report',
         'Open the link and follow the instructions to input hazard location, upload photo and description',
         '@petabencana will send you a reply with a link to your report',
@@ -192,7 +192,7 @@ const en = {
     'telegram': {
       'title': 'Report via Telegram',
       'steps': [
-        'Search @bencanabot or <a target="_blank" href="https://t.me/bencanabot">BencanaBot</a>',
+        'Search <a target="_blank" href="https://t.me/bencanabot">@bencanabot</a>',
         'Click “/start” and select the disaster to report',
         '@bencanabot will send you a one-time link to submit a disaster report',
         'Open the link and follow the instructions to input hazard location, upload photo and description',
@@ -203,7 +203,7 @@ const en = {
     'facebook': {
       'title': 'Report via Facebook',
       'steps': [
-        'Search for PetaBencana.id on Facebook Messenger or <a href="https://m.me/petabencana.id">BencanaBot</a>',
+        'Search <a href="https://m.me/petabencana.id">PetaBencana.id</a> on Facebook Messenger',
         'Click on “Get Started” and select the disaster to report',
         'PetaBencana.id will send you a one-time link to submit a disaster report',
         'Open the link and follow the instructions to input hazard location, upload photo and description',
