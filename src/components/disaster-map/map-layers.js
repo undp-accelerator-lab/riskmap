@@ -1197,7 +1197,7 @@ export class MapLayers {
                 });
             }
 
-            if (!this.map.getLayer("unclustered-" + sourceCode)) {
+            if (!this.map.getLayer("cluster-" + sourceCode)) {
                 map.addLayer({
                     id: "cluster-" + sourceCode,
                     source: sourceCode,
@@ -1215,14 +1215,21 @@ export class MapLayers {
                     layers: ["cluster-" + sourceCode]
                 });
                 const clusterId = features[0].properties.cluster_id;
-                if (!clusterId) return;
-                map.getSource(sourceCode).getClusterExpansionZoom(clusterId, function (err, zoom) {
-                    if (err) return;
-                    map.easeTo({
-                        center: features[0].geometry.coordinates,
-                        zoom: zoom
+                //check to see if the marker we are clicking on is clustered or not by looking to see if it has a clusterID
+                // if true use cluster expansion zoom to zoom in on cluster
+                if (clusterId) {
+                    map.getSource(sourceCode).getClusterExpansionZoom(clusterId, function (err, zoom) {
+                        if (err) return;
+                        map.easeTo({
+                            center: features[0].geometry.coordinates,
+                            zoom: zoom
+                        });
                     });
-                });
+                }
+                //if not a cluster just ease to the center of the clicked point
+                else {
+                    map.easeTo({ center: features[0].geometry.coordinates, zoom: 20 });
+                }
             });
 
             map.on("click", "unclustered-" + sourceCode, function (e) {
@@ -1603,7 +1610,6 @@ export class MapLayers {
     }
 
     addVolcanoEruptionLayers(cityName, map, togglePane) {
-        console.log("Coming twice to volcano?")
         let self = this;
         self.appendData("volcanos/last-eruption").then(data => {
             self.addVolcanoLayerToMap(data, map, cityName, togglePane);
