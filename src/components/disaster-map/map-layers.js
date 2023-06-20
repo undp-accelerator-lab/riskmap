@@ -26,11 +26,7 @@ export class MapLayers {
         this.fireMarker = {};
         this.fireCircle = {};
         this.fireSingleFeature = {};
-        this.VolcanoEruptionLevelsMap = ["III", "IV"];
-        this.VolcanofilterMap = {
-            III: "Level III (Siaga)",
-            IV: "Level IV (Awas)"
-        };
+        this.VolcanoEruptionLevelsMap = ["3", "4"];
         this.disasterMap = [
             {
                 disaster: "flood",
@@ -576,7 +572,7 @@ export class MapLayers {
 
     floodExtentInteraction(e, feature, cityName, map, togglePane) {
         let self = this;
-        e.clickOnLayer = !e.clickOnLayer
+        e.clickOnLayer = !e.clickOnLayer;
         // Check for selected report, restore icon to normal, clear variable, update browser URL
         if (self.selected_report) {
             self.revertIconToNormal(self.selected_report.target.feature);
@@ -1564,12 +1560,9 @@ export class MapLayers {
         return Object.keys(impact).reduce((a, b) => (impact[a] > impact[b] ? a : b));
     }
 
-
-
     addVolcanoLayerToMap(data, map, cityName, togglePane) {
         let self = this;
         if (!map.getSource("volcanoSource")) {
-            console.log("Coming to fetch inside if");
             map.addSource("volcanoSource", {
                 type: "geojson",
                 data: data
@@ -1580,7 +1573,7 @@ export class MapLayers {
                 id: "volcanoSourceLayer",
                 source: "volcanoSource",
                 type: "circle",
-                filter: ["in", "activity_level", "Level IV (Awas)", "Level III (Siaga)"],
+                filter: ["in", "activity_level", "4", "3"],
                 paint: {
                     "circle-radius": 8,
                     "circle-opacity": 0
@@ -1593,7 +1586,7 @@ export class MapLayers {
                         id: `volcanoSource-icon-${level}`,
                         type: "symbol",
                         source: "volcanoSource",
-                        filter: ["==", "activity_level", this.VolcanofilterMap[level]],
+                        filter: ["==", "activity_level", level],
                         layout: {
                             "icon-image": `volcano-eruption-icon-${level}`,
                             "icon-size": 0.05,
@@ -1606,7 +1599,6 @@ export class MapLayers {
                 })
             );
         }
-
     }
 
     addVolcanoEruptionLayers(cityName, map, togglePane) {
