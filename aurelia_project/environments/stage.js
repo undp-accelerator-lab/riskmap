@@ -40,6 +40,22 @@ export default {
       { name: "telegram", link: "https://telegram.me/BencanaBot" },
     ],
   },
+    mapeatudesastre: {
+    title: 'mapeatudesastre.org',
+    report_timeperiod: 43200,
+    default_language: 'es',
+    tile_layer: 'https://api.mapbox.com/styles/panamalab/cllulospp00bo01r46fda7mag/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicGFuYW1hbGFiIiwiYSI6ImNsbHVsN3QwYzF2NXUzbW56ZjV4Z294eWYifQ.2CvQp6Z6WiiR_24F_LFyCA',
+    data_server: 'https://api.mapeatudesastre.org/',
+    cards_server: 'https://cards-dev.petabencana.id/',
+    app: 'https://mapeatudesastre.org/',
+    deep_links: [
+      {name: 'facebook', link: 'http://m.me/CognicityDev.id'},
+      {name: 'twitter', link: 'https://twitter.com/intent/tweet?text=Laporkan+banjir&via=petabencana'}, //TODO : fill after twitter DM bot is created for Petabencana.
+      {name: 'telegram', link: 'https://telegram.me/CognicityDevBot'},
+      {name: 'telegram', link: 'https://telegram.me/CognicityDevBot'}
+    ],
+    data_server_key: '{data_server_key}'
+  },
   mapakalamidad: {
     title: "Mapakalamidad.ph",
     default_language: "tl",
