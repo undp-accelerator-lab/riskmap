@@ -198,10 +198,10 @@ export class DisasterMap {
 
   attached() {
     let self = this;
-    mapboxgl.accessToken = 'pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ';
+    mapboxgl.accessToken = 'pk.eyJ1IjoicGFuYW1hbGFiIiwiYSI6ImNsbHVsN3QwYzF2NXUzbW56ZjV4Z294eWYifQ.2CvQp6Z6WiiR_24F_LFyCA';
     self.map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/petabencana/ckq0nc6hp01vw17p9n17yxue2',
+      style: 'mapbox://styles/mapbox/streets-v11',
       center: [self.utility.config.region_center[1], self.utility.config.region_center[0]],
       zoom: self.utility.config.starting_zoom
     });
