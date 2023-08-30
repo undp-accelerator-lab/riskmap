@@ -99,7 +99,34 @@
         </div>
         <!-- INFO -->
         <div id="content-info" if.bind="seltab === 'about'" class="contentWrapper">
-          <p>About Mapeatudesastre</p>
+          <p id="intro">${locale.info_content.intro}</p>
+          <p innerhtml.bind="locale.info_content.p1"></p>
+          <table id="partners">
+            <tr class="logos">
+              <td colspan="2" align="center">
+                  <img class="partnerLogo" src="assets/graphics/undp-logo.png">
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" align="center">
+                <img class="partnerLogo" src="assets/graphics/climate-promise-undp.png">
+              </td>
+            </tr>
+            <tr class="logos">
+              <td colspan="2" align="center">
+                <a href="https://www.civicdatalab.com/">
+                  <img class="partnerLogo" src="assets/graphics/cdl-logo.png">
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" align="center">
+                <a href="http://www.cognicity.info/">
+                  <img class="cognicityLogo" src="assets/graphics/cognicity-image.png">
+                </a>
+              </td>
+            </tr>
+          </table>
       </div>
        </div>
     </div>

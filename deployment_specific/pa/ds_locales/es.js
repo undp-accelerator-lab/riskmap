@@ -223,11 +223,8 @@ const id = {
     }
   },
   'info_content': {
-    'intro': 'PetaBencana.id memanfaatkan penggunaan media sosial dalam situasi darurat untuk mengumpulkan, menyortir, dan menampilkan informasi risiko secara waktu-nyata (real-time).',
-    'infoLink': '<a href="https://info.petabencana.id/" target="_blank">Info lebih lanjut, kunjungi Yayasan Peta Bencana</a>',
-    'p1': 'Dijalankan oleh <a href="https://info.petabencana.id/" target="_blank"> Yayasan Peta Bencana</a>, sebagai platform yang gratis dan transparan untuk respon darurat dan manajemen bencana di kota-kota besar di Asia Tenggara dan Asia Selatan. Platform ini dapat terwujud melalui kolaborasi dengan beberapa mitra:',
-    'p2': '',
-    'p3': 'PetaBencana.id mengumpulkan, menyortir, dan “memvisualisasikan” data menggunakan CogniCity Open Source Software - sebuah platform untuk manajemen kebencanaan - untuk mengubah kicauan di media sosial dan digital menjadi informasi penting bagi warga, komunitas, dan instansi pemerintah. Platform ini menggunakan paradigma “manusia sebagai sensor terbaik”, di mana laporan terkonfirmasi dikumpulkan secara langsung dari pengguna di lapangan, dengan metode yang memungkinkan pengolahan data yang cepat dengan biaya minimum. Kerangka kerja ini menghasilkan data real-time dan akurat, yang langsung tersedia untuk pengguna dan petugas darurat berwenang.',
+    'intro': 'MapeaTuDesastre.org aprovecha el uso de las redes sociales en situaciones de emergencia para recopilar, clasificar y mostrar información de riesgos de inundaciones en tiempo real.',
+    'p1': 'Este piloto es iniciado por el Laboratorio de Aceleración de PNUD Panamá en alianza con Cognicity OSS y con el apoyo de Climate Promise, como una plataforma gratuita y transparente para la respuesta a emergencias y la gestión de desastres en la ciudad de Panamá. Esta plataforma se pudo realizar mediante la colaboración con varios socios',
     'partners': {
       'funding': 'Mitra Donor',
       'implementing': 'Mitra Pelaksana',
