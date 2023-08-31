@@ -9,9 +9,9 @@ version: 0.2
      # key: "value"
 
 phases:
-  # install:
-  #   commands:
-      # npm install
+  install:
+    commands:
+      npm install
       # - command
   # pre_build:
   #   commands:
