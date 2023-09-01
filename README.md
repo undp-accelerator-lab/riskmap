@@ -1,5 +1,5 @@
 ### RiskMap
-Client map  application for [PetaBencana platform](https://petabencana.id) . Read more project information [here](https://github.com/urbanriskmap/petabencana-docs/blob/master/README.md).
+Client map  application for [UNDP platform]([https://petabencana.id](https://mapeatudesastre.org/)) . Read more project information [here](https://github.com/urbanriskmap/petabencana-docs/blob/master/README.md).
 <br>
 <br>
 This platform is built using the Aurelia framework, which has a few prerequisites. To get started, follow the machine & application setup steps.
@@ -9,6 +9,7 @@ ____
 * riskmap.us
 * petabencana.id
 * riskmap.in
+* mapeatudesastre.org
 
 ### Machine setup
 * Install NodeJS >= 4.x
