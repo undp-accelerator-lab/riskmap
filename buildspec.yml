@@ -1,34 +1,33 @@
 version: 0.2
 
-#env:
-  #variables:
-     # key: "value"
+env:
+  variables:
+     TARGET_S3_BUCKET: "s3://cards-mapeatudesastre"
      # key: "value"
   #parameter-store:
      # key: "value"
      # key: "value"
 
 phases:
-  install:
-    commands:
-      npm install
-      # - command
-  # pre_build:
+  # install:
   #   commands:
+  #     npm install
       # - command
-      # - command
-  build:
+  pre_build:
     commands:
-      - npm run test
-      - npm run $ENV
-      - rm -r node_modules
-      # - command
-  post_build:
-    commands:
-      - pwd
-      - ls -la
       - echo $TARGET_S3_BUCKET
-      - aws s3 sync . $TARGET_S3_BUCKET --sse
+  # build:
+  #   commands:
+  #     - npm run test
+  #     - npm run $ENV
+  #     - rm -r node_modules
+  #     # - command
+  # post_build:
+  #   commands:
+  #     - pwd
+  #     - ls -la
+  #     - echo $TARGET_S3_BUCKET
+  #     - aws s3 sync . $TARGET_S3_BUCKET --sse
 artifacts:
   files:
     - '**/*'
