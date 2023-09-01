@@ -9,25 +9,25 @@ env:
      # key: "value"
 
 phases:
-  # install:
-  #   commands:
-  #     npm install
-      # - command
-  pre_build:
+  install:
     commands:
-      - echo $TARGET_S3_BUCKET
-  # build:
+      npm install
+      # - command
+  # pre_build:
   #   commands:
-  #     - npm run test
-  #     - npm run $ENV
-  #     - rm -r node_modules
-  #     # - command
-  # post_build:
-  #   commands:
-  #     - pwd
-  #     - ls -la
   #     - echo $TARGET_S3_BUCKET
-  #     - aws s3 sync . $TARGET_S3_BUCKET --sse
+  build:
+    commands:
+      - npm run test
+      - npm run $ENV
+      - rm -r node_modules
+      # - command
+  post_build:
+    commands:
+      - pwd
+      - ls -la
+      - echo $TARGET_S3_BUCKET
+      - aws s3 sync . $TARGET_S3_BUCKET --sse
 artifacts:
   files:
     - '**/*'
