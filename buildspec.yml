@@ -25,6 +25,8 @@ phases:
       # - command
   post_build:
     commands:
+      - pwd
+      - ls -la
       - aws s3 sync . $TARGET_S3_BUCKET --sse
 artifacts:
   files:

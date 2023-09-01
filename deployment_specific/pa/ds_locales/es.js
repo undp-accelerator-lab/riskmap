@@ -51,7 +51,7 @@ const id = {
     'disturbance_key': 'Rusak:',
     'access_key': 'Akses Jalan:',
     'structure_key': 'Kerusakan Bangunan:',
-    'source': 'Sumber',
+    'source': 'Source',
       //TODO:Get Translations spanish
     'flagReport_Title': 'flag this report as inappropriate',
     'flagReport_button': 'tell us more',
