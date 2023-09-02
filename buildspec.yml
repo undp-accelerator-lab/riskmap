@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-     TARGET_S3_BUCKET: "s3://cards-mapeatudesastre"
+     TARGET_S3_BUCKET: "s3://mapeatudesastre-dev"
      # key: "value"
   #parameter-store:
      # key: "value"
