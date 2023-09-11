@@ -78,18 +78,17 @@ export class ScreenPopup {
     $('#dropdown_city').on('click', function() {
       $(this).toggleClass('clicked');
     });
+    this.searchText = newval.toLowerCase();
+    if (this.searchResult.length > 3) {
+      $('#dropdown_city').show();
+    } else {
+      $('#dropdown_city').hide();
+    }
     const map = Object.keys(this.config.sub_regions);
     let newObj = map.filter(value => {
       return value.toLowerCase().indexOf(newval.toLowerCase()) !== -1 ? value : null;
     });
     this.searchResult = newObj;
-    // this.searchText = newval.toLowerCase();
-    if (this.searchResult.length > 0) {
-      $('#dropdown_city').show();
-    } else {
-      $('#dropdown_city').hide();
-    }
-
   }
 
   popupQueryChanged() {
