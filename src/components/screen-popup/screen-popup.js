@@ -89,6 +89,11 @@ export class ScreenPopup {
       return value.toLowerCase().indexOf(newval.toLowerCase()) !== -1 ? value : null;
     });
     this.searchResult = newObj;
+    if (this.searchResult.length > 0) {
+      $('#dropdown_city').show();
+    } else {
+      $('#dropdown_city').hide();
+    }
   }
 
   popupQueryChanged() {
