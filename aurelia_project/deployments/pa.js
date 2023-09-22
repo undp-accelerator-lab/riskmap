@@ -23,7 +23,7 @@ export default {
     },
     'initial_load': [],
     'sub_regions': {
-      'Panama': { 'province': 'Panama', 'center': [9.09, -79.42] },
+      'Panamá': { 'province': 'Panama', 'center': [9.09, -79.42] },
       'san miguelito': { 'province': 'Panama', 'center': [9.05, -79.49] }
     },
     'region_center': [9.10, -78.92],
