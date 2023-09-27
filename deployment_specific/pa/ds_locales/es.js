@@ -7,6 +7,10 @@ const id = {
   'haze_flow_img': '/assets/icons/haze_flow_bi.png',
   'volcano_flow_img': '/assets/icons/volcano_flow_bi.png',
   'report': 'Reporte',
+  'report_instruction1': 'HAZ CLICK AQUÍ PARA',
+  'report_instruction2': 'REPORTAR UN INCIDENTE',
+  'report_directions1': 'EXPLORA EL MAPA PARA VER',
+  'report_directions2': 'REPORTES DE DESASTRE',
   'add_report': 'Agregar reporte',
   'add_eq_report': 'Laporkan gempa',
   'search_ph': 'Buscar',
@@ -15,7 +19,11 @@ const id = {
   'add_volcano_report': 'Laporkan Gunung Api',
   'add_fire_report': 'Laporkan Kebakaran Hutan',
   'social_media_popup_header': 'Reportar desastre vía :',
-  'popup_text': ' Buscar información de desastre por provincia:',
+  'popup_text': ' EXPLORA EL MAPA PARA VER REPORTES DE DESASTRE',
+  'social_media_text1': 'INGRESA TU UBICACIÓN PARA REPORTAR UN INCIDENTE',
+  'social_media_text1_1': 'VIA WEB',
+  'social_media_text2': 'HAZ CLICK AQUÍ PARA REPORTAR UN INCIDENTE',
+  'social_media_text2_2': 'VIA WHATSAPP',
   'popup_footer': 'Mapeatudesastre.org',
   'search_header': 'Seleccionar region',
   'flood': 'Inundación',
@@ -38,10 +46,10 @@ const id = {
   'web_menu': {
     'tab_names': {
       'map': 'Mapa',
-      'report': 'Reporte',
+      'report': 'HAZ CLICK AQUÍ PARA REPORTAR UN INCIDENTE',
       'info': 'Info',
       'legend': 'Leyenda',
-      'about': 'Acerca'
+      'about': 'ACERCA DE MAPEATUDESASTRE.ORG'
     }
   },
   'report_info': {
@@ -213,7 +221,7 @@ const id = {
       ]
     },
     'web': {
-      'title': 'Reporte via Web',
+      'title': 'INGRESA TU UBICACIÓN PARA REPORTAR',
       'steps': [
         'Abra mapeatudesastre.org en su navegador',
         'Haga clic en el icono Reportar en la parte superior izquierda de la página y seleccione el desastre que desea reportar.',
