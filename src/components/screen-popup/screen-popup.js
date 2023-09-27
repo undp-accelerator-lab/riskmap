@@ -111,7 +111,7 @@ export class ScreenPopup {
     } else {
       $('#popupResults').hide();
       $('#socialMediaContainer').show();
-
+      
     }
   }
 
