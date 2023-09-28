@@ -176,9 +176,10 @@
       display: grid;
       position: absolute;
       align-items: center;
-      padding-top: 100px;
-      position: absolute;
-      gap: 24px;
+      justify-content: center;
+      // gap: 24px;
+      padding-top: 130px;
+      padding-bottom: 90px;
     }
 
     & #socialMediaContainer {
@@ -198,7 +199,6 @@
     & #socialMediaText{
       border-radius: 10px;
       max-width: 600px;
-      // background-color: #952026;
       background-color: green;
       padding: 15px;
       box-shadow: @spread-shadow;
@@ -741,6 +741,12 @@ and (-webkit-device-pixel-ratio: 3) {
   #screen #socialMediaContainer{
     top : -60%;
     position: relative;
+  }
+
+  #screen #startPopUpContainer{
+    display: grid;
+    align-items: center;
+    padding-top: 140px;
   }
 
 }
