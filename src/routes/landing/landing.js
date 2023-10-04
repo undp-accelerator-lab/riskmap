@@ -52,7 +52,7 @@ export class Landing {
   }
 
   activate(params, routerConfig) {
-    this.queried_city = params.city;
+    this.queried_city = 'Panama'
     this.report_id = params.report;
     this.queried_lang =
       this.configData.supported_languages.indexOf(params.lang) > -1

@@ -12,9 +12,9 @@ export class App {
   configureRouter(config, router) {
     config.title = this.config.title;
     config.options.pushState = true;
-    config.options.root = '/';
+    config.options.root = '/map';
     config.map([
-      {route: ['', 'map', 'map/:city', 'map/:city/:report'],   name: 'map',  moduleId: 'routes/landing/landing'}
+      {route: ['', 'map', 'map/:city', 'map/:city/:report'],   name: 'map', redirect: '/Panama',  moduleId: 'routes/landing/landing'}
     ]);
     config.mapUnknownRoutes({moduleId: 'routes/landing/landing'});
     this.router = router;
