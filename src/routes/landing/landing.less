@@ -40,24 +40,27 @@
 
 & #reportDirection {
   position: absolute;
-  bottom: 33px;
-  left: 50px;
+  top: 100px;
+  left: 10px;
   z-index: 100000;
   display: flex;
-
+  // flex-wrap: wrap;
  
     @media (min-device-width: 768px) {
-      .reportDirectionImg {
-      width: 300px;
-      height: 130px;
+    #reportDirection{
+      padding-top: 700px;
+    }
+    .reportDirectionImg {
+      width: 346px;
+      height: 159px;
     }
     .reportImages {
       display: flex;
       flex-direction: column;
     }
     .reportImg {
-      width: 180px;
-      height: 67px;
+      width: 228px;
+      height: 83px;
       cursor: pointer;
     }
   }
@@ -86,18 +89,27 @@
   .moving-text {
     animation: marquee 20s linear infinite;
   }
-
-  #reportDirection {
-    width: 200px;
-  }
 }
 
-@media screen and (max-width: 768px) {
+// @media only screen and (width: 768px){
+//   .reportDirectionImg{
+//     top: -8px;
+//   }
+//   .reportImages{
+//     left: 20px;
+//   }
+// }
+
+@media screen and (max-width: 767px) {
   .moving-text {
     p {
       font-size: 12px;
       width: max-content;
     }
+  }
+  #reportDirection {
+    width: 200px;
+    padding-top: 70px;
   }
   .reportDirectionImg {
     width: 160px;

@@ -40,12 +40,12 @@
                     <img src="assets/icons/SP_Graphic.png" class="reportDirectionImg">
                 </div>
                 <div class="reportImages">
+                    <img src="assets/icons/SP_ReportButtonWeb.png" class="reportImg" click.delegate="reportDisaster('flood')">
                     <img src="assets/icons/SP_ButtonReportWA.png" class="reportImg">
-                    <img src="assets/icons/SP_ButtonRepotWeb.png" class="reportImg" click.delegate="reportDisaster('flood')">
                 </div>
             </div>
         </div>
-        <!-- <screen-popup
+        <screen-popup
             class="start-screen-pop-up-tpl"
             view-model.ref="screenPopup"
             helper.bind="webMenu.locale.map_helper"
@@ -56,7 +56,7 @@
             locale.bind="webMenu.locale"
             initializetab.bind="queried_terms"
         >
-        </screen-popup> -->
+        </screen-popup>
 
         <lightbox id="lightbox_pane" if.bind="imageurl" close-lightbox.call="toggleLightbox()" fullsizeimg.bind="imageurl"> </lightbox>
 
