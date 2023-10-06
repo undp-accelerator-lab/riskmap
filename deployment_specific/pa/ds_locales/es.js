@@ -19,6 +19,7 @@ const id = {
   'add_volcano_report': 'Laporkan Gunung Api',
   'add_fire_report': 'Laporkan Kebakaran Hutan',
   'social_media_popup_header': 'Reportar desastre vía :',
+  'banner_text': 'Estamos probando este sistema de reportes ciudadanos para inundaciones, si estás en una situación de emergencia llama al 911. Si quieres reportar tu situación o un riesgo que estás observando, haz click en el botón azul',
   'popup_text': ' EXPLORA EL MAPA PARA VER REPORTES DE DESASTRE',
   'social_media_text1': 'INGRESA TU UBICACIÓN PARA REPORTAR UN INCIDENTE',
   'social_media_text1_1': 'VIA WEB',
