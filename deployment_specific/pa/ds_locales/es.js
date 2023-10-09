@@ -7,10 +7,6 @@ const id = {
   'haze_flow_img': '/assets/icons/haze_flow_bi.png',
   'volcano_flow_img': '/assets/icons/volcano_flow_bi.png',
   'report': 'Reporte',
-  'report_instruction1': 'HAZ CLICK AQUÍ PARA',
-  'report_instruction2': 'REPORTAR UN INCIDENTE',
-  'report_directions1': 'EXPLORA EL MAPA PARA VER',
-  'report_directions2': 'REPORTES DE DESASTRE',
   'add_report': 'Agregar reporte',
   'add_eq_report': 'Laporkan gempa',
   'search_ph': 'Buscar',
@@ -46,7 +42,7 @@ const id = {
   'web_menu': {
     'tab_names': {
       'map': 'Mapa',
-      'report': 'HAZ CLICK AQUÍ PARA REPORTAR UN INCIDENTE',
+      'report': 'HAZ CLICK AQUI PARA SABER COMO REPORTAR UN RIESGO O UNA INUNDACIÓN',
       'info': 'Info',
       'legend': 'Leyenda',
       'about': 'ACERCA DE MAPEATUDESASTRE.ORG'
