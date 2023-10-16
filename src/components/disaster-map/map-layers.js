@@ -51,6 +51,10 @@ export class MapLayers {
             {
                 disaster: "road",
                 levels: ["low", "normal", "medium", "high"]
+            },
+            {
+                disaster: "non_expiry",
+                levels: ["low"]
             }
         ];
         this.mapIcons = {
@@ -491,6 +495,7 @@ export class MapLayers {
             .setLngLat(coordinates)
             .setDOMContent(div)
             .addTo(map)
+            .setMaxWidth("400px")
             .setOffset(20);
 
         return popupContainer;
@@ -798,6 +803,7 @@ export class MapLayers {
                         this.addDisasterIconLayers(map);
                         this.addCluster(data, cityName, map, togglePane, "haze", null, false);
                         this.addCluster(data, cityName, map, togglePane, "haze", null, true);
+                        this.addCluster(data, cityName, map, togglePane, "non_expiry", null, false);
                         this.addCluster(data, cityName, map, togglePane, "flood", null, false);
                         this.addCluster(data, cityName, map, togglePane, "flood", null, true);
                         this.addCluster(data, cityName, map, togglePane, "volcano", null, false);
@@ -834,6 +840,7 @@ export class MapLayers {
     addIconLayer(map, image_name, layer_id, source, filter, icon_size) {
         let image_code = image_name.split("/").slice(-1)[0].split(".")[0];
         this.svgPathToImage(image_name).then(image => {
+            console.log("🚀 ~ file: map-layers.js:842 ~ MapLayers ~ this.svgPathToImage ~ image:", image)
             map.addImage(image_code, image);
             map.addLayer({
                 id: layer_id,
@@ -1502,6 +1509,7 @@ export class MapLayers {
                 level = "high";
                 break;
             default:
+                level = "low";
                 break;
         }
         return level;
