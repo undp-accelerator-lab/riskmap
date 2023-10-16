@@ -840,7 +840,6 @@ export class MapLayers {
     addIconLayer(map, image_name, layer_id, source, filter, icon_size) {
         let image_code = image_name.split("/").slice(-1)[0].split(".")[0];
         this.svgPathToImage(image_name).then(image => {
-            console.log("🚀 ~ file: map-layers.js:842 ~ MapLayers ~ this.svgPathToImage ~ image:", image)
             map.addImage(image_code, image);
             map.addLayer({
                 id: layer_id,
